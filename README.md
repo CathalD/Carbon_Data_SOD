@@ -321,7 +321,7 @@ Field intervals are 0–15, 15–30, 30–60 and 60–100 cm; model predictions 
 
 [Olefeldt's dataset](https://doi.org/10.3334/ORNLDAAC/1332) combines permafrost zonation, ground ice, sediment thickness, boreal/tundra ecoregions, ruggedness and histel coverage through expert weights. Its landscape coverage estimates and associated SOC are polygon summaries, not pixel-level learned relationships.
 
-[NCSCDv2](https://bolin.su.se/data/ncscd/) supplies polygon data, rasterizations and point pedons. Record the chosen rasterization and source-map scale; changing pixel size does not improve the underlying soil-map detail. Depths include 0–30, 0–100, 100–200 and 200–300 cm.
+[NCSCDv2](https://bolin.su.se/data/ncscd/) supplies polygon data, rasterizations and point pedons. The raster download page reports stored stocks in hg C/m²; verify selected files and divide by 10 for kg C/m². Canada LAEA rasterization is available at 1 km. Record the chosen rasterization and source-map scale; changing pixel size does not improve the underlying soil-map detail. Depths include 0–30, 0–100, 100–200 and 200–300 cm.
 
 Treat is a synthesis reference. Its northern peatland and Yedoma references are additional resources to catalogue with their exact dataset versions. Review/process evidence is not a predictor ranking.
 
@@ -432,12 +432,16 @@ The viewer link does not establish a downloadable field dataset, raster package 
 
 ### Soil map catalogue and availability
 
+[Map inventory and upload status](docs/soil_map_inventory.md) · [Read-only GEE inspection script](scripts/03_Soil_Map_Catalogue.js) · [Project TODOs](TODO.md)
+
+Catalogue checks on 14 October 2026 found existing references for Sothe and SoilGrids. No matching public GEE asset was found for Geng, NCSCDv2, Olefeldt or Hengl in the catalogues searched; this is a search result, not proof of universal absence. Geng upload is in progress under `projects/northstarlabs/assets/canada_carbon_collection/`; the user-supplied first ID is `BD_0_5_cm`, whose completion and runtime metadata are not yet verified.
+
 | Map/reference | Depth/product | Access and current GEE status |
 |---|---|---|
 | Sothe concentration | g C/kg; exact six intervals to 1 m pending release check | [Study](https://doi.org/10.1016/j.geoderma.2021.115402); [Awesome GEE](https://gee-community-catalog.org/projects/scs/): `projects/sat-io/open-datasets/carbon_stocks_ca/scc` |
 | Sothe stocks — initial Canada reference | kg C/m²; 0–0.3, 0–1, 0–2 m with uncertainty | [Study](https://doi.org/10.1029/2021GB007213); Awesome GEE collection `projects/sat-io/open-datasets/carbon_stocks_ca/sc` |
 | SoilGrids 2.0 | Concentration/density at six intervals to 2 m; native released stock 0–30 cm | [Provider access](https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_02.html), [GEE catalogue](https://gee-community-catalog.org/projects/isric/); `projects/soilgrids-isric/soc_mean`, `ocd_mean`, `ocs_mean` |
-| Geng 100 m grids | SOC %, bulk density and other soil properties at five intervals to 1 m; quantiles | [CanSIS downloads](https://sis.agr.gc.ca/cansis/nsdb/psm/index.html), [archive](https://doi.org/10.5281/zenodo.15473720), [code](https://github.com/CanSISPSM/PSM100mCanada); GEE asset unconfirmed |
+| Geng 100 m grids | SOC %, bulk density and other soil properties at five intervals to 1 m; quantiles | [CanSIS downloads](https://sis.agr.gc.ca/cansis/nsdb/psm/index.html), [archive](https://doi.org/10.5281/zenodo.15473720), [code](https://github.com/CanSISPSM/PSM100mCanada); project upload in progress at `projects/northstarlabs/assets/canada_carbon_collection/BD_0_5_cm` |
 | Hengl Alberta 30 m | Modelled SOC/density; integrated stocks to 1 m in t/ha | [Study](https://doi.org/10.1139/facets-2023-0040), [published viewer](https://g3w.soils.app/en/map/alberta-soil-carbon/); certificate/access issue observed; raster download and GEE asset unconfirmed |
 | Olefeldt thermokarst landscapes | Polygon landscape fractions and associated 0–3 m SOC | [ORNL DAAC archive](https://doi.org/10.3334/ORNLDAAC/1332); GEE asset unconfirmed |
 | NCSCDv2 | Polygon stocks; rasterized 0–30, 0–100, 100–200, 200–300 cm | [Maps](https://bolin.su.se/data/ncscd/tiff.php) and [pedons](https://bolin.su.se/data/ncscd/pedon.php); GEE asset unconfirmed |
