@@ -247,8 +247,8 @@ The following counts were checked in Earth Engine on 14 October 2026. Asset name
 |---|---:|---:|---|---|
 | WoSIS Canada | 8,825 | 43,055 | `wosis_canada_profiles_v2`; `wosis_canada_layers_v2` | [ISRIC WoSIS](https://docs.isric.org/globaldata/wosis/) |
 | National Pedon Database | 9,017 | 48,371 | `npdb_canada_profiles_v1`; `npdb_canada_layers_v1` | [CanSIS NPDB](https://sis.agr.gc.ca/cansis/nsdb/npdb/index.html) |
-| Local CanPeat preparation | 1,217 | 37,072 | `canpeat_profiles_v1`; `canpeat_layers_v1` | Exact source release to match; [NRCan Peat Profile Database](https://open.canada.ca/data/en/dataset/e287b0dd-8b07-435b-8a76-0c7ec84ac228) is a resource to reconcile |
-| Janousek preparation | 1,284 | 23,018 | `janousek_profiles_v1`; `janousek_layers_v1` | Exact publication/archive citation pending; includes locations outside Canada |
+| NRCan peat profiles (local CanPeat preparation) | 1,217 | 37,072 | `canpeat_profiles_v1`; `canpeat_layers_v1` | [Confirmed provider](https://app.geo.ca/en-ca/map-browser/record/e287b0dd-8b07-435b-8a76-0c7ec84ac228); [Bauer et al. 2024](https://doi.org/10.1002/ecy.4398) |
+| Janousek coastal blue carbon | 1,284 | 23,018 | `janousek_profiles_v1`; `janousek_layers_v1` | [Janousek et al. 2025](https://doi.org/10.1029/2024GB008239); [Smithsonian archive](https://doi.org/10.25573/serc.28127486.v1); Pacific coast across Canada, US and Mexico |
 | Riley preparation | 347 sampling-location groups | 1,584 | `riley_profiles_v1`; `riley_layers_v1` | Exact OGS report(s), table and release pending |
 
 <details>
@@ -260,7 +260,7 @@ WoSIS v2 restores metadata lost during the original join and corrects the stock 
 
 Riley groups by NTS, peatland number and sampling point; four groups contain overlapping depth intervals. Bulk-density units and separate core identities need confirmation before stock integration. Janousek retains repeated source layer IDs with flags. Reconcile shared observations between NPDB, WoSIS and peat compilations before model validation.
 
-The [Can-Peat metadata portal](https://waterlooclimatedata.ca/) is a discovery/access resource. Do not assume it is the same dataset as our local CanPeat files. The [Loisel et al. 2014 northern peatland synthesis](https://doi.org/10.1177/0959683614538073) is another distinct source, explicitly connected to the Sothe soil work. Community cores are excluded from the present repository workflow.
+The [Can-Peat metadata portal](https://waterlooclimatedata.ca/) is a discovery/access resource. It is distinct from our local CanPeat files, now reconciled to the NRCan/Bauer peat profile database. The [Loisel et al. 2014 northern peatland synthesis](https://doi.org/10.1177/0959683614538073) is another distinct source, explicitly connected to the Sothe soil work. Community cores are excluded from the present repository workflow.
 
 </details>
 
@@ -273,6 +273,7 @@ The [Can-Peat metadata portal](https://waterlooclimatedata.ca/) is a discovery/a
 | [Poggio et al. 2021 — SoilGrids 2.0](https://doi.org/10.5194/soil-7-217-2021) | Global; approximately 240,000 profiles including restricted-use inputs | 250 m | Over 400 candidate environmental layers; spatially stratified ten-fold validation |
 | [Geng et al. 2025](https://doi.org/10.1038/s41597-025-05460-4) | Canada; observations concentrated in southern agricultural regions | 100 m | 70 covariates; bias-corrected RF/QRF; national/regional application |
 | [Hengl et al. 2023 — Alberta](https://doi.org/10.1139/facets-2023-0040) | Alberta agricultural lands; 404 locations on 22 farms | 30 m; terrain inputs at 30/100/250 m | 180 prepared covariates; SOC and bulk-density models; farm-scale sampling supports regional modelling |
+| [Janousek et al. 2025](https://doi.org/10.1029/2024GB008239) | Pacific coastal ecosystems, Alaska to Mexico; estuary/local habitat versus regional climate | Core-based analyses; no original uniform raster | Local habitat/estuary variables, tidal elevation and sediment fines; ecosystem-specific relationships |
 | [Olefeldt et al. 2016](https://doi.org/10.1038/ncomms13043) | Circumpolar boreal/tundra permafrost region | Landscape polygons | Expert-weighted landscape classification; SOC inherited from circumpolar soil estimates |
 | [Hugelius et al. 2013 — NCSCDv2](https://doi.org/10.5194/essd-5-393-2013) | Northern circumpolar permafrost region | Polygons; several rasterizations | Soil-map/pedon upscaling; not a satellite RF predictor-selection study |
 | [Treat et al. 2024](https://doi.org/10.1029/2023JG007638) | Northern permafrost ecosystems | Review; no original map grid | Context and links to stock/flux products; not a new fitted covariate stack |
@@ -282,7 +283,7 @@ The [Can-Peat metadata portal](https://waterlooclimatedata.ca/) is a discovery/a
 
 The [Geoderma author record](https://experts.mcmaster.ca/scholarly-works/2123723) reports six intervals to 1 m, 83% explained variation and an 80% prediction interval. The exact six boundaries need the paper/map metadata: the supplied five-boundary list is incomplete and must not be silently relabelled as GlobalSoilMap's six intervals to 2 m.
 
-The GBC methods identify 6,490 WoSIS sites/39,323 layers plus 43 Lehigh sites/298 layers: 6,533 SOC locations and 39,621 layers. Bulk density has 11,068 layers at 2,157 sites. These are not all paired SOC–density observations. Forty candidates mostly describe 2000–2019; 25 were retained for SOC. Five-fold results are whole-model evidence. Exact variable definitions/releases require Supporting Information Table S2.
+The GBC methods identify 6,490 WoSIS sites/39,323 layers plus 43 Lehigh sites/298 layers: 6,533 SOC locations and 39,621 layers. Bulk density has 11,068 layers at 2,157 sites. These are not all paired SOC–density observations. Forty candidates mostly describe 2000–2019; 25 were retained for SOC. Five-fold results are whole-model evidence. Supporting Information Table S2 has now been inspected and catalogued below; exact temporal expansion and feature retention remain to reconcile.
 
 Land-cover masks, ground-ice, coarse-fragment and rooting-depth adjustments are stock-construction inputs. Record them separately from fitted predictors. Publication year is not a uniform field sampling or map observation year.
 
@@ -342,6 +343,8 @@ The shortlist below is our implementation plan. A study-linked family is disting
 | Elevation, slope, curvature, landforms, TPI, wetness and ridge/valley flatness | Sothe elevation ranked; Geng/Hengl/SoilGrids terrain inputs | [ALOS AW3D30 v4.1](https://developers.google.com/earth-engine/datasets/catalog/JAXA_ALOS_AW3D30_V4_1), ~30 m DSM, a possible substitute; study DEM releases differ | Regional 30/100/250 m terrain; national 100/250 m; document kernel and flow algorithm |
 | Land cover, soil class, geology and surficial deposits | Geng/Hengl/SoilGrids inputs; Sothe soil class / mask roles | [Geng source table](https://www.nature.com/articles/s41597-025-05460-4.pdf), [surficial materials](https://doi.org/10.4095/205040); exact GEE releases pending | National/regional stratification and categorical extraction |
 | Water occurrence, inundation and moisture context | SoilGrids hydrographic family; exact local predictors remain candidates | [JRC water v1.4](https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater), 30 m | New distance/neighbourhood features need local validation |
+| Coastal ecosystem, estuary setting and vegetation/salinity groups | Janousek local/context evidence | Original field/site metadata and habitat mapping; exact GEE assets unconfirmed | Pacific coast; preserve estuary identity and ecosystem-specific models |
+| Relative tidal elevation and sediment fines below 63 µm | Janousek local relationships; elevation also in the US BRT subset | Tidal-datum measurements/LiDAR and field sediment data; not universally available GEE predictors | Core/local coastal habitat; source vertical datum and 0–30 cm sediment support required |
 | Ground ice, permafrost, histels and sediment thickness | Olefeldt expert inputs; Sothe ground-ice stock adjustment | Original provider datasets linked by the studies; exact GEE assets pending | Circumpolar/regional context; keep adjustment separate from regression |
 | Bedrock/rooting depth and coarse fragments | Geng bedrock adjustment; Sothe stock corrections | Study/provider layers; not measured everywhere at core resolution | Constrain integration depth and soil volume; report uncertainty |
 
@@ -354,6 +357,79 @@ These scales are workflow choices, not published proof that each feature predict
 
 </details>
 
+<details>
+<summary>Sothe Table S2 — named covariates, source grids and reported ambiguities</summary>
+
+The supplied Supporting Information SI-S01 was inspected directly. Its soil table is [catalogued as structured data](data/catalogue/sothe_2022_soc_covariates.json), preserving names, descriptions, source periods, units and reported resolutions. The table has 29 named entries; Figure S5 reports 40 expanded candidates and 25 retained features. Table S2 alone does not identify which expanded features were retained.
+
+| Family | Names in the supplied soil table | Source period and grid as reported |
+|---|---|---|
+| Optical reflectance | `L8_B4`, `L8_B5`, `L8_B6`, `L8_B7` | 2015–2019; 30 m |
+| Landsat indices | `L8_NDWI`, `L8_NDSI`, `L8_brightness`, `L8_greenness`, `L8_wetness` | 2015–2019; 30 m |
+| Vegetation | `MODIS_NDVI`, `MODIS_EVI` | 2000–2019; 250 m |
+| Evapotranspiration | `MODIS_ET` | 2000–2019; table column 500 m, description says 1 km |
+| Surface temperature | `MODIS_temp_day`, `MODIS_temp_night`, `MODIS_temp_std` | Daily day/night 2000–2019; long-term monthly SD 2000–2017; 1 km |
+| Weather | `Daymet_tmax`, `Daymet_tmin`, `Daymet_srad`, `Daymet_ppt` | 2000–2019; 1 km |
+| Landsat brightness temperature | `L8_B10`, `L8_B11` | 2015–2019; bimonthly except November–February; native 100 m |
+| Terrain | `DEM`, `slope`, `TPI`, `TRI` | ALOS DEM 2006/2011; 30 m |
+| L-band radar | `ALOS_L_HH`, `ALOS_L_HV` | 2007/2018 as reported; 25 m; dB |
+| Soil class | `soil_type` | SLC 2011; table reports 25,000 m, source map/encoding needs confirmation |
+| Prediction depth | `DEPTH` | Manually set to 0, 5, 15, 30, 60, 100 and 200 cm; no native raster spacing |
+
+Keep these source grids separate from the national 250 m modelling grid. Preserve table inconsistencies rather than silently correcting them. Collection 1 composites and brightness-temperature bands are not equivalent to contemporary Collection 2 surface-temperature products. The exact temporal expansion and retained-feature list remain to reconcile with the ranking figure/code. The listed point depths do not by themselves establish the concentration release's six interval boundaries.
+
+Source: [Sothe et al. (2022), Supporting Information S1](https://doi.org/10.1029/2021GB007213), Table S2 and Figure S5; file supplied by the repository maintainer. The document contains a Table S1 caption adjacent to the soil table; the soil-specific contents and Table S2 caption identify the extracted table.
+
+</details>
+
+<details>
+<summary>Janousek 2025 — coastal blue carbon and local versus regional factors</summary>
+
+[Publication](https://doi.org/10.1029/2024GB008239) · [Smithsonian dataset v1](https://doi.org/10.25573/serc.28127486.v1)
+
+The study covers 1,284 coastal sediment cores from Alaska to Mexico, including BC. It compares seagrass, emergent marsh, mangrove, tideflat and tidal-swamp ecosystems. Stocks were analysed to 30, 50 and 100 cm using progressively smaller core subsets. It does not publish a new uniform-resolution SOC raster.
+
+| Scale/context | Variables examined | Evidence and availability |
+|---|---|---|
+| Core/local habitat | Tidal-frame elevation, sediment fines below 63 µm, dominant vegetation and salinity groups | Local regressions/group comparisons; incomplete coverage; fines were averaged over the upper 30 cm |
+| Estuary/watershed | Estuary identity, ecosystem type | Local/context factors in the full boosted-regression-tree model |
+| Regional coast | Latitude, level-1 ecoregion, Köppen–Geiger zone, estuary geomorphic type | Full model regional factors; geography was not uniformly predictive |
+| California–Oregon–Washington subset | Relative tidal elevation plus precipitation, air temperature and maximum VPD | 649-core BRT subset; PRISM 1991–2020 normals at 800 m; not a verified Canada-wide climate stack |
+
+Variance was partitioned within estuary, climate zone, ecoregion and among ecoregions. Overall local/estuary factors explained more variation than broad climate gradients. Köppen–Geiger classes used a 0.0083° grid with fallback classifications; those are covariate supports, not carbon map resolution.
+
+Tidal elevation requires local datums and suitable vertical accuracy. A general 30 m DEM is not a demonstrated replacement. Sediment fines and field vegetation/salinity observations are not automatically available everywhere in GEE.
+
+The supplied `Global_Core_Locations.csv` contains estuary, ecoregion, climate-zone, tidal-elevation, vegetation and depth-standard stock fields. Our current v1 summaries preserve only part of that context. Restore the remaining metadata by original core ID before reproducing the study analysis; raw depth/stock extrapolation rules and estimation flags also need to remain explicit.
+
+</details>
+
+<details>
+<summary>Canadian peat profiles — confirmed provider, units and measurement flags</summary>
+
+[Geo.ca record](https://app.geo.ca/en-ca/map-browser/record/e287b0dd-8b07-435b-8a76-0c7ec84ac228) · [Bauer et al. (2024) data paper](https://doi.org/10.1002/ecy.4398)
+
+The resource is the NRCan Peat Profile Database supporting CaMP v2.0. On 14 October 2026, provider CORESITES/PROFILES downloads were compared row by row against the supplied local raw tables. All 1,217 core identifiers and 37,072 layer rows matched for checked coordinates, depths, carbon, density, stock and measurement-status attributes, after normalizing missing values, numeric formatting and text encoding.
+
+The provider documents depths in cm, bulk density in g/cm³, carbon content in percent and carbon mass in Mg C/ha. The provider record is used for density units; the data-paper abstract contains a conflicting cubic-metre wording.
+
+Source flags identify 34,401 measured and 2,265 estimated bulk-density rows, with 406 blank flags. Organic-carbon flags identify 736 measured and 35,929 estimated rows, with 407 blank flags. Estimated organic carbon includes values derived from other measurements; this is a source classification, not a claim that all estimated values are unsupported.
+
+Our v1 layers retain `BD_MEAS_EST` but omit `C_ORG_MEAS_EST`, `C_ORG_EST_TYPE`, `C_TOT_MEAS_EST` and `C_TOT_EST_TYPE`. Core summaries omit measured percentages and coordinate-accuracy notes. Restore these before treating the compilation as wholly measured training/validation data. Preserve `SAMP_CARB_MGHA` as the provider's sample-carbon mass; its v1 alias `TOTC_Stock` must not determine carbon-pool interpretation.
+
+Download together: [CORESITES](https://ftp.maps.canada.ca/pub/nrcan_rncan/Forests_Foret/peatlands/CORESITES.csv), [PROFILES](https://ftp.maps.canada.ca/pub/nrcan_rncan/Forests_Foret/peatlands/PROFILES.csv), [REFERENCES](https://ftp.maps.canada.ca/pub/nrcan_rncan/Forests_Foret/peatlands/REFERENCES.csv), [SOURCEDATA](https://ftp.maps.canada.ca/pub/nrcan_rncan/Forests_Foret/peatlands/SOURCEDATA.csv), [LOOKUP](https://ftp.maps.canada.ca/pub/nrcan_rncan/Forests_Foret/peatlands/LOOKUP.csv) and [WATER](https://ftp.maps.canada.ca/pub/nrcan_rncan/Forests_Foret/peatlands/WATER.csv). REFERENCES connects original studies to cores through SOURCEDATA. This database is distinct from the Waterloo Can-Peat metadata portal. The data paper specifies attribution/noncommercial reproduction terms; confirm applicable dataset metadata before redistribution.
+
+</details>
+
+<details>
+<summary>Alberta viewer access — source confirmed, downloads unresolved</summary>
+
+The Hengl paper identifies [this map viewer](https://g3w.soils.app/en/map/alberta-soil-carbon/) for visualizing predictions. A verified HTTPS request on 14 October 2026 failed because the server certificate did not match `g3w.soils.app`; the web retrieval tool also could not load it. This describes the observed access failure, not proof that all hosting services are unavailable.
+
+The viewer link does not establish a downloadable field dataset, raster package or public GEE asset. These access routes remain unresolved. Request the 404-location field dataset, soil/density rasters, derived stock maps, covariate manifest and reuse terms from the study provider if no archive can be located. No provider contact has been sent from this repository workflow.
+
+</details>
+
 ### Soil map catalogue and availability
 
 | Map/reference | Depth/product | Access and current GEE status |
@@ -362,7 +438,7 @@ These scales are workflow choices, not published proof that each feature predict
 | Sothe stocks — initial Canada reference | kg C/m²; 0–0.3, 0–1, 0–2 m with uncertainty | [Study](https://doi.org/10.1029/2021GB007213); Awesome GEE collection `projects/sat-io/open-datasets/carbon_stocks_ca/sc` |
 | SoilGrids 2.0 | Concentration/density at six intervals to 2 m; native released stock 0–30 cm | [Provider access](https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_02.html), [GEE catalogue](https://gee-community-catalog.org/projects/isric/); `projects/soilgrids-isric/soc_mean`, `ocd_mean`, `ocs_mean` |
 | Geng 100 m grids | SOC %, bulk density and other soil properties at five intervals to 1 m; quantiles | [CanSIS downloads](https://sis.agr.gc.ca/cansis/nsdb/psm/index.html), [archive](https://doi.org/10.5281/zenodo.15473720), [code](https://github.com/CanSISPSM/PSM100mCanada); GEE asset unconfirmed |
-| Hengl Alberta 30 m | Modelled SOC/density; integrated stocks to 1 m in t/ha | [Study](https://doi.org/10.1139/facets-2023-0040); exact map download and GEE asset unconfirmed |
+| Hengl Alberta 30 m | Modelled SOC/density; integrated stocks to 1 m in t/ha | [Study](https://doi.org/10.1139/facets-2023-0040), [published viewer](https://g3w.soils.app/en/map/alberta-soil-carbon/); certificate/access issue observed; raster download and GEE asset unconfirmed |
 | Olefeldt thermokarst landscapes | Polygon landscape fractions and associated 0–3 m SOC | [ORNL DAAC archive](https://doi.org/10.3334/ORNLDAAC/1332); GEE asset unconfirmed |
 | NCSCDv2 | Polygon stocks; rasterized 0–30, 0–100, 100–200, 200–300 cm | [Maps](https://bolin.su.se/data/ncscd/tiff.php) and [pedons](https://bolin.su.se/data/ncscd/pedon.php); GEE asset unconfirmed |
 | Treat synthesis | Review of existing stocks/fluxes | [Publication](https://doi.org/10.1029/2023JG007638); no original raster to upload |
@@ -372,10 +448,10 @@ Catalogue-listed GEE assets above have not yet been loaded and inspected in this
 <details>
 <summary>Source gaps to resolve before exact study reproduction</summary>
 
-- Sothe Geoderma full methods/supplement and exact six mapped depth boundaries; GBC Supporting Information Table S2 with all candidate/retained variable definitions and source releases.
+- Sothe Geoderma exact mapped depth boundaries; temporal expansion of Table S2 entries and the exact retained-feature manifest. GBC Table S2 is now catalogued.
 - Hengl field-data/map archive, exact retained covariates and Figure 3 importance data.
 - Riley original OGS report(s)/table, density units, coordinate derivation and reuse terms.
-- Exact archive/release behind the local CanPeat and Janousek files; identify which Can-Peat resource is intended separately.
+- Restore NRCan peat carbon estimation flags and source/location metadata; enrich Janousek tables with the original study covariates. Provider citations are now identified.
 - Historical WoSIS/Lehigh training snapshots and cross-source duplicate relationships; our current uploads are not an exact recreation of those study training sets.
 - Provider metadata and GEE access checks for maps/corrections without confirmed asset IDs.
 
