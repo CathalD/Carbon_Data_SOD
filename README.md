@@ -6,7 +6,7 @@ A community catalogue of forest and soil carbon data for Canada, connecting fiel
 
 Field observations establish the relationship between carbon and ecosystem characteristics. Spatial covariates extend that relationship across the landscape through a fitted model. For forests, inventories often measure tree dimensions and species; biomass and carbon are then estimated using documented allometric equations and conversion factors.
 
-This repository is being built, starting with forest resources. The catalogue spreadsheet will record sources, access conditions, Earth Engine asset IDs, scales, units, methods and uncertainty. Expand the entries below for details.
+This repository is being built with forest and soil resources. The catalogue spreadsheet will record sources, access conditions, Earth Engine asset IDs, scales, units, methods and uncertainty. Expand the entries below for details.
 
 ## Scales and evidence
 
@@ -235,6 +235,153 @@ SBFI describes modelled stand conditions for 2020 with disturbance information f
 
 </details>
 
+## 4. Soil observations, covariates and maps
+
+**Profile/layer observations → environmental covariates + prediction depth → fitted soil models → concentration/density maps → depth-integrated stocks.** Some products instead calculate observed stocks first and model those stocks directly. Preserve the method used by each product.
+
+### Ground resources and our uploaded tables
+
+The following counts were checked in Earth Engine on 14 October 2026. Asset names below are relative to `projects/northstarlabs/assets/carbon_state_of_data/soils/profiles/`. Public read access and redistribution terms remain to be verified; these are project references, not a claim that every source is openly redistributable. Counts across compilations must not be added as independent observations.
+
+| Preparation | Profile/location rows | Layer rows | Current asset names | Original resource |
+|---|---:|---:|---|---|
+| WoSIS Canada | 8,825 | 43,055 | `wosis_canada_profiles_v2`; `wosis_canada_layers_v2` | [ISRIC WoSIS](https://docs.isric.org/globaldata/wosis/) |
+| National Pedon Database | 9,017 | 48,371 | `npdb_canada_profiles_v1`; `npdb_canada_layers_v1` | [CanSIS NPDB](https://sis.agr.gc.ca/cansis/nsdb/npdb/index.html) |
+| Local CanPeat preparation | 1,217 | 37,072 | `canpeat_profiles_v1`; `canpeat_layers_v1` | Exact source release to match; [NRCan Peat Profile Database](https://open.canada.ca/data/en/dataset/e287b0dd-8b07-435b-8a76-0c7ec84ac228) is a resource to reconcile |
+| Janousek preparation | 1,284 | 23,018 | `janousek_profiles_v1`; `janousek_layers_v1` | Exact publication/archive citation pending; includes locations outside Canada |
+| Riley preparation | 347 sampling-location groups | 1,584 | `riley_profiles_v1`; `riley_layers_v1` | Exact OGS report(s), table and release pending |
+
+<details>
+<summary>Observation provenance, depth and overlapping compilations</summary>
+
+Our uploads are preparations from supplied resources, not necessarily the historical training releases used by the publications below. Preserve original identifiers, source methods, dates, location uncertainty and licences. Layers within a core are repeated depth observations, not independent sampling locations.
+
+WoSIS v2 restores metadata lost during the original join and corrects the stock conversion. Only 102 Canadian layers in these supplied tables have sufficient inputs for organic-carbon stock estimates; most remaining rows are concentration observations. Stock sums are partial where measurements are missing and lack coarse-fragment adjustment. WoSIS v1 is superseded for new analyses.
+
+Riley groups by NTS, peatland number and sampling point; four groups contain overlapping depth intervals. Bulk-density units and separate core identities need confirmation before stock integration. Janousek retains repeated source layer IDs with flags. Reconcile shared observations between NPDB, WoSIS and peat compilations before model validation.
+
+The [Can-Peat metadata portal](https://waterlooclimatedata.ca/) is a discovery/access resource. Do not assume it is the same dataset as our local CanPeat files. The [Loisel et al. 2014 northern peatland synthesis](https://doi.org/10.1177/0959683614538073) is another distinct source, explicitly connected to the Sothe soil work. Community cores are excluded from the present repository workflow.
+
+</details>
+
+### Studies, geographic context and map scales
+
+| Study/product | Geographic training and application context | Map grid/support | Covariate evidence and target |
+|---|---|---|---|
+| [Sothe et al. 2022 — Geoderma](https://doi.org/10.1016/j.geoderma.2021.115402) | Canada; spatial and vertical SOC modelling | 250 m | 40 candidates, 25-variable model; depth, surface temperature and elevation ranked highest; SOC concentration |
+| [Sothe et al. 2022 — GBC](https://doi.org/10.1029/2021GB007213) | Canada; WoSIS plus Lehigh peatland sites | 250 m | SOC and bulk density modelled separately; depth, elevation, climate and vegetation; derived stocks |
+| [Poggio et al. 2021 — SoilGrids 2.0](https://doi.org/10.5194/soil-7-217-2021) | Global; approximately 240,000 profiles including restricted-use inputs | 250 m | Over 400 candidate environmental layers; spatially stratified ten-fold validation |
+| [Geng et al. 2025](https://doi.org/10.1038/s41597-025-05460-4) | Canada; observations concentrated in southern agricultural regions | 100 m | 70 covariates; bias-corrected RF/QRF; national/regional application |
+| [Hengl et al. 2023 — Alberta](https://doi.org/10.1139/facets-2023-0040) | Alberta agricultural lands; 404 locations on 22 farms | 30 m; terrain inputs at 30/100/250 m | 180 prepared covariates; SOC and bulk-density models; farm-scale sampling supports regional modelling |
+| [Olefeldt et al. 2016](https://doi.org/10.1038/ncomms13043) | Circumpolar boreal/tundra permafrost region | Landscape polygons | Expert-weighted landscape classification; SOC inherited from circumpolar soil estimates |
+| [Hugelius et al. 2013 — NCSCDv2](https://doi.org/10.5194/essd-5-393-2013) | Northern circumpolar permafrost region | Polygons; several rasterizations | Soil-map/pedon upscaling; not a satellite RF predictor-selection study |
+| [Treat et al. 2024](https://doi.org/10.1029/2023JG007638) | Northern permafrost ecosystems | Review; no original map grid | Context and links to stock/flux products; not a new fitted covariate stack |
+
+<details>
+<summary>Sothe — national concentration and stock studies</summary>
+
+The [Geoderma author record](https://experts.mcmaster.ca/scholarly-works/2123723) reports six intervals to 1 m, 83% explained variation and an 80% prediction interval. The exact six boundaries need the paper/map metadata: the supplied five-boundary list is incomplete and must not be silently relabelled as GlobalSoilMap's six intervals to 2 m.
+
+The GBC methods identify 6,490 WoSIS sites/39,323 layers plus 43 Lehigh sites/298 layers: 6,533 SOC locations and 39,621 layers. Bulk density has 11,068 layers at 2,157 sites. These are not all paired SOC–density observations. Forty candidates mostly describe 2000–2019; 25 were retained for SOC. Five-fold results are whole-model evidence. Exact variable definitions/releases require Supporting Information Table S2.
+
+Land-cover masks, ground-ice, coarse-fragment and rooting-depth adjustments are stock-construction inputs. Record them separately from fitted predictors. Publication year is not a uniform field sampling or map observation year.
+
+</details>
+
+<details>
+<summary>SoilGrids — global models and product units</summary>
+
+[Poggio et al.](https://soil.copernicus.org/articles/7/217/2021/) describe climate, ecology, geology, land cover, terrain, vegetation, spectral and hydrographic covariates. Seasonal means and variability commonly cover 2001–2015. Keep layers of each profile together in validation. This supports the fitted global model, not independent proof for every candidate.
+
+[ISRIC layer documentation](https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_01.html) distinguishes `soc` concentration (stored dg/kg; divide by 10 for g/kg), `ocd` density (hg/m³; divide by 10 for kg/m³), and `ocs` stocks (t/ha; divide by 10 for kg/m²). Six intervals span 0–200 cm. The documented stock release is 0–30 cm; deeper stock products are described as in development. A 0–100 cm sum derived from density must carry its own method and cannot be presented as the native released stock layer. Organic surface-layer treatment differs from peat-inclusive products.
+
+</details>
+
+<details>
+<summary>Geng — exact families and time windows from Table 1</summary>
+
+[Table 1 in the paper](https://www.nature.com/articles/s41597-025-05460-4.pdf) specifies TerraClimate monthly maximum/minimum temperature and precipitation normals for 1958–2020; annual precipitation; MODIS day/night LST monthly means for March–November 2000–2017; MOD13Q1 NDVI monthly means for March–September 2000–2021 plus two 2020 composites; MCD43A4 band 7 monthly means; peak Landsat-8 NDVI in 2020; 2020 land cover; terrain, depth to bedrock and surficial materials.
+
+Terrain includes landforms, ridge/valley flatness, plan/profile curvature, slope, topographic position, valley depth, relative hillslope position and wetness index. The source DEM grid is 16 m; the table links a Canadian elevation resource, not ALOS. These are model inputs; SOC-specific variable rankings remain to extract. Native source grid, derived terrain scale and output grid stay separate. Regional comparisons do not establish field-level accuracy.
+
+</details>
+
+<details>
+<summary>Hengl — regional agricultural modelling and multiscale terrain</summary>
+
+[Methods section 2.2](https://www.facetsjournal.com/doi/10.1139/facets-2023-0040) identifies ClimateNA v7.3 normals (1990–2010, 1 km), ALOS terrain derivatives, MODIS EVI, PROBA-V NDVI, Landsat GLAD seasonal P25/P50/P75 composites and geological indicators. Landsat is the main optical input; Sentinel-2 is discussed as an alternative. Terrain derivatives use 30, 100 and 250 m scales.
+
+Field intervals are 0–15, 15–30, 30–60 and 60–100 cm; model predictions are integrated to stocks in t/ha. Reported SOC/density model R² values are 0.61/0.68. Exact retained features, Figure 3 importance values, resampling support and downloadable field/map releases remain to catalogue. Contemporary GEE substitutes require a new workflow definition.
+
+</details>
+
+<details>
+<summary>Circumpolar products — expert classification, soil-map upscaling and review</summary>
+
+[Olefeldt's dataset](https://doi.org/10.3334/ORNLDAAC/1332) combines permafrost zonation, ground ice, sediment thickness, boreal/tundra ecoregions, ruggedness and histel coverage through expert weights. Its landscape coverage estimates and associated SOC are polygon summaries, not pixel-level learned relationships.
+
+[NCSCDv2](https://bolin.su.se/data/ncscd/) supplies polygon data, rasterizations and point pedons. Record the chosen rasterization and source-map scale; changing pixel size does not improve the underlying soil-map detail. Depths include 0–30, 0–100, 100–200 and 200–300 cm.
+
+Treat is a synthesis reference. Its northern peatland and Yedoma references are additional resources to catalogue with their exact dataset versions. Review/process evidence is not a predictor ranking.
+
+</details>
+
+### Soil covariates to catalogue and extract
+
+The shortlist below is our implementation plan. A study-linked family is distinguished from an exact reproduced feature; substitute products, new neighbourhoods and changed dates require their own version. `retained/ranked`, `model input`, `stock adjustment`, and `candidate extension` are separate evidence/role labels.
+
+| Family and variables | Study support / role | Native grid and GEE access | Intended geographic/grid use |
+|---|---|---|---|
+| Prediction depth | Ranked highest in Sothe; 3D model input | Layer midpoint or requested depth; not a satellite raster | All depth-aware models; retain datum and interval |
+| Long-term temperature and precipitation | Sothe ranked climate; Geng monthly normals | [Daymet V4](https://developers.google.com/earth-engine/datasets/catalog/NASA_ORNL_DAYMET_V4), 1 km; [TerraClimate](https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_TERRACLIMATE), ~4 km | Canada 100/250 m stacks; current releases are not automatically historical study releases |
+| Regional climate normals | Hengl model input | [ClimateNA/AdaptWest](https://adaptwest.databasin.org/pages/adaptwest-climatena/), study source 1 km; GEE asset unconfirmed | Alberta 30 m; preserve the coarse climate support |
+| Day/night surface temperature | Sothe temperature evidence; Geng model input | [MOD11A2 v6.1](https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD11A2), 1 km; Landsat thermal workflow study-specific | National 100/250 m; regional 30 m stack after documented resampling |
+| NDVI/EVI seasonal means and variability | Sothe ranked vegetation; SoilGrids/Geng/Hengl inputs | [MOD13Q1 v6.1](https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13Q1), 250 m | Long-term national/global stacks; exact periods and QA per study |
+| Landsat reflectance, spectral percentiles and peak NDVI | Sothe/Hengl/Geng inputs | [Landsat Collection 2](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2), 30 m reflectance; thermal native support differs | Alberta 30 m; Canada 100/250 m; C2 is not identical to GLAD ARD composites |
+| MODIS SWIR reflectance | Geng band-7 input; SoilGrids spectral family | [MCD43A4 v6.1](https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD43A4), 500 m | Canada 100 m after aggregation/resampling rules are documented |
+| Elevation, slope, curvature, landforms, TPI, wetness and ridge/valley flatness | Sothe elevation ranked; Geng/Hengl/SoilGrids terrain inputs | [ALOS AW3D30 v4.1](https://developers.google.com/earth-engine/datasets/catalog/JAXA_ALOS_AW3D30_V4_1), ~30 m DSM, a possible substitute; study DEM releases differ | Regional 30/100/250 m terrain; national 100/250 m; document kernel and flow algorithm |
+| Land cover, soil class, geology and surficial deposits | Geng/Hengl/SoilGrids inputs; Sothe soil class / mask roles | [Geng source table](https://www.nature.com/articles/s41597-025-05460-4.pdf), [surficial materials](https://doi.org/10.4095/205040); exact GEE releases pending | National/regional stratification and categorical extraction |
+| Water occurrence, inundation and moisture context | SoilGrids hydrographic family; exact local predictors remain candidates | [JRC water v1.4](https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater), 30 m | New distance/neighbourhood features need local validation |
+| Ground ice, permafrost, histels and sediment thickness | Olefeldt expert inputs; Sothe ground-ice stock adjustment | Original provider datasets linked by the studies; exact GEE assets pending | Circumpolar/regional context; keep adjustment separate from regression |
+| Bedrock/rooting depth and coarse fragments | Geng bedrock adjustment; Sothe stock corrections | Study/provider layers; not measured everywhere at core resolution | Constrain integration depth and soil volume; report uncertainty |
+
+<details>
+<summary>How the existing Colab notebook fits this catalogue</summary>
+
+[MultiScale_CovariateExtraction.ipynb](MultiScale_CovariateExtraction.ipynb) is retained as an existing extraction reference: 43 covariates plus four observation-count QA bands, a 30 m output grid, 120 m and 1,000 m context radii, and 2019–2023 composites. Its selected source CSV initially includes Riley and CanPeat.
+
+These scales are workflow choices, not published proof that each feature predicts soil carbon at those supports. Dynamic World probabilities, Sentinel-2 NDMI, Sentinel-1 ratios, ERA5 summaries and the chosen context radii remain candidate extensions until matched to a soil study or tested with profiles. ERA5 cannot silently replace Daymet, TerraClimate or ClimateNA in a reproduced study stack. Community cores are excluded by our current scope; the notebook itself is unchanged.
+
+</details>
+
+### Soil map catalogue and availability
+
+| Map/reference | Depth/product | Access and current GEE status |
+|---|---|---|
+| Sothe concentration | g C/kg; exact six intervals to 1 m pending release check | [Study](https://doi.org/10.1016/j.geoderma.2021.115402); [Awesome GEE](https://gee-community-catalog.org/projects/scs/): `projects/sat-io/open-datasets/carbon_stocks_ca/scc` |
+| Sothe stocks — initial Canada reference | kg C/m²; 0–0.3, 0–1, 0–2 m with uncertainty | [Study](https://doi.org/10.1029/2021GB007213); Awesome GEE collection `projects/sat-io/open-datasets/carbon_stocks_ca/sc` |
+| SoilGrids 2.0 | Concentration/density at six intervals to 2 m; native released stock 0–30 cm | [Provider access](https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_02.html), [GEE catalogue](https://gee-community-catalog.org/projects/isric/); `projects/soilgrids-isric/soc_mean`, `ocd_mean`, `ocs_mean` |
+| Geng 100 m grids | SOC %, bulk density and other soil properties at five intervals to 1 m; quantiles | [CanSIS downloads](https://sis.agr.gc.ca/cansis/nsdb/psm/index.html), [archive](https://doi.org/10.5281/zenodo.15473720), [code](https://github.com/CanSISPSM/PSM100mCanada); GEE asset unconfirmed |
+| Hengl Alberta 30 m | Modelled SOC/density; integrated stocks to 1 m in t/ha | [Study](https://doi.org/10.1139/facets-2023-0040); exact map download and GEE asset unconfirmed |
+| Olefeldt thermokarst landscapes | Polygon landscape fractions and associated 0–3 m SOC | [ORNL DAAC archive](https://doi.org/10.3334/ORNLDAAC/1332); GEE asset unconfirmed |
+| NCSCDv2 | Polygon stocks; rasterized 0–30, 0–100, 100–200, 200–300 cm | [Maps](https://bolin.su.se/data/ncscd/tiff.php) and [pedons](https://bolin.su.se/data/ncscd/pedon.php); GEE asset unconfirmed |
+| Treat synthesis | Review of existing stocks/fluxes | [Publication](https://doi.org/10.1029/2023JG007638); no original raster to upload |
+
+Catalogue-listed GEE assets above have not yet been loaded and inspected in this project. Check image IDs, bands, depths, scaling and uncertainty definitions before use; do not mosaic stock and uncertainty members together. Soil maps are predictions/reference products, not extra ground observations or automatically independent validation data. The initial reference label is a workflow choice, not a claim of universal superiority.
+
+<details>
+<summary>Source gaps to resolve before exact study reproduction</summary>
+
+- Sothe Geoderma full methods/supplement and exact six mapped depth boundaries; GBC Supporting Information Table S2 with all candidate/retained variable definitions and source releases.
+- Hengl field-data/map archive, exact retained covariates and Figure 3 importance data.
+- Riley original OGS report(s)/table, density units, coordinate derivation and reuse terms.
+- Exact archive/release behind the local CanPeat and Janousek files; identify which Can-Peat resource is intended separately.
+- Historical WoSIS/Lehigh training snapshots and cross-source duplicate relationships; our current uploads are not an exact recreation of those study training sets.
+- Provider metadata and GEE access checks for maps/corrections without confirmed asset IDs.
+
+Full-column study provenance, native grids, output grids, extraction supports, units, licences, dates, validation design and uncertainty definitions will accompany the catalogue spreadsheet. This section establishes the source-backed shortlist; missing supplements are explicitly pending rather than filled with inferred bands.
+
+</details>
 ## Scope
 
 - Field plot and soil core observations.
