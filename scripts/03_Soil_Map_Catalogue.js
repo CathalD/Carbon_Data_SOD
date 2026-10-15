@@ -96,3 +96,15 @@ inspectImage('NCSCDv2 SOCC200 — source interval 100–200 cm; verify import',
 // Inspect Geng SOC encoding/NoData; provider physical units are % and BD g/cm3.
 // Last-modified dates are ingestion metadata, not field or prediction dates.
 // ABCFlux v2 (ORNL DAAC 2448) is catalogue/table-only: excluded from maps.
+
+// Li et al. (2025): variable modelled peat-column depth, regional 30 m.
+// Source IDs are used until the new li_2025_hbl copies are confirmed.
+// Paper and archive definitions: data/catalogue/li_2025_hbl_maps.json
+inspectImage('Li peat_depth — supplied source; import QC pending',
+  ee.Image('projects/northstarlabs/assets/McMaster_PeatDepth_30m'));
+inspectImage('Li peat_depth_uncertainty — supplied source; import QC pending',
+  ee.Image('projects/northstarlabs/assets/McMaster_Uncertainty_PeatDepth_30m'));
+inspectImage('Li peat_carbon_stock — supplied source; import QC pending',
+  ee.Image('projects/ee-cathalpdoherty2/assets/McMasterCarbon30mkgm2version1'));
+inspectImage('Li peat_carbon_stock_uncertainty — supplied source; import QC pending',
+  ee.Image('projects/ee-cathalpdoherty2/assets/McMasterUncertaintyCarbon30mkgm2'));
