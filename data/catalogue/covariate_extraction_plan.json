@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalogue_date": "2026-10-15",
-  "status": "Catalogue complete; extraction not executed",
+  "status": "Catalogue complete; 47-band baseline pilot executed on 20 profiles at 30 m; bulk and study-specific extraction not executed",
   "scope": "Community cores excluded. Circumpolar thermokarst/Olefeldt deferred; NCSCDv2 reference only.",
   "interpretation": "Rows are decisions or recipes, not a count of independently proven predictors. Geographic domain, native information support, output grid, field support, context radius, time and depth are separate.",
   "headers": [
@@ -55,7 +55,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP002",
@@ -81,7 +81,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP003",
@@ -107,7 +107,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP004",
@@ -133,7 +133,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP005",
@@ -159,7 +159,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP006",
@@ -185,7 +185,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP007",
@@ -211,7 +211,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP008",
@@ -237,7 +237,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP009",
@@ -263,7 +263,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP010",
@@ -289,7 +289,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP011",
@@ -315,7 +315,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP012",
@@ -341,7 +341,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP013",
@@ -367,7 +367,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP014",
@@ -393,7 +393,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP015",
@@ -419,7 +419,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP016",
@@ -445,7 +445,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP017",
@@ -471,7 +471,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP018",
@@ -497,7 +497,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP019",
@@ -523,7 +523,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP020",
@@ -549,7 +549,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP021",
@@ -575,7 +575,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP022",
@@ -601,7 +601,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP023",
@@ -627,7 +627,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP024",
@@ -653,7 +653,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP025",
@@ -679,7 +679,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP026",
@@ -705,7 +705,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP027",
@@ -731,7 +731,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP028",
@@ -757,7 +757,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP029",
@@ -783,7 +783,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/NRCan_CDEM",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP030",
@@ -809,7 +809,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/NRCan_CDEM",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP031",
@@ -835,7 +835,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/NRCan_CDEM",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP032",
@@ -861,7 +861,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP033",
@@ -887,7 +887,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP034",
@@ -913,7 +913,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP035",
@@ -939,7 +939,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP036",
@@ -965,7 +965,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/NRCan_CDEM",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP037",
@@ -991,7 +991,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/NRCan_CDEM",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP038",
@@ -1017,7 +1017,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/NRCan_CDEM",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP039",
@@ -1043,7 +1043,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP040",
@@ -1069,7 +1069,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP041",
@@ -1095,7 +1095,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP042",
@@ -1121,7 +1121,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP043",
@@ -1147,7 +1147,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP044",
@@ -1173,7 +1173,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP045",
@@ -1199,7 +1199,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP046",
@@ -1225,7 +1225,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_DYNAMICWORLD_V1",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP047",
@@ -1251,7 +1251,7 @@
       "Respect coordinate accuracy, target-date mismatch, coverage and missingness; neighborhood grids need review before any new workflow.",
       "https://github.com/CathalD/Carbon_Data_SOD/blob/main/MultiScale_CovariateExtraction.ipynb",
       "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD",
-      "Defined in unchanged notebook; no new execution"
+      "Pilot tested: 20 profiles at 30 m; review coverage/radar flags before bulk"
     ],
     [
       "EP048",
@@ -2995,5 +2995,6 @@
       "https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T2_L2",
       "Planned; not extracted"
     ]
-  ]
+  ],
+  "pilot_report": "docs/soil_covariate_pilot.md"
 }
