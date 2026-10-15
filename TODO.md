@@ -22,6 +22,9 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 - [ ] Resolve flagged depth intervals, missing method/estimation provenance and source units before publishing standardized-depth stocks. Review 182 Janousek thickness/boundary discrepancies against original sampling/compaction semantics.
 - [ ] Restore omitted source method/estimation fields in new versioned profile preparations after agreeing on correction rules; do not overwrite current assets during QC.
 
+- [x] Receive partial pixel output: A001–A004 have zero sampled value/mask mismatches (207/229/264/265 common valid pixels from 512 seeded points each). Other six supplied rows report not_run; no final summary provided.
+- [ ] Retain the completed current pixel run's final summary and remaining asset rows before completing numerical QC. Review missing public ACL grants separately; no permissions changed.
+
 ## Soil maps — active
 
 - [ ] Inspect Sothe stock (`carbon_stocks_ca/sc`) and concentration (`carbon_stocks_ca/scc`) collection members, bands, depths, units and uncertainty definitions. Runtime output confirms two stock/uncertainty images and six concentration point-depth IDs; stock and uncertainty each have one `b1`. Both use 0–1 m under the maintainer's working assumption; source confirmation remains deferred.
