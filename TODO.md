@@ -1,6 +1,17 @@
 # Carbon State of Data TODOs
 
-Updated 15 October 2026. Current status: complete maintainer pixel-mode QC received; map/layer/profile access complete per maintainer. Covariate catalogue finished; extraction not executed. Circumpolar thermokarst/Olefeldt deferred. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
+Updated 15 October 2026. Current status: complete maintainer pixel-mode QC received; map/layer/profile access complete per maintainer. Covariate catalogue finished; 20-profile baseline pilot completed with coverage/radar review flags before bulk processing. Circumpolar thermokarst/Olefeldt deferred. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
+
+## Step 4 — extraction pilot complete
+
+- [x] Select four Canadian profiles from each of five hosted sources, seed 20261015; Janousek restricted to BC.
+- [x] Execute the unchanged 47-band baseline at 20 points: 20 rows retained, 855/860 predictor cells available, all 80 QA values present.
+- [x] Verify all 20 source-layer links (367 horizon rows), schema, finite/range checks, coordinates and source-coverage masks.
+- [x] Diagnose one coastal climate gap and radar ratio tails; verify default/exact median discrepancy at the largest-tail point.
+- [x] Publish [pilot report](docs/soil_covariate_pilot.md), aggregate QA and Pilot_QC Sheet tab. Detailed CSV/manifests remain local.
+- [ ] Obtain explicit approval before publishing exact selected-profile coordinates and detailed rows to GitHub; automatic review rejected that payload.
+- [ ] Define explicit coastal climate handling and versioned median/robust-radar policy; rerun affected points before bulk extraction.
+- [ ] Define modelling eligibility and temporal/coordinate support for historical profiles; validate 100/250 m and study-specific stacks separately.
 
 ## Current catalogue additions
 
