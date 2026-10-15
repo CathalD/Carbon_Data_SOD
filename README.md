@@ -434,20 +434,23 @@ The viewer link does not establish a downloadable field dataset, raster package 
 
 [Map inventory and upload status](docs/soil_map_inventory.md) · [Read-only GEE inspection script](scripts/03_Soil_Map_Catalogue.js) · [Project TODOs](TODO.md)
 
-Catalogue checks on 14 October 2026 found existing references for Sothe and SoilGrids. No matching public GEE asset was found for Geng, NCSCDv2, Olefeldt or Hengl in the catalogues searched; this is a search result, not proof of universal absence. Geng upload is in progress under `projects/northstarlabs/assets/canada_carbon_collection/`; the user-supplied first ID is `BD_0_5_cm`, whose completion and runtime metadata are not yet verified.
+Catalogue checks on 14 October 2026 found existing references for Sothe and SoilGrids. On 15 October, the user supplied a completed ten-image Geng ImageCollection at `projects/northstarlabs/assets/canada_carbon_collection`, plus thermokarst and three NCSCDv2 assets in `projects/carbon-learning-library/assets/`. Exact IDs and status are in the linked inventory. Uploaded status is user-reported; runtime access, schema, scaling and public permissions remain to be checked. Hengl hosting remains unresolved.
 
 | Map/reference | Depth/product | Access and current GEE status |
 |---|---|---|
 | Sothe concentration | g C/kg; exact six intervals to 1 m pending release check | [Study](https://doi.org/10.1016/j.geoderma.2021.115402); [Awesome GEE](https://gee-community-catalog.org/projects/scs/): `projects/sat-io/open-datasets/carbon_stocks_ca/scc` |
 | Sothe stocks — initial Canada reference | kg C/m²; 0–0.3, 0–1, 0–2 m with uncertainty | [Study](https://doi.org/10.1029/2021GB007213); Awesome GEE collection `projects/sat-io/open-datasets/carbon_stocks_ca/sc` |
 | SoilGrids 2.0 | Concentration/density at six intervals to 2 m; native released stock 0–30 cm | [Provider access](https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_02.html), [GEE catalogue](https://gee-community-catalog.org/projects/isric/); `projects/soilgrids-isric/soc_mean`, `ocd_mean`, `ocs_mean` |
-| Geng 100 m grids | SOC %, bulk density and other soil properties at five intervals to 1 m; quantiles | [CanSIS downloads](https://sis.agr.gc.ca/cansis/nsdb/psm/index.html), [archive](https://doi.org/10.5281/zenodo.15473720), [code](https://github.com/CanSISPSM/PSM100mCanada); project upload in progress at `projects/northstarlabs/assets/canada_carbon_collection/BD_0_5_cm` |
+| Geng 100 m grids | SOC %, bulk density and other soil properties at five intervals to 1 m; quantiles | [CanSIS downloads](https://sis.agr.gc.ca/cansis/nsdb/psm/index.html), [archive](https://doi.org/10.5281/zenodo.15473720), [code](https://github.com/CanSISPSM/PSM100mCanada); user-reported completed ImageCollection `projects/northstarlabs/assets/canada_carbon_collection` with all ten BD/SOC prediction images; runtime QC pending |
 | Hengl Alberta 30 m | Modelled SOC/density; integrated stocks to 1 m in t/ha | [Study](https://doi.org/10.1139/facets-2023-0040), [published viewer](https://g3w.soils.app/en/map/alberta-soil-carbon/); certificate/access issue observed; raster download and GEE asset unconfirmed |
-| Olefeldt thermokarst landscapes | Polygon landscape fractions and associated 0–3 m SOC | [ORNL DAAC archive](https://doi.org/10.3334/ORNLDAAC/1332); GEE asset unconfirmed |
-| NCSCDv2 | Polygon stocks; rasterized 0–30, 0–100, 100–200, 200–300 cm | [Maps](https://bolin.su.se/data/ncscd/tiff.php) and [pedons](https://bolin.su.se/data/ncscd/pedon.php); GEE asset unconfirmed |
+| Olefeldt thermokarst landscapes | Polygon landscape fractions and associated 0–3 m SOC | [ORNL DAAC archive](https://doi.org/10.3334/ORNLDAAC/1332); user-supplied GEE table `projects/carbon-learning-library/assets/Circumpolar_Thermokarst_Landscapes`, runtime QC pending |
+| NCSCDv2 | Polygon stocks; rasterized 0–30, 0–100, 100–200, 200–300 cm | [Maps](https://bolin.su.se/data/ncscd/tiff.php) and [pedons](https://bolin.su.se/data/ncscd/pedon.php); three user-supplied Canada WGS84 0.012° assets (SOCC30/100/200), [exact IDs](docs/soil_map_inventory.md#newly-supplied-gee-references); runtime QC pending |
 | Treat synthesis | Review of existing stocks/fluxes | [Publication](https://doi.org/10.1029/2023JG007638); no original raster to upload |
 
-Catalogue-listed GEE assets above have not yet been loaded and inspected in this project. Check image IDs, bands, depths, scaling and uncertainty definitions before use; do not mosaic stock and uncertainty members together. Soil maps are predictions/reference products, not extra ground observations or automatically independent validation data. The initial reference label is a workflow choice, not a claim of universal superiority.
+
+For the supplied NCSCDv2 imports, source definitions distinguish 0–30 cm, 0–100 cm and the deep **100–200 cm** stock layer (SOCC200). Verify the imported file metadata before interpreting or integrating values. The selected source raster grid is 0.012°; native gridded stock units are hg C/m² unless converted during preparation.
+
+The assistant has not independently loaded these soil map assets. The user has supplied completed Geng image listings and thermokarst/NCSCDv2 asset references. Check image IDs, bands, depths, scaling and uncertainty definitions before use; do not mosaic stock and uncertainty members together. Soil maps are predictions/reference products, not extra ground observations or automatically independent validation data. The initial reference label is a workflow choice, not a claim of universal superiority.
 
 <details>
 <summary>Source gaps to resolve before exact study reproduction</summary>
@@ -462,6 +465,14 @@ Catalogue-listed GEE assets above have not yet been loaded and inspected in this
 Full-column study provenance, native grids, output grids, extraction supports, units, licences, dates, validation design and uncertainty definitions will accompany the catalogue spreadsheet. This section establishes the source-backed shortlist; missing supplements are explicitly pending rather than filled with inferred bands.
 
 </details>
+### Related flux observations — catalogue only
+
+| Resource | Measurements and support | Access | Use in this repository |
+|---|---|---|---|
+| ABCFlux v2: Arctic-Boreal CO2 and CH4 In-situ Flux and Environmental Data | Monthly CO2 exchange (NEE, GPP, ecosystem respiration) and CH4 fluxes; Arctic-boreal terrestrial/freshwater sites, 1984–2024; 1,024 sites | [NASA Earthdata record](https://www.earthdata.nasa.gov/data/catalog/ornl-cloud-arctic-boreal-co2-flux-v2-2448-1), [dataset DOI](https://doi.org/10.3334/ORNLDAAC/2448), [Virkkala et al. data paper](https://doi.org/10.5194/essd-18-6357-2026) | Table/resource link only; excluded from map loading and visualization |
+
+This is an independently cited flux synthesis related to the subject of Treat's review, not a new raster produced by Treat et al. (2024). Flux rates are different quantities from soil carbon stocks; retain variable-specific units, measurement methods, temporal aggregation and sign conventions. Do not assign an arbitrary raster resolution to site observations.
+
 ## Scope
 
 - Field plot and soil core observations.
