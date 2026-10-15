@@ -1,12 +1,12 @@
 # Soil map inventory
 
-Catalogue checks: 14 October 2026; maintainer-supplied GEE runtime output: 15 October 2026. The supplied output confirms loading and the metadata summarized below. The assistant has not independently executed GEE. Project copies are prepared, not yet confirmed complete.
+Catalogue checks: 14 October 2026; maintainer-supplied GEE runtime output: 15 October 2026. The supplied output confirms loading and the metadata summarized below. The assistant has not independently executed GEE. Maintainer Console output confirms all 16 project copies: copied=16, failed=0, skipped_existing=0; destination type readback passed for each. Numerical and public-read checks remain pending.
 
 | Resource | Geographic support and grid | Product/depth | GEE availability | Next action |
 |---|---|---|---|---|
-| Sothe concentration | Canada, 250 m | SOC concentration; six point-depth labels: 0, 5, 15, 30, 60, 100 cm | [Awesome GEE](https://gee-community-catalog.org/projects/scs/), ImageCollection `projects/sat-io/open-datasets/carbon_stocks_ca/scc` | Six image IDs confirmed; copy natively; verify depth semantics and stored units |
+| Sothe concentration | Canada, 250 m | SOC concentration; six point-depth labels: 0, 5, 15, 30, 60, 100 cm | [Awesome GEE](https://gee-community-catalog.org/projects/scs/), ImageCollection `projects/sat-io/open-datasets/carbon_stocks_ca/scc` | Six image IDs and native copies confirmed; verify depth semantics and stored units |
 | Sothe stocks | Canada, 250 m | kg C/m², cumulative 0–0.3, 0–1 and 0–2 m plus uncertainty | [Awesome GEE](https://gee-community-catalog.org/projects/scs/), ImageCollection `projects/sat-io/open-datasets/carbon_stocks_ca/sc` | Two members confirmed: stock and uncertainty; inspect bands before assigning study depth products |
-| SoilGrids 2.0 | Global, 250 m | SOC/density by six depth intervals to 200 cm; native stock release 0–30 cm | [ISRIC GEE documentation](https://docs.isric.org/globaldata/soilgrids/access_on_gee.html) and [Awesome GEE](https://gee-community-catalog.org/projects/isric/) | SOC/BD/OCD each six bands; OCS only `ocs_0-30cm_mean`; native copies prepared |
+| SoilGrids 2.0 | Global, 250 m | SOC/density by six depth intervals to 200 cm; native stock release 0–30 cm | [ISRIC GEE documentation](https://docs.isric.org/globaldata/soilgrids/access_on_gee.html) and [Awesome GEE](https://gee-community-catalog.org/projects/isric/) | SOC/BD/OCD each six bands; OCS only `ocs_0-30cm_mean`; native copies completed |
 | Geng 100 m grids | Canada, 100 m | SOC % and BD g/cm³, five layers to 100 cm; Q5/Q95 available | User reports completed ImageCollection and supplies all ten image IDs | All ten load; stored scaling/masks remain unchecked; then uncertainty layers |
 | NCSCDv2 | Canada WGS84 0.012° supplied assets | Three layers supplied: SOCC30, SOCC100, SOCC200; last expected 100–200 cm | User-supplied GEE IDs below | Verify depth interpretation and imported scaling; 200–300 cm not supplied |
 | Olefeldt thermokarst | Circumpolar landscape polygons | Thermokarst fractions/types and associated 0–3 m SOC | User supplies `projects/carbon-learning-library/assets/Circumpolar_Thermokarst_Landscapes` | 132,089 features and schema reported; verify geometry and field definitions; retain [ORNL citation](https://doi.org/10.3334/ORNLDAAC/1332) |
@@ -18,7 +18,7 @@ Catalogue checks: 14 October 2026; maintainer-supplied GEE runtime output: 15 Oc
 
 ## Newly supplied GEE references
 
-Supplied output on 15 October 2026 confirms these references load in the maintainer's GEE session. Values, source preprocessing, reuse terms and public-read access remain unverified. Native copies under our project are prepared below; original IDs remain the provenance references.
+Supplied output on 15 October 2026 confirms these references load in the maintainer's GEE session. Values, source preprocessing, reuse terms and public-read access remain unverified. Native copies under our project are confirmed below; original IDs remain the provenance references.
 
 | Resource | Exact asset ID | Interpretation to verify |
 |---|---|---|
@@ -70,7 +70,7 @@ The [raster download page](https://bolin.su.se/data/ncscd/tiff.php) specifies st
 
 ## Read-only verification script
 
-Use [`03_Soil_Map_Catalogue.js`](../scripts/03_Soil_Map_Catalogue.js) in the Earth Engine Code Editor. It lists Sothe collection members, SoilGrids metadata, all ten Geng image references, thermokarst table schema and all three supplied NCSCDv2 images. Geng loading is now enabled. ABCFlux is deliberately absent from map objects. The script starts no export or upload.
+Use [`03_Soil_Map_Catalogue.js`](../scripts/03_Soil_Map_Catalogue.js) in the Earth Engine Code Editor. It now loads the completed project copies for Sothe, SoilGrids, thermokarst and NCSCDv2, and retains Geng's existing collection. It lists individual Sothe stock/concentration bands and properties as well as the other product metadata. Geng loading is now enabled. ABCFlux is deliberately absent from map objects. The script starts no export or upload.
 
 See [TODOs](../TODO.md) for deferred provenance and active ingestion checks.
 
@@ -78,7 +78,7 @@ See [TODOs](../TODO.md) for deferred provenance and active ingestion checks.
 
 Run [04_Copy_External_Soil_Maps.js](../scripts/04_Copy_External_Soil_Maps.js) in the authenticated Earth Engine Code Editor. It uses [ee.data.copyAsset](https://developers.google.com/earth-engine/apidocs/ee-data-copyasset) with overwrite disabled. Copies preserve native rasters/tables without clipping, reprojection, resampling, unit conversion or stock integration. SoilGrids retains global extent. This is a direct asset operation: no export Tasks need to be started.
 
-The [copy manifest](../data/catalogue/soil_map_copy_manifest.json) records all 16 exact source/destination pairs and citations. **Prepared only; successful copying has not yet been reported.** The script checks the existing root, creates the following child folders, reads each source, skips existing destinations, copies missing assets and reads back destination types. Save its Console summary as execution evidence. A skipped destination is not certified as equivalent to the source.
+The [copy manifest](../data/catalogue/soil_map_copy_manifest.json) records all 16 exact source/destination pairs and citations. **Completed in maintainer-supplied output: 16 copied, 0 failed, 0 skipped; all destination types confirmed.** The script checks the existing root, creates the following child folders, reads each source, skips existing destinations, copies missing assets and reads back destination types. Save its Console summary as execution evidence. A skipped destination is not certified as equivalent to the source.
 
 Root: `projects/northstarlabs/assets/carbon_state_of_data/soils/maps`.
 
