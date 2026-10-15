@@ -1,0 +1,287 @@
+{
+  "checked_utc": "2026-10-15T20:08:40.435133+00:00",
+  "method": "urllib HTTP GET with no Authorization or cookies",
+  "files": [
+    {
+      "path": "data/downloads/Studies.csv",
+      "http_status": 200,
+      "bytes": 16242,
+      "sha256": "bead98c81dea56a33398c9277c0baadd0d6b5da1ea3a2e97cfb8a2b7af1f75b0",
+      "git_blob_sha": "1688faff0d3daff0c6e7fc24016b21148fb6641c",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/Ground_data.csv",
+      "http_status": 200,
+      "bytes": 16321,
+      "sha256": "65cbbaef2f8bd293c1d29a2768a6be422ec4531f8c84e30d1435229b504de52b",
+      "git_blob_sha": "82a5bf2bd2d7b558fefb1193ec5d1e0b4c89d58e",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/Study_ground.csv",
+      "http_status": 200,
+      "bytes": 5690,
+      "sha256": "d5fef5c7e14c23f59266f19bfb830dacf7a3cd8f6a77e8c3a5a68e7fad3ed97a",
+      "git_blob_sha": "b778eb18d77487ffa8fa1ccd52003e1fa367f6ef",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/Covariates.csv",
+      "http_status": 200,
+      "bytes": 120296,
+      "sha256": "802c799d4b3fbb0d7ebf7c1ad7679860c0b79e2bb17c8379002ff650b386839b",
+      "git_blob_sha": "6604fa4179b7d958dbd5b8740d6d3c93ba52f954",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/Maps.csv",
+      "http_status": 200,
+      "bytes": 11695,
+      "sha256": "65c656bef7c8732712fd75b2378d0f316bbda5b5244413030e8b65429b538a10",
+      "git_blob_sha": "29e02a763fd2a464ee1534e8207f5f726dfa8206",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/Assets.csv",
+      "http_status": 200,
+      "bytes": 27587,
+      "sha256": "92d46eaedf47fe9872cab61b979efa357364e7d963a2929ac1153a29cb87353a",
+      "git_blob_sha": "29e545d239f8dc689079c830e1814b32b82b399b",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/Other_sources.csv",
+      "http_status": 200,
+      "bytes": 15140,
+      "sha256": "8d957873db44ce123930c09f3ee754ec00fd579dddf7e6d54ff57a3ff2954cce",
+      "git_blob_sha": "3a070851f7025c6474c6fc6e0cda6baaf702adcc",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/Data_dictionary.csv",
+      "http_status": 200,
+      "bytes": 27765,
+      "sha256": "4333d83eba58e661af92aeb64ec210e453e1fa5298f5def01c54ff334fdc8527",
+      "git_blob_sha": "ca58fed69610d55c7684918b3849552a0d6044c0",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/QC_register.csv",
+      "http_status": 200,
+      "bytes": 23531,
+      "sha256": "992d5b5609aa61bc5ea1c74e32707b324b187372e9a7b7c8d6ed1997f01a3f85",
+      "git_blob_sha": "bf5f5df6f154be2ab6446a8a88f8c60105fbb7d6",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/Soil_methods.csv",
+      "http_status": 200,
+      "bytes": 18677,
+      "sha256": "3b27807967a91a0aa218df7cf21fe80ae691e469324c93111eb168b8e8c10052",
+      "git_blob_sha": "c09f969e49d90699745234d6e71f8a8788fa4639",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/Extraction_plan.csv",
+      "http_status": 200,
+      "bytes": 113204,
+      "sha256": "35fed9e7215442e566245e1762cff3b130279dd34ddd6fae94a8cd3609956edd",
+      "git_blob_sha": "14444ab317a1667b513b93c98f928dcc1ddf50f6",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/Scale_profiles.csv",
+      "http_status": 200,
+      "bytes": 5686,
+      "sha256": "eb83bef66771c35ca47b391cb8ef7b0b330838e2cf14423c40ef4ed6ad7cfb75",
+      "git_blob_sha": "7db61a4b304a158eb2daf7a02b93ac99f0c39dda",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/Study_stacks.csv",
+      "http_status": 200,
+      "bytes": 8341,
+      "sha256": "83d56a58a695d359bb32bf7d01971db308d87a181f0564fa1ed4cc7ecc3385ea",
+      "git_blob_sha": "40cd5a0901f770c76e21fd984f2d8267d7072784",
+      "anonymous": true
+    },
+    {
+      "path": "data/downloads/carbon_catalogue.json",
+      "http_status": 200,
+      "bytes": 577287,
+      "sha256": "cf9d97033e88a9cc63472b65c6d18b248615cfaa6818e3cf02279046bfb15e33",
+      "git_blob_sha": "0784ce7483e5ef85a8287812b0073a1f03baa2be",
+      "anonymous": true
+    },
+    {
+      "path": "data/catalogue/public_access_verified_20261015.json",
+      "http_status": 200,
+      "bytes": 15469,
+      "sha256": "10ab92b435aa3eeeabab601cc621538a1d4c524fbf40313af851a7f1bc4608f9",
+      "git_blob_sha": "feab2cbf19d24d3632f0437540b7c3fcf72e3f9b",
+      "anonymous": true
+    },
+    {
+      "path": "data/catalogue/study_citations.json",
+      "http_status": 200,
+      "bytes": 33788,
+      "sha256": "bb182622a9de57740566896039060d639ee2d13c08865995cb76df7a8aa29319",
+      "git_blob_sha": "0c0b8e083489328293ca6d47e17edb0eb4fab96b",
+      "anonymous": true
+    },
+    {
+      "path": "data/catalogue/public_release_manifest.json",
+      "http_status": 200,
+      "bytes": 5288,
+      "sha256": "17f8b0086e06bdda0f80756cca1fefe3a80e453a5ccb2577b710831177a577ad",
+      "git_blob_sha": "ed5c0ea5108cd2359ed6d32e9a082e7b320c6bbd",
+      "anonymous": true
+    },
+    {
+      "path": "examples/01_load_carbon_data.js",
+      "http_status": 200,
+      "bytes": 1896,
+      "sha256": "10b2afb2c353264e80597541cffc40b92c45a898b666bdd37738b05c139eaeee",
+      "git_blob_sha": "2d0292f35428f7be645d28840e7bf9677fafab8e",
+      "anonymous": true
+    },
+    {
+      "path": "examples/02_quickstart.py",
+      "http_status": 200,
+      "bytes": 5024,
+      "sha256": "e123bb8d3e512f3eca32a496ca591108599a6ee7c18971683800c65a2ca5783c",
+      "git_blob_sha": "6eef8d79005aa1a97d4e84f637356180917e532c",
+      "anonymous": true
+    },
+    {
+      "path": "examples/requirements.txt",
+      "http_status": 200,
+      "bytes": 24,
+      "sha256": "958bc13c849669eedaaa91579969ed4ce5a6fa6a68a9fa51aec08912bffcd449",
+      "git_blob_sha": "38b3584c4c463b441ce463c0f117d78339865983",
+      "anonymous": true
+    },
+    {
+      "path": "CITATION.cff",
+      "http_status": 200,
+      "bytes": 866,
+      "sha256": "78915ec847cd38ebe85533c2ebeb52283c323808caa19d5996c590ea451961b6",
+      "git_blob_sha": "5b7d07a64f2d733041b49003e012049e7f477322",
+      "anonymous": true
+    },
+    {
+      "path": "references/studies.bib",
+      "http_status": 200,
+      "bytes": 11790,
+      "sha256": "2fda92052403251478b0853e6f7ee4abbce579dea612af6eb3d0437a54bcc4d9",
+      "git_blob_sha": "2538064436d2324f9e0fe1f923ac4a31be73f4f4",
+      "anonymous": true
+    },
+    {
+      "path": "SOURCES.md",
+      "http_status": 200,
+      "bytes": 9434,
+      "sha256": "c1b11af34458dc3316668c908d8c497954a806e06ad4b31e4de9ded9f05e9a47",
+      "git_blob_sha": "c9aebe0b65f202093ee1defafe86dd8fc1380435",
+      "anonymous": true
+    },
+    {
+      "path": "DOWNLOADS.md",
+      "http_status": 200,
+      "bytes": 4347,
+      "sha256": "8f9f2d58400d9b0934b723c08de4edf3a3826f8508cdc8b2b72fc2a5aec4253c",
+      "git_blob_sha": "9c7f9bee8af04b929dc5e8212ee25870365c80b8",
+      "anonymous": true
+    },
+    {
+      "path": "examples/README.md",
+      "http_status": 200,
+      "bytes": 2581,
+      "sha256": "0db67e84f45b6b5790026048785019d1bdd687d3d8ee43d3952d9594da4aee7a",
+      "git_blob_sha": "d417c6a3e32cc51029eb65a8f43b53230967aa85",
+      "anonymous": true
+    },
+    {
+      "path": "docs/release_licensing.md",
+      "http_status": 200,
+      "bytes": 1090,
+      "sha256": "93def5cd2de0b36aa3e057e45da2462edacae8a4d8ffaee056068a311e5dd512",
+      "git_blob_sha": "e42c9ee1fb796d0fe3d149d8eada31660878517a",
+      "anonymous": true
+    },
+    {
+      "path": "docs/public_access.md",
+      "http_status": 200,
+      "bytes": 2104,
+      "sha256": "122e7704cb4d0eb14ba38ee82ef2bb8dace63cbe17d6ee0a29bf07eae2ba8e97",
+      "git_blob_sha": "c3a4459c7ac1c37c4bea311578f67be1edde6085",
+      "anonymous": true
+    },
+    {
+      "path": "docs/releases/0.1.0-rc.1.md",
+      "http_status": 200,
+      "bytes": 2130,
+      "sha256": "5431d2d73ef1940485fa5c9b7d0e241566ad13cf917beecb864fe771bb8f31ab",
+      "git_blob_sha": "28d13c3e955050d3782b3fd4365f1f9eb100acbe",
+      "anonymous": true
+    },
+    {
+      "path": "README.md",
+      "http_status": 200,
+      "bytes": 64485,
+      "sha256": "a111704eacb834ee086e236b5ec23c39048d6afb2d92a4c062a02693124ace8b",
+      "git_blob_sha": "3df1d02c54c88af358b364a5ea8169eb772dcff5",
+      "anonymous": true
+    },
+    {
+      "path": "TODO.md",
+      "http_status": 200,
+      "bytes": 16617,
+      "sha256": "fb3f677f3e540c6832c1b015a2b85bcb8e2e74a64b5f6c099e392e96e9daabd9",
+      "git_blob_sha": "e4efbc38e18d4b9ee3ee12349a03d5206efc698c",
+      "anonymous": true
+    },
+    {
+      "path": "data/catalogue/soil_map_qc_register.json",
+      "http_status": 200,
+      "bytes": 29239,
+      "sha256": "66121fab9432338031d1b4e6d0b4ccfe96219c21ed8a78e9b18c9801c9178d64",
+      "git_blob_sha": "b401f8244a75d5214a16309dfb1a72d5faa51449",
+      "anonymous": true
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "http_status": 200,
+      "bytes": 1049,
+      "sha256": "e9d2fef259e3a304950acfbdb32d0650799356ad94b3686aa77d56e848a7c13a",
+      "git_blob_sha": "a22c6e40f2667b23c7adba643d8ddc5a1de16f3f",
+      "anonymous": true
+    },
+    {
+      "path": "data/catalogue/release_validation.json",
+      "http_status": 200,
+      "bytes": 989,
+      "sha256": "0f34ac55dc7d1ac44291557eb6a407a556c39134e73bec96b19f9cc991b2a988",
+      "git_blob_sha": "ff8403143c4b4f2866c41ba4df5d70728a083fa7",
+      "anonymous": true
+    }
+  ],
+  "zip": {
+    "url": "https://codeload.github.com/CathalD/Carbon_Data_SOD/zip/refs/heads/main",
+    "http_status": 200,
+    "bytes": 435495,
+    "archive_integrity": true,
+    "contains_all_release_files": true,
+    "comparison_placeholder_preserved": true,
+    "anonymous": true
+  },
+  "summary": {
+    "checked": 33,
+    "http_200": 33,
+    "errors": 0
+  },
+  "repository_commit_verified": "fbaf1bf8861e7faf38a27d7fbbbdea18738db7d4",
+  "note": "The files and mutable main-branch ZIP were verified at this commit. Later verification-report edits do not change the catalogue CSV/JSON or examples.",
+  "snapshot_zip_url": "https://codeload.github.com/CathalD/Carbon_Data_SOD/zip/fbaf1bf8861e7faf38a27d7fbbbdea18738db7d4"
+}
