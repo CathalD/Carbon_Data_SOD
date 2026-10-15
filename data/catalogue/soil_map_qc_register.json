@@ -38,7 +38,7 @@
       "Partial",
       "Sample agreement",
       "Unverified",
-      "512 seeded points; 207 common valid pixels; max absolute difference 0; mask mismatches 0. Sample agreement only. Returned ACL has no public grant; separate-account access pending.",
+      "1 band(s): 512 seeded points each; 207 common valid pixels per band; max absolute difference 0; mask mismatches 0. Sample agreement only. No public grant in returned ACL; separate-account test pending.",
       "https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2",
       "2026-10-15"
     ],
@@ -58,7 +58,7 @@
       "Partial",
       "Sample agreement",
       "Unverified",
-      "512 seeded points; 229 common valid pixels; max absolute difference 0; mask mismatches 0. Sample agreement only. Returned ACL has no public grant; separate-account access pending.",
+      "1 band(s): 512 seeded points each; 229 common valid pixels per band; max absolute difference 0; mask mismatches 0. Sample agreement only. No public grant in returned ACL; separate-account test pending.",
       "https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2",
       "2026-10-15"
     ],
@@ -78,7 +78,7 @@
       "Partial",
       "Sample agreement",
       "Unverified",
-      "512 seeded points; 264 common valid pixels; max absolute difference 0; mask mismatches 0. Sample agreement only. Returned ACL has no public grant; separate-account access pending.",
+      "1 band(s): 512 seeded points each; 264 common valid pixels per band; max absolute difference 0; mask mismatches 0. Sample agreement only. No public grant in returned ACL; separate-account test pending.",
       "https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2",
       "2026-10-15"
     ],
@@ -98,7 +98,7 @@
       "Partial",
       "Sample agreement",
       "Unverified",
-      "512 seeded points; 265 common valid pixels; max absolute difference 0; mask mismatches 0. Sample agreement only. Returned ACL has no public grant; separate-account access pending.",
+      "1 band(s): 512 seeded points each; 265 common valid pixels per band; max absolute difference 0; mask mismatches 0. Sample agreement only. No public grant in returned ACL; separate-account test pending.",
       "https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2",
       "2026-10-15"
     ],
@@ -116,9 +116,9 @@
       "Keep maintainer 0–1 m assumption for stock and uncertainty; exact GEE-to-archive file identity pending.",
       "Separate depth predictions; stock uncertainty does not apply.",
       "Partial",
-      "Metadata checked",
+      "Sample agreement",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "1 band(s): 512 seeded points each; 265 common valid pixels per band; max absolute difference 0; mask mismatches 0. Sample agreement only. No public grant in returned ACL; separate-account test pending.",
       "https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2",
       "2026-10-15"
     ],
@@ -136,9 +136,9 @@
       "Keep maintainer 0–1 m assumption for stock and uncertainty; exact GEE-to-archive file identity pending.",
       "Separate depth predictions; stock uncertainty does not apply.",
       "Partial",
-      "Metadata checked",
+      "Sample agreement",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "1 band(s): 512 seeded points each; 265 common valid pixels per band; max absolute difference 0; mask mismatches 0. Sample agreement only. No public grant in returned ACL; separate-account test pending.",
       "https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2",
       "2026-10-15"
     ],
@@ -156,9 +156,9 @@
       "Keep maintainer 0–1 m assumption for stock and uncertainty; exact GEE-to-archive file identity pending.",
       "Separate depth predictions; stock uncertainty does not apply.",
       "Partial",
-      "Metadata checked",
+      "Sample agreement",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "1 band(s): 512 seeded points each; 265 common valid pixels per band; max absolute difference 0; mask mismatches 0. Sample agreement only. No public grant in returned ACL; separate-account test pending.",
       "https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2",
       "2026-10-15"
     ],
@@ -176,9 +176,9 @@
       "Keep maintainer 0–1 m assumption for stock and uncertainty; exact GEE-to-archive file identity pending.",
       "Separate depth predictions; stock uncertainty does not apply.",
       "Partial",
-      "Metadata checked",
+      "Sample agreement",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "1 band(s): 512 seeded points each; 265 common valid pixels per band; max absolute difference 0; mask mismatches 0. Sample agreement only. No public grant in returned ACL; separate-account test pending.",
       "https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2",
       "2026-10-15"
     ],
@@ -196,9 +196,9 @@
       "Source soil mask excludes water, urban, ice and bare surfaces; inspect actual copied mask.",
       "These are mean images; Q05/Q95 are separate 90% prediction bounds, not SD.",
       "Provider documented; import pending",
-      "Metadata checked",
+      "Sample agreement",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "6 band(s): 512 seeded points each; 251 common valid pixels per band; max absolute difference 0; mask mismatches 0. Sample agreement only. No public grant in returned ACL; separate-account test pending.",
       "https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_01.html",
       "2026-10-15"
     ],
@@ -216,9 +216,9 @@
       "Source soil mask excludes water, urban, ice and bare surfaces; inspect actual copied mask.",
       "These are mean images; Q05/Q95 are separate 90% prediction bounds, not SD.",
       "Provider documented; import pending",
-      "Metadata checked",
+      "Sample agreement",
       "Unverified",
-      "This pasted entry reports pixel checks not run; metadata/full copy grid matches. Returned ACL has no public grant. Await complete current-run output and final summary before pixel sign-off.",
+      "6 band(s): 512 seeded points each; 251 common valid pixels per band; max absolute difference 0; mask mismatches 0. Sample agreement only. No public grant in returned ACL; separate-account test pending.",
       "https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_01.html",
       "2026-10-15"
     ],
@@ -338,7 +338,7 @@
       "Partial",
       "Review needed",
       "Unverified",
-      "Source/copy both 132,089 rows; first geometry Empty in both. Rerun v2026-10-15.2 for full geometry inventory; do not use as polygon map until resolved.",
+      "Source/copy geometry counts match: 102,251 Polygon/MultiPolygon; 5,707 GeometryCollection; 23,987 lines; 49 points; 95 Empty. Review original geometry before polygon mapping. No public grant in returned ACL.",
       "https://doi.org/10.3334/ORNLDAAC/1332",
       "2026-10-15"
     ],
@@ -358,7 +358,7 @@
       "Provider documented; import pending",
       "Metadata checked",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "Full copy grid matches source. Across Li products, dimensions and affine grids match, but WKT strings differ in authority labels/ellipsoid rounding; strict equality flag alone is not proof of displacement. Pixel run pending; no public ACL grant observed.",
       "https://borealisdata.ca/citation?persistentId=doi%3A10.5683%2FSP3%2FTIRAXJ",
       "2026-10-15"
     ],
@@ -378,7 +378,7 @@
       "Provider documented; import pending",
       "Metadata checked",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "Full copy grid matches source. Across Li products, dimensions and affine grids match, but WKT strings differ in authority labels/ellipsoid rounding; strict equality flag alone is not proof of displacement. Pixel run pending; no public ACL grant observed.",
       "https://borealisdata.ca/citation?persistentId=doi%3A10.5683%2FSP3%2FTIRAXJ",
       "2026-10-15"
     ],
@@ -398,7 +398,7 @@
       "Provider documented; import pending",
       "Metadata checked",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "Full copy grid matches source. Across Li products, dimensions and affine grids match, but WKT strings differ in authority labels/ellipsoid rounding; strict equality flag alone is not proof of displacement. Pixel run pending; no public ACL grant observed.",
       "https://borealisdata.ca/citation?persistentId=doi%3A10.5683%2FSP3%2FTIRAXJ",
       "2026-10-15"
     ],
@@ -418,7 +418,7 @@
       "Provider documented; import pending",
       "Metadata checked",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "Full copy grid matches source. Across Li products, dimensions and affine grids match, but WKT strings differ in authority labels/ellipsoid rounding; strict equality flag alone is not proof of displacement. Pixel run pending; no public ACL grant observed.",
       "https://borealisdata.ca/citation?persistentId=doi%3A10.5683%2FSP3%2FTIRAXJ",
       "2026-10-15"
     ],
