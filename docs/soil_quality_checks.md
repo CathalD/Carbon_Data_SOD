@@ -1,6 +1,6 @@
 # Step 2 — soil metadata, depth and methods QC
 
-Reviewed 15 October 2026. The master Google Sheet now includes **QC_register**, **Soil_methods** and **Soil_depth_QC**. This pass checks provider documentation and local prepared tables. It has **not** executed the new QC script against Earth Engine or changed any uploaded data.
+Reviewed 15 October 2026. The master Google Sheet now includes **QC_register**, **Soil_methods** and **Soil_depth_QC**. This pass checks provider documentation and local prepared tables. The maintainer subsequently supplied a first live metadata pass. Its original parsing bugs and corrected interpretation are recorded below. Pixel checks have not run; no uploaded data were changed.
 
 ## Depth and method distinctions
 
@@ -40,6 +40,19 @@ The [audit record](../data/catalogue/soil_depth_audit.json) includes SHA-256 fin
 - **NCSCDv2:** SOCC200 represents 100–200 cm; the source raster units are hg C/m². Check whether the imports changed them. [Depth definition](https://essd.copernicus.org/articles/5/393/2013/), [raster units/grid](https://bolin.su.se/data/ncscd/tiff.php).
 - **Li:** regional carbon follows variable modelled peat depth. Archive units are cm for depth and kg C/m² for carbon; uncertainty represents base-model disagreement (±1 SD). Imported encoding remains pending. [Borealis archive](https://borealisdata.ca/citation?persistentId=doi%3A10.5683%2FSP3%2FTIRAXJ).
 - **Sothe:** retain the maintainer's 0–1 m assignment for both hosted stock and uncertainty. The 4TU v2 record describes a 1 m package, but exact correspondence to the hosted v20 files remains unproved. Source uncertainty descriptions conflict, so no SD interpretation is assigned. [Versioned archive](https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2).
+
+## First live metadata pass — 15 October 2026
+
+[Compact execution evidence](../data/catalogue/soil_map_qc_metadata_20261015.json) preserves the returned types/bands and the input fingerprint. Footprint coordinate dumps are omitted.
+
+- All 30 destination metadata reads succeeded: 29 images and one table. Actual returned types are `Image` and `Table`; these match the intended types after normalization.
+- All 19 copied images have identical returned source/destination band metadata. This includes a null short CRS for custom projections; it does not prove complete CRS or numerical equivalence.
+- The original script compared upper-case cloud type names and expected cloud-style `band.grid` objects. Code Editor's `getAsset` returns legacy metadata instead, so the 30 `type_mismatch` flags and null alignment results were script errors, not failed ingestions.
+- Thermokarst source and copy both contain 132,089 rows with matching first-feature fields. Both first features return geometry type `Empty`. This establishes a geometry problem for the first feature only; the extent across the table is not yet known. Do not treat the hosted table as a usable polygon map until reviewed.
+- Public access remains unverified. Geng child ACL calls failed because their parent is an ImageCollection; the revised script reads the collection ACL scope. Other returned ACL objects were not recorded in full by the first script, so absent public flags are not retroactively classified as private.
+- Version **2026-10-15.2** normalizes legacy metadata, reads full projection WKT per band, omits large footprint dumps, and inventories source/destination geometry types. It retains the no-write policy.
+
+**Next:** rerun the revised script with `RUN_PIXEL_CHECKS = false`. Review WKT, geometry counts and ACL scope before the pixel pass.
 
 ## Run the live checks
 
