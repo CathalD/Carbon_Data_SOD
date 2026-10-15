@@ -42,7 +42,7 @@
       "path": "data/downloads/Assets.csv",
       "rows_excluding_header": 51,
       "columns": 15,
-      "sha256": "92d46eaedf47fe9872cab61b979efa357364e7d963a2929ac1153a29cb87353a",
+      "sha256": "f549b07ba7aaba9ebe29986a9df4c031e42e39df256c377964f846313d824473",
       "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Assets.csv"
     },
     {
@@ -96,7 +96,7 @@
     }
   ],
   "json_path": "data/downloads/carbon_catalogue.json",
-  "json_sha256": "cf9d97033e88a9cc63472b65c6d18b248615cfaa6818e3cf02279046bfb15e33",
+  "json_sha256": "b62d2f93e217080a3d997ab52b54c31f6d64bb2a3584a4aee979aae56af4669c",
   "includes_individual_profile_rows": false,
   "includes_pilot_coordinates": false,
   "examples": [
