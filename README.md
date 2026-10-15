@@ -8,7 +8,7 @@ Field observations establish the relationship between carbon and ecosystem chara
 
 The [Google Sheets master catalogue](https://docs.google.com/spreadsheets/d/14PeDcxAptEf7DOpgLtIN93S5dyVWewP6_hn5nvtTjKU/edit) links studies, ground observations, covariates, maps and Earth Engine assets. Its 10 tabs record geographic study scope separately from native raster resolution, model/output grids, extraction support, time and soil depth. Study-ground links identify the observations used in each study; evidence and status fields distinguish documented predictors from candidates and unresolved details. The original spreadsheet rows are preserved in a source archive.
 
-The catalogue is ready for review and tab-by-tab export for Google Cloud preparation. Numerical asset QC, public access checks and unresolved metadata remain pending. Expand the entries below for details.
+The catalogue is ready for review and tab-by-tab export for Google Cloud preparation. Step 2 adds soil depth/method records, a five-dataset depth audit and a 30-asset QC register. [Soil quality checks and findings](docs/soil_quality_checks.md) document measured versus estimated values, integration/extrapolation and unresolved import metadata. Run [06_Soil_Map_QC.js](scripts/06_Soil_Map_QC.js) for the live Earth Engine checks; numerical asset QC and public access remain pending. Expand the entries below for details.
 
 ## Scales and evidence
 
