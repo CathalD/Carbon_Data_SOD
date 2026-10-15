@@ -24,6 +24,15 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 - [x] Run `scripts/04_Copy_External_Soil_Maps.js` in GEE and confirm all 16 destinations: maintainer output reports copied=16, failed=0, skipped_existing=0, each with expected type. Geng stays in its existing collection; ABCFlux stays table-only. Evidence summary is recorded in the copy manifest.
 - [ ] Check grid alignment before derived products: SoilGrids SOC/BD origins differ from OCD/OCS; NCSCDv2 SOCC30 origin differs from SOCC100/SOCC200.
 
+## Li regional peat maps — new batch
+
+- [x] Catalogue four supplied Li et al. (2025) Hudson Bay Lowlands GEE IDs, paper and Borealis archive; record regional 30 m output and variable modelled peat-depth support.
+- [ ] Run `scripts/05_Copy_Li_HBL_Maps.js` to copy all four into `soils/maps/li_2025_hbl`; save summary and local metadata. These four are pending, separate from the 16 completed copies.
+- [ ] Check Li imported units/scaling, CRS, pixel alignment, masks and uncertainty encoding against archived files. Keep variable-depth stocks distinct from fixed-depth SOC products.
+- [ ] Catalogue Li public validation peat depths, with source licence and duplicate checks. Training depths require an MNR agreement; do not list as open.
+- [ ] Extract Li Table S1's 16 retained covariates, native grids, dates, extraction supports and regional validation design; retain predictor importance context.
+- [ ] Resolve Sothe `sc_250m_v20` depth and uncertainty meaning from original release identity: expanded runtime output confirms one `b1` and empty properties for both images. Check the differing stock/uncertainty grid origins before paired analysis.
+
 ## Ground-data provenance — deferred
 
 - [ ] Restore NRCan peat source flags: `C_ORG_MEAS_EST`, `C_ORG_EST_TYPE`, `C_TOT_MEAS_EST`, `C_TOT_EST_TYPE`, core measured percentages, and coordinate-accuracy notes. Current v1 omitted these. Preserve measured versus estimated values in analysis/validation.
