@@ -1,6 +1,6 @@
 {
   "cff-version": "1.2.0",
-  "message": "Cite this catalogue and the original dataset and study references for every resource used. This candidate has no assigned DOI.",
+  "message": "Cite this catalogue and the original dataset and study references for every resource used. This release has no assigned DOI.",
   "type": "dataset",
   "title": "Carbon State of Data: Canadian carbon data catalogue",
   "authors": [
@@ -10,7 +10,7 @@
   ],
   "url": "https://github.com/CathalD/Carbon_Data_SOD",
   "repository-code": "https://github.com/CathalD/Carbon_Data_SOD",
-  "version": "0.1.0-rc.1",
+  "version": "0.1.0",
   "date-released": "2026-10-15",
-  "abstract": "A community catalogue linking Canadian forest and soil carbon observations, environmental covariates, studies, maps and Earth Engine assets. Distinguishes geographic domain, native/output spatial support, time, depth and evidence. This is a catalogue release candidate, not a new carbon map or completed comparison analysis."
+  "abstract": "A community catalogue linking Canadian forest and soil carbon observations, environmental covariates, studies, maps and Earth Engine assets. Distinguishes geographic domain, native/output spatial support, time, depth and evidence. This is a catalogue release, not a new carbon map or completed comparison analysis."
 }

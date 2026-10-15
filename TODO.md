@@ -2,7 +2,7 @@
 
 Updated 15 October 2026. Current status: complete maintainer pixel-mode QC received; map/layer/profile access complete per maintainer. Covariate catalogue finished; 20-profile baseline pilot completed with coverage/radar review flags before bulk processing. Circumpolar thermokarst/Olefeldt deferred. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
 
-## Step 5 — public release candidate prepared
+## Step 5 — public release 0.1.0 complete
 
 - [x] Add public metadata downloads: 13 CSVs, combined JSON and SHA-256 manifest; no individual pilot rows/coordinates.
 - [x] Add read-only Python/Code Editor examples; execute live reads and download a 29 × 28 demonstration GeoTIFF. Optional browser/Drive export not submitted.
@@ -11,7 +11,7 @@ Updated 15 October 2026. Current status: complete maintainer pixel-mode QC recei
 - [x] Confirm GitHub/downloads are public; original working Sheet remains restricted. Preserve the maintainer’s older uploaded workbook.
 - [x] Verify SCANFI v2 collection is public but contains 0 images; exclude from working examples.
 - [x] Reserve [Comparison](Comparison/README.md) for the maintainer’s forthcoming analysis; do not supply rankings/conclusions on their behalf.
-- [ ] Select/apply repository code and catalogue licences before a formal open-licensed release announcement; [proposal](docs/release_licensing.md).
+- [x] Finalize version 0.1.0 with stable downloads and release notes. No repository licence added, by maintainer instruction; [record](docs/release_licensing.md).
 - [ ] Ingest SCANFI v2 images if the provider release is to be hosted; sharing alone does not populate the collection.
 - [ ] Resolve remaining original-source licensing, import encoding, depth/method and citation gaps per catalogue. These do not disappear with successful public ACL checks.
 
@@ -28,7 +28,7 @@ Updated 15 October 2026. Current status: complete maintainer pixel-mode QC recei
 
 ## Current catalogue additions
 
-- [x] Maintain the existing Google Sheet (16 tabs), adding 17 detailed Li evidence entries (217 total), 114 extraction decisions, 10 scale profiles and 11 study/workflow stacks.
+- [x] Maintain the existing Google Sheet (17 tabs), adding 17 detailed Li evidence entries (217 total), 114 extraction decisions, 10 scale profiles and 11 study/workflow stacks.
 - [x] Publish [covariate plan](docs/covariate_extraction_plan.md), machine-readable tables, Li Table S1 manifest and dated maintainer access record.
 - [ ] Implement versioned extraction after resolving each selected Hold/Conditional dependency, preserving native support, response depth and leakage-safe grouped/spatial validation.
 

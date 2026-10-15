@@ -1,5 +1,4 @@
 {
-  "candidate_version": "0.1.0-rc.1",
   "catalogue_date": "2026-10-15",
   "scope": "Dataset catalogue metadata, not individual field observations or pilot rows",
   "working_sheet_access": "Restricted; public downloads do not require it",
@@ -13421,5 +13420,6 @@
         ]
       ]
     }
-  }
+  },
+  "version": "0.1.0"
 }

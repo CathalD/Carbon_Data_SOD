@@ -10,11 +10,11 @@ A community catalogue of forest and soil carbon data for Canada, connecting fiel
 - [Run the examples](examples/README.md): public soil/forest reads and a tested small GeoTIFF download using your own Earth Engine project.
 - [Cite the data](SOURCES.md): original papers/releases plus [catalogue citation](CITATION.cff).
 - [Sharing verification](docs/public_access.md): **41/41 hosted references have public-read grants**, including Geng at collection scope.
-- [Release candidate notes](docs/releases/0.1.0-rc.1.md): scope, validation and remaining limitations.
+- [Release notes](docs/releases/0.1.0.md): scope, validation and remaining limitations.
 
 **Summary and comparison analysis:** forthcoming from the maintainer in [Comparison](Comparison/README.md). This catalogue does not yet contain that analysis or its conclusions.
 
-Prepared release candidate: **0.1.0-rc.1** (15 October 2026). Repository licence selection remains [pending](docs/release_licensing.md); original source terms are retained. SCANFI v2 is public but has **0 hosted images**, so use its provider release until ingestion is complete. Detailed pilot rows/locations are not added to this public package.
+Public release: **0.1.0** (15 October 2026). No repository licence has been added, as directed by the maintainer; original source terms are retained. See [licensing status](docs/release_licensing.md). SCANFI v2 is public but has **0 hosted images**, so use its provider release until ingestion is complete. Detailed pilot rows/locations are not added to this public package.
 
 
 Field observations establish the relationship between carbon and ecosystem characteristics. Spatial covariates extend that relationship across the landscape through a fitted model. For forests, inventories often measure tree dimensions and species; biomass and carbon are then estimated using documented allometric equations and conversion factors.

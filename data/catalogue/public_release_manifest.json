@@ -1,6 +1,6 @@
 {
-  "version": "0.1.0-rc.1",
-  "status": "Prepared release candidate; no GitHub tag or formal release created",
+  "version": "0.1.0",
+  "status": "Public release",
   "date": "2026-10-15",
   "catalogue_csv_files": [
     {
@@ -8,95 +8,95 @@
       "rows_excluding_header": 24,
       "columns": 20,
       "sha256": "bead98c81dea56a33398c9277c0baadd0d6b5da1ea3a2e97cfb8a2b7af1f75b0",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Studies.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Studies.csv"
     },
     {
       "path": "data/downloads/Ground_data.csv",
       "rows_excluding_header": 28,
       "columns": 16,
       "sha256": "65cbbaef2f8bd293c1d29a2768a6be422ec4531f8c84e30d1435229b504de52b",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Ground_data.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Ground_data.csv"
     },
     {
       "path": "data/downloads/Study_ground.csv",
       "rows_excluding_header": 29,
       "columns": 6,
       "sha256": "d5fef5c7e14c23f59266f19bfb830dacf7a3cd8f6a77e8c3a5a68e7fad3ed97a",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Study_ground.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Study_ground.csv"
     },
     {
       "path": "data/downloads/Covariates.csv",
       "rows_excluding_header": 217,
       "columns": 19,
       "sha256": "802c799d4b3fbb0d7ebf7c1ad7679860c0b79e2bb17c8379002ff650b386839b",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Covariates.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Covariates.csv"
     },
     {
       "path": "data/downloads/Maps.csv",
       "rows_excluding_header": 28,
       "columns": 13,
       "sha256": "65c656bef7c8732712fd75b2378d0f316bbda5b5244413030e8b65429b538a10",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Maps.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Maps.csv"
     },
     {
       "path": "data/downloads/Assets.csv",
       "rows_excluding_header": 51,
       "columns": 15,
       "sha256": "f549b07ba7aaba9ebe29986a9df4c031e42e39df256c377964f846313d824473",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Assets.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Assets.csv"
     },
     {
       "path": "data/downloads/Other_sources.csv",
       "rows_excluding_header": 20,
       "columns": 15,
       "sha256": "8d957873db44ce123930c09f3ee754ec00fd579dddf7e6d54ff57a3ff2954cce",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Other_sources.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Other_sources.csv"
     },
     {
       "path": "data/downloads/Data_dictionary.csv",
       "rows_excluding_header": 192,
       "columns": 5,
       "sha256": "4333d83eba58e661af92aeb64ec210e453e1fa5298f5def01c54ff334fdc8527",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Data_dictionary.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Data_dictionary.csv"
     },
     {
       "path": "data/downloads/QC_register.csv",
       "rows_excluding_header": 30,
       "columns": 18,
       "sha256": "992d5b5609aa61bc5ea1c74e32707b324b187372e9a7b7c8d6ed1997f01a3f85",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/QC_register.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/QC_register.csv"
     },
     {
       "path": "data/downloads/Soil_methods.csv",
       "rows_excluding_header": 23,
       "columns": 17,
       "sha256": "3b27807967a91a0aa218df7cf21fe80ae691e469324c93111eb168b8e8c10052",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Soil_methods.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Soil_methods.csv"
     },
     {
       "path": "data/downloads/Extraction_plan.csv",
       "rows_excluding_header": 114,
       "columns": 24,
       "sha256": "35fed9e7215442e566245e1762cff3b130279dd34ddd6fae94a8cd3609956edd",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Extraction_plan.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Extraction_plan.csv"
     },
     {
       "path": "data/downloads/Scale_profiles.csv",
       "rows_excluding_header": 10,
       "columns": 14,
       "sha256": "eb83bef66771c35ca47b391cb8ef7b0b330838e2cf14423c40ef4ed6ad7cfb75",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Scale_profiles.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Scale_profiles.csv"
     },
     {
       "path": "data/downloads/Study_stacks.csv",
       "rows_excluding_header": 11,
       "columns": 15,
       "sha256": "83d56a58a695d359bb32bf7d01971db308d87a181f0564fa1ed4cc7ecc3385ea",
-      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/data/downloads/Study_stacks.csv"
+      "download_url": "https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Study_stacks.csv"
     }
   ],
   "json_path": "data/downloads/carbon_catalogue.json",
-  "json_sha256": "b62d2f93e217080a3d997ab52b54c31f6d64bb2a3584a4aee979aae56af4669c",
+  "json_sha256": "27e0d1a96d319cc7775158aa2e43d4c6d5d8f877daa249dab4dfb5122eb8c7ad",
   "includes_individual_profile_rows": false,
   "includes_pilot_coordinates": false,
   "examples": [
@@ -120,5 +120,7 @@
     "Source licence/encoding and method caveats remain per catalogue"
   ],
   "pending_maintainer_analysis": "Comparison/",
-  "repository_licence": "Maintainer selection pending; no blanket licence applied to source data"
+  "repository_licence": "Not assigned, by maintainer instruction on 2026-10-15",
+  "release_tag": "v0.1.0",
+  "release_url": "https://github.com/CathalD/Carbon_Data_SOD/releases/tag/v0.1.0"
 }
