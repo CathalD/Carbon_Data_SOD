@@ -53,3 +53,16 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 ## Forest maps — existing outstanding work
 
 - [ ] Confirm SCANFI v2 download/ingestion status and populate the prepared `forests/maps/scanfi_v2_biomass` collection. Earlier download was reported in progress; completion has not been confirmed.
+
+## Other resources — targeted gap review, 15 October 2026
+
+- [x] Add README Other resources section, 20-resource regional/pool review and structured discovery register. These entries are not new GEE ingestions.
+- [ ] Inspect documented PEATGRIDS GEE bands, release 2.0.1 stock units, variable-depth basis, Canadian mask and uncertainty; then decide which assets to copy.
+- [ ] Assess Shaw upland forest profiles and revised McNicol BC soil database together: retain original depth datum, location/estimation flags, shared-source relationships and reuse terms.
+- [ ] Inspect Arsenault Argenteuil and Martens coastal BC original archive files; distinguish new observations from existing NRCan peat data and bathymetric grid from regional output support.
+- [ ] Inspect Gross Alberta multi-pool CSVs and Pendea Lake Simcoe cores for coordinates, depths, units and licences before ingestion.
+- [ ] Catalogue Epstein marine-sediment stock/density/uncertainty rasters as a distinct marine pool; check masks, source observations and native versus output grid.
+- [ ] Inspect Lamping regional forest biomass/structure release; identify released snag products and documented carbon conversion; underlying true plot data are confidential.
+- [ ] Cross-match Clayoquot/Cowichan source/core IDs against Janousek before adding observations.
+- [ ] Use Can-Peat as a metadata portal, C-PEAT as a separately deduplicated Canadian-core candidate and Hugelius v2 as coarse reference; do not count metadata listings as data.
+- [ ] Pursue grassland/root biomass, deadwood/litter and Atlantic/Arctic coastal-data gaps. Pyle pasture coordinates are withheld; Chizen/Cowichan raw archives remain author-request leads. No messages have been sent.
