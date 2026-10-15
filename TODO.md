@@ -1,6 +1,6 @@
 # Carbon State of Data TODOs
 
-Updated 15 October 2026. Current priority: copy external soil maps into the project and complete numerical/provenance checks. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
+Updated 15 October 2026. Current priority: complete numerical/provenance checks on the 16 completed project copies and existing Geng layers. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
 
 ## Soil maps — active
 
@@ -21,7 +21,7 @@ Updated 15 October 2026. Current priority: copy external soil maps into the proj
 - [x] Add ABCFlux v2 (ORNL DAAC 2448) to resource tables only, with its own citation; exclude it from map loading/visualization as requested.
 
 - [x] Prepare native-copy script and exact 16-pair provenance manifest for external maps under `soils/maps`; no resampling or conversion.
-- [ ] Run `scripts/04_Copy_External_Soil_Maps.js` in GEE; save Console results and confirm all 16 destinations. Prepared is not copied. Geng stays in its existing collection; ABCFlux stays table-only.
+- [x] Run `scripts/04_Copy_External_Soil_Maps.js` in GEE and confirm all 16 destinations: maintainer output reports copied=16, failed=0, skipped_existing=0, each with expected type. Geng stays in its existing collection; ABCFlux stays table-only. Evidence summary is recorded in the copy manifest.
 - [ ] Check grid alignment before derived products: SoilGrids SOC/BD origins differ from OCD/OCS; NCSCDv2 SOCC30 origin differs from SOCC100/SOCC200.
 
 ## Ground-data provenance — deferred
