@@ -1,6 +1,6 @@
 # Covariates: variables, evidence and scale
 
-Updated 15 October 2026. **Catalogue complete; extraction has not been executed.** The existing [multiscale notebook](../MultiScale_CovariateExtraction.ipynb) is unchanged.
+Updated 15 October 2026. **Catalogue complete; the 47-band notebook baseline has a completed 20-profile pilot at 30 m. Study-specific and bulk extraction have not run.** The existing [multiscale notebook](../MultiScale_CovariateExtraction.ipynb) is unchanged.
 
 The [master Google Sheet](https://docs.google.com/spreadsheets/d/14PeDcxAptEf7DOpgLtIN93S5dyVWewP6_hn5nvtTjKU/edit) now has three linked planning tabs:
 
@@ -25,7 +25,7 @@ Machine-readable versions: [extraction plan](../data/catalogue/covariate_extract
 | Coastal field context | Tidal elevation, fines, vegetation/salinity and estuary | Janousek field/local associations | Field-only unless independently mapped and validated; generic DEM is not a substitute for tidal elevation |
 | Depth and QA | Layer depth/thickness and profile/core ID; coordinates, missingness and quality indicators | Define response support and prevent leakage/invalid comparisons | Descriptors/QA are not automatically predictors. Existing SOC/BD/carbon/biomass predictions are benchmarks, excluded from default target predictors |
 
-The unchanged notebook defines **43 candidate predictors plus four QA bands**. Its 47-band contract, 2019–2023 composites, 30 m sample grid, and 120 m/1000 m context radii remain unchanged. It has not been rerun. Those baseline candidates are workflow definitions, not 43 independently proven predictors.
+The unchanged notebook defines **43 candidate predictors plus four QA bands**. Its 47-band contract, 2019–2023 composites, 30 m sample grid, and 120 m/1000 m context radii remain unchanged. Its stack definitions were sampled in the [20-profile pilot](soil_covariate_pilot.md); the notebook and bulk exporters remain unchanged. Those baseline candidates are workflow definitions, not 43 independently proven predictors.
 
 Across the 114 decisions there are 43 Notebook baseline, 40 Study-specific, 16 Conditional, four Hold, four Field-only, four QA only, two Exclude and one Required metadata. A row may describe a multi-band recipe (for example the 54 CCDC features); do not treat the row count as a band count. Published input, retained, importance-ranked and proposed features have separate evidence labels.
 
@@ -62,6 +62,10 @@ Do not use carbon predictions derived from overlapping training observations as 
 - **Janousek:** [paper](https://doi.org/10.1029/2024GB008239); field drivers are not presumed available wall-to-wall.
 
 Official product links, source dates, units and derivations are included row by row in the extraction plan. Conditional/Hold status prevents unresolved historical definitions being presented as implemented exact reproductions. The catalogue can be complete while those reproduction gaps remain open.
+
+## Pilot result
+
+[Step 4](soil_covariate_pilot.md) returned 20/20 rows with 855/860 predictor values available, all QA fields present and all source-layer joins valid. One coastal ERA5-Land mask gap and radar ratio tail/default-median sensitivity require review before bulk processing. The Sheet now includes Pilot_QC. This is not model validation and does not implement every study-specific feature or 100/250 m adaptation.
 
 ## Access and scope
 
