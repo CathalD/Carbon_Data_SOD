@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "prepared_date": "2026-10-15",
+  "destination_root": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps",
+  "method": "ee.data.copyAsset; overwrite=false",
+  "execution_status": "Prepared only. Run the companion script in an authenticated Earth Engine Code Editor; no copies have been executed by the repository authoring workflow.",
+  "scope": "16 external assets. SoilGrids retains global extent. Geng remains at projects/northstarlabs/assets/canada_carbon_collection. ABCFlux is excluded.",
+  "verification": "Sources loaded in maintainer-supplied Code Editor output. Stored units, masks, numerical values, licences and public-read permissions require separate checks. Existing destinations on rerun are skipped, not certified as equivalent.",
+  "assets": [
+    {
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/sc/sc_250m_v20",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_250m_v20",
+      "asset_type": "IMAGE",
+      "citation": "https://doi.org/10.1029/2021GB007213",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/sc/sc_uncertainty_250m_v20",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_uncertainty_250m_v20",
+      "asset_type": "IMAGE",
+      "citation": "https://doi.org/10.1029/2021GB007213",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_0cm_250m_version10",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_0cm_250m_version10",
+      "asset_type": "IMAGE",
+      "citation": "https://gee-community-catalog.org/projects/scs/",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_5cm_250m_version10",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_5cm_250m_version10",
+      "asset_type": "IMAGE",
+      "citation": "https://gee-community-catalog.org/projects/scs/",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_15cm_250m_version10",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_15cm_250m_version10",
+      "asset_type": "IMAGE",
+      "citation": "https://gee-community-catalog.org/projects/scs/",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_30cm_250m_version10",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_30cm_250m_version10",
+      "asset_type": "IMAGE",
+      "citation": "https://gee-community-catalog.org/projects/scs/",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_60cm_250m_version10",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_60cm_250m_version10",
+      "asset_type": "IMAGE",
+      "citation": "https://gee-community-catalog.org/projects/scs/",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_100cm_250m_version10",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_100cm_250m_version10",
+      "asset_type": "IMAGE",
+      "citation": "https://gee-community-catalog.org/projects/scs/",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/soilgrids-isric/soc_mean",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/soc_mean",
+      "asset_type": "IMAGE",
+      "citation": "https://doi.org/10.5194/soil-7-217-2021",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/soilgrids-isric/bdod_mean",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean",
+      "asset_type": "IMAGE",
+      "citation": "https://doi.org/10.5194/soil-7-217-2021",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/soilgrids-isric/ocd_mean",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocd_mean",
+      "asset_type": "IMAGE",
+      "citation": "https://doi.org/10.5194/soil-7-217-2021",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/soilgrids-isric/ocs_mean",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocs_mean",
+      "asset_type": "IMAGE",
+      "citation": "https://doi.org/10.5194/soil-7-217-2021",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/carbon-learning-library/assets/NCSCDv2_Canada_WGS84_SOCC30_0012deg",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC30_0012deg",
+      "asset_type": "IMAGE",
+      "citation": "https://doi.org/10.5194/essd-5-393-2013",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/carbon-learning-library/assets/NCSCDv2_Canada_WGS84_SOCC100_0012deg",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC100_0012deg",
+      "asset_type": "IMAGE",
+      "citation": "https://doi.org/10.5194/essd-5-393-2013",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/carbon-learning-library/assets/NCSCDv2_Canada_WGS84_SOCC200_0012deg",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC200_0012deg",
+      "asset_type": "IMAGE",
+      "citation": "https://doi.org/10.5194/essd-5-393-2013",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/carbon-learning-library/assets/Circumpolar_Thermokarst_Landscapes",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/olefeldt_2016/Circumpolar_Thermokarst_Landscapes",
+      "asset_type": "TABLE",
+      "citation": "https://doi.org/10.3334/ORNLDAAC/1332",
+      "status": "planned_not_executed"
+    }
+  ]
+}
