@@ -1,4 +1,4 @@
-// Generated exact-ID manifest; see data/catalogue/soil_map_qc_manifest.json.
+// Exact asset IDs; QC version 2026-10-15.2.
 var ASSETS = [
   {
     "asset_record_id": "A001",
@@ -252,6 +252,7 @@ var SAMPLE_POINTS = 512;
 var SEED = 20261015;
 var results = [];
 var metadata = {};
+var QC_VERSION = '2026-10-15.2';
 var canadaWindow = ee.Geometry.Rectangle([-141, 41, -52, 84], null, false);
 
 function canonical(value) {
@@ -266,7 +267,55 @@ function canonical(value) {
 function same(a, b) { return JSON.stringify(canonical(a)) === JSON.stringify(canonical(b)); }
 function errorText(error) { return error ? String(error.message || error) : null; }
 function bands(asset) { return asset.bands || []; }
-function grid(band) { return band.grid || {}; }
+function normalizedType(type) {
+  var t = String(type || '').replace(/_/g, '').toUpperCase();
+  return t === 'IMAGECOLLECTION' ? 'IMAGE_COLLECTION' : t;
+}
+function grid(band) {
+  if (band.grid) return band.grid;
+  return {crsCode: band.crs || null, affineTransform: band.crs_transform || null,
+    dimensions: band.dimensions || null};
+}
+function normalizeAsset(asset) {
+  asset.returned_type = asset.type;
+  asset.type = normalizedType(asset.type);
+  asset.bands = bands(asset).map(function(b) {
+    var out = {};
+    Object.keys(b).forEach(function(k) { out[k] = b[k]; });
+    out.grid = grid(b);
+    return out;
+  });
+  return asset;
+}
+function readAsset(id, callback) {
+  ee.data.getAsset(id, function(asset, error) {
+    if (error || !asset) return callback(null, error);
+    asset = normalizeAsset(asset);
+    if (asset.type !== 'IMAGE') return callback(asset, null);
+    var image = ee.Image(id);
+    // A null short CRS is common for custom projections. Read the full WKT.
+    var projections = bands(asset).map(function(b) {
+      var p = image.select([b.id]).projection();
+      return ee.Dictionary({band: b.id, wkt: p.wkt(), nominal_scale_m: p.nominalScale()});
+    });
+    ee.List(projections).evaluate(function(value, projectionError) {
+      if (projectionError) asset.projection_error = errorText(projectionError);
+      else value.forEach(function(p, i) {
+        asset.bands[i].grid.crsWkt = p.wkt;
+        asset.bands[i].nominal_scale_m = p.nominal_scale_m;
+      });
+      callback(asset, null);
+    });
+  });
+}
+function compactAsset(asset) {
+  return {id: asset.id || asset.name, type: asset.type,
+    returned_type: asset.returned_type, version: asset.version,
+    bands: bands(asset), projection_error: asset.projection_error || null,
+    property_keys: Object.keys(asset.properties || {}).filter(function(k) {
+      return k !== 'system:footprint';
+    }), note: 'Footprint coordinates and property contents omitted to keep output bounded.'};
+}
 function hasGrid(band) {
   var g = grid(band);
   return !!((g.crsCode || g.crsWkt) && g.affineTransform);
@@ -284,15 +333,20 @@ function emit(row, next) {
   next();
 }
 function readACL(id, callback) {
+  var collection = 'projects/northstarlabs/assets/canada_carbon_collection';
+  var scope = id.indexOf(collection + '/') === 0 ? collection : id;
   try {
-    ee.data.getAssetAcl(id, function(acl, error) {
+    ee.data.getAssetAcl(scope, function(acl, error) {
       if (error || !acl) return callback({status: 'unverified', error: errorText(error)});
+      // The JS API omits all_users_can_read when no public viewer grant exists.
+      var known = typeof acl.all_users_can_read === 'boolean' || Array.isArray(acl.readers);
       callback({
         status: acl.all_users_can_read === true ? 'public_acl' :
-          acl.all_users_can_read === false ? 'not_public_acl' : 'unverified',
-        all_users_can_read: typeof acl.all_users_can_read === 'boolean' ?
-          acl.all_users_can_read : null,
-        note: 'ACL observation only. Separate-account access and source licence still need review.'
+          known ? 'no_public_grant_in_returned_acl' : 'unverified',
+        all_users_can_read: known ? acl.all_users_can_read === true : null,
+        acl_scope: scope, inherited_collection_scope: scope !== id,
+        returned_keys: Object.keys(acl),
+        note: 'Read-only ACL observation, not a separate-account access or licence test.'
       });
     });
   } catch (error) { callback({status: 'unverified', error: errorText(error)}); }
@@ -306,9 +360,18 @@ function tableQC(entry, row, next) {
     destination_first_feature_fields: ee.Feature(dst.first()).propertyNames().sort(),
     source_first_geometry_type: ee.Feature(src.first()).geometry().type(),
     destination_first_geometry_type: ee.Feature(dst.first()).geometry().type()
+    ,source_geometry_types: src.map(function(f) {
+      return f.set('_qc_geom_type', f.geometry().type());
+    }).aggregate_histogram('_qc_geom_type')
+    ,destination_geometry_types: dst.map(function(f) {
+      return f.set('_qc_geom_type', f.geometry().type());
+    }).aggregate_histogram('_qc_geom_type')
+    ,destination_rows_with_coordinate_fields: dst.filter(
+      ee.Filter.notNull(['LATITUDE', 'LONGITUDE'])).size()
   }).evaluate(function(value, error) {
     row.table_check = error ? {error: errorText(error)} : value;
-    row.numerical_status = 'table_counts_and_first_feature_schema_only_not_full_equivalence';
+    row.numerical_status = error ? 'table_check_error' :
+      'table_count_schema_and_geometry_inventory_not_full_equivalence';
     emit(row, next);
   });
 }
@@ -374,16 +437,16 @@ function sampleImage(entry, sourceAsset, destAsset, row, next) {
   });
 }
 function inspect(entry, next) {
-  var row = {asset_record_id: entry.asset_record_id, resource_id: entry.resource_id,
+  var row = {qc_version: QC_VERSION, asset_record_id: entry.asset_record_id, resource_id: entry.resource_id,
     source_id: entry.source_id, destination_id: entry.destination_id,
     checked_utc: new Date().toISOString(), expected_type: entry.asset_type,
     depth_support: entry.depth_support};
-  ee.data.getAsset(entry.destination_id, function(dest, error) {
+  readAsset(entry.destination_id, function(dest, error) {
     if (error || !dest) {
       row.metadata_status = 'destination_error'; row.error = errorText(error);
       return emit(row, next);
     }
-    row.destination_metadata = dest;
+    row.destination_metadata = compactAsset(dest);
     metadata[entry.asset_record_id] = dest;
     row.metadata_status = dest.type === entry.asset_type ? 'type_matches' : 'type_mismatch';
     readACL(entry.destination_id, function(acl) {
@@ -394,7 +457,7 @@ function inspect(entry, next) {
           row.numerical_status = 'source_unavailable';
           return emit(row, next);
         }
-        row.source_metadata = source;
+        row.source_metadata = compactAsset(source);
         var copied = entry.source_id !== entry.destination_id;
         row.copy_grid_schema = entry.asset_type === 'IMAGE' && copied ?
           gridMatch(source, dest) : null;
@@ -407,7 +470,7 @@ function inspect(entry, next) {
         emit(row, next);
       }
       if (entry.source_id === entry.destination_id) compare(dest, null);
-      else ee.data.getAsset(entry.source_id, compare);
+      else readAsset(entry.source_id, compare);
     });
   });
 }
@@ -431,7 +494,7 @@ function run(index) {
   if (index >= ASSETS.length) {
     alignmentReport();
     print('QC_SUMMARY_JSON\n' + JSON.stringify({
-      planned: ASSETS.length, reported: results.length,
+      qc_version: QC_VERSION, planned: ASSETS.length, reported: results.length,
       pixel_checks_requested: RUN_PIXEL_CHECKS,
       results: results.map(function(r) { return {asset_record_id: r.asset_record_id,
         metadata_status: r.metadata_status, numerical_status: r.numerical_status,
