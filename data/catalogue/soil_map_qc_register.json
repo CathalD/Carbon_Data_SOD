@@ -36,9 +36,9 @@
       "Keep maintainer 0–1 m assumption for stock and uncertainty; exact GEE-to-archive file identity pending.",
       "Archive/catalogue quantile descriptions differ; exact file statistic pending. Do not interpret as ±SD.",
       "Partial",
-      "Metadata checked",
+      "Sample agreement",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "512 seeded points; 207 common valid pixels; max absolute difference 0; mask mismatches 0. Sample agreement only. Returned ACL has no public grant; separate-account access pending.",
       "https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2",
       "2026-10-15"
     ],
@@ -56,9 +56,9 @@
       "Keep maintainer 0–1 m assumption for stock and uncertainty; exact GEE-to-archive file identity pending.",
       "Archive/catalogue quantile descriptions differ; exact file statistic pending. Do not interpret as ±SD.",
       "Partial",
-      "Metadata checked",
+      "Sample agreement",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "512 seeded points; 229 common valid pixels; max absolute difference 0; mask mismatches 0. Sample agreement only. Returned ACL has no public grant; separate-account access pending.",
       "https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2",
       "2026-10-15"
     ],
@@ -76,9 +76,9 @@
       "Keep maintainer 0–1 m assumption for stock and uncertainty; exact GEE-to-archive file identity pending.",
       "Separate depth predictions; stock uncertainty does not apply.",
       "Partial",
-      "Metadata checked",
+      "Sample agreement",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "512 seeded points; 264 common valid pixels; max absolute difference 0; mask mismatches 0. Sample agreement only. Returned ACL has no public grant; separate-account access pending.",
       "https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2",
       "2026-10-15"
     ],
@@ -96,9 +96,9 @@
       "Keep maintainer 0–1 m assumption for stock and uncertainty; exact GEE-to-archive file identity pending.",
       "Separate depth predictions; stock uncertainty does not apply.",
       "Partial",
-      "Metadata checked",
+      "Sample agreement",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "512 seeded points; 265 common valid pixels; max absolute difference 0; mask mismatches 0. Sample agreement only. Returned ACL has no public grant; separate-account access pending.",
       "https://data.4tu.nl/datasets/b8073f2c-1dc0-4a1a-98b0-19abf6cb7193/2",
       "2026-10-15"
     ],
@@ -218,7 +218,7 @@
       "Provider documented; import pending",
       "Metadata checked",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "This pasted entry reports pixel checks not run; metadata/full copy grid matches. Returned ACL has no public grant. Await complete current-run output and final summary before pixel sign-off.",
       "https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_01.html",
       "2026-10-15"
     ],
@@ -238,7 +238,7 @@
       "Provider documented; import pending",
       "Metadata checked",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "This pasted entry reports pixel checks not run; metadata/full copy grid matches. Returned ACL has no public grant. Await complete current-run output and final summary before pixel sign-off.",
       "https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_01.html",
       "2026-10-15"
     ],
@@ -258,7 +258,7 @@
       "Provider documented; import pending",
       "Metadata checked",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "This pasted entry reports pixel checks not run; metadata/full copy grid matches. Returned ACL has no public grant. Await complete current-run output and final summary before pixel sign-off.",
       "https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_01.html",
       "2026-10-15"
     ],
@@ -278,7 +278,7 @@
       "Provider documented; import pending",
       "Metadata checked",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "This pasted entry reports pixel checks not run; metadata/full copy grid matches. Returned ACL has no public grant. Await complete current-run output and final summary before pixel sign-off.",
       "https://bolin.su.se/data/ncscd/tiff.php",
       "2026-10-15"
     ],
@@ -298,7 +298,7 @@
       "Provider documented; import pending",
       "Metadata checked",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "This pasted entry reports pixel checks not run; metadata/full copy grid matches. Returned ACL has no public grant. Await complete current-run output and final summary before pixel sign-off.",
       "https://bolin.su.se/data/ncscd/tiff.php",
       "2026-10-15"
     ],
@@ -318,7 +318,7 @@
       "Provider documented; import pending",
       "Metadata checked",
       "Unverified",
-      "Metadata loaded; original type_mismatch was a script-format bug. Rerun v2026-10-15.2 (pixel checks false) for full WKT and corrected ACL scope; numeric QC pending.",
+      "This pasted entry reports pixel checks not run; metadata/full copy grid matches. Returned ACL has no public grant. Await complete current-run output and final summary before pixel sign-off.",
       "https://bolin.su.se/data/ncscd/tiff.php",
       "2026-10-15"
     ],
