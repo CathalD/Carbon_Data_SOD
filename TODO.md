@@ -1,20 +1,24 @@
 # Carbon State of Data TODOs
 
-Updated 14 October 2026. Current priority: compile soil maps and verify their GEE references. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
+Updated 15 October 2026. Current priority: compile soil maps and verify their GEE references. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
 
 ## Soil maps — active
 
 - [ ] Inspect Sothe stock (`carbon_stocks_ca/sc`) and concentration (`carbon_stocks_ca/scc`) collection members, bands, depths, units and uncertainty definitions. Catalogue references exist; runtime access remains unchecked.
 - [ ] Inspect SoilGrids SOC, bulk-density, carbon-density and stock images; record actual band names, scaling and available depth intervals. Do not infer six stock bands from the provider's generic six-band description.
-- [ ] Finish Geng's ten prediction-layer uploads: bulk density and SOC for 0–5, 5–15, 15–30, 30–60 and 60–100 cm. User-reported first asset: `projects/northstarlabs/assets/canada_carbon_collection/BD_0_5_cm`; ingestion is in progress, not verified complete.
-- [ ] Confirm the exact remaining Geng asset IDs rather than treating proposed names as existing assets. Check 100 m grid/CRS, alignment, bands, stored scaling, NoData and physical units. Provider lists SOC in percent and BD in g/cm³.
+- [x] Record completed Geng prediction uploads: all ten exact BD/SOC image IDs supplied on 15 October 2026, each with one band, under ImageCollection `projects/northstarlabs/assets/canada_carbon_collection`. Completion is user-reported; runtime verification remains pending.
+- [ ] Verify runtime access and metadata for all ten supplied Geng image IDs: 100 m grid/CRS, alignment, band names, stored scaling, NoData and physical units. The exact IDs are now recorded; provider physical units are SOC % and BD g/cm³.
 - [ ] Add Geng Q5/Q95 layers for both properties at all five depths after the prediction layers; keep quantiles separate from predictions. Preserve the source release and Open Government Licence attribution.
-- [ ] Obtain NCSCDv2 Canada LAEA 1 km rasters or choose a documented alternative rasterization; public GEE asset not found in the searches performed. Inspect depth fields, masks and stored hg C/m² units before upload/conversion.
-- [ ] Obtain Olefeldt thermokarst landscape polygons with attributes and citation; public GEE asset not found in the searches performed. Preserve polygon support instead of assigning a fictitious native raster size.
+- [x] Record supplied NCSCDv2 Canada WGS84 0.012° SOCC30/SOCC100/SOCC200 assets in `projects/carbon-learning-library/assets/`. No further upload requested for these three layers.
+- [ ] Verify the three NCSCDv2 imports: expected depth supports 0–30, 0–100 and 100–200 cm, native hg C/m² versus any import conversion, grid, masks and access. Do not assume SOCC200 is cumulative 0–200 cm. The 200–300 cm layer is not yet supplied.
+- [x] Record supplied thermokarst reference `projects/carbon-learning-library/assets/Circumpolar_Thermokarst_Landscapes`.
+- [ ] Verify thermokarst feature collection, fields, geometry, units, source version and read permissions. Preserve polygon support.
 - [ ] Locate a working Hengl Alberta raster/field-data archive. The published viewer has a certificate hostname mismatch in the verified connection check. Public GEE asset not found in the searches performed.
 - [ ] Retain Treat and Janousek as review/core-based references rather than new raster upload tasks. Any independently derived map needs its own provenance.
 - [ ] Record image IDs, bands, depths, prediction statistic, uncertainty type, geography, version, licence and runtime verification in the master catalogue spreadsheet.
 - [ ] Verify public-read permissions for project-hosted maps intended for community reuse.
+
+- [x] Add ABCFlux v2 (ORNL DAAC 2448) to resource tables only, with its own citation; exclude it from map loading/visualization as requested.
 
 ## Ground-data provenance — deferred
 
@@ -35,4 +39,3 @@ Updated 14 October 2026. Current priority: compile soil maps and verify their GE
 ## Forest maps — existing outstanding work
 
 - [ ] Confirm SCANFI v2 download/ingestion status and populate the prepared `forests/maps/scanfi_v2_biomass` collection. Earlier download was reported in progress; completion has not been confirmed.
-
