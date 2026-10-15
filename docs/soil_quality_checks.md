@@ -54,6 +54,23 @@ The [audit record](../data/catalogue/soil_depth_audit.json) includes SHA-256 fin
 
 **Next:** rerun the revised script with `RUN_PIXEL_CHECKS = false`. Review WKT, geometry counts and ACL scope before the pixel pass.
 
+## Partial pixel output received — 15 October 2026
+
+The pasted header says pixel checks are enabled. Only ten asset rows and no `QC_SUMMARY_JSON` were supplied, so complete-run success is not established. Six entries (A010–A015) still report `not_run_set_RUN_PIXEL_CHECKS_true`; the Console may contain results from overlapping runs.
+
+| Asset | Common valid pixels among 512 seeded points | Maximum absolute difference | Mask mismatches |
+|---|---:|---:|---:|
+| A001 — Sothe stock | 207 | 0 | 0 |
+| A002 — Sothe uncertainty | 229 | 0 | 0 |
+| A003 — Sothe concentration, 0 cm | 264 | 0 | 0 |
+| A004 — Sothe concentration, 5 cm | 265 | 0 | 0 |
+
+All ten supplied rows report matching types and full copy-grid schema. Each returned asset ACL reports no public viewer grant; this is a scoped ACL observation, not a separate-account access test. No permissions were changed.
+
+[Partial execution evidence](../data/catalogue/soil_map_qc_pixels_partial_20261015.json) records the individual results. The four successful sample checks do not establish whole-raster equality, units, source-model accuracy, or correct depth assumptions.
+
+Let the active pixel run finish, then retain its final summary and remaining asset rows before deciding whether a rerun is necessary.
+
 ## Run the live checks
 
 1. Paste [06_Soil_Map_QC.js](../scripts/06_Soil_Map_QC.js) into the GEE Code Editor with project `northstarlabs`. Leave `RUN_PIXEL_CHECKS = false` for the first pass.
