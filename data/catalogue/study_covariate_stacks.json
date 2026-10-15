@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalogue_date": "2026-10-15",
-  "status": "Catalogue complete; extraction not executed",
+  "status": "Catalogue complete; notebook baseline pilot executed; other study stacks not executed",
   "scope": "Community cores excluded. Circumpolar thermokarst/Olefeldt deferred; NCSCDv2 reference only.",
   "interpretation": "Rows are decisions or recipes, not a count of independently proven predictors. Geographic domain, native information support, output grid, field support, context radius, time and depth are separate.",
   "headers": [
@@ -190,7 +190,7 @@
       "Community cores excluded; no response variables exported",
       "EP001;EP002;EP003;EP004;EP005;EP006;EP007;EP008;EP009;EP010;EP011;EP012;EP013;EP014;EP015;EP016;EP017;EP018;EP019;EP020;EP021;EP022;EP023;EP024;EP025;EP026;EP027;EP028;EP029;EP030;EP031;EP032;EP033;EP034;EP035;EP036;EP037;EP038;EP039;EP040;EP041;EP042;EP043;EP044;EP045;EP046;EP047",
       "See explicit Hold/Conditional/Field-only decisions; exact retained manifests are not inferred from model performance.",
-      "Catalogue complete; extraction not executed"
+      "Baseline pilot executed: 20 profiles; bulk extraction not run"
     ],
     [
       "ST_GLOBAL_REFERENCE",
