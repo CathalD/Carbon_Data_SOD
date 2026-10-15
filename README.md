@@ -434,7 +434,7 @@ The viewer link does not establish a downloadable field dataset, raster package 
 
 [Map inventory and upload status](docs/soil_map_inventory.md) · [Read-only GEE inspection script](scripts/03_Soil_Map_Catalogue.js) · [Project TODOs](TODO.md) · [Copy external maps into our project](scripts/04_Copy_External_Soil_Maps.js)
 
-Catalogue checks on 14 October 2026 found existing references for Sothe and SoilGrids. On 15 October, the user supplied a completed ten-image Geng ImageCollection at `projects/northstarlabs/assets/canada_carbon_collection`, plus thermokarst and three NCSCDv2 assets in `projects/carbon-learning-library/assets/`. Exact IDs and status are in the linked inventory. The subsequent maintainer-supplied GEE output confirms the source maps load. Scaling, masks, complete depth definitions and public permissions still need checking. A [native-copy script](scripts/04_Copy_External_Soil_Maps.js) and [16-asset manifest](data/catalogue/soil_map_copy_manifest.json) now prepare external copies under `projects/northstarlabs/assets/carbon_state_of_data/soils/maps`; execution is pending. Hengl hosting remains unresolved.
+Catalogue checks on 14 October 2026 found existing references for Sothe and SoilGrids. On 15 October, the user supplied a completed ten-image Geng ImageCollection at `projects/northstarlabs/assets/canada_carbon_collection`, plus thermokarst and three NCSCDv2 assets in `projects/carbon-learning-library/assets/`. Exact IDs and status are in the linked inventory. The subsequent maintainer-supplied GEE output confirms the source maps load. Scaling, masks, complete depth definitions and public permissions still need checking. A [native-copy script](scripts/04_Copy_External_Soil_Maps.js) and [16-asset manifest](data/catalogue/soil_map_copy_manifest.json) record external copies under `projects/northstarlabs/assets/carbon_state_of_data/soils/maps`: maintainer Console output confirms 16 copied, 0 failed and 0 skipped, with expected destination types. Hengl hosting remains unresolved.
 
 | Map/reference | Depth/product | Access and current GEE status |
 |---|---|---|
@@ -457,7 +457,7 @@ The assistant has not independently executed GEE. The maintainer's supplied outp
 
 Run [04_Copy_External_Soil_Maps.js](scripts/04_Copy_External_Soil_Maps.js) in the GEE Code Editor. It creates four child folders and copies 16 external assets without overwrite, clipping, resampling or conversion: eight Sothe images, four global SoilGrids images, three NCSCDv2 images and one thermokarst table. Exact source/destination pairs and citations are in the [manifest](data/catalogue/soil_map_copy_manifest.json).
 
-Copies run directly through the asset API; watch the Console and refresh Assets, with no export Tasks to start. Rerunning skips existing destinations without certifying their provenance. **Copies are prepared, not yet confirmed executed.** Geng is already in our project at its existing collection and remains there. Public-read permissions and source licences require separate checks.
+Copies run directly through the asset API; watch the Console and refresh Assets, with no export Tasks to start. Rerunning skips existing destinations without certifying their provenance. **Completed: maintainer Console output confirms 16 copied, 0 failed, 0 skipped and expected destination types for all assets.** Numerical checks and public-read access remain pending. Geng is already in our project at its existing collection and remains there. Public-read permissions and source licences require separate checks.
 
 </details>
 
