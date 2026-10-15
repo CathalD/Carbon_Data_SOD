@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "study": "Li et al. (2025), Peat Depth and Carbon Storage of the Hudson Bay Lowlands, Canada",
+  "paper_url": "https://doi.org/10.1029/2024GL110679",
+  "data_archive_url": "https://doi.org/10.5683/SP3/TIRAXJ",
+  "publication_year": 2025,
+  "archive_citation_year": 2024,
+  "geographic_context": "Regional: Hudson Bay Lowlands, including the Hudson and James Bay lowlands; use the actual study footprint/mask, not entire bay watersheds.",
+  "reported_output_grid_m": 30,
+  "native_asset_grid": "Pending runtime inspection; 30 m does not establish independent 30 m detail in every input covariate.",
+  "depth_basis": "Variable, modelled peat-column depth at each pixel. Carbon stock is not a fixed 0–30, 0–100 or 0–200 cm product.",
+  "study_units": {
+    "peat_depth": "cm",
+    "peat_carbon_stock": "kg C/m2",
+    "imported_asset_encoding": "Unverified; names alone do not establish scaling/NoData."
+  },
+  "uncertainty": "Paper describes +/-1 SD of base-model estimates (model disagreement), with additional error sources not fully represented. Verify each imported uncertainty raster's encoding and correspondence to archived files; do not label as a 90%/95% confidence interval.",
+  "predictive_evidence": {
+    "context": "Regional peat-depth model, not a national SOC model",
+    "examples": "Distance to coastline, elevation, Sentinel-1 VH/VV ratio",
+    "complete_feature_manifest": "16 final covariates reported; Table S1 definitions, native resolutions, dates and extraction supports remain to catalogue."
+  },
+  "ground_data_access": "Paper links public validation peat depths through Borealis; training peat depths require an Ontario Ministry of Natural Resources data-sharing agreement. Do not present training data as openly hosted.",
+  "execution_status": "Four source IDs supplied by maintainer. Copies and runtime access not yet confirmed. Existing 16-asset manifest remains a separate completed batch.",
+  "destination_root": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl",
+  "method": "ee.data.copyAsset, overwrite=false; copy all four for consistent folder organization, including the two already in northstarlabs.",
+  "assets": [
+    {
+      "source_id": "projects/northstarlabs/assets/McMaster_PeatDepth_30m",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_PeatDepth_30m",
+      "asset_type": "IMAGE",
+      "role": "peat_depth",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/northstarlabs/assets/McMaster_Uncertainty_PeatDepth_30m",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_Uncertainty_PeatDepth_30m",
+      "asset_type": "IMAGE",
+      "role": "peat_depth_uncertainty",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/ee-cathalpdoherty2/assets/McMasterCarbon30mkgm2version1",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterCarbon30mkgm2version1",
+      "asset_type": "IMAGE",
+      "role": "peat_carbon_stock",
+      "status": "planned_not_executed"
+    },
+    {
+      "source_id": "projects/ee-cathalpdoherty2/assets/McMasterUncertaintyCarbon30mkgm2",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterUncertaintyCarbon30mkgm2",
+      "asset_type": "IMAGE",
+      "role": "peat_carbon_stock_uncertainty",
+      "status": "planned_not_executed"
+    }
+  ]
+}
