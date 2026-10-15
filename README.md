@@ -6,9 +6,26 @@ A community catalogue of forest and soil carbon data for Canada, connecting fiel
 
 Field observations establish the relationship between carbon and ecosystem characteristics. Spatial covariates extend that relationship across the landscape through a fitted model. For forests, inventories often measure tree dimensions and species; biomass and carbon are then estimated using documented allometric equations and conversion factors.
 
-The [Google Sheets master catalogue](https://docs.google.com/spreadsheets/d/14PeDcxAptEf7DOpgLtIN93S5dyVWewP6_hn5nvtTjKU/edit) links studies, ground observations, covariates, maps and Earth Engine assets. Its 10 tabs record geographic study scope separately from native raster resolution, model/output grids, extraction support, time and soil depth. Study-ground links identify the observations used in each study; evidence and status fields distinguish documented predictors from candidates and unresolved details. The original spreadsheet rows are preserved in a source archive.
+The [Google Sheets master catalogue](https://docs.google.com/spreadsheets/d/14PeDcxAptEf7DOpgLtIN93S5dyVWewP6_hn5nvtTjKU/edit) links studies, ground observations, covariates, maps and Earth Engine assets. Its 16 tabs record geographic study scope separately from native raster resolution, model/output grids, extraction support, time and soil depth. Study-ground links identify the observations used in each study; evidence and status fields distinguish documented predictors from candidates and unresolved details. The original spreadsheet rows are preserved in a source archive.
 
-The catalogue is ready for review and tab-by-tab export for Google Cloud preparation. Step 2 adds soil depth/method records, a five-dataset depth audit and a 30-asset QC register. [Soil quality checks and findings](docs/soil_quality_checks.md) document measured versus estimated values, integration/extrapolation and unresolved import metadata. Run [06_Soil_Map_QC.js](scripts/06_Soil_Map_QC.js) for the live Earth Engine checks; numerical asset QC and public access remain pending. Expand the entries below for details.
+The catalogue is ready for review and tab-by-tab export for Google Cloud preparation. Step 2 adds soil depth/method records, a five-dataset depth audit and a 30-asset QC register. [Soil quality checks and findings](docs/soil_quality_checks.md) document measured versus estimated values, integration/extrapolation and unresolved import metadata. The maintainer supplied the complete 30-asset pixel-mode QC pass: 19 copied images agree at sampled pixels; ten Geng uploads were sampled without comparison to original TIFFs. Access to maps/layers/profiles is complete per maintainer confirmation on 15 October 2026; no independent anonymous-session access test is claimed. Depth/method and import caveats remain documented. Circumpolar thermokarst/Olefeldt work is deferred. Expand the entries below for details.
+
+## Covariate extraction catalogue
+
+The [finished extraction plan](docs/covariate_extraction_plan.md) links **what to extract, why, where and at which spatial support**. In the Google Sheet, use **Extraction_plan** (114 decisions/recipes), **Scale_profiles** (10 profiles) and **Study_stacks** (11 study/workflow stacks). The evidence register now has 217 entries, including Li's 16 retained variables and rejected TWI.
+
+| Analysis context | Output grid | Main candidate families |
+|---|---:|---|
+| Canada — soil properties | 250 m | Optical/radar, climate, terrain, vegetation/thermal seasonality and response depth |
+| Canada — agricultural soil context | 100 m | Geng climate, monthly MODIS, Landsat, terrain and parent-material inputs |
+| Hudson and James Bay Lowlands — peat | 30 m | Li seasonal radar/EVI/LST, elevation and distance context; exact source gaps marked Hold |
+| Alberta — agriculture | 30 m | Hengl vegetation/climate and multiscale terrain families; exact historical selection remains a source-matching gap |
+| Forest regions / Canada | 30 or 250 m by study | Landsat temporal features, radar, climate, terrain and study-specific canopy structure |
+| Coastal estuaries | Core/local support | Tidal elevation, fines and vegetation/salinity are field context until mapped and validated |
+
+Native information grid, output spacing, plot/core support and neighbourhood radius are separate fields. Coarse climate does not gain detail when sampled at 30 m. The unchanged notebook defines 43 candidate predictors plus four QA bands; no new extraction has run. Published input/retained evidence is distinguished from proposed candidates and conditional additions. Existing target-derived carbon/soil maps are excluded from default predictors to prevent leakage.
+
+Machine-readable: [decisions](data/catalogue/covariate_extraction_plan.json), [scales](data/catalogue/covariate_scale_profiles.json), [study stacks](data/catalogue/study_covariate_stacks.json), [Li source manifest](data/catalogue/li_2025_hbl_covariates.json). [Dated access status](data/catalogue/access_status_20261015.json) records maintainer confirmation without claiming independent verification.
 
 ## Scales and evidence
 
