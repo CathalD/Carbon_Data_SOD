@@ -17,13 +17,13 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 - [x] Verify provider units/depth/method documentation for SoilGrids, Geng, NCSCDv2 and Li; retain uncertainty/import caveats and the Sothe 0–1 m working assumption.
 - [x] Prepare read-only [06_Soil_Map_QC.js](scripts/06_Soil_Map_QC.js), exact-ID manifest and [run instructions](docs/soil_quality_checks.md). JavaScript syntax and 30-ID manifest validated locally.
 - [x] Receive first maintainer metadata pass: all 30 destinations returned metadata (29 Image, one Table). Original type_mismatch flags were a script parser bug; 19 copied images have matching returned band metadata. Evidence archived.
-- [ ] Rerun corrected QC v2026-10-15.2 with RUN_PIXEL_CHECKS=false: full WKT per band, Geng collection-scope ACL, and full thermokarst geometry-type inventory. First source/copy thermokarst feature is Empty; polygon usability remains unresolved.
-- [ ] After metadata review, run native-grid pixel samples with RUN_PIXEL_CHECKS=true. Sample agreement is not full raster equivalence; original TIFF encoding checks still required for Geng and imported layers.
+- [x] Receive corrected QC v2026-10-15.2 metadata and pixel outputs: full WKT, Geng collection-scope ACL and thermokarst geometry inventory. Source/copy both contain 95 Empty features and mixed geometry; polygon suitability remains unresolved.
+- [x] Complete native-grid pixel pass: maintainer summary planned=30, reported=30, pixel_checks_requested=true. All 19 copied images have zero sampled value/mask mismatches; ten Geng images sampled without original-TIFF comparison; thermokarst inventories match. Archive: data/catalogue/soil_map_qc_pixels_complete_20261015.json. Full raster equivalence and source encoding remain unverified.
 - [ ] Resolve flagged depth intervals, missing method/estimation provenance and source units before publishing standardized-depth stocks. Review 182 Janousek thickness/boundary discrepancies against original sampling/compaction semantics.
 - [ ] Restore omitted source method/estimation fields in new versioned profile preparations after agreeing on correction rules; do not overwrite current assets during QC.
 
 - [x] Receive partial pixel output: A001–A004 have zero sampled value/mask mismatches (207/229/264/265 common valid pixels from 512 seeded points each). Other six supplied rows report not_run; no final summary provided.
-- [ ] Retain the completed current pixel run's final summary and remaining asset rows before completing numerical QC. Review missing public ACL grants separately; no permissions changed.
+- [x] Retain completed current pixel-run summary and all 30 results. No numerical execution errors reported; 19 copied-image sample agreements. Public ACL grants are absent in the returned copy/collection scopes; no permissions changed.
 
 ## Soil maps — active
 
