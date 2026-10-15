@@ -134,7 +134,8 @@ function ensureGroup(index) {
       ensureGroup(index + 1);
       return;
     }
-    ee.data.createAsset({type: 'Folder'}, path, false, {}, function(created, createError) {
+    // Omit properties entirely: even an empty properties object is rejected for folders.
+    ee.data.createAsset({type: 'Folder'}, path, false, undefined, function(created, createError) {
       if (!createError) {
         ensureGroup(index + 1);
         return;
