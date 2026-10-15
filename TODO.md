@@ -9,6 +9,18 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 - [x] Verify all 8,873 populated cells against the authored catalogue, apply filters/frozen identifiers and status/evidence dropdowns, and preserve source URLs for export.
 - [ ] Step 2: complete the metadata, numerical and public-access checks below before derived products or new extraction workflows. The Sheet does not certify unresolved assets or reproduce every study's exact retained feature list.
 
+## Step 2 — soil depth, methods and quality checks
+
+- [x] Add QC_register (30 assets), Soil_methods (five hosted ground sources and 18 soil-map records) and Soil_depth_QC to the existing Google Sheet; preserve original source rows.
+- [x] Audit local layer boundaries, gaps, overlaps and thickness semantics; record exact preparation hashes and distinguish local evidence from live GEE readback.
+- [x] Record NRCan peat SAMP_CARB_MGHA → TOTC_Stock naming mismatch, repeated whole-core Org_C_MGHA, missing carbon estimation flags, and Janousek sampled-depth thresholds/extrapolation.
+- [x] Verify provider units/depth/method documentation for SoilGrids, Geng, NCSCDv2 and Li; retain uncertainty/import caveats and the Sothe 0–1 m working assumption.
+- [x] Prepare read-only [06_Soil_Map_QC.js](scripts/06_Soil_Map_QC.js), exact-ID manifest and [run instructions](docs/soil_quality_checks.md). JavaScript syntax and 30-ID manifest validated locally.
+- [ ] Run metadata/ACL pass with RUN_PIXEL_CHECKS=false in maintainer GEE session and retain QC_ROW/QC_ALIGNMENT_JSON/QC_SUMMARY_JSON.
+- [ ] After metadata review, run native-grid pixel samples with RUN_PIXEL_CHECKS=true. Sample agreement is not full raster equivalence; original TIFF encoding checks still required for Geng and imported layers.
+- [ ] Resolve flagged depth intervals, missing method/estimation provenance and source units before publishing standardized-depth stocks. Review 182 Janousek thickness/boundary discrepancies against original sampling/compaction semantics.
+- [ ] Restore omitted source method/estimation fields in new versioned profile preparations after agreeing on correction rules; do not overwrite current assets during QC.
+
 ## Soil maps — active
 
 - [ ] Inspect Sothe stock (`carbon_stocks_ca/sc`) and concentration (`carbon_stocks_ca/scc`) collection members, bands, depths, units and uncertainty definitions. Runtime output confirms two stock/uncertainty images and six concentration point-depth IDs; stock and uncertainty each have one `b1`. Both use 0–1 m under the maintainer's working assumption; source confirmation remains deferred.
