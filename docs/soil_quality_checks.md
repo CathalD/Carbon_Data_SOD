@@ -96,6 +96,26 @@ The Li images have equal dimensions and numeric affine transforms. Their strict 
 
 [Progress evidence](../data/catalogue/soil_map_qc_progress_20261015.json) retains the supplied metadata-only summary, alignment flags, geometry counts and best individual sample results. A completed summary with `pixel_checks_requested: true` is still required.
 
+## Completed pixel-check pass — 15 October 2026
+
+The latest supplied output includes the completed `QC_SUMMARY_JSON` with **planned=30, reported=30, pixel_checks_requested=true**. Earlier metadata-only results remain in the Console but do not replace this completed pixel run.
+
+| Result class | Assets | Interpretation |
+|---|---:|---|
+| Copied image sample agreement | 19 | All compared bands have 512 returned seeded points, positive common-valid counts, zero maximum absolute source/destination difference and zero sampled mask mismatches |
+| Existing Geng uploads sampled | 10 | Current-image sampling succeeded; source and destination are the same uploaded asset, so original GeoTIFF equivalence is not established |
+| Thermokarst table inventory | 1 | Source/copy counts, first-feature schema and geometry-type distributions match; full feature equivalence and mixed-geometry suitability remain unresolved |
+
+The 19 copied images comprise eight Sothe, four SoilGrids, three NCSCDv2 and four Li images. This verifies sampled native-copy agreement, not complete raster equality, correct physical units, model accuracy, depth assumptions or uncertainty semantics.
+
+The 20 copied asset ACLs and the Geng collection ACL returned no public viewer grant. Collection scope applies to its ten child-image observations. Separate-account access remains untested and no sharing settings were changed.
+
+Geng samples include SOC zero values and values near 60; these are observations, not proof of a NoData convention or the source encoding. Do not mask zeros or apply scaling based on ranges alone.
+
+[Completed execution evidence](../data/catalogue/soil_map_qc_pixels_complete_20261015.json) and the Google Sheets QC register record all 30 results. The partial/progress files above remain historical evidence.
+
+The live sampling pass is complete. Remaining step 2 work is source-file unit/NoData verification, thermokarst geometry provenance, semantic cross-product grid checks and public reuse/access checks. Geng uncertainty images and any derived fixed-depth stocks remain separate later tasks.
+
 ## Run the live checks
 
 1. Paste [06_Soil_Map_QC.js](../scripts/06_Soil_Map_QC.js) into the GEE Code Editor with project `northstarlabs`. Leave `RUN_PIXEL_CHECKS = false` for the first pass.
