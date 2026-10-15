@@ -4,7 +4,7 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 
 ## Soil maps — active
 
-- [ ] Inspect Sothe stock (`carbon_stocks_ca/sc`) and concentration (`carbon_stocks_ca/scc`) collection members, bands, depths, units and uncertainty definitions. Runtime output confirms two stock/uncertainty images and six concentration point-depth IDs; stock bands and depth definitions still need checking.
+- [ ] Inspect Sothe stock (`carbon_stocks_ca/sc`) and concentration (`carbon_stocks_ca/scc`) collection members, bands, depths, units and uncertainty definitions. Runtime output confirms two stock/uncertainty images and six concentration point-depth IDs; stock and uncertainty each have one `b1`. Both use 0–1 m under the maintainer's working assumption; source confirmation remains deferred.
 - [ ] Inspect SoilGrids SOC, bulk-density, carbon-density and stock images; record actual band names, scaling and available depth intervals. Runtime output confirms six SOC/BD/OCD bands and only `ocs_0-30cm_mean` for stock. Check offset grid origins before pixelwise operations.
 - [x] Record completed Geng prediction uploads: all ten exact BD/SOC image IDs supplied on 15 October 2026, each with one band, under ImageCollection `projects/northstarlabs/assets/canada_carbon_collection`. Maintainer runtime output also loads all ten expected IDs, with none missing or extra.
 - [ ] Complete metadata and numerical QC for all ten supplied Geng image IDs: 100 m grid/CRS, alignment, band names, stored scaling, NoData and physical units. Runtime access is confirmed in supplied output; provider physical units are SOC % and BD g/cm³.
@@ -31,7 +31,8 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 - [ ] Check Li imported units/scaling, CRS, pixel alignment, masks and uncertainty encoding against archived files. Keep variable-depth stocks distinct from fixed-depth SOC products.
 - [ ] Catalogue Li public validation peat depths, with source licence and duplicate checks. Training depths require an MNR agreement; do not list as open.
 - [ ] Extract Li Table S1's 16 retained covariates, native grids, dates, extraction supports and regional validation design; retain predictor importance context.
-- [ ] Resolve Sothe `sc_250m_v20` depth and uncertainty meaning from original release identity: expanded runtime output confirms one `b1` and empty properties for both images. Check the differing stock/uncertainty grid origins before paired analysis.
+- [x] Assign Sothe `sc_250m_v20` and `sc_uncertainty_250m_v20` to 0–1 m as explicitly requested by the maintainer; retain a working-assumption label, not source verification.
+- [ ] Independently confirm the assumed Sothe 0–1 m depth against original release identity when available; verify uncertainty definition, units and the differing grid origins before paired analysis.
 
 ## Ground-data provenance — deferred
 
