@@ -1,0 +1,480 @@
+---
+title: "Soils"
+subtitle: "Profiles and layers first, then the covariates and training data behind each map, then the maps compared with each other and with the profiles."
+---
+
+```{r}
+#| label: setup
+source("_setup.R")
+locs <- read_csv(file.path(derived, "profile_locations.csv"), show_col_types = FALSE) |>
+  mutate(dataset = factor(dataset, dataset_levels))
+iv <- read_csv(file.path(derived, "profile_intervals.csv"), show_col_types = FALSE) |>
+  mutate(dataset = factor(dataset, dataset_levels),
+         interval = factor(interval, c("0-5", "5-15", "15-30", "30-60", "60-100", "0-30", "0-100")))
+peat <- read_csv(file.path(derived, "peat_core_depths.csv"), show_col_types = FALSE)
+xl <- function(s) read_excel(xlsx, sheet = s)
+studies <- xl("Studies"); ground <- xl("Ground_data"); links <- xl("Study_ground"); cov <- xl("Covariates"); maps_cat <- xl("Maps")
+```
+
+::: {.domain-soil}
+
+## 1. Profile and layer data {#profiles}
+
+::: {.lede}
+Five prepared datasets hold `r fmt_n(nrow(locs))` located profiles. They differ in where they sample, how deep they go and which variables they carry, and that shapes every comparison that follows.
+:::
+
+::: {.callout-important appearance="simple"}
+**These counts are not independent.** WoSIS, the National Pedon Database and the peat compilations share profiles. Layers within a core are repeated depth observations, not separate locations. Profiles have not been deduplicated across datasets here.
+:::
+
+### Where the profiles are
+
+```{r}
+#| label: fig-profile-map
+#| fig-height: 6.2
+#| fig-cap: "Profile locations by dataset over Canada's terrestrial ecozones (EPSG:3978). Janousek also extends along the US and Mexican Pacific coast, outside this frame."
+pts <- locs |> filter(!is.na(lon), !is.na(lat)) |> st_as_sf(coords = c("lon", "lat"), crs = 4326) |> st_transform(3978)
+bb <- st_bbox(ecozones)
+ggplot() +
+  geom_sf(data = ecozones, fill = "#eef0ea", colour = "#c9cdc4", linewidth = 0.15) +
+  geom_sf(data = pts, aes(colour = dataset), size = 0.35, alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = dataset_cols) +
+  facet_wrap(~dataset, ncol = 3) +
+  coord_sf(xlim = bb[c(1, 3)], ylim = bb[c(2, 4)], datum = NA) +
+  theme(axis.text = element_blank(), panel.grid = element_blank())
+```
+
+### Profiles per ecozone
+
+```{r}
+#| label: chart-ecozone-counts
+#| fig-height: 4.6
+counts <- locs |> filter(!is.na(ecozone)) |> count(ecozone, dataset)
+ord <- counts |> group_by(ecozone) |> summarise(n = sum(n)) |> arrange(n) |> pull(ecozone)
+ggplot(counts, aes(dataset, factor(ecozone, ord), fill = n)) +
+  geom_tile(colour = "white", linewidth = 1) +
+  geom_text(aes(label = fmt_n(n), colour = n > 600), size = 3) +
+  scale_fill_gradientn(colours = pal$seq, trans = "log10", guide = "none") +
+  scale_colour_manual(values = c(`TRUE` = "white", `FALSE` = pal$ink), guide = "none") +
+  labs(x = NULL, y = NULL, title = "Located profiles by ecozone and dataset",
+       subtitle = "Mineral-soil sets cover the south; peat sets the Hudson Plain and north") +
+  theme(panel.grid = element_blank())
+```
+
+### How deep the profiles reach
+
+```{r}
+#| label: chart-coverage
+#| fig-height: 3.8
+cov_n <- iv |> filter(variable == "soc_gkg") |> count(dataset, interval) |>
+  left_join(locs |> count(dataset, name = "total"), by = "dataset") |>
+  mutate(share = n / total)
+ggplot(cov_n, aes(interval, share, group = dataset, colour = dataset)) +
+  geom_line(linewidth = 0.9) + geom_point(size = 2.4) +
+  scale_colour_manual(values = dataset_cols, name = NULL) +
+  scale_y_continuous(labels = label_percent(), limits = c(0, 1)) +
+  labs(x = "Map depth interval (cm)", y = "Profiles with a usable SOC value",
+       title = "Share of profiles that fully cover each map interval",
+       subtitle = "A profile counts only if its layers cover the whole interval with no gaps or overlaps")
+```
+
+### Organic carbon and bulk density by depth
+
+```{r}
+#| label: chart-soc-bd
+#| fig-height: 6.4
+d <- iv |> filter(variable %in% c("soc_gkg", "bd"), interval %in% c("0-5", "5-15", "15-30", "30-60", "60-100")) |>
+  mutate(variable = recode(variable, soc_gkg = "Organic carbon (g/kg, log scale)", bd = "Bulk density (g/cm³)"))
+g1 <- ggplot(filter(d, startsWith(variable, "Organic")), aes(observed, interval, fill = dataset)) +
+  geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.25, linewidth = 0.3, position = position_dodge(0.8), width = 0.7) +
+  scale_x_log10(labels = label_comma()) + scale_y_discrete(limits = rev) +
+  scale_fill_manual(values = dataset_cols, name = NULL) +
+  labs(x = "Organic carbon (g/kg, log scale)", y = "Depth (cm)")
+g2 <- ggplot(filter(d, startsWith(variable, "Bulk")), aes(observed, interval, fill = dataset)) +
+  geom_boxplot(outlier.size = 0.2, outlier.alpha = 0.25, linewidth = 0.3, position = position_dodge(0.8), width = 0.7) +
+  scale_y_discrete(limits = rev) + scale_fill_manual(values = dataset_cols, name = NULL) +
+  labs(x = "Bulk density (g/cm³)", y = NULL)
+(g1 | g2) + plot_layout(guides = "collect") & theme(legend.position = "top")
+```
+
+```{r}
+iv |> filter(variable %in% c("soc_gkg", "bd"), interval %in% c("0-5", "30-60")) |>
+  group_by(dataset, variable, interval) |>
+  summarise(n = n(), median = median(observed), .groups = "drop") |>
+  mutate(cell = paste0(fmt_s(median), " (", fmt_n(n), ")")) |>
+  select(-n, -median) |>
+  pivot_wider(names_from = c(variable, interval), values_from = cell) |>
+  rename(Dataset = dataset, `SOC 0–5 cm` = `soc_gkg_0-5`, `SOC 30–60 cm` = `soc_gkg_30-60`,
+         `BD 0–5 cm` = `bd_0-5`, `BD 30–60 cm` = `bd_30-60`) |>
+  kable(caption = "Median observed value (profiles in brackets). SOC in g/kg, BD in g/cm³. Riley bulk-density units are unverified.")
+```
+
+### Observed carbon stocks
+
+```{r}
+#| label: chart-obs-stock
+#| fig-height: 3.4
+st <- iv |> filter(variable == "stock_kgm2")
+ggplot(st, aes(observed, dataset, fill = dataset)) +
+  geom_boxplot(outlier.size = 0.3, outlier.alpha = 0.3, linewidth = 0.3, width = 0.6, show.legend = FALSE) +
+  scale_x_log10(labels = label_comma()) + scale_fill_manual(values = dataset_cols) +
+  scale_y_discrete(limits = rev) +
+  facet_wrap(~interval, labeller = as_labeller(c(`0-30` = "0–30 cm", `0-100` = "0–100 cm"))) +
+  labs(x = "Observed carbon stock (kg C/m², log scale)", y = NULL,
+       caption = "Sums of each dataset's own layer stock values over fully covered intervals. NRCan peat uses the provider's sample carbon mass (SAMP_CARB_MGHA).")
+```
+
+Stocks can only be computed where layers carry bulk density. That leaves `r fmt_n(sum(st$dataset == "WoSIS" & st$interval == "0-30"))` WoSIS and `r fmt_n(sum(st$dataset == "NPDB" & st$interval == "0-30"))` NPDB profiles at 0–30 cm, against `r fmt_n(sum(st$dataset == "NRCan peat" & st$interval == "0-30"))` NRCan peat cores. Observed-stock comparisons are therefore dominated by peat and coastal cores.
+
+## 2. Covariates and training data {#covariates}
+
+What each soil map was trained on, where, and at what scale. Compiled from the catalogue's Studies, Study_ground and Covariates tabs.
+
+```{r}
+soil_map_studies <- c("S_SOTHE_SOC_2022", "S_SOTHE_CONC_2022", "S_SOILGRIDS_2021", "S_GENG_2025", "S_NCSCD_2013", "S_LI_2025", "S_HENGL_2023", "S_JANOUSEK_2025")
+tr <- links |> left_join(ground |> select(ground_id, resource_name, profile_or_site_count), by = "ground_id") |>
+  group_by(study_id) |>
+  summarise(training = paste0(resource_name, " (", study_role, ")", collapse = "; "), .groups = "drop")
+studies |> filter(study_id %in% soil_map_studies) |>
+  left_join(tr, by = "study_id") |>
+  left_join(cov |> group_by(study_id) |> summarise(n_cov = n(), .groups = "drop"), by = "study_id") |>
+  arrange(match(study_id, soil_map_studies)) |>
+  transmute(Study = study_name, Geography = analysis_geography,
+            `Training / reference data` = coalesce(training, "–"),
+            `Locations reported` = ifelse(is.na(reported_location_count), "–", fmt_n(reported_location_count)),
+            `Output grid (m)` = ifelse(is.na(output_grid_m), "–", fmt_n(output_grid_m)),
+            `Covariate entries` = coalesce(as.character(n_cov), "0"),
+            `Predictive evidence` = predictive_evidence) |>
+  kable(caption = "Training data relationships are as recorded in the catalogue; historical training snapshots are not our current uploads.")
+```
+
+```{r}
+#| label: chart-soil-scale
+#| fig-height: 4
+scale_df <- cov |> filter(study_id %in% soil_map_studies | study_id == "W_COLAB_V1") |>
+  mutate(native = suppressWarnings(as.numeric(native_grid_m)), output = suppressWarnings(as.numeric(output_grid_m))) |>
+  left_join(studies |> select(study_id, study_name), by = "study_id") |>
+  mutate(study_name = coalesce(study_name, study_id))
+out_df <- scale_df |> group_by(study_name) |> summarise(output = suppressWarnings(max(output, na.rm = TRUE)), .groups = "drop") |>
+  filter(is.finite(output))
+ggplot(scale_df |> filter(!is.na(native)), aes(native, study_name)) +
+  geom_line(aes(group = study_name), colour = pal$s1, alpha = 0.3, linewidth = 2.4) +
+  geom_point(colour = pal$s1, size = 2.2) +
+  geom_point(data = out_df, aes(output, study_name), shape = 23, size = 3.4, fill = pal$ink, colour = "white") +
+  scale_x_log10(breaks = c(10, 30, 100, 250, 1000, 4000, 25000), labels = c("10 m", "30 m", "100 m", "250 m", "1 km", "4 km", "25 km")) +
+  labs(x = NULL, y = NULL, title = "Native covariate grids (blue) versus model output grid (diamond)",
+       subtitle = "Coarse predictors (climate, soil class) are used to map at much finer output grids")
+```
+
+### Which maps share training sources with our profiles
+
+Where a profile dataset fed a map's training, agreement at those profiles is not independent evidence. The catalogue records these relationships:
+
+```{r}
+tibble::tribble(
+  ~`Profile dataset`, ~`Geng`, ~`SoilGrids`, ~`Sothe`, ~`NCSCDv2`, ~`Li / PEATGRIDS`,
+  "WoSIS", "–", "Training source family", "Historical WoSIS snapshot", "Not recorded", "Not recorded",
+  "NPDB", "CanSIS legacy source family", "Possible via WoSIS", "Not recorded", "Not recorded", "Not recorded",
+  "NRCan peat", "Not recorded", "Not recorded", "Not recorded (Lehigh peat used)", "Not recorded", "Not recorded",
+  "Janousek", "Not recorded", "Not recorded", "Not recorded", "Not recorded", "Not recorded",
+  "Riley", "Not recorded", "Not recorded", "Not recorded", "Not recorded", "Not recorded"
+) |> kable(caption = "From the Study_ground tab and README. 'Not recorded' means no documented link, not proven independence.")
+```
+
+## 3. Maps compared with each other {#maps}
+
+Only products with the same quantity and the same depth are paired. Each pair is compared on the coarser of its two native grids, with the finer product averaged up to it. Values are converted to one unit with the providers' documented factors. Statistics come from `r fmt_n(30000)` area-uniform random points across Canada (1,500 in the Hudson Plain for peat). Map figures are display-resolution summaries of the same differences.
+
+```{r}
+soc_s <- read_pair_samples("soc"); bd_s <- read_pair_samples("bd")
+s30 <- read_pair_samples("stock30"); s100 <- read_pair_samples("stock100"); peat_s <- read_pair_samples("peat")
+lab_of <- setNames(pairs$quantity, pairs$id)
+```
+
+### Organic carbon concentration · Geng vs SoilGrids
+
+Both report SOC concentration at the same five intervals to 1 m. Geng (100 m) is averaged to the SoilGrids 250 m grid.
+
+```{r}
+pair_maps_html("soc_0_5")
+```
+
+```{r}
+diff_multiples_html(paste0("soc_", c("0_5", "5_15", "15_30", "30_60", "60_100")), c("0–5 cm", "5–15 cm", "15–30 cm", "30–60 cm", "60–100 cm"))
+```
+
+```{r}
+#| label: chart-soc-hex
+#| fig-height: 6.4
+short_iv <- function(x) sub("^(SOC concentration|Bulk density) ", "", x)
+if (!is.null(soc_s)) {
+  hex_pair(soc_s |> mutate(interval = factor(short_iv(lab_of[id]), short_iv(unique(lab_of[pairs$family == "soc"])))),
+           "g/kg", "Geng", "SoilGrids", bins = 40) +
+    facet_wrap(~interval, nrow = 2) +
+    scale_x_log10(labels = label_comma()) + scale_y_log10(labels = label_comma()) + coord_equal()
+}
+```
+
+```{r}
+if (!is.null(soc_s)) soc_s |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id]) |>
+  arrange(match(id, pairs$id)) |> stats_table("g/kg")
+```
+
+```{r}
+#| label: chart-soc-ecozone
+#| fig-height: 4.2
+if (!is.null(soc_s)) {
+  (ecozone_bias(filter(soc_s, id == "soc_0_5"), "g/kg", "Geng", "SoilGrids") + ggtitle("0–5 cm")) |
+    (ecozone_bias(filter(soc_s, id == "soc_30_60"), "g/kg", "Geng", "SoilGrids") + ggtitle("30–60 cm"))
+}
+```
+
+### Bulk density · Geng vs SoilGrids
+
+```{r}
+pair_maps_html("bd_0_5")
+diff_multiples_html(paste0("bd_", c("0_5", "5_15", "15_30", "30_60", "60_100")), c("0–5 cm", "5–15 cm", "15–30 cm", "30–60 cm", "60–100 cm"))
+```
+
+```{r}
+#| label: chart-bd-hex
+#| fig-height: 6.4
+if (!is.null(bd_s)) {
+  hex_pair(bd_s |> mutate(interval = factor(short_iv(lab_of[id]), short_iv(unique(lab_of[pairs$family == "bd"])))),
+           "g/cm³", "Geng", "SoilGrids", bins = 40, limits = c(0, 2)) +
+    facet_wrap(~interval, nrow = 2)
+}
+```
+
+```{r}
+if (!is.null(bd_s)) bd_s |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id]) |>
+  arrange(match(id, pairs$id)) |> stats_table("g/cm³")
+```
+
+### Carbon stock 0–30 cm · SoilGrids vs NCSCDv2
+
+The NCSCDv2 Canada rasterization covers nearly all land where SoilGrids has values, so the comparison spans most of the country. SoilGrids (250 m) is averaged to the NCSCDv2 0.012° grid.
+
+```{r}
+pair_maps_html("ocs_0_30")
+```
+
+```{r}
+#| label: chart-s30
+#| fig-height: 4
+if (!is.null(s30)) {
+  (hex_pair(s30, "kg C/m²", "SoilGrids", "NCSCDv2", bins = 40) + scale_x_log10() + scale_y_log10() + coord_equal()) |
+    ecozone_bias(s30, "kg C/m²", "SoilGrids", "NCSCDv2")
+}
+```
+
+```{r}
+if (!is.null(s30)) s30 |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id]) |> stats_table("kg C/m²")
+```
+
+```{r}
+#| results: asis
+if (!is.null(s30)) {
+  z <- s30 |> summarise(zero = mean(b == 0), r_nz = cor(a[b > 0], b[b > 0]))
+  top <- s30 |> group_by(ecozone) |> summarise(z = mean(b == 0), .groups = "drop") |> arrange(desc(z)) |> slice_head(n = 2) |> pull(ecozone)
+  cat(sprintf("NCSCDv2 is exactly zero at %s of points, mostly in the %s (rock and ice map units). These are recorded values and are kept; leaving them out gives r = %.2f, so the weak relationship is not caused by zeros. NCSCDv2 assigns stocks to soil-map polygons, while SoilGrids predicts each pixel, which is one reason their patterns differ.\n",
+              percent(z$zero, 0.1), paste(top, collapse = " and "), z$r_nz))
+}
+```
+
+### Carbon stock 0–100 cm · Sothe vs NCSCDv2 [provisional]{.pill .prov}
+
+::: {.callout-warning appearance="simple"}
+**Provisional.** Sothe's 0–1 m depth is a working assumption and its stored units are unverified. This pair is shown because the comparison itself bears on those open questions. Treat the differences as a check on the Sothe layer, not as a finding about soil carbon.
+:::
+
+```{r}
+pair_maps_html("ocs_0_100")
+```
+
+```{r}
+#| label: chart-s100
+#| fig-height: 4
+if (!is.null(s100)) {
+  (hex_pair(s100, "kg C/m²", "Sothe", "NCSCDv2", bins = 40) + scale_x_log10() + scale_y_log10() + coord_equal()) |
+    ecozone_bias(s100, "kg C/m²", "Sothe", "NCSCDv2")
+}
+```
+
+```{r}
+if (!is.null(s100)) {
+  st100 <- s100 |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id])
+  stats_table(st100, "kg C/m² (Sothe as stored)")
+}
+```
+
+```{r}
+#| results: asis
+if (!is.null(s100)) {
+  rr <- with(filter(s100, b > 0), a / b)
+  q <- quantile(rr, c(0.25, 0.5, 0.75), na.rm = TRUE)
+  cat(sprintf("Across the shared area the median Sothe:NCSCDv2 ratio is **%.1f** (interquartile range %.1f–%.1f, points where NCSCDv2 is above zero). A ratio near 1 everywhere would support reading Sothe as 0–1 m kg C/m²; a consistently large ratio would point to a units or depth difference. The two maps also use different methods (pixel prediction versus soil-map polygons), so part of the gap is genuine disagreement. The profile comparison [below](#carbon-stocks-at-profiles) adds field evidence.\n", q[2], q[1], q[3]))
+}
+```
+
+### Peat column · Li et al. vs PEATGRIDS, Hudson Bay Lowlands
+
+Both model the full peat column, so peat thickness and whole-column carbon can be compared directly. Li (30 m) is averaged to the PEATGRIDS 1 km grid.
+
+```{r}
+pair_maps_html("peat_depth")
+pair_maps_html("peat_carbon")
+```
+
+```{r}
+#| label: chart-peat
+#| fig-height: 3.8
+if (!is.null(peat_s)) {
+  hex_pair(peat_s |> mutate(q = lab_of[id]), "native units", "Li et al.", "PEATGRIDS", bins = 30, facet = "q") +
+    coord_cartesian() + labs(x = "PEATGRIDS", y = "Li et al.", caption = "Peat thickness in cm; peat carbon in kg C/m².") +
+    facet_wrap(~q, scales = "free")
+}
+```
+
+```{r}
+if (!is.null(peat_s)) peat_s |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id]) |> stats_table("cm (thickness); kg C/m² (carbon)")
+```
+
+```{r}
+#| results: asis
+if (!is.null(peat_s)) {
+  w <- peat_s |> select(pid, id, a, b) |> pivot_wider(names_from = id, values_from = c(a, b)) |> drop_na()
+  cat(sprintf("Thickness agrees far better than carbon. Within each product, Li's whole-column carbon follows Li's peat depth almost exactly (r = %.2f across sampled pixels), whereas PEATGRIDS carbon barely follows PEATGRIDS thickness (r = %.2f). The two products build carbon from depth in different ways, so similar thickness does not give similar carbon.\n",
+              cor(w$a_peat_depth, w$a_peat_carbon), cor(w$b_peat_depth, w$b_peat_carbon)))
+}
+```
+
+### Products not compared, and why
+
+```{r}
+exclusions |> filter(domain == "soil") |>
+  transmute(`Product A` = product_a, `Product B` = product_b, Reason = reason_type,
+            Detail = why_not_compared, `What would make it comparable` = what_would_make_it_comparable) |>
+  kable()
+```
+
+## 4. Maps compared with profiles {#profiles-vs-maps}
+
+Each profile takes the value of the map pixel that contains it, at the map's native grid. Observed values are thickness-weighted over layers that fully cover the map's interval. This is a comparison, not a validation: some datasets trained some maps (see [above](#covariates)), and a 250 m pixel average is not the same support as a soil core.
+
+```{r}
+pmv <- read_csv(file.path(derived, "profile_map_values.csv"), show_col_types = FALSE)
+# Map values at profiles, long: one row per profile x map x variable x interval.
+pm_long <- pmv |>
+  select(profile_uid, dataset, matches("^(geng|sg)_(soc|bd)_\\d+_\\d+$")) |>
+  pivot_longer(-c(profile_uid, dataset), names_to = c("map", "var", "t", "b"),
+               names_pattern = "^(geng|sg)_(soc|bd)_(\\d+)_(\\d+)$", values_to = "mapped") |>
+  filter(!is.na(mapped)) |>
+  mutate(interval = paste0(t, "-", b), variable = ifelse(var == "soc", "soc_gkg", "bd"),
+         map = recode(map, geng = "Geng", sg = "SoilGrids"), dataset = factor(dataset, dataset_levels)) |>
+  select(profile_uid, dataset, variable, interval, map, mapped)
+pair_obs <- function(v) iv |> filter(variable == v) |> mutate(interval = as.character(interval)) |>
+  inner_join(pm_long, by = c("profile_uid", "dataset", "variable", "interval"))
+soc_pm <- pair_obs("soc_gkg")
+bd_pm <- pair_obs("bd")
+pm_stats <- function(d) d |> group_by(map, dataset) |>
+  summarise(n = n(), med_obs = median(observed), med_map = median(mapped), bias = median(mapped - observed),
+            r_log = suppressWarnings(cor(log1p(observed), log1p(mapped))), .groups = "drop")
+```
+
+### Organic carbon at profiles
+
+```{r}
+#| label: chart-soc-profiles
+#| fig-height: 5.4
+ggplot(soc_pm |> filter(observed > 0, mapped > 0) |> mutate(interval = factor(interval, c("0-5", "5-15", "15-30", "30-60", "60-100"))),
+       aes(observed, mapped)) +
+  geom_hex(bins = 40) +
+  geom_abline(slope = 1, intercept = 0, linetype = "22", colour = pal$ink, linewidth = 0.4) +
+  scale_fill_gradientn(colours = pal$seq, trans = "log10", name = "profiles") +
+  scale_x_log10(labels = label_comma()) + scale_y_log10(labels = label_comma()) +
+  facet_grid(map ~ interval) + coord_equal() +
+  labs(x = "Observed organic carbon (g/kg)", y = "Map value at profile (g/kg)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r}
+soc_pm |> pm_stats() |>
+  transmute(Map = map, Dataset = dataset, `Profile-intervals` = fmt_n(n), `Median observed` = fmt_s(med_obs), `Median map` = fmt_s(med_map),
+            `Median map − observed` = fmt_s(bias), `r (log)` = sprintf("%.2f", r_log)) |>
+  kable(caption = "All five intervals pooled, one row per profile and interval (g/kg). r computed on log(1 + value). Peat cores sit far above both maps' range, which is expected for mineral-soil products.")
+```
+
+### Bulk density at profiles
+
+```{r}
+bd_pm |> pm_stats() |>
+  transmute(Map = map, Dataset = dataset, `Profile-intervals` = fmt_n(n), `Median observed` = fmt_s(med_obs), `Median map` = fmt_s(med_map),
+            `Median map − observed` = fmt_s(bias), `r (log)` = sprintf("%.2f", r_log)) |>
+  kable(caption = "All five intervals pooled, one row per profile and interval (g/cm³). Riley bulk-density units unverified.")
+```
+
+### Carbon stocks at profiles
+
+```{r}
+stock_pm <- iv |> filter(variable == "stock_kgm2") |>
+  inner_join(pmv |> select(profile_uid, dataset, sg_ocs_0_30, ncscd_0_30, ncscd_0_100, sothe_0_100), by = c("profile_uid", "dataset")) |>
+  mutate(`SoilGrids OCS` = ifelse(interval == "0-30", sg_ocs_0_30, NA), `NCSCDv2 0–30` = ifelse(interval == "0-30", ncscd_0_30, NA),
+         `NCSCDv2 0–100` = ifelse(interval == "0-100", ncscd_0_100, NA), `Sothe 0–100 (provisional)` = ifelse(interval == "0-100", sothe_0_100, NA)) |>
+  pivot_longer(c(`SoilGrids OCS`, `NCSCDv2 0–30`, `NCSCDv2 0–100`, `Sothe 0–100 (provisional)`), names_to = "map", values_to = "mapped") |>
+  filter(!is.na(mapped))
+```
+
+```{r}
+#| label: chart-stock-profiles
+#| fig-height: 4.2
+ggplot(stock_pm |> filter(observed > 0, mapped > 0), aes(observed, mapped, colour = dataset)) +
+  geom_point(size = 0.9, alpha = 0.5) +
+  geom_abline(slope = 1, intercept = 0, linetype = "22", colour = pal$ink, linewidth = 0.4) +
+  scale_colour_manual(values = dataset_cols, name = NULL) +
+  scale_x_log10() + scale_y_log10() + facet_wrap(~map, nrow = 1) + coord_equal() +
+  labs(x = "Observed stock (kg C/m²)", y = "Map value at profile (kg C/m²)") +
+  guides(colour = guide_legend(override.aes = list(size = 2.5, alpha = 1)))
+```
+
+```{r}
+#| results: asis
+sr <- stock_pm |> filter(map == "Sothe 0–100 (provisional)", dataset %in% c("NPDB", "NRCan peat")) |>
+  group_by(dataset) |> summarise(n = n(), ratio = median(mapped) / median(observed), .groups = "drop")
+if (nrow(sr)) cat(sprintf("For the Sothe units question: at profiles with an observed 0–100 cm stock, the ratio of Sothe's median to the observed median is %s. That is much closer than its ratio to NCSCDv2, which suggests that NCSCDv2, not only Sothe, contributes to the map-to-map gap. These profiles are few and peat-heavy, so this narrows the question but does not settle it.\n\n",
+                      paste(sprintf("%.1f for %s (%s profiles)", sr$ratio, sr$dataset, fmt_n(sr$n)), collapse = " and ")))
+```
+
+```{r}
+stock_pm |> group_by(map, dataset) |>
+  summarise(n = n(), med_obs = median(observed), med_map = median(mapped), .groups = "drop") |>
+  transmute(Map = map, Dataset = dataset, Profiles = fmt_n(n), `Median observed` = fmt_s(med_obs), `Median map` = fmt_s(med_map)) |>
+  kable(caption = "kg C/m². Observed stocks are dominated by peat and coastal cores, which mineral-soil maps are not designed to represent.")
+```
+
+### Peat thickness at peat cores
+
+```{r}
+#| label: chart-peat-cores
+#| fig-height: 3.8
+pk <- peat |> inner_join(pmv |> select(profile_uid, pg_depth, li_depth), by = "profile_uid") |>
+  pivot_longer(c(pg_depth, li_depth), names_to = "map", values_to = "mapped") |>
+  filter(!is.na(mapped), !is.na(org_depth_cm)) |>
+  mutate(map = recode(map, pg_depth = "PEATGRIDS (national, 1 km)", li_depth = "Li et al. (HBL, 30 m)"))
+ggplot(pk, aes(org_depth_cm, mapped)) +
+  geom_point(aes(colour = permafrost), size = 1, alpha = 0.6) +
+  geom_abline(slope = 1, intercept = 0, linetype = "22", colour = pal$ink, linewidth = 0.4) +
+  scale_colour_manual(values = c(`TRUE` = pal$s2, `FALSE` = pal$s1), labels = c(`TRUE` = "permafrost core", `FALSE` = "no permafrost"), name = NULL) +
+  facet_wrap(~map) + coord_equal() +
+  labs(x = "Recorded peat (organic) depth at core (cm)", y = "Modelled peat thickness (cm)")
+```
+
+```{r}
+pk |> group_by(map) |> summarise(n = n(), med_obs = median(org_depth_cm), med_map = median(mapped),
+                                 r = cor(org_depth_cm, mapped), .groups = "drop") |>
+  transmute(Map = map, Cores = fmt_n(n), `Median recorded (cm)` = fmt_s(med_obs), `Median modelled (cm)` = fmt_s(med_map), r = sprintf("%.2f", r)) |>
+  kable()
+```
+
+:::

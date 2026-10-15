@@ -1,0 +1,135 @@
+---
+title: "Forest"
+subtitle: "Plot data, then the covariates and training data behind each map, then the maps compared with each other."
+---
+
+```{r}
+#| label: setup
+source("_setup.R")
+xl <- function(s) read_excel(xlsx, sheet = s)
+studies <- xl("Studies"); ground <- xl("Ground_data"); links <- xl("Study_ground"); cov <- xl("Covariates")
+forest_studies <- c("S_SOTHE_FOREST_2022", "S_SCANFI_V1", "S_BETTS_2024", "S_QIN_2025", "S_MATASCI_2018", "S_LAMPING_2025")
+forest_ground <- c("G_NFI", "G_NFI_PHOTO", "G_QUEBEC", "G_CLI", "G_BC_INVENTORY", "G_ENFOR", "G_ABOVE", "G_VSN", "G_CASFRI")
+```
+
+::: {.domain-forest}
+
+## 1. Plot data {#plots}
+
+::: {.callout-note appearance="simple"}
+**Placeholder.** No forest plot data is ingested yet, so there is nothing to compare at plot locations. When plots arrive, this section will compare plot-level biomass or carbon with each map at the plot's pixel, at the map's native grid, following the soil-profile method on the [Soils page](soils.qmd#profiles-vs-maps).
+:::
+
+The sources below are catalogued. Open downloads are the quickest route to a first plot comparison.
+
+```{r}
+used_by <- links |> left_join(studies |> select(study_id, study_name), by = "study_id") |>
+  group_by(ground_id) |> summarise(used_by = paste0(study_name, " (", study_role, ")", collapse = "; "), .groups = "drop")
+ground |> filter(ground_id %in% forest_ground) |>
+  left_join(used_by, by = "ground_id") |>
+  arrange(match(ground_id, forest_ground)) |>
+  transmute(Resource = resource_name, Measures = carbon_pool_or_measurement, Coverage = geographic_coverage,
+            `Plot support` = coalesce(observation_support, "–"),
+            Access = access_route, `Used by` = coalesce(used_by, "–")) |>
+  kable()
+```
+
+## 2. Covariates and training data {#covariates}
+
+Each forest map comes from a model trained on a different kind of reference data, at a different scale. The training data matter as much as the covariates when maps disagree.
+
+```{r}
+tr <- links |> left_join(ground |> select(ground_id, resource_name), by = "ground_id") |>
+  group_by(study_id) |> summarise(training = paste0(resource_name, " (", study_role, ")", collapse = "; "), .groups = "drop")
+studies |> filter(study_id %in% forest_studies) |>
+  left_join(tr, by = "study_id") |>
+  left_join(cov |> group_by(study_id) |> summarise(n_cov = n(), .groups = "drop"), by = "study_id") |>
+  arrange(match(study_id, forest_studies)) |>
+  transmute(Study = study_name, Target = carbon_pool_or_target, Geography = analysis_geography,
+            `Training / reference data` = coalesce(training, "–"),
+            `Plot support` = coalesce(ground_observation_support, "–"),
+            `Output grid (m)` = ifelse(is.na(output_grid_m), "–", fmt_n(output_grid_m)),
+            `Covariate entries` = coalesce(as.character(n_cov), "0"),
+            `Predictive evidence` = coalesce(predictive_evidence, "–")) |>
+  kable()
+```
+
+```{r}
+#| label: chart-forest-scale
+#| fig-height: 3.2
+sc <- cov |> filter(study_id %in% forest_studies) |>
+  mutate(native = suppressWarnings(as.numeric(native_grid_m)), output = suppressWarnings(as.numeric(output_grid_m))) |>
+  left_join(studies |> select(study_id, study_name), by = "study_id")
+out_df <- sc |> group_by(study_name) |> summarise(output = suppressWarnings(max(output, na.rm = TRUE)), .groups = "drop") |> filter(is.finite(output))
+ggplot(sc |> filter(!is.na(native)), aes(native, study_name)) +
+  geom_line(aes(group = study_name), colour = pal$s1, alpha = 0.3, linewidth = 2.4) +
+  geom_point(colour = pal$s1, size = 2.2) +
+  geom_point(data = out_df, aes(output, study_name), shape = 23, size = 3.4, fill = pal$ink, colour = "white") +
+  scale_x_log10(breaks = c(10, 25, 30, 100, 250, 1000), labels = c("10 m", "25 m", "30 m", "100 m", "250 m", "1 km")) +
+  labs(x = NULL, y = NULL, title = "Native covariate grids (blue) versus output grid (diamond)",
+       subtitle = "A 400 m² inventory plot is about one 20 × 20 m footprint: finer than every output grid here")
+```
+
+```{r}
+#| label: chart-forest-families
+#| fig-height: 3
+grp <- c(`Temporal optical` = "Optical time series", Optical = "Optical reflectance", Reflectance = "Optical reflectance",
+         `Sentinel-2` = "Optical reflectance", `Remote sensing` = "Optical reflectance", Radar = "Radar", Backscattering = "Radar",
+         `Sentinel-1` = "Radar", Structure = "Canopy structure", Climate = "Climate & temperature", Temperature = "Climate & temperature",
+         Terrain = "Terrain", Environment = "Land cover & ecology")
+fam <- cov |> filter(study_id %in% forest_studies) |> mutate(group = coalesce(grp[family], family)) |>
+  count(study_id, group, evidence_level) |> left_join(studies |> select(study_id, study_name), by = "study_id")
+ggplot(fam, aes(group, study_name, fill = evidence_level)) +
+  geom_tile(colour = "white", linewidth = 1.2) +
+  geom_text(aes(label = n), colour = "white", size = 3.2, fontface = "bold") +
+  scale_fill_manual(values = c(`Model input` = pal$s1, `Retained/ranked family` = pal$seq[6], `Reported importance` = pal$seq[7]), name = "Evidence") +
+  labs(x = NULL, y = NULL, title = "Covariate entries by family and evidence level") +
+  theme(panel.grid = element_blank(), axis.text.x = element_text(angle = 30, hjust = 1))
+```
+
+## 3. Maps compared with each other {#maps}
+
+### Aboveground biomass 2020 · SCANFI v1.2 vs ESA CCI v6
+
+Both products map aboveground biomass for 2020 in Mg/ha. SCANFI (30 m) is averaged to the ESA CCI 100 m grid. Points where both products are zero (non-forest in both) are left out, so agreement is not inflated by empty land.
+
+```{r}
+pair_maps_html("agb_2020")
+```
+
+```{r}
+agb <- read_pair_samples("agb")
+if (!is.null(agb)) agb <- agb |> filter(a > 0 | b > 0)
+```
+
+```{r}
+#| label: chart-agb
+#| fig-height: 4.2
+if (!is.null(agb)) {
+  hex_pair(agb, "Mg/ha", "SCANFI", "ESA CCI", bins = 50) | ecozone_bias(agb, "Mg/ha", "SCANFI", "ESA CCI")
+}
+```
+
+```{r}
+if (!is.null(agb)) agb |> group_by(id) |> agree_stats() |> mutate(label = "Aboveground biomass 2020") |> stats_table("Mg/ha")
+```
+
+```{r}
+#| results: asis
+if (!is.null(agb)) {
+  z <- agb |> summarise(only_a = mean(a > 0 & b == 0), only_b = mean(a == 0 & b > 0))
+  cat(sprintf("Of the points where either product shows biomass, **%s** have biomass only in SCANFI and **%s** only in ESA CCI. These are differences in where forest is mapped, separate from differences in how much biomass it holds.\n",
+              percent(z$only_a, 0.1), percent(z$only_b, 0.1)))
+}
+```
+
+### Products not compared, and why
+
+```{r}
+exclusions |> filter(domain == "forest") |>
+  transmute(`Product A` = product_a, `Product B` = product_b, Reason = reason_type,
+            Detail = why_not_compared, `What would make it comparable` = what_would_make_it_comparable) |>
+  kable()
+```
+
+:::

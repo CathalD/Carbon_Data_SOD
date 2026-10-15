@@ -1,0 +1,14 @@
+{
+ "id": "soc_5_15",
+ "a_label": "Geng SOC 5\u201315 cm",
+ "b_label": "SoilGrids SOC 5\u201315 cm",
+ "unit": "g/kg",
+ "lo": 8.320196208953858,
+ "hi": 184.2,
+ "dlim": 82.54230880737305,
+ "files": {
+  "a": "pair_maps/soc_5_15_a.png",
+  "b": "pair_maps/soc_5_15_b.png",
+  "diff": "pair_maps/soc_5_15_diff.png"
+ }
+}

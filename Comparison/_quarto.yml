@@ -1,0 +1,58 @@
+project:
+  type: website
+  output-dir: _site
+  # Only the report pages are rendered; the working notes in README.md stay as they are.
+  render:
+    - index.qmd
+    - report/*.qmd
+  resources:
+    - data/derived/pair_maps/*.png
+    - state_of_data_summary/state_of_data_summary.html
+
+website:
+  title: "Carbon State of Data · Comparisons"
+  site-url: "https://cathald.github.io/Carbon_Data_SOD/"
+  repo-url: "https://github.com/CathalD/Carbon_Data_SOD"
+  repo-subdir: "Comparison"
+  repo-actions: [source, issue]
+  page-navigation: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Overview
+      - href: report/forest.qmd
+        text: Forest
+      - href: report/soils.qmd
+        text: Soils
+      - href: report/methods.qmd
+        text: Methods
+      - href: state_of_data_summary/state_of_data_summary.html
+        text: State of Data summary
+    right:
+      - icon: github
+        href: https://github.com/CathalD/Carbon_Data_SOD
+        aria-label: GitHub repository
+  page-footer:
+    left: "Descriptive comparison of catalogued products. No map is treated as truth."
+    right: "Built with Quarto from [Comparison/](https://github.com/CathalD/Carbon_Data_SOD/tree/main/Comparison)"
+
+format:
+  html:
+    theme: [cosmo, assets/styles.scss]
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    fig-dpi: 144
+    fig-format: png
+    code-tools: false
+    anchor-sections: true
+    smooth-scroll: true
+    link-external-newwindow: true
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: false
+
+lang: en-CA

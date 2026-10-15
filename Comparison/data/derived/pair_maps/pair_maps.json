@@ -1,0 +1,212 @@
+[
+ {
+  "id": "soc_0_5",
+  "a_label": "Geng SOC 0\u20135 cm",
+  "b_label": "SoilGrids SOC 0\u20135 cm",
+  "unit": "g/kg",
+  "lo": 7.101189641952515,
+  "hi": 201.9105457763672,
+  "dlim": 94.31195249557496,
+  "files": {
+   "a": "pair_maps/soc_0_5_a.png",
+   "b": "pair_maps/soc_0_5_b.png",
+   "diff": "pair_maps/soc_0_5_diff.png"
+  }
+ },
+ {
+  "id": "bd_0_5",
+  "a_label": "Geng BD 0\u20135 cm",
+  "b_label": "SoilGrids BD 0\u20135 cm",
+  "unit": "g/cm\u00b3",
+  "lo": 0.6380440378189087,
+  "hi": 1.3368586587905886,
+  "dlim": 0.589600984573364,
+  "files": {
+   "a": "pair_maps/bd_0_5_a.png",
+   "b": "pair_maps/bd_0_5_b.png",
+   "diff": "pair_maps/bd_0_5_diff.png"
+  }
+ },
+ {
+  "id": "soc_5_15",
+  "a_label": "Geng SOC 5\u201315 cm",
+  "b_label": "SoilGrids SOC 5\u201315 cm",
+  "unit": "g/kg",
+  "lo": 8.320196208953858,
+  "hi": 184.2,
+  "dlim": 82.54230880737305,
+  "files": {
+   "a": "pair_maps/soc_5_15_a.png",
+   "b": "pair_maps/soc_5_15_b.png",
+   "diff": "pair_maps/soc_5_15_diff.png"
+  }
+ },
+ {
+  "id": "bd_5_15",
+  "a_label": "Geng BD 5\u201315 cm",
+  "b_label": "SoilGrids BD 5\u201315 cm",
+  "unit": "g/cm\u00b3",
+  "lo": 0.8461002218723297,
+  "hi": 1.46,
+  "dlim": 0.42495584249496454,
+  "files": {
+   "a": "pair_maps/bd_5_15_a.png",
+   "b": "pair_maps/bd_5_15_b.png",
+   "diff": "pair_maps/bd_5_15_diff.png"
+  }
+ },
+ {
+  "id": "soc_15_30",
+  "a_label": "Geng SOC 15\u201330 cm",
+  "b_label": "SoilGrids SOC 15\u201330 cm",
+  "unit": "g/kg",
+  "lo": 4.319224576950075,
+  "hi": 194.58053094482426,
+  "dlim": 83.18554382324218,
+  "files": {
+   "a": "pair_maps/soc_15_30_a.png",
+   "b": "pair_maps/soc_15_30_b.png",
+   "diff": "pair_maps/soc_15_30_diff.png"
+  }
+ },
+ {
+  "id": "bd_15_30",
+  "a_label": "Geng BD 15\u201330 cm",
+  "b_label": "SoilGrids BD 15\u201330 cm",
+  "unit": "g/cm\u00b3",
+  "lo": 0.9403113973140717,
+  "hi": 1.5142035961151126,
+  "dlim": 0.3734106569290159,
+  "files": {
+   "a": "pair_maps/bd_15_30_a.png",
+   "b": "pair_maps/bd_15_30_b.png",
+   "diff": "pair_maps/bd_15_30_diff.png"
+  }
+ },
+ {
+  "id": "soc_30_60",
+  "a_label": "Geng SOC 30\u201360 cm",
+  "b_label": "SoilGrids SOC 30\u201360 cm",
+  "unit": "g/kg",
+  "lo": 0.8009122955799104,
+  "hi": 203.3540000000001,
+  "dlim": 84.96437854766846,
+  "files": {
+   "a": "pair_maps/soc_30_60_a.png",
+   "b": "pair_maps/soc_30_60_b.png",
+   "diff": "pair_maps/soc_30_60_diff.png"
+  }
+ },
+ {
+  "id": "bd_30_60",
+  "a_label": "Geng BD 30\u201360 cm",
+  "b_label": "SoilGrids BD 30\u201360 cm",
+  "unit": "g/cm\u00b3",
+  "lo": 0.9381733322143554,
+  "hi": 1.58,
+  "dlim": 0.440272564888,
+  "files": {
+   "a": "pair_maps/bd_30_60_a.png",
+   "b": "pair_maps/bd_30_60_b.png",
+   "diff": "pair_maps/bd_30_60_diff.png"
+  }
+ },
+ {
+  "id": "soc_60_100",
+  "a_label": "Geng SOC 60\u2013100 cm",
+  "b_label": "SoilGrids SOC 60\u2013100 cm",
+  "unit": "g/kg",
+  "lo": 0.07316971376538273,
+  "hi": 215.5540000000001,
+  "dlim": 92.94090576171875,
+  "files": {
+   "a": "pair_maps/soc_60_100_a.png",
+   "b": "pair_maps/soc_60_100_b.png",
+   "diff": "pair_maps/soc_60_100_diff.png"
+  }
+ },
+ {
+  "id": "bd_60_100",
+  "a_label": "Geng BD 60\u2013100 cm",
+  "b_label": "SoilGrids BD 60\u2013100 cm",
+  "unit": "g/cm\u00b3",
+  "lo": 0.8787953317165375,
+  "hi": 1.7161402606964113,
+  "dlim": 0.5481122481822958,
+  "files": {
+   "a": "pair_maps/bd_60_100_a.png",
+   "b": "pair_maps/bd_60_100_b.png",
+   "diff": "pair_maps/bd_60_100_diff.png"
+  }
+ },
+ {
+  "id": "ocs_0_30",
+  "a_label": "SoilGrids OC stock 0\u201330 cm",
+  "b_label": "NCSCDv2 SOC 0\u201330 cm",
+  "unit": "kg C/m\u00b2",
+  "lo": 0.5,
+  "hi": 19.200000000000003,
+  "dlim": 12.390273323852764,
+  "files": {
+   "a": "pair_maps/ocs_0_30_a.png",
+   "b": "pair_maps/ocs_0_30_b.png",
+   "diff": "pair_maps/ocs_0_30_diff.png"
+  }
+ },
+ {
+  "id": "ocs_0_100",
+  "a_label": "Sothe SOC stock (0\u20131 m assumed)",
+  "b_label": "NCSCDv2 SOC 0\u2013100 cm",
+  "unit": "kg C/m\u00b2",
+  "lo": 1.1,
+  "hi": 142.50142150878906,
+  "dlim": 103.8118487548828,
+  "files": {
+   "a": "pair_maps/ocs_0_100_a.png",
+   "b": "pair_maps/ocs_0_100_b.png",
+   "diff": "pair_maps/ocs_0_100_diff.png"
+  }
+ },
+ {
+  "id": "peat_depth",
+  "a_label": "Li peat depth",
+  "b_label": "PEATGRIDS peat thickness",
+  "unit": "cm",
+  "lo": 81.83456115722656,
+  "hi": 285.9021099853517,
+  "dlim": 94.55698966979978,
+  "files": {
+   "a": "pair_maps/peat_depth_a.png",
+   "b": "pair_maps/peat_depth_b.png",
+   "diff": "pair_maps/peat_depth_diff.png"
+  }
+ },
+ {
+  "id": "peat_carbon",
+  "a_label": "Li peat carbon",
+  "b_label": "PEATGRIDS peat carbon",
+  "unit": "kg C/m\u00b2",
+  "lo": 47.8357373046875,
+  "hi": 192.21195373535164,
+  "dlim": 117.44853878021237,
+  "files": {
+   "a": "pair_maps/peat_carbon_a.png",
+   "b": "pair_maps/peat_carbon_b.png",
+   "diff": "pair_maps/peat_carbon_diff.png"
+  }
+ },
+ {
+  "id": "agb_2020",
+  "a_label": "SCANFI v1.2 AGB 2020",
+  "b_label": "ESA CCI v6 AGB 2020",
+  "unit": "Mg/ha",
+  "lo": 2.0,
+  "hi": 258.65999999999985,
+  "dlim": 120.83848617233716,
+  "files": {
+   "a": "pair_maps/agb_2020_a.png",
+   "b": "pair_maps/agb_2020_b.png",
+   "diff": "pair_maps/agb_2020_diff.png"
+  }
+ }
+]

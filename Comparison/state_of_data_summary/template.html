@@ -1,0 +1,847 @@
+<title>Carbon State of Data</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: a survey map-sheet. One reading column; each domain (forest, soils) is a band
+   with three tiers - field data, covariates, maps - read top to bottom like a legend. */
+:root {
+  --bg: #f3f4f0;
+  --surface: #fbfbf8;
+  --ink: #141916;
+  --ink-2: #4a524c;
+  --muted: #7c847d;
+  --rule: #dcdfd6;
+  --rule-strong: #c2c7bc;
+  --accent: #1d5a47;
+  --forest: #2d6a3b;
+  --soil: #8a5a2b;
+  --series-1: #2a78d6;
+  --seq-lo: #cde2fb;
+  --seq-hi: #0d366b;
+  --other-pt: #c6cbc2;
+  --land: rgba(125, 132, 122, 0.20);
+  --good: #0ca30c;
+  --warn: #fab219;
+  --serious: #ec835a;
+  --critical: #d03b3b;
+  --good-ink: #0b6b0b;
+  --warn-ink: #855700;
+  --serious-ink: #9b4320;
+  --tip-bg: #141916;
+  --tip-ink: #f3f4f0;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --radius: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101311; --surface: #171a18; --ink: #eceee9; --ink-2: #bec4bc; --muted: #858c85;
+    --rule: #2a2e2b; --rule-strong: #3b403c; --accent: #7cc4a6; --forest: #84c792; --soil: #d8a66f;
+    --series-1: #3987e5; --seq-lo: #1a3d66; --seq-hi: #cde2fb; --other-pt: #3d433e;
+    --land: rgba(160, 168, 158, 0.14); --good-ink: #2fc22f; --warn-ink: #fab219; --serious-ink: #ec835a;
+    --tip-bg: #eceee9; --tip-ink: #101311; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101311; --surface: #171a18; --ink: #eceee9; --ink-2: #bec4bc; --muted: #858c85;
+  --rule: #2a2e2b; --rule-strong: #3b403c; --accent: #7cc4a6; --forest: #84c792; --soil: #d8a66f;
+  --series-1: #3987e5; --seq-lo: #1a3d66; --seq-hi: #cde2fb; --other-pt: #3d433e;
+  --land: rgba(160, 168, 158, 0.14); --good-ink: #2fc22f; --warn-ink: #fab219; --serious-ink: #ec835a;
+  --tip-bg: #eceee9; --tip-ink: #101311; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body);
+  font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1160px; margin: 0 auto; padding-block: 40px 72px; display: flex; flex-direction: column; gap: 56px; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spacing: 0.01em; text-wrap: balance; margin: 0; line-height: 1.08; }
+h1 { font-size: clamp(2.4rem, 5.4vw, 3.9rem); font-weight: 700; }
+h2 { font-size: clamp(1.9rem, 3.6vw, 2.5rem); }
+h3 { font-size: 1.45rem; }
+h4 { font-size: 1.12rem; letter-spacing: 0.03em; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.86rem; font-weight: 600; color: var(--muted); }
+.lede { font-size: 1.08rem; color: var(--ink-2); }
+.small { font-size: 0.84rem; color: var(--ink-2); }
+.muted { color: var(--muted); }
+.mono { font-family: var(--font-mono); font-size: 0.78rem; overflow-wrap: anywhere; }
+.num { font-variant-numeric: tabular-nums; }
+.stack { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.stack-lg { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+
+/* header */
+header.top { display: grid; gap: 18px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.82rem; color: var(--muted); }
+header.top > * { min-width: 0; }
+
+/* overview matrix */
+.matrix { display: grid; grid-template-columns: 110px repeat(3, minmax(0, 1fr)); border-top: 2px solid var(--ink); }
+.matrix > div { padding: 14px 16px 16px; border-bottom: 1px solid var(--rule); min-width: 0; }
+.matrix .colhead { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.84rem; font-weight: 600; color: var(--ink-2); padding-block: 10px; border-bottom: 1px solid var(--rule-strong); }
+.matrix .rowhead { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; display: flex; align-items: flex-start; }
+.matrix .rowhead.forest { color: var(--forest); }
+.matrix .rowhead.soil { color: var(--soil); }
+.cell { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: inherit; border-left: 1px solid var(--rule); }
+a.cell:hover { background: color-mix(in srgb, var(--surface) 70%, var(--rule)); }
+.cell .big { font-family: var(--font-display); font-size: 2.4rem; font-weight: 600; line-height: 1; }
+.cell .big small { font-size: 1rem; font-weight: 500; color: var(--ink-2); letter-spacing: 0.02em; margin-left: 4px; }
+.cell .what { font-size: 0.88rem; color: var(--ink-2); }
+.seg { display: flex; height: 8px; gap: 2px; margin-top: 4px; }
+.seg i { display: block; height: 100%; border-radius: 2px; }
+.seg-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 0.76rem; color: var(--ink-2); }
+.seg-legend b { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+
+/* bands */
+section.band { display: flex; flex-direction: column; gap: 32px; }
+.band-head { display: grid; gap: 10px; padding-top: 18px; border-top: 6px solid var(--band, var(--ink)); }
+.band.forest { --band: var(--forest); }
+.band.soil { --band: var(--soil); }
+.band-head h2 { color: var(--band); }
+.tier { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding-top: 22px; border-top: 1px solid var(--rule-strong); }
+.tier-label { display: flex; flex-direction: column; gap: 8px; }
+.tier-label .tnum { font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--band); }
+.tier-label p { font-size: 0.86rem; color: var(--ink-2); }
+
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 16px; min-width: 0; }
+.callout { border-left: 3px solid var(--band, var(--accent)); padding: 4px 0 4px 14px; color: var(--ink-2); font-size: 0.92rem; max-width: 72ch; }
+.callout strong { color: var(--ink); }
+
+/* tables */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.84rem; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--font-display); font-weight: 600; font-size: 0.86rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); background: var(--bg); position: sticky; top: 0; white-space: nowrap; }
+tr:last-child td { border-bottom: none; }
+td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; }
+td:first-child { min-width: 170px; }
+td .sub { display: block; color: var(--muted); font-size: 0.78rem; margin-top: 2px; }
+
+/* pills */
+.pill { display: inline-flex; align-items: center; gap: 5px; font-size: 0.76rem; font-weight: 600; padding: 2px 8px 2px 6px; border-radius: 999px; white-space: nowrap; border: 1px solid var(--rule-strong); color: var(--ink-2); background: var(--bg); }
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
+.pill.good { color: var(--good-ink); border-color: color-mix(in srgb, var(--good) 45%, transparent); }
+.pill.good::before { background: var(--good); }
+.pill.info { color: var(--series-1); border-color: color-mix(in srgb, var(--series-1) 45%, transparent); }
+.pill.info::before { background: var(--series-1); }
+.pill.warn { color: var(--warn-ink); border-color: color-mix(in srgb, var(--warn) 55%, transparent); }
+.pill.warn::before { background: var(--warn); }
+.pill.serious { color: var(--serious-ink); border-color: color-mix(in srgb, var(--serious) 55%, transparent); }
+.pill.serious::before { background: var(--serious); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 0.76rem; padding: 2px 8px; border-radius: 4px; background: var(--bg); border: 1px solid var(--rule); color: var(--ink-2); white-space: nowrap; }
+
+/* charts */
+.chart { width: 100%; overflow-x: auto; }
+.chart svg { display: block; }
+.chart text { fill: var(--ink-2); font-family: var(--font-body); font-size: 11px; }
+.chart .axis text { fill: var(--muted); font-variant-numeric: tabular-nums; }
+.chart .axis path, .chart .axis line { stroke: var(--rule-strong); }
+.chart .grid line { stroke: var(--rule); }
+.chart .grid path { display: none; }
+.legend-row { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.8rem; color: var(--ink-2); align-items: center; }
+.legend-row > span { display: inline-flex; align-items: center; }
+.legend-row .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -2px; }
+.legend-row .ln { display: inline-block; width: 22px; height: 0; border-top: 2px solid var(--ink-2); margin-right: 6px; vertical-align: 3px; }
+.legend-row .ln.dash { border-top-style: dashed; }
+.legend-row .ln.dot { border-top-style: dotted; }
+.grad { height: 10px; border-radius: 2px; background: linear-gradient(90deg, #cde2fb, #9ec5f4, #6da7ec, #3987e5, #256abf, #184f95, #0d366b); }
+
+/* map small multiples */
+.multiples { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+.mm { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.mm canvas { width: 100%; aspect-ratio: 1.25; display: block; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); }
+.mm .t { font-weight: 600; font-size: 0.88rem; }
+.mm .s { font-size: 0.78rem; color: var(--ink-2); }
+
+/* thumbnails */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+.thumb { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.thumb figure { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.thumb img { display: block; width: 100%; height: auto; }
+.thumb .t { font-weight: 600; font-size: 0.9rem; line-height: 1.3; }
+.thumb .leg { display: grid; grid-template-columns: auto 1fr auto; gap: 6px; align-items: center; font-size: 0.74rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.thumb dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 0; font-size: 0.78rem; }
+.thumb dt { color: var(--muted); }
+.thumb dd { margin: 0; color: var(--ink-2); min-width: 0; overflow-wrap: anywhere; }
+.thumb .flag { font-size: 0.8rem; color: var(--ink-2); line-height: 1.45; }
+.thumb .flag .pill { margin-right: 4px; }
+.thumb.err figure { padding: 24px; color: var(--muted); font-size: 0.8rem; }
+
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.todo-row { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr) 70px; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 0.86rem; }
+.todo-row .bar { display: flex; height: 10px; gap: 2px; }
+.todo-row .bar i { display: block; height: 100%; border-radius: 2px; }
+details summary { cursor: pointer; font-weight: 600; font-size: 0.88rem; color: var(--ink-2); }
+details ul { margin: 8px 0 0; padding-left: 18px; font-size: 0.84rem; color: var(--ink-2); display: grid; gap: 6px; }
+
+#tip { position: fixed; z-index: 10; pointer-events: none; background: var(--tip-bg); color: var(--tip-ink); font-size: 0.78rem; line-height: 1.4; padding: 8px 10px; border-radius: 6px; max-width: 300px; box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
+#tip b { font-weight: 600; }
+
+footer { border-top: 2px solid var(--ink); padding-top: 18px; display: grid; gap: 10px; font-size: 0.84rem; color: var(--ink-2); }
+
+@media (max-width: 860px) {
+  .tier { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .two { grid-template-columns: minmax(0, 1fr); }
+  .matrix { grid-template-columns: 70px repeat(3, minmax(0, 1fr)); }
+  .matrix .rowhead { font-size: 1.15rem; }
+  .cell .big { font-size: 1.8rem; }
+}
+@media (max-width: 560px) {
+  .matrix { grid-template-columns: minmax(0, 1fr); }
+  .matrix .colhead { display: none; }
+  .matrix .rowhead { border-bottom: 1px solid var(--rule-strong); padding-top: 18px; }
+  .cell { border-left: none; }
+  .cell::before { content: attr(data-tier); font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.76rem; color: var(--muted); }
+  .todo-row { grid-template-columns: minmax(0, 1fr) 60px; }
+  .todo-row .bar { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Carbon State of Data · Canada</div>
+    <h1>What we hold on forest and soil carbon, and how far it is verified</h1>
+    <p class="lede">A descriptive inventory of the catalogue: field observations, the covariates studies used, and the carbon maps built from them. Counts, coverage, scale and depth support are reported as recorded. Nothing here harmonises units or depths, compares map values, or removes duplicate profiles.</p>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <section aria-labelledby="ov-h" class="stack">
+    <h2 id="ov-h" class="eyebrow" style="font-size:0.9rem">At a glance</h2>
+    <div class="matrix" id="matrix"></div>
+  </section>
+
+  <section aria-labelledby="lin-h" class="stack-lg">
+    <div class="stack">
+      <div class="eyebrow">Lineage</div>
+      <h2 id="lin-h">Which observations sit behind which maps</h2>
+      <p class="small">Each line joins a ground dataset to the study that used it, and the study to the map it published, as recorded in the catalogue's Study_ground and Maps tabs. Line style shows the recorded role. Historical training snapshots are not the same as our current uploads.</p>
+    </div>
+    <div class="legend-row" id="lin-legend"></div>
+    <div class="stack"><h3 style="color:var(--forest)">Forest</h3><div class="chart" id="lin-forest"></div></div>
+    <div class="stack"><h3 style="color:var(--soil)">Soils</h3><div class="chart" id="lin-soil"></div></div>
+  </section>
+
+  <!-- ============================== FOREST ============================== -->
+  <section class="band forest" id="forest" aria-labelledby="forest-h">
+    <div class="band-head">
+      <div class="eyebrow">Domain 1</div>
+      <h2 id="forest-h">Forest carbon</h2>
+      <p class="lede" id="forest-lede"></p>
+    </div>
+
+    <div class="tier" id="forest-field">
+      <div class="tier-label"><span class="tnum">Field data</span><p>Plot and tree observations: what exists and how to get it.</p></div>
+      <div class="stack-lg">
+        <div class="callout" id="forest-field-callout"></div>
+        <div class="tbl-wrap"><table id="forest-ground-tbl"></table></div>
+      </div>
+    </div>
+
+    <div class="tier" id="forest-cov">
+      <div class="tier-label"><span class="tnum">Covariates</span><p>Predictors each forest study recorded, grouped by family, and the scale they come from.</p></div>
+      <div class="stack-lg">
+        <div class="stack"><h4>Covariate entries per study and family</h4><div class="chart" id="forest-heat"></div><div class="legend-row" id="forest-heat-leg"></div></div>
+        <div class="stack"><h4>Native covariate grid versus model output grid</h4><p class="small">Bars span the native pixel sizes of each study's recorded covariates; the diamond marks the study's output grid. Log scale.</p><div class="chart" id="forest-scale"></div></div>
+        <div class="gallery" id="forest-cov-gallery"></div>
+      </div>
+    </div>
+
+    <div class="tier" id="forest-maps">
+      <div class="tier-label"><span class="tnum">Maps</span><p>Forest carbon and biomass products. Biomass is not carbon until a documented conversion is applied.</p></div>
+      <div class="stack-lg">
+        <p class="small">Previews rendered live from Earth Engine. Each panel has its own colour stretch (2nd–98th percentile of values sampled at 5 km) in the map's stored units, so colours cannot be compared between panels.</p>
+        <div class="gallery" id="forest-gallery"></div>
+        <details><summary>All forest map records in the catalogue</summary><div class="tbl-wrap" style="margin-top:10px"><table id="forest-map-tbl"></table></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SOILS ============================== -->
+  <section class="band soil" id="soil" aria-labelledby="soil-h">
+    <div class="band-head">
+      <div class="eyebrow">Domain 2</div>
+      <h2 id="soil-h">Soil carbon</h2>
+      <p class="lede" id="soil-lede"></p>
+    </div>
+
+    <div class="tier" id="soil-field">
+      <div class="tier-label"><span class="tnum">Field data</span><p>Profile and layer observations we have prepared and hosted, read from the local tables.</p></div>
+      <div class="stack-lg">
+        <div class="callout"><strong>Counts are not independent.</strong> WoSIS, the National Pedon Database and the peat compilations share profiles; reconcile them before counting observations or building validation folds. Layers within a core are repeated depth observations, not separate locations.</div>
+        <div class="stack"><h4>Where the profiles are</h4><p class="small">One panel per dataset, other datasets in grey for context. Coordinates rounded to 0.01° for display.</p><div class="multiples" id="soil-multiples"></div></div>
+        <div class="tbl-wrap"><table id="soil-prof-tbl"></table></div>
+        <div class="stack-lg">
+          <div class="stack"><h4>How deep the profiles go</h4><p class="small">Share of profiles whose deepest recorded layer reaches each depth. A deep bottom does not mean continuous sampling; gaps are listed below.</p><div class="chart" id="soil-reach"></div><div class="legend-row" id="soil-reach-leg"></div></div>
+          <div class="stack"><h4>What each layer table holds</h4><p class="small">Share of layer rows with a value. Values may be measured or estimated; see notes.</p><div class="chart" id="soil-vars"></div></div>
+        </div>
+        <div class="stack"><h4>When the profiles were sampled</h4><p class="small">Profiles by decade of the recorded sampling date. Janousek and Riley v1 tables carry no usable dates.</p><div class="chart" id="soil-years"></div></div>
+        <div class="stack"><h4>Depth-interval checks on the uploaded layer tables</h4><div class="tbl-wrap"><table id="soil-audit-tbl"></table></div><p class="small" id="soil-audit-note"></p></div>
+        <div class="stack"><h4>Identified but not ingested</h4><p class="small">Soil observation sources in the catalogue that are not yet prepared as project tables.</p><div class="chips" id="soil-identified"></div></div>
+      </div>
+    </div>
+
+    <div class="tier" id="soil-cov">
+      <div class="tier-label"><span class="tnum">Covariates</span><p>Predictors each soil study recorded, grouped by family, and the scale they come from.</p></div>
+      <div class="stack-lg">
+        <div class="stack"><h4>Covariate entries per study and family</h4><div class="chart" id="soil-heat"></div><div class="legend-row" id="soil-heat-leg"></div></div>
+        <div class="stack"><h4>Native covariate grid versus model output grid</h4><p class="small">Bars span the native pixel sizes of each study's recorded covariates; the diamond marks the study's output grid. Log scale.</p><div class="chart" id="soil-scale"></div></div>
+      </div>
+    </div>
+
+    <div class="tier" id="soil-maps">
+      <div class="tier-label"><span class="tnum">Maps</span><p>Soil and peat carbon products: what depth each covers and how far our copies are checked.</p></div>
+      <div class="stack-lg">
+        <div class="stack"><h4>Depth each product represents</h4><p class="small">Fixed intervals, point depths, and products whose depth varies with the modelled peat column. Fixed-depth and variable-depth stocks cannot be compared directly.</p><div class="chart" id="soil-depth"></div><div class="legend-row" id="soil-depth-leg"></div></div>
+        <p class="small">Previews rendered live from Earth Engine. Each panel has its own colour stretch (2nd–98th percentile of sampled values) in the map's stored units, so colours cannot be compared between panels.</p>
+        <div class="gallery" id="soil-gallery"></div>
+        <div class="stack"><h4>Verification of our hosted copies</h4><div class="legend-row" id="soil-qc"></div><p class="small" id="soil-qc-note"></p></div>
+        <details><summary>All soil map records in the catalogue</summary><div class="tbl-wrap" style="margin-top:10px"><table id="soil-map-tbl"></table></div></details>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="gap-h" class="stack-lg">
+    <div class="stack">
+      <div class="eyebrow">What remains</div>
+      <h2 id="gap-h">Open work from the project TODO</h2>
+    </div>
+    <div id="todo"></div>
+    <div class="stack"><h4>Further leads catalogued, not yet ingested</h4><div class="chart" id="other-cats"></div></div>
+  </section>
+
+  <footer>
+    <div class="eyebrow">How this page was built</div>
+    <p>Generated by <span class="mono">Comparison/state_of_data_summary/build_summary.py</span> and <span class="mono">gee_map_previews.py</span>. Sources: the catalogue workbook (Studies, Ground_data, Study_ground, Covariates, Maps, Other_sources), the repo QC register and depth audit, the local prepared profile and layer CSVs, and live Earth Engine reads.</p>
+    <p>Descriptive only. No unit conversion, depth harmonisation, stock integration, map differencing, duplicate removal or modelling was performed. Map previews are orientation aids, not analysis products.</p>
+  </footer>
+</div>
+<div id="tip" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const D = /*__DATA__*/null;
+
+/* ------------------------------------------------------------ helpers */
+const $ = (s) => document.querySelector(s);
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const fmt = d3.format(",");
+const pct = (v) => (v == null ? "–" : (v * 100 >= 10 || v === 0 ? d3.format(".0f")(v * 100) : d3.format(".1f")(v * 100)) + "%");
+const g3 = d3.format(".3~g");
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const inDomain = (rec, dom) => (rec.domains || []).includes(dom);
+const study = Object.fromEntries(D.studies.map((s) => [s.study_id, s]));
+const ground = Object.fromEntries(D.ground.map((g) => [g.ground_id, g]));
+const mapRec = Object.fromEntries(D.maps.map((m) => [m.map_id, m]));
+const shortStudy = (id) => (study[id]?.study_name || id).replace(/ et al\.?/, "").replace(/ and Kreyling/, "");
+const short = (s, n = 70) => (s && s.length > n ? s.slice(0, n - 1) + "…" : s || "");
+
+const tip = $("#tip");
+function showTip(ev, html) {
+  tip.innerHTML = html; tip.hidden = false;
+  const pad = 14, w = tip.offsetWidth, h = tip.offsetHeight;
+  let x = ev.clientX + pad, y = ev.clientY + pad;
+  if (x + w > innerWidth - 8) x = ev.clientX - w - pad;
+  if (y + h > innerHeight - 8) y = ev.clientY - h - pad;
+  tip.style.left = Math.max(8, x) + "px"; tip.style.top = Math.max(8, y) + "px";
+}
+const hideTip = () => (tip.hidden = true);
+
+function groundStatus(g) {
+  if (g.record_status === "Hosted") return ["good", "Hosted in our GEE"];
+  return ["", "Identified, not ingested"];
+}
+function mapStatus(m) {
+  const s = m.record_status;
+  if (s === "Hosted") return ["good", "Hosted in our project"];
+  if (s === "External asset") return ["info", "External GEE asset"];
+  if (s === "Ingestion unconfirmed") return ["warn", "Ingestion unconfirmed"];
+  return ["", "Identified, not hosted"];
+}
+const pill = ([cls, label]) => `<span class="pill ${cls}">${esc(label)}</span>`;
+
+/* ------------------------------------------------------------ meta + matrix */
+function renderMeta() {
+  const nAssets = D.qc.register.length;
+  $("#meta").innerHTML = [
+    `Repo <span class="mono">CathalD/Carbon_Data_SOD</span> @ ${esc(D.repo_head)}`,
+    `${D.studies.length} studies · ${D.ground.length} ground resources · ${D.maps.length} map records · ${D.cov_cells.reduce((a, c) => a + c.n, 0)} covariate entries`,
+    `${nAssets} hosted soil-map assets in the QC register`,
+  ].map((t) => `<span>${t}</span>`).join("");
+}
+
+function seg(parts) {
+  const total = d3.sum(parts, (p) => p.n) || 1;
+  const bar = parts.filter((p) => p.n > 0).map((p) => `<i style="flex:${p.n};background:${p.c}" title="${esc(p.l)}: ${p.n}"></i>`).join("");
+  const leg = parts.filter((p) => p.n > 0).map((p) => `<span><b style="background:${p.c}"></b>${p.n} ${esc(p.l)}</span>`).join("");
+  return `<div class="seg">${bar}</div><div class="seg-legend">${leg}</div>`;
+}
+
+function renderMatrix() {
+  const good = "var(--good)", info = "var(--series-1)", warn = "var(--warn)", none = "var(--rule-strong)";
+  const rows = [];
+  for (const dom of ["forest", "soil"]) {
+    const G = D.ground.filter((g) => inDomain(g, dom));
+    const hosted = G.filter((g) => g.record_status === "Hosted");
+    const C = D.cov_cells.filter((c) => inDomain(study[c.study_id] || { domains: ["soil"] }, dom));
+    const covN = d3.sum(C, (c) => c.n);
+    const covStudies = new Set(C.map((c) => c.study_id)).size;
+    const M = D.maps.filter((m) => inDomain(m, dom));
+    const ms = (k) => M.filter((m) => m.record_status === k).length;
+    const profiles = dom === "soil" ? d3.sum(D.profiles, (p) => p.n_profiles) : 0;
+    const layers = dom === "soil" ? d3.sum(D.profiles, (p) => p.n_layers) : 0;
+    const ev = {};
+    C.forEach((c) => Object.entries(c.evidence).forEach(([k, v]) => (ev[k] = (ev[k] || 0) + v)));
+    const studyEv = (ev["Model input"] || 0) + (ev["Retained/ranked family"] || 0) + (ev["Reported importance"] || 0) + (ev["Adjustment only"] || 0);
+    const cand = (ev["Candidate defined"] || 0) + (ev["Candidate extension"] || 0) + (ev["QA only"] || 0);
+
+    rows.push(`<div class="rowhead ${dom}">${dom === "forest" ? "Forest" : "Soils"}</div>`);
+    rows.push(`<a class="cell" data-tier="Field data" href="#${dom}-field">
+      ${dom === "soil"
+        ? `<div class="big num">${fmt(profiles)}<small>profiles</small></div><div class="what">${fmt(layers)} layers in ${hosted.length} hosted datasets; ${G.length - hosted.length} more sources identified</div>`
+        : `<div class="big num">${hosted.length}<small>ingested</small></div><div class="what">${G.length} plot and tree sources identified; none prepared as project tables yet</div>`}
+      ${seg([{ n: hosted.length, c: good, l: "hosted" }, { n: G.length - hosted.length, c: none, l: "identified only" }])}</a>`);
+    rows.push(`<a class="cell" data-tier="Covariates" href="#${dom}-cov">
+      <div class="big num">${covN}<small>entries</small></div><div class="what">across ${covStudies} ${dom === "soil" ? "studies and workflows" : "studies"}</div>
+      ${seg([{ n: studyEv, c: info, l: "used or ranked in a study" }, { n: cand, c: none, l: "candidate" }])}</a>`);
+    rows.push(`<a class="cell" data-tier="Maps" href="#${dom}-maps">
+      <div class="big num">${M.length}<small>map records</small></div><div class="what">${ms("Hosted") + ms("External asset")} loadable in Earth Engine today</div>
+      ${seg([{ n: ms("Hosted"), c: good, l: "in our project" }, { n: ms("External asset"), c: info, l: "external asset" }, { n: ms("Ingestion unconfirmed"), c: warn, l: "unconfirmed" }, { n: ms("Source identified"), c: none, l: "identified only" }])}</a>`);
+  }
+  $("#matrix").innerHTML = `<div></div><div class="colhead">Field data</div><div class="colhead">Covariates</div><div class="colhead">Maps</div>` + rows.join("");
+
+  const fG = D.ground.filter((g) => inDomain(g, "forest"));
+  $("#forest-lede").textContent = `${fG.length} forest field sources are catalogued but none is ingested yet. ${D.maps.filter((m) => inDomain(m, "forest") && m.record_status === "External asset").length} forest map products load from public Earth Engine assets.`;
+  const sp = d3.sum(D.profiles, (p) => p.n_profiles);
+  const agree = D.qc.register.filter((r) => r.runtime_status === "Sample agreement").length;
+  $("#soil-lede").textContent = `${fmt(sp)} profiles in ${D.profiles.length} hosted datasets. ${D.maps.filter((m) => inDomain(m, "soil") && m.record_status === "Hosted").length} soil-map records are hosted in our project; ${agree} copied images match their sources on sampled pixels.`;
+}
+
+/* ------------------------------------------------------------ lineage */
+function roleStyle(role) {
+  const r = (role || "").toLowerCase();
+  if (r.includes("validation") && !r.includes("training")) return "dash";
+  if (r.includes("historical") || r.includes("unresolved") || r.includes("pending") || r.includes("inherited") || r.includes("reused") || r.includes("filter")) return "dot";
+  return "solid";
+}
+function renderLineage(dom, el) {
+  const links = D.links.filter((l) => inDomain(study[l.study_id] || { domains: ["soil"] }, dom) && inDomain(ground[l.ground_id] || { domains: ["soil"] }, dom));
+  const maps = D.maps.filter((m) => inDomain(m, dom));
+  const sIds = [...new Set([...links.map((l) => l.study_id), ...maps.map((m) => m.study_id).filter(Boolean)])]
+    .filter((id) => study[id]).sort((a, b) => (study[b].output_grid_m ? 1 : 0) - (study[a].output_grid_m ? 1 : 0) || a.localeCompare(b));
+  const sIdx = Object.fromEntries(sIds.map((id, i) => [id, i]));
+  const gIds = [...new Set(links.map((l) => l.ground_id))].sort((a, b) =>
+    d3.mean(links.filter((l) => l.ground_id === a), (l) => sIdx[l.study_id]) - d3.mean(links.filter((l) => l.ground_id === b), (l) => sIdx[l.study_id]));
+  // collapse multi-image products: one node per study's map family
+  const FAMILY = { S_SOTHE_SOC_2022: "Sothe soil stock + uncertainty", S_SOTHE_CONC_2022: "Sothe SOC concentration (6 depths)",
+    S_SOILGRIDS_2021: "SoilGrids 2.0 SOC, BD, OCD, OCS", S_GENG_2025: "Geng SOC + BD (5 depths)", S_NCSCD_2013: "NCSCDv2 SOCC30 / 100 / 200",
+    S_LI_2025: "Li HBL peat depth + carbon (4)" };
+  const fam = d3.groups(maps, (m) => m.study_id || m.map_id);
+  const mNodes = fam.map(([key, ms]) => ({ id: key, label: ms.length > 1 ? (FAMILY[key] || ms[0].product_name) : ms[0].product_name.replace(/ \(.*\)/, ""),
+      study: ms[0].study_id, rec: ms[0], recs: ms }))
+    .sort((a, b) => (sIdx[a.study] ?? 999) - (sIdx[b.study] ?? 999));
+
+  const rowH = 25, W = 900, colX = [4, 320, 610], colW = [270, 250, 280];
+  const n = Math.max(gIds.length, sIds.length, mNodes.length);
+  const H = n * rowH + 30;
+  const yOf = (i, count) => 26 + (i + 0.5) * ((H - 30) / count);
+  const gy = Object.fromEntries(gIds.map((id, i) => [id, yOf(i, gIds.length)]));
+  const sy = Object.fromEntries(sIds.map((id, i) => [id, yOf(i, sIds.length)]));
+  const my = Object.fromEntries(mNodes.map((m, i) => [m.id, yOf(i, mNodes.length)]));
+
+  const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%").attr("style", `min-width:640px;max-width:${W}px`).attr("role", "img")
+    .attr("aria-label", `${dom} lineage: ${gIds.length} ground datasets, ${sIds.length} studies, ${mNodes.length} map records`);
+  [["Ground data", 0], ["Study", 1], ["Map", 2]].forEach(([t, i]) =>
+    svg.append("text").attr("x", colX[i]).attr("y", 12).text(t.toUpperCase()).attr("style", `font-family:var(--font-display);font-weight:600;letter-spacing:.12em;font-size:11px;fill:var(--muted)`));
+
+  const curve = (x1, y1, x2, y2) => `M${x1},${y1} C${(x1 + x2) / 2},${y1} ${(x1 + x2) / 2},${y2} ${x2},${y2}`;
+  const dashFor = { solid: null, dash: "5 4", dot: "1.5 3" };
+  const L = svg.append("g").attr("fill", "none");
+  links.forEach((l) => {
+    if (gy[l.ground_id] == null || sy[l.study_id] == null) return;
+    const st = roleStyle(l.study_role);
+    L.append("path").attr("d", curve(colX[0] + colW[0], gy[l.ground_id], colX[1] - 6, sy[l.study_id]))
+      .attr("stroke", "var(--ink-2)").attr("stroke-opacity", 0.55).attr("stroke-width", 1.5).attr("stroke-dasharray", dashFor[st])
+      .append("title").text(`${ground[l.ground_id]?.resource_name} → ${shortStudy(l.study_id)}: ${l.study_role}`);
+  });
+  mNodes.forEach((m) => {
+    if (m.study && sy[m.study] != null)
+      L.append("path").attr("d", curve(colX[1] + colW[1], sy[m.study], colX[2] - 6, my[m.id]))
+        .attr("stroke", "var(--ink-2)").attr("stroke-opacity", 0.55).attr("stroke-width", 1.5);
+  });
+
+  const node = (x, y, label, status, html) => {
+    const g = svg.append("g").attr("transform", `translate(${x},${y})`).attr("tabindex", 0).style("cursor", "default");
+    const col = { good: "var(--good)", info: "var(--series-1)", warn: "var(--warn)", "": "var(--rule-strong)" }[status] ?? "var(--rule-strong)";
+    g.append("circle").attr("r", 4).attr("cx", 4).attr("fill", col);
+    g.append("text").attr("x", 13).attr("dy", "0.34em").text(label).attr("style", "font-size:11.5px;fill:var(--ink)");
+    g.on("mousemove", (ev) => showTip(ev, html)).on("mouseleave", hideTip).on("focus", function (ev) { const r = this.getBoundingClientRect(); showTip({ clientX: r.right, clientY: r.top }, html); }).on("blur", hideTip);
+  };
+  gIds.forEach((id) => { const g = ground[id]; const [st] = groundStatus(g);
+    node(colX[0], gy[id], short(g.resource_name.replace(/ preparation$/, ""), 42), st,
+      `<b>${esc(g.resource_name)}</b><br>${esc(g.carbon_pool_or_measurement)}${g.profile_or_site_count ? `<br>${fmt(g.profile_or_site_count)} sites/profiles` : ""}<br>${esc(groundStatus(g)[1])}`); });
+  sIds.forEach((id) => { const s = study[id];
+    node(colX[1], sy[id], short(shortStudy(id), 38), "",
+      `<b>${esc(s.study_name)}</b><br>${esc(s.analysis_level)} · ${esc(short(s.analysis_geography, 90))}${s.output_grid_m ? `<br>Output grid ${fmt(s.output_grid_m)} m` : ""}`); });
+  mNodes.forEach((m) => { const [st, lab] = mapStatus(m.rec);
+    node(colX[2], my[m.id], short(m.label, 40), st,
+      `<b>${esc(m.label)}</b><br>${m.recs.map((r) => esc(r.product_name)).join("<br>")}<br><span style="opacity:.8">${esc(short(m.rec.depth_support, 90))}</span><br>${esc(lab)}${m.study ? "" : "<br><i>No source study linked in the catalogue</i>"}`); });
+}
+
+/* ------------------------------------------------------------ tables */
+function renderForestGround() {
+  const G = D.ground.filter((g) => inDomain(g, "forest"));
+  const usedBy = (id) => D.links.filter((l) => l.ground_id === id).map((l) => `<span class="chip" title="${esc(l.study_role)}">${esc(shortStudy(l.study_id))}</span>`).join(" ");
+  $("#forest-ground-tbl").innerHTML = `<thead><tr><th>Resource</th><th>Measures</th><th class="r">Sites</th><th>Access route</th><th>Used by</th><th>Status</th></tr></thead><tbody>` +
+    G.map((g) => `<tr><td><b>${esc(g.resource_name)}</b><span class="sub">${esc(short(g.geographic_coverage, 60))}</span></td>
+      <td>${esc(short(g.carbon_pool_or_measurement, 70))}</td>
+      <td class="r">${g.profile_or_site_count ? fmt(g.profile_or_site_count) : "–"}</td>
+      <td>${g.source_url ? `<a href="${esc(g.source_url)}" target="_blank" rel="noopener">${esc(short(g.access_route, 60))}</a>` : esc(short(g.access_route, 60))}</td>
+      <td><div class="chips">${usedBy(g.ground_id) || '<span class="muted">–</span>'}</div></td>
+      <td>${pill(groundStatus(g))}</td></tr>`).join("") + "</tbody>";
+  const forestMapsTrainedOn = D.links.filter((l) => ["S_SOTHE_FOREST_2022", "S_SCANFI_V1"].includes(l.study_id)).map((l) => ground[l.ground_id]?.resource_name);
+  $("#forest-field-callout").innerHTML = `<strong>No forest plot data is in the project yet.</strong> The two forest maps with a linked study were built on ${esc([...new Set(forestMapsTrainedOn)].join(", "))}. These are mostly access-by-request, and coordinate precision and redistribution rights still need to be confirmed. Québec permanent plots (CC BY 4.0) and ENFOR tree biomass are open downloads.`;
+}
+
+function renderMapTable(dom, el) {
+  const M = D.maps.filter((m) => inDomain(m, dom));
+  $(el).innerHTML = `<thead><tr><th>Product</th><th>Quantity</th><th>Coverage</th><th class="r">Grid (m)</th><th>Depth / pool</th><th>Units (stored)</th><th>Uncertainty</th><th>Status</th></tr></thead><tbody>` +
+    M.map((m) => `<tr><td><b>${esc(m.product_name)}</b>${m.study_id ? `<span class="sub">${esc(shortStudy(m.study_id))}</span>` : ""}</td>
+      <td>${esc(short(m.carbon_pool_or_quantity, 60))}</td><td>${esc(short(m.geographic_coverage, 50))}</td>
+      <td class="r">${m.reported_output_grid_m ? fmt(m.reported_output_grid_m) : "–"}</td>
+      <td>${esc(short(m.depth_support, 60))}</td><td>${esc(m.source_units_and_scaling)}</td><td>${esc(m.uncertainty_definition)}</td>
+      <td>${pill(mapStatus(m))}</td></tr>`).join("") + "</tbody>";
+}
+
+/* ------------------------------------------------------------ covariate heatmap + scale */
+function renderHeat(dom, el, legEl) {
+  const cells = D.cov_cells.filter((c) => inDomain(study[c.study_id] || { domains: ["soil"] }, dom));
+  const sIds = [...new Set(cells.map((c) => c.study_id))].sort((a, b) => d3.sum(cells.filter((c) => c.study_id === b), (c) => c.n) - d3.sum(cells.filter((c) => c.study_id === a), (c) => c.n));
+  const groups = D.cov_groups.filter((g) => cells.some((c) => c.group === g));
+  const cw = 46, ch = 26, left = 168, top = 112;
+  const W = left + groups.length * cw + 90, H = top + sIds.length * ch + 6;
+  const max = d3.max(cells, (c) => c.n);
+  const color = d3.scaleSequentialLog([1, max], d3.interpolateLab(css("--seq-lo"), css("--seq-hi")));
+  const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", W).attr("height", H).attr("role", "img")
+    .attr("aria-label", `${dom} covariate entries by study and family`);
+  groups.forEach((g, i) => svg.append("text").attr("transform", `translate(${left + i * cw + cw / 2 + 4},${top - 8}) rotate(-50)`).text(g).attr("style", "font-size:11px;fill:var(--ink-2)"));
+  sIds.forEach((s, j) => svg.append("text").attr("x", left - 10).attr("y", top + j * ch + ch / 2).attr("dy", "0.34em").attr("text-anchor", "end")
+    .text(short(shortStudy(s), 26)).attr("style", "font-size:11.5px;fill:var(--ink)"));
+  sIds.forEach((s, j) => groups.forEach((g, i) => svg.append("rect").attr("x", left + i * cw + 1).attr("y", top + j * ch + 1).attr("width", cw - 2).attr("height", ch - 2).attr("rx", 2).attr("fill", "none").attr("stroke", "var(--rule)")));
+  cells.filter((c) => groups.includes(c.group)).forEach((c) => {
+    const i = groups.indexOf(c.group), j = sIds.indexOf(c.study_id);
+    const fill = color(c.n), lum = d3.hcl(fill).l;
+    const g = svg.append("g").attr("tabindex", 0);
+    g.append("rect").attr("x", left + i * cw + 1).attr("y", top + j * ch + 1).attr("width", cw - 2).attr("height", ch - 2).attr("rx", 3).attr("fill", fill);
+    g.append("text").attr("x", left + i * cw + cw / 2).attr("y", top + j * ch + ch / 2).attr("dy", "0.34em").attr("text-anchor", "middle")
+      .text(c.n).attr("style", `font-size:11px;font-variant-numeric:tabular-nums;fill:${lum > 60 ? "#141916" : "#f3f4f0"}`);
+    const html = `<b>${esc(shortStudy(c.study_id))} · ${esc(c.group)}</b><br>${c.n} entr${c.n === 1 ? "y" : "ies"} (${esc(c.families.join(", "))})<br>${Object.entries(c.evidence).map(([k, v]) => `${esc(k)}: ${v}`).join("<br>")}<br><span style="opacity:.8">e.g. ${esc(c.examples.slice(0, 4).join(", "))}</span>`;
+    g.on("mousemove", (ev) => showTip(ev, html)).on("mouseleave", hideTip);
+  });
+  $(legEl).innerHTML = `<span>Entries per cell</span><span style="display:inline-flex;align-items:center;gap:6px">1 <i style="display:inline-block;width:120px;height:10px;border-radius:2px;background:linear-gradient(90deg,${d3.range(0, 1.01, 0.2).map((t) => color(Math.pow(max, t))).join(",")})"></i> ${max}</span><span class="muted">log scale · hover a cell for evidence level</span>`;
+}
+
+function renderScale(dom, el) {
+  const rows = D.cov_scale.filter((r) => inDomain(study[r.study_id] || { domains: ["soil"] }, dom) && (r.native_min || r.output));
+  rows.sort((a, b) => (a.output ?? 1e9) - (b.output ?? 1e9));
+  const left = 168, W = 620, rh = 24, H = 30 + rows.length * rh + 26;
+  const x = d3.scaleLog([10, 30000], [left, W - 16]).clamp(true);
+  const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%").attr("style", "min-width:520px;max-width:760px").attr("role", "img")
+    .attr("aria-label", `${dom} covariate native grids versus output grids`);
+  const ticks = [10, 30, 100, 250, 1000, 4000, 25000];
+  svg.append("g").attr("class", "grid").attr("transform", `translate(0,${H - 22})`).call(d3.axisBottom(x).tickValues(ticks).tickSize(-(H - 40)).tickFormat(""));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - 22})`).call(d3.axisBottom(x).tickValues(ticks).tickFormat((d) => (d >= 1000 ? d / 1000 + " km" : d + " m")));
+  rows.forEach((r, j) => {
+    const y = 20 + j * rh + rh / 2;
+    svg.append("text").attr("x", left - 10).attr("y", y).attr("dy", "0.34em").attr("text-anchor", "end").text(short(shortStudy(r.study_id), 26)).attr("style", "font-size:11.5px;fill:var(--ink)");
+    const g = svg.append("g").attr("tabindex", 0);
+    if (r.native_min) {
+      g.append("line").attr("x1", x(r.native_min)).attr("x2", x(r.native_max)).attr("y1", y).attr("y2", y).attr("stroke", "var(--series-1)").attr("stroke-width", 6).attr("stroke-linecap", "round").attr("stroke-opacity", 0.35);
+      r.native_values.forEach((v) => g.append("circle").attr("cx", x(v)).attr("cy", y).attr("r", 4).attr("fill", "var(--series-1)").attr("stroke", "var(--surface)").attr("stroke-width", 1.5));
+    }
+    if (r.output) g.append("path").attr("d", d3.symbol(d3.symbolDiamond, 90)()).attr("transform", `translate(${x(r.output)},${y})`).attr("fill", "var(--ink)").attr("stroke", "var(--surface)").attr("stroke-width", 1.5);
+    const html = `<b>${esc(study[r.study_id]?.study_name || r.study_id)}</b><br>Native covariate grids: ${r.native_values.length ? r.native_values.map((v) => fmt(v) + " m").join(", ") : "not recorded"}<br>Output grid: ${r.output ? fmt(r.output) + " m" : "none"}<br>${r.n} covariate entries`;
+    g.on("mousemove", (ev) => showTip(ev, html)).on("mouseleave", hideTip);
+  });
+  d3.select(el).append("div").attr("class", "legend-row").html(`<span><span class="sw" style="background:var(--series-1)"></span>native covariate grid</span><span><svg width="12" height="12" style="vertical-align:-2px;margin-right:6px"><path d="${d3.symbol(d3.symbolDiamond, 60)()}" transform="translate(6,6)" fill="var(--ink)"/></svg>model / output grid</span>`);
+}
+
+/* ------------------------------------------------------------ thumbnails */
+function renderGallery(domain, el) {
+  const P = D.previews.filter((p) => p.domain === domain);
+  $(el).innerHTML = P.map((p) => {
+    if (p.error || !p.src) return `<div class="thumb err"><figure>Preview unavailable: ${esc(short(p.error || "not rendered", 120))}</figure><div class="t">${esc(p.title)}</div></div>`;
+    const m = p.map_id ? mapRec[p.map_id] : null;
+    const reported = m?.reported_output_grid_m;
+    return `<div class="thumb"><figure><img src="${p.src}" alt="${esc(p.title)} preview over ${p.key.startsWith("li_") ? "the Hudson Bay Lowlands" : "Canada"}" loading="lazy" width="720"></figure>
+      <div class="t">${esc(p.title)}</div>
+      <div class="leg"><span>${g3(p.p2)}</span><div class="grad"></div><span>${g3(p.p98)}</span></div>
+      <dl><dt>Units</dt><dd>${esc(p.units_note)}</dd>
+      <dt>Grid</dt><dd>${p.native_scale_m ? `≈${g3(p.native_scale_m)} m nominal (read from asset)` : "–"}${reported ? ` · ${fmt(reported)} m reported` : ""}</dd>
+      <dt>Median</dt><dd class="num">${g3(p.p50)} (sampled)</dd>
+      <dt>Asset</dt><dd class="mono">${esc(p.asset.replace("projects/northstarlabs/assets/carbon_state_of_data/", "…/"))}</dd></dl>
+      ${p.flag ? `<p class="flag"><span class="pill warn">Check</span> ${esc(p.flag.replace(/^Check before use: /, ""))}</p>` : ""}</div>`;
+  }).join("");
+}
+
+/* ------------------------------------------------------------ soil profiles */
+let mapDraws = [];
+function rewind(geo) {
+  const ring = (r) => r.slice().reverse();
+  if (geo.type === "Polygon") return { ...geo, coordinates: geo.coordinates.map(ring) };
+  if (geo.type === "MultiPolygon") return { ...geo, coordinates: geo.coordinates.map((p) => p.map(ring)) };
+  if (geo.type === "GeometryCollection") return { ...geo, geometries: geo.geometries.map(rewind) };
+  return geo;
+}
+const OUT = { canada: rewind(D.outlines.canada), usa: rewind(D.outlines.usa) };
+const outside = (p) => {
+  const inCan = Object.entries(p.country).filter(([k]) => k.startsWith("Canada")).reduce((a, [, v]) => a + v, 0);
+  return inCan < p.n_profiles ? `<br>${fmt(inCan)} in Canada; ${fmt(p.n_profiles - inCan)} in the US and Mexico, mostly outside this frame` : "";
+};
+function renderMultiples() {
+  const el = $("#soil-multiples");
+  const can = OUT.canada, usa = OUT.usa;
+  const proj = d3.geoConicConformal().parallels([49, 77]).rotate([95, 0]);
+  el.innerHTML = D.profiles.map((p) => `<div class="mm"><canvas data-i="${p.idx}" aria-label="Map of ${esc(p.label)} profile locations" role="img"></canvas>
+    <div class="t">${esc(p.label)}</div><div class="s num">${fmt(p.n_profiles)} profiles · ${fmt(p.n_layers)} layers${outside(p)}</div></div>`).join("");
+  const byIdx = d3.group(D.points, (d) => d[2]);
+  el.querySelectorAll("canvas").forEach((cv) => {
+    const i = +cv.dataset.i;
+    const draw = () => {
+      const r = cv.getBoundingClientRect(), dpr = devicePixelRatio || 1;
+      if (!r.width) return;
+      cv.width = r.width * dpr; cv.height = r.height * dpr;
+      const ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const pr = proj.fitExtent([[6, 6], [r.width - 6, r.height - 6]], can);
+      const path = d3.geoPath(pr, ctx);
+      ctx.clearRect(0, 0, r.width, r.height);
+      ctx.beginPath(); path(usa); ctx.fillStyle = css("--land"); ctx.globalAlpha = 0.5; ctx.fill(); ctx.globalAlpha = 1;
+      ctx.beginPath(); path(can); ctx.fillStyle = css("--land"); ctx.fill();
+      ctx.fillStyle = css("--other-pt");
+      for (const [k, pts] of byIdx) { if (k === i) continue; for (const d of pts) { const q = pr([d[0], d[1]]); if (q) ctx.fillRect(q[0] - 0.6, q[1] - 0.6, 1.2, 1.2); } }
+      const c = css("--series-1"), ring = css("--surface");
+      for (const d of byIdx.get(i) || []) { const q = pr([d[0], d[1]]); if (!q) continue; ctx.beginPath(); ctx.arc(q[0], q[1], 2.6, 0, 7); ctx.fillStyle = ring; ctx.fill(); ctx.beginPath(); ctx.arc(q[0], q[1], 1.9, 0, 7); ctx.fillStyle = c; ctx.fill(); }
+    };
+    mapDraws.push(draw); draw();
+  });
+}
+
+function renderProfileTable() {
+  $("#soil-prof-tbl").innerHTML = `<thead><tr><th>Dataset</th><th class="r">Profiles</th><th class="r">Layers</th><th class="r">Median deepest layer</th><th class="r">Reach 100 cm</th><th>Sampling years</th><th>Location</th><th>Notes</th></tr></thead><tbody>` +
+    D.profiles.map((p) => {
+      const c = Object.entries(p.country).filter(([k]) => k && k !== "nan").sort((a, b) => b[1] - a[1]);
+      return `<tr><td><b>${esc(p.label)}</b><span class="sub mono">${esc(p.file_layers)}</span></td>
+      <td class="r">${fmt(p.n_profiles)}</td><td class="r">${fmt(p.n_layers)}</td>
+      <td class="r">${p.bottom_median != null ? fmt(Math.round(p.bottom_median)) + " cm" : "–"}</td><td class="r">${pct(p.reach["100"])}</td>
+      <td class="num">${p.years.n ? `${p.years.min}–${p.years.max}<span class="sub">${fmt(p.years.n)} dated</span>` : '<span class="muted">not recorded</span>'}</td>
+      <td>${c.map(([k, v]) => `${esc(k)} ${fmt(v)}`).join("<br>")}</td>
+      <td class="small">${p.notes.map(esc).join("<br>")}</td></tr>`;
+    }).join("") + "</tbody>";
+}
+
+function renderReach() {
+  const el = $("#soil-reach"), left = 170, W = 520, rh = 30, H = 24 + D.profiles.length * rh + 26;
+  const x = d3.scaleLinear([0, 1], [left, W - 20]);
+  const depths = ["30", "100", "200"], cols = ["#86b6ef", "#2a78d6", "#104281"];
+  const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%").attr("style", "min-width:420px;max-width:640px").attr("role", "img").attr("aria-label", "Share of profiles reaching 30, 100 and 200 cm");
+  svg.append("g").attr("class", "grid").attr("transform", `translate(0,${H - 22})`).call(d3.axisBottom(x).ticks(5).tickSize(-(H - 36)).tickFormat(""));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - 22})`).call(d3.axisBottom(x).ticks(5).tickFormat(d3.format(".0%")));
+  D.profiles.forEach((p, j) => {
+    const y = 16 + j * rh + rh / 2;
+    svg.append("text").attr("x", left - 10).attr("y", y).attr("dy", "0.34em").attr("text-anchor", "end").text(p.label).attr("style", "font-size:11.5px;fill:var(--ink)");
+    const vals = depths.map((d) => p.reach[d] ?? 0);
+    svg.append("line").attr("x1", x(d3.min(vals))).attr("x2", x(d3.max(vals))).attr("y1", y).attr("y2", y).attr("stroke", "var(--rule-strong)").attr("stroke-width", 2);
+    depths.forEach((d, k) => {
+      const g = svg.append("g").attr("tabindex", 0);
+      g.append("circle").attr("cx", x(vals[k])).attr("cy", y).attr("r", 6).attr("fill", cols[k]).attr("stroke", "var(--surface)").attr("stroke-width", 2);
+      g.on("mousemove", (ev) => showTip(ev, `<b>${esc(p.label)}</b><br>${pct(vals[k])} of profiles reach ${d} cm`)).on("mouseleave", hideTip);
+    });
+    svg.append("text").attr("x", x(vals[1])).attr("y", y - 10).attr("text-anchor", "middle").text(pct(vals[1])).attr("style", "font-size:10.5px;fill:var(--ink-2);font-variant-numeric:tabular-nums");
+  });
+  $("#soil-reach-leg").innerHTML = depths.map((d, k) => `<span><span class="sw" style="background:${cols[k]};border-radius:50%"></span>${d} cm</span>`).join("") + `<span class="muted">label = 100 cm</span>`;
+}
+
+function renderVars() {
+  const vars = ["Organic C", "Total C", "Bulk density", "Layer stock computable"];
+  const left = 170, cw = 78, ch = 30, top = 44, W = left + vars.length * cw + 4, H = top + D.profiles.length * ch + 4;
+  const color = d3.scaleSequential([0, 1], d3.interpolateLab(css("--seq-lo"), css("--seq-hi")));
+  const svg = d3.select("#soil-vars").append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", W).attr("height", H).attr("role", "img").attr("aria-label", "Share of layer rows with each variable");
+  vars.forEach((v, i) => {
+    const words = v === "Layer stock computable" ? ["Layer stock", "computable"] : [v];
+    words.forEach((w, k) => svg.append("text").attr("x", left + i * cw + cw / 2).attr("y", top - 10 - (words.length - 1 - k) * 13).attr("text-anchor", "middle").text(w).attr("style", "font-size:11px;fill:var(--ink-2)"));
+  });
+  D.profiles.forEach((p, j) => {
+    svg.append("text").attr("x", left - 10).attr("y", top + j * ch + ch / 2).attr("dy", "0.34em").attr("text-anchor", "end").text(p.label).attr("style", "font-size:11.5px;fill:var(--ink)");
+    vars.forEach((v, i) => {
+      const val = p.vars[v], g = svg.append("g").attr("tabindex", 0);
+      const x0 = left + i * cw + 2, y0 = top + j * ch + 2;
+      if (val == null) {
+        g.append("rect").attr("x", x0).attr("y", y0).attr("width", cw - 4).attr("height", ch - 4).attr("rx", 3).attr("fill", "none").attr("stroke", "var(--rule-strong)").attr("stroke-dasharray", "3 3");
+        g.append("text").attr("x", x0 + (cw - 4) / 2).attr("y", y0 + (ch - 4) / 2).attr("dy", "0.34em").attr("text-anchor", "middle").text("no field").attr("style", "font-size:10px;fill:var(--muted)");
+      } else {
+        const fill = color(val);
+        g.append("rect").attr("x", x0).attr("y", y0).attr("width", cw - 4).attr("height", ch - 4).attr("rx", 3).attr("fill", fill);
+        g.append("text").attr("x", x0 + (cw - 4) / 2).attr("y", y0 + (ch - 4) / 2).attr("dy", "0.34em").attr("text-anchor", "middle").text(pct(val))
+          .attr("style", `font-size:11px;font-variant-numeric:tabular-nums;fill:${d3.hcl(fill).l > 60 ? "#141916" : "#f3f4f0"}`);
+      }
+      g.on("mousemove", (ev) => showTip(ev, `<b>${esc(p.label)} · ${esc(v)}</b><br>${val == null ? "No such field in this table" : pct(val) + " of " + fmt(p.n_layers) + " layer rows"}`)).on("mouseleave", hideTip);
+    });
+  });
+}
+
+function renderYears() {
+  const P = D.profiles.filter((p) => p.years.n);
+  const decades = d3.range(1930, 2030, 10);
+  const pw = 230, ph = 120, gap = 18;
+  const W = P.length * (pw + gap), H = ph + 40;
+  const svg = d3.select("#soil-years").append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%").attr("style", `min-width:${Math.min(W, 640)}px;max-width:${W}px`).attr("role", "img").attr("aria-label", "Profiles by sampling decade");
+  P.forEach((p, k) => {
+    const g = svg.append("g").attr("transform", `translate(${k * (pw + gap)},0)`);
+    const counts = decades.map((d) => p.years.by_decade[d] || 0);
+    const x = d3.scaleBand(decades, [28, pw - 4]).padding(0.12), y = d3.scaleLinear([0, d3.max(counts)], [ph, 22]).nice();
+    g.append("text").attr("x", 28).attr("y", 10).text(p.label).attr("style", "font-size:11.5px;font-weight:600;fill:var(--ink)");
+    g.append("g").attr("class", "grid").attr("transform", "translate(28,0)").call(d3.axisLeft(y).ticks(3).tickSize(-(pw - 32)).tickFormat(""));
+    g.append("g").attr("class", "axis").attr("transform", "translate(28,0)").call(d3.axisLeft(y).ticks(3).tickFormat(d3.format("~s")));
+    g.append("g").attr("class", "axis").attr("transform", `translate(0,${ph})`).call(d3.axisBottom(x).tickValues([1940, 1970, 2000]).tickFormat((d) => d + "s"));
+    decades.forEach((d, i) => {
+      if (!counts[i]) return;
+      const b = g.append("g").attr("tabindex", 0);
+      const h = ph - y(counts[i]), bw = x.bandwidth();
+      b.append("path").attr("d", `M${x(d)},${ph} v${-(h - Math.min(3, h))} q0,-${Math.min(3, h)} ${Math.min(3, bw / 2)},-${Math.min(3, h)} h${bw - 2 * Math.min(3, bw / 2)} q${Math.min(3, bw / 2)},0 ${Math.min(3, bw / 2)},${Math.min(3, h)} v${h - Math.min(3, h)} z`).attr("fill", "var(--series-1)");
+      b.append("rect").attr("x", x(d)).attr("y", 20).attr("width", bw).attr("height", ph - 20).attr("fill", "transparent");
+      b.on("mousemove", (ev) => showTip(ev, `<b>${esc(p.label)}</b><br>${d}s: ${fmt(counts[i])} profiles`)).on("mouseleave", hideTip);
+    });
+  });
+}
+
+function renderAudit() {
+  const label = Object.fromEntries(D.profiles.map((p) => [p.ground_id, p.label]));
+  $("#soil-audit-tbl").innerHTML = `<thead><tr><th>Dataset</th><th class="r">Layer rows</th><th class="r">Depth range</th><th class="r">Missing bounds</th><th class="r">Profiles w/ overlaps</th><th class="r">Profiles w/ gaps</th><th class="r">Thickness ≠ bounds</th></tr></thead><tbody>` +
+    D.qc.depth_audit.map((a) => `<tr><td><b>${esc(label[a.ground_id] || a.ground_id)}</b><span class="sub mono">sha256 ${esc(a.sha256.slice(0, 12))}…</span></td>
+      <td class="r">${fmt(a.rows)}</td><td class="r">${fmt(Math.round(a.min_top_cm))} to ${fmt(Math.round(a.max_bottom_cm))} cm</td>
+      <td class="r">${fmt(a.missing_boundaries)}</td><td class="r">${fmt(a.groups_with_overlap)}</td><td class="r">${fmt(a.groups_with_gap)}</td><td class="r">${fmt(a.thickness_boundary_mismatch_rows)}</td></tr>`).join("") + "</tbody>";
+  const warns = [...new Set(D.qc.depth_audit.map((a) => a.warning).filter(Boolean))];
+  $("#soil-audit-note").textContent = "Audit note: " + warns.join(" ");
+}
+
+function renderSoilIdentified() {
+  const G = D.ground.filter((g) => inDomain(g, "soil") && g.record_status !== "Hosted");
+  $("#soil-identified").innerHTML = G.map((g) => `<span class="chip" title="${esc(g.carbon_pool_or_measurement)}">${esc(g.resource_name)}${g.profile_or_site_count ? ` · ${fmt(g.profile_or_site_count)}` : ""}</span>`).join("");
+}
+
+/* ------------------------------------------------------------ soil map depth chart */
+const DEPTH_SPEC = [
+  // [label, map_ids, kind, intervals or points, note]
+  ["Sothe stock", ["M_SOTHE_STOCK", "M_SOTHE_UNC"], "assumed", [[0, 100]], "0–1 m is the maintainer's working assumption, not source-verified"],
+  ["Sothe concentration", ["M_SOTHE_CONC"], "points", [0, 5, 15, 30, 60, 100], "Point-depth images; interval semantics unresolved"],
+  ["SoilGrids SOC / BD / OCD", ["M_SG_SOC", "M_SG_BD", "M_SG_OCD"], "intervals", [[0, 5], [5, 15], [15, 30], [30, 60], [60, 100], [100, 200]], "Six intervals to 2 m"],
+  ["SoilGrids OC stock", ["M_SG_OCS"], "intervals", [[0, 30]], "Only 0–30 cm released"],
+  ["Geng SOC / BD", ["M_GENG_SOC", "M_GENG_BD"], "intervals", [[0, 5], [5, 15], [15, 30], [30, 60], [60, 100]], "Five intervals to 1 m"],
+  ["Hengl Alberta", ["M_HENGL"], "intervals", [[0, 15], [15, 30], [30, 60], [60, 100]], "Four intervals to 1 m; not hosted"],
+  ["NCSCDv2 SOCC30", ["M_NCSCD_30"], "intervals", [[0, 30]], ""],
+  ["NCSCDv2 SOCC100", ["M_NCSCD_100"], "intervals", [[0, 100]], ""],
+  ["NCSCDv2 SOCC200", ["M_NCSCD_200"], "intervals", [[100, 200]], "100–200 cm layer, not cumulative 0–200 cm"],
+  ["Thermokarst landscapes", ["M_THERMOKARST"], "intervals", [[0, 300]], "Associated 0–3 m SOC, polygon support"],
+  ["McNicol NPCTR", ["M_MCNICOL"], "intervals", [[0, 100]], "1 m mineral soil plus overlying organic horizons"],
+  ["Epstein seabed", ["M_EPSTEIN"], "intervals", [[0, 30]], "Upper 30 cm of seabed sediment"],
+  ["Li peat (HBL)", ["M_LI_C", "M_LI_DEPTH"], "variable", [], "Full modelled peat column; depth varies per pixel"],
+  ["PEATGRIDS", ["M_PEATGRIDS"], "variable", [], "Full modelled peat thickness"],
+  ["Hugelius peat v2", ["M_HUGELIUS_PEAT"], "variable", [], "Peat-depth-derived stock"],
+];
+function renderDepth() {
+  const cols = DEPTH_SPEC.length, cw = 58, top = 118, bottom = 300, left = 60, W = left + cols * cw + 80, H = top + 230 + 18;
+  const y = d3.scaleLinear([0, bottom], [top, top + 230]);
+  const svg = d3.select("#soil-depth").append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", W).attr("height", H).attr("role", "img").attr("aria-label", "Depth support of soil map products");
+  svg.append("g").attr("class", "grid").attr("transform", `translate(${left},0)`).call(d3.axisLeft(y).tickValues([0, 30, 100, 200, 300]).tickSize(-(cols * cw)).tickFormat(""));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${left},0)`).call(d3.axisLeft(y).tickValues([0, 30, 100, 200, 300]).tickFormat((d) => d + " cm"));
+  DEPTH_SPEC.forEach(([label, ids, kind, iv, note], i) => {
+    const cx = left + i * cw + cw / 2, bw = 22;
+    const recs = ids.map((id) => mapRec[id]).filter(Boolean);
+    const st = recs.length ? mapStatus(recs[0]) : ["", "–"];
+    svg.append("text").attr("transform", `translate(${cx + 4},${top - 8}) rotate(-55)`).text(label).attr("style", "font-size:11px;fill:var(--ink)");
+    const g = svg.append("g").attr("tabindex", 0);
+    if (kind === "intervals" || kind === "assumed") {
+      iv.forEach(([a, b]) => g.append("rect").attr("x", cx - bw / 2).attr("y", y(a) + 1).attr("width", bw).attr("height", Math.max(2, y(b) - y(a) - 2)).attr("rx", 2)
+        .attr("fill", kind === "assumed" ? "none" : "var(--series-1)").attr("fill-opacity", kind === "assumed" ? 1 : 0.85)
+        .attr("stroke", kind === "assumed" ? "var(--series-1)" : "none").attr("stroke-width", 2).attr("stroke-dasharray", kind === "assumed" ? "4 3" : null));
+    } else if (kind === "points") {
+      g.append("line").attr("x1", cx).attr("x2", cx).attr("y1", y(0)).attr("y2", y(100)).attr("stroke", "var(--rule-strong)");
+      iv.forEach((d) => g.append("circle").attr("cx", cx).attr("cy", y(d)).attr("r", 4.5).attr("fill", "var(--series-1)").attr("stroke", "var(--surface)").attr("stroke-width", 1.5));
+    } else {
+      const id = `fade${i}`;
+      const grd = svg.append("defs").append("linearGradient").attr("id", id).attr("x1", 0).attr("x2", 0).attr("y1", 0).attr("y2", 1);
+      grd.append("stop").attr("offset", 0).attr("stop-color", "var(--series-1)").attr("stop-opacity", 0.85);
+      grd.append("stop").attr("offset", 1).attr("stop-color", "var(--series-1)").attr("stop-opacity", 0);
+      g.append("rect").attr("x", cx - bw / 2).attr("y", y(0) + 1).attr("width", bw).attr("height", y(bottom) - y(0) - 2).attr("rx", 2).attr("fill", `url(#${id})`);
+    }
+    svg.append("circle").attr("cx", cx).attr("cy", H - 8).attr("r", 4).attr("fill", { good: "var(--good)", info: "var(--series-1)", warn: "var(--warn)", "": "var(--rule-strong)" }[st[0]]);
+    g.append("rect").attr("x", cx - cw / 2).attr("y", top).attr("width", cw).attr("height", 230).attr("fill", "transparent");
+    g.on("mousemove", (ev) => showTip(ev, `<b>${esc(label)}</b><br>${esc(recs.map((r) => r.depth_support).filter(Boolean)[0] || "")}${note ? "<br>" + esc(note) : ""}<br>${esc(st[1])}`)).on("mouseleave", hideTip);
+  });
+  $("#soil-depth-leg").innerHTML = `<span><span class="sw" style="background:var(--series-1)"></span>fixed interval</span><span><span class="sw" style="border:2px dashed var(--series-1)"></span>assumed interval</span><span><span class="sw" style="background:var(--series-1);border-radius:50%"></span>point depth</span><span><span class="sw" style="background:linear-gradient(var(--series-1),transparent)"></span>variable modelled peat column</span><span class="muted">dot under each column = hosting status (green ours, blue external, grey not hosted)</span>`;
+}
+
+function renderQC() {
+  const R = D.qc.register;
+  const by = d3.rollup(R, (v) => v.length, (r) => r.runtime_status);
+  const acl = d3.rollup(R, (v) => v.length, (r) => r.public_access_status);
+  const cls = { "Sample agreement": "good", "Sampled; source check pending": "warn", "Review needed": "serious" };
+  $("#soil-qc").innerHTML = [...by].map(([k, v]) => `<span class="pill ${cls[k] || ""}">${v} · ${esc(k)}</span>`).join("") +
+    [...acl].map(([k, v]) => `<span class="pill">${v} · ${esc(k)}</span>`).join("");
+  const run = D.qc.pixel_run || {};
+  $("#soil-qc-note").textContent = `QC run ${run.qc_version || ""}: ${run.reported}/${run.planned} assets reported with pixel checks. Sample agreement means 512 seeded points per band matched the source with zero difference and no mask mismatches; it is not full raster equality, and it does not confirm units, depth or uncertainty meaning. The ten Geng images were sampled but not compared with the original GeoTIFFs. None of the hosted copies has a public read grant yet.`;
+}
+
+/* ------------------------------------------------------------ todo + other */
+function renderTodo() {
+  const max = d3.max(D.todo, (t) => t.done + t.open);
+  $("#todo").innerHTML = D.todo.map((t) => `<div class="todo-row"><div><b>${esc(t.section.replace(/ — .*$/, ""))}</b></div>
+    <div class="bar" title="${t.done} done, ${t.open} open"><i style="flex:${t.done};background:var(--good)"></i><i style="flex:${t.open};background:var(--rule-strong)"></i><i style="flex:${max - t.done - t.open}"></i></div>
+    <div class="num small">${t.done} done · ${t.open} open</div></div>
+    ${t.open ? `<details><summary>${t.open} open item${t.open > 1 ? "s" : ""}</summary><ul>${t.open_items.map((o) => `<li>${esc(o)}</li>`).join("")}</ul></details>` : ""}`).join("") +
+    `<div class="legend-row" style="margin-top:10px"><span><span class="sw" style="background:var(--good)"></span>done</span><span><span class="sw" style="background:var(--rule-strong)"></span>open</span></div>`;
+}
+function renderOther() {
+  const counts = d3.rollups(D.other_sources, (v) => v, (o) => o.category).sort((a, b) => b[1].length - a[1].length);
+  const left = 200, W = 560, rh = 24, H = counts.length * rh + 10;
+  const x = d3.scaleLinear([0, d3.max(counts, (c) => c[1].length)], [left, W - 30]);
+  const svg = d3.select("#other-cats").append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%").attr("style", "min-width:420px;max-width:640px").attr("role", "img").attr("aria-label", "Further leads by category");
+  counts.forEach(([cat, items], j) => {
+    const y = 4 + j * rh, g = svg.append("g").attr("tabindex", 0);
+    svg.append("text").attr("x", left - 10).attr("y", y + rh / 2 - 2).attr("dy", "0.34em").attr("text-anchor", "end").text(cat).attr("style", "font-size:11.5px;fill:var(--ink)");
+    const w = x(items.length) - left;
+    g.append("path").attr("d", `M${left},${y + 3} h${w - 4} q4,0 4,4 v${rh - 18} q0,4 -4,4 h${-(w - 4)} z`).attr("fill", "var(--series-1)");
+    svg.append("text").attr("x", left + w + 6).attr("y", y + rh / 2 - 2).attr("dy", "0.34em").text(items.length).attr("style", "font-size:11px;fill:var(--ink-2);font-variant-numeric:tabular-nums");
+    g.on("mousemove", (ev) => showTip(ev, `<b>${esc(cat)}</b><br>${items.map((o) => esc(o.resource_name)).join("<br>")}`)).on("mouseleave", hideTip);
+  });
+}
+
+/* ------------------------------------------------------------ boot */
+function renderAll() {
+  ["#lin-forest", "#lin-soil", "#forest-heat", "#soil-heat", "#forest-scale", "#soil-scale", "#soil-reach", "#soil-vars", "#soil-years", "#soil-depth", "#other-cats"].forEach((s) => ($(s).innerHTML = ""));
+  mapDraws = [];
+  renderMeta(); renderMatrix();
+  $("#lin-legend").innerHTML = `<span><span class="ln"></span>training / used by study</span><span><span class="ln dash"></span>external validation</span><span><span class="ln dot"></span>historical, reused or unresolved role</span><span><span class="sw" style="background:var(--good);border-radius:50%"></span>hosted in our project</span><span><span class="sw" style="background:var(--series-1);border-radius:50%"></span>external GEE asset</span><span><span class="sw" style="background:var(--warn);border-radius:50%"></span>unconfirmed</span><span><span class="sw" style="background:var(--rule-strong);border-radius:50%"></span>identified only</span>`;
+  renderLineage("forest", "#lin-forest"); renderLineage("soil", "#lin-soil");
+  renderForestGround(); renderMapTable("forest", "#forest-map-tbl"); renderMapTable("soil", "#soil-map-tbl");
+  renderHeat("forest", "#forest-heat", "#forest-heat-leg"); renderHeat("soil", "#soil-heat", "#soil-heat-leg");
+  renderScale("forest", "#forest-scale"); renderScale("soil", "#soil-scale");
+  renderGallery("forest", "#forest-gallery"); renderGallery("forest_cov", "#forest-cov-gallery"); renderGallery("soil", "#soil-gallery");
+  renderMultiples(); renderProfileTable(); renderReach(); renderVars(); renderYears(); renderAudit(); renderSoilIdentified();
+  renderDepth(); renderQC(); renderTodo(); renderOther();
+}
+renderAll();
+// Redraw colour-dependent canvases/scales when the theme changes.
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", renderAll);
+new MutationObserver(renderAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => mapDraws.forEach((f) => f()), 150); });
+</script>

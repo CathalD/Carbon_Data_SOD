@@ -1,0 +1,10 @@
+# Quarto render output and cache (the site is published to the gh-pages branch)
+/_site/
+/.quarto/
+/_freeze/
+*_files/
+**/*.quarto_ipynb
+# Earth Engine run logs
+data/derived/logs/
+.DS_Store
+__pycache__/

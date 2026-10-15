@@ -1,0 +1,14 @@
+{
+ "id": "bd_5_15",
+ "a_label": "Geng BD 5\u201315 cm",
+ "b_label": "SoilGrids BD 5\u201315 cm",
+ "unit": "g/cm\u00b3",
+ "lo": 0.8461002218723297,
+ "hi": 1.46,
+ "dlim": 0.42495584249496454,
+ "files": {
+  "a": "pair_maps/bd_5_15_a.png",
+  "b": "pair_maps/bd_5_15_b.png",
+  "diff": "pair_maps/bd_5_15_diff.png"
+ }
+}

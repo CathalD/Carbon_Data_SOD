@@ -1,0 +1,14 @@
+{
+ "id": "peat_carbon",
+ "a_label": "Li peat carbon",
+ "b_label": "PEATGRIDS peat carbon",
+ "unit": "kg C/m\u00b2",
+ "lo": 47.8357373046875,
+ "hi": 192.21195373535164,
+ "dlim": 117.44853878021237,
+ "files": {
+  "a": "pair_maps/peat_carbon_a.png",
+  "b": "pair_maps/peat_carbon_b.png",
+  "diff": "pair_maps/peat_carbon_diff.png"
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "id": "ocs_0_100",
+ "a_label": "Sothe SOC stock (0\u20131 m assumed)",
+ "b_label": "NCSCDv2 SOC 0\u2013100 cm",
+ "unit": "kg C/m\u00b2",
+ "lo": 1.1,
+ "hi": 142.50142150878906,
+ "dlim": 103.8118487548828,
+ "files": {
+  "a": "pair_maps/ocs_0_100_a.png",
+  "b": "pair_maps/ocs_0_100_b.png",
+  "diff": "pair_maps/ocs_0_100_diff.png"
+ }
+}

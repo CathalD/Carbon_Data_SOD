@@ -1,0 +1,68 @@
+---
+title: "Where Canada's carbon maps agree, and where they don't"
+subtitle: "A like-for-like comparison of forest and soil carbon products, and of soil maps against field profiles."
+---
+
+```{r}
+#| label: setup
+source(file.path("report", "_setup.R"))
+```
+
+::: {.lede}
+Canada has several national and regional carbon maps built from different field data, covariates and grids. This report compares them only where they claim to measure the same thing at the same depth, and shows where they agree and disagree. No map is treated as truth.
+:::
+
+```{r}
+fams <- unique(pairs$family)
+all_s <- bind_rows(lapply(fams, read_pair_samples))
+if (nrow(all_s)) {
+  all_s <- all_s |> filter(!(id == "agb_2020" & a == 0 & b == 0))
+  s <- all_s |> group_by(id) |> agree_stats() |> left_join(pairs |> select(id, quantity, unit, domain, a_label, b_label), by = "id")
+}
+```
+
+## The comparisons at a glance
+
+```{r}
+if (nrow(all_s)) {
+  s |> arrange(match(id, pairs$id)) |>
+    transmute(Domain = tools::toTitleCase(domain), Quantity = quantity,
+              `A vs B` = paste(sub(" .*", "", a_label), "vs", sub(" .*", "", b_label)),
+              Unit = unit, Points = fmt_n(n), `Mean A − B` = fmt_s(bias), r = sprintf("%.2f", r),
+              `Within ±25%` = percent(within25, accuracy = 1)) |>
+    kable(caption = "Pixel comparisons on each pair's coarser native grid, from area-uniform random points. 'Within ±25%' = share of points where |A − B| is at most 25% of their mean.")
+} else {
+  cat("Comparison samples not yet generated.")
+}
+```
+
+```{r}
+#| label: chart-overview
+#| fig-height: 4.4
+if (nrow(all_s)) {
+  ov <- s |> mutate(label = paste0(quantity, "  ·  ", sub(" .*", "", a_label), " vs ", sub(" .*", "", b_label)),
+                    label = reorder(label, within25))
+  ggplot(ov, aes(within25, label, colour = domain)) +
+    geom_segment(aes(x = 0, xend = within25, yend = label), linewidth = 0.6, colour = pal$rule) +
+    geom_point(size = 3.2) +
+    scale_colour_manual(values = c(forest = pal$forest, soil = pal$soil), name = NULL) +
+    scale_x_continuous(labels = label_percent(), limits = c(0, 1), expand = expansion(mult = c(0, 0.02))) +
+    labs(x = "Share of points where the two products are within ±25% of each other", y = NULL,
+         title = "Agreement by comparison") +
+    theme(panel.grid.major.y = element_blank())
+}
+```
+
+## Read the sections
+
+- **[Forest](report/forest.qmd)**: forest plot data (placeholder until plots are ingested), the training data and covariates behind each forest map, and SCANFI vs ESA CCI aboveground biomass.
+- **[Soils](report/soils.qmd)**: the five profile datasets compared with each other, the training data and covariates behind each soil map, map-to-map comparisons at matching depths, and maps against profiles.
+- **[Methods](report/methods.qmd)**: the rules, grids, unit conversions, sampling design and limitations.
+- **[State of Data summary](state_of_data_summary/state_of_data_summary.html)**: the inventory this comparison builds on.
+
+## What this comparison does not claim
+
+- Agreement between two maps is not accuracy; both can share the same training data or the same blind spots.
+- Differences are reported on each pair's coarser native grid; they say nothing about finer detail.
+- Profile comparisons set a soil core beside a pixel average. Several profile datasets trained some of the maps, so agreement there is not independent validation.
+- The Sothe 0–100 cm comparison is provisional: its depth is a working assumption and its stored units are unverified.

@@ -1,0 +1,14 @@
+{
+ "id": "agb_2020",
+ "a_label": "SCANFI v1.2 AGB 2020",
+ "b_label": "ESA CCI v6 AGB 2020",
+ "unit": "Mg/ha",
+ "lo": 2.0,
+ "hi": 258.65999999999985,
+ "dlim": 120.83848617233716,
+ "files": {
+  "a": "pair_maps/agb_2020_a.png",
+  "b": "pair_maps/agb_2020_b.png",
+  "diff": "pair_maps/agb_2020_diff.png"
+ }
+}

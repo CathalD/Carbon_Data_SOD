@@ -1,0 +1,14 @@
+{
+ "id": "soc_60_100",
+ "a_label": "Geng SOC 60\u2013100 cm",
+ "b_label": "SoilGrids SOC 60\u2013100 cm",
+ "unit": "g/kg",
+ "lo": 0.07316971376538273,
+ "hi": 215.5540000000001,
+ "dlim": 92.94090576171875,
+ "files": {
+  "a": "pair_maps/soc_60_100_a.png",
+  "b": "pair_maps/soc_60_100_b.png",
+  "diff": "pair_maps/soc_60_100_diff.png"
+ }
+}

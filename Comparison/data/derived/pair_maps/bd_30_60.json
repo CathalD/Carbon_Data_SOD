@@ -1,0 +1,14 @@
+{
+ "id": "bd_30_60",
+ "a_label": "Geng BD 30\u201360 cm",
+ "b_label": "SoilGrids BD 30\u201360 cm",
+ "unit": "g/cm\u00b3",
+ "lo": 0.9381733322143554,
+ "hi": 1.58,
+ "dlim": 0.440272564888,
+ "files": {
+  "a": "pair_maps/bd_30_60_a.png",
+  "b": "pair_maps/bd_30_60_b.png",
+  "diff": "pair_maps/bd_30_60_diff.png"
+ }
+}

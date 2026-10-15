@@ -1,0 +1,88 @@
+---
+title: "Methods"
+subtitle: "What is compared, how, and what the results can and cannot say."
+---
+
+```{r}
+#| label: setup
+source("_setup.R")
+```
+
+## Analytical design
+
+| | |
+|---|---|
+| **Question** | Where do Canadian carbon products agree or disagree when compared like with like, and how do soil maps compare with field profiles? |
+| **Estimand** | Per-pixel differences (A − B) on each pair's coarser native grid, summarised as mean difference, RMSD, Pearson r and share within ±25%, nationally and by terrestrial ecozone. At profiles: map value at the containing pixel vs the thickness-weighted observed value for the same interval. |
+| **Data roles** | Maps are products being compared; none is treated as truth. Profiles are observations, but not independent validation where they trained a map. Ecozones are reporting units only. |
+| **Method** | Documented unit conversion, mean aggregation of the finer product to the coarser grid, differencing and descriptive statistics. No modelling, gap-filling or bias correction. |
+| **Not part of this analysis** | Deriving stocks from concentration × bulk density for maps; deduplicating profiles across datasets; forest plot comparisons (no plots ingested yet); propagating map uncertainty. |
+
+## Rules for pairing products
+
+1. **Same quantity, same depth or pool.** Products are paired only when both report the same quantity (e.g. SOC concentration) for the same depth interval (e.g. 0–5 cm) or the same pool and year. Everything else is listed, with the reason, in the "not compared" tables.
+2. **Coarser grid per pair.** Each pair is compared on the coarser of its two native grids. The finer product is mean-aggregated (Earth Engine `reduceResolution`, mean of contributing pixels) to that grid. Nothing is upsampled, because resampling a coarse map to a finer grid adds no information.
+3. **Documented units only.** Values are converted with the providers' documented factors to one unit per quantity. No other rescaling.
+
+```{r}
+pairs |>
+  transmute(Pair = id, Quantity = quantity, A = a_label, B = b_label,
+            `Comparison grid` = paste0(b_label, " native grid"), Region = ifelse(region == "hbl", "Hudson Plain ecozone", "Canada"),
+            `Unit and conversions` = paste0(unit, "; ", note)) |>
+  kable(caption = "All pairs. In every pair B is the coarser product, so the comparison grid is B's native grid.")
+```
+
+## Sampling design for map statistics
+
+Statistics are computed from **30,000 random points**, uniform in area. They are drawn in Canada Albers equal-area (ESRI:102001) within the terrestrial ecozones, seed 42. The peat pairs use **1,500 points** in the Hudson Plain ecozone (seed 43). At each point both products are read on the pair's comparison grid. Points where either product has no data are dropped for that pair. For aboveground biomass, points where both products are zero are also dropped, so shared non-forest does not inflate agreement.
+
+Random sampling keeps the statistics cheap and unbiased by area. The map figures are display summaries: Earth Engine averages each product to the display grid (about 7 km per pixel nationally, 1.5 km in the Hudson Plain) before differencing. They show broad patterns, not pixel-level detail.
+
+## Profiles
+
+- **Depth matching:** each profile's layers are combined into the map intervals by thickness-weighted mean, only where the layers cover the whole interval with no gaps or overlaps. No extrapolation and no splines.
+- **Stocks at 0–30 and 0–100 cm:** sums of each dataset's own layer stock values times the fraction of each layer inside the interval. No bulk density is gap-filled.
+- **Depth datum:** each preparation's own. NPDB organic horizons have negative depths; following the NPDB preparation (datum = profile top), depths are shifted so the profile top is 0.
+- **Map values:** each profile takes the value of the map pixel that contains it, at the map's native grid.
+- **Units:** organic carbon in g/kg (WoSIS is stored in g/kg; the other datasets in %, ×10); bulk density in g/cm³; stocks in kg C/m². Riley bulk-density units are unverified.
+
+## Unit conversions
+
+| Product | Stored | Converted to | Factor | Source |
+|---|---|---|---|---|
+| SoilGrids `soc` | dg/kg | g/kg | ÷ 10 | ISRIC SoilGrids FAQ |
+| SoilGrids `bdod` | cg/cm³ | g/cm³ | ÷ 100 | ISRIC SoilGrids FAQ |
+| SoilGrids `ocs` | t/ha | kg C/m² | ÷ 10 | ISRIC SoilGrids FAQ |
+| Geng SOC | % | g/kg | × 10 | Provider (CanSIS); stored range consistent with % |
+| Geng BD | g/cm³ | g/cm³ | 1 | Provider (CanSIS) |
+| NCSCDv2 SOCC30 / SOCC100 | hg C/m² | kg C/m² | ÷ 10 | Bolin Centre NCSCD raster documentation |
+| Sothe stock | kg C/m² (study) | kg C/m² | 1 | Study units; **stored encoding unverified** |
+| PEATGRIDS carbon | Mg C/m² | kg C/m² | × 1000 | Asset metadata |
+| Li et al. carbon / depth | kg C/m² / cm | same | 1 | Study units; import encoding unverified |
+| SCANFI biomass / ESA CCI AGB | t/ha / Mg/ha | Mg/ha | 1 | Provider documentation |
+
+## Ecozones
+
+Canada's 15 terrestrial ecozones from the AAFC National Ecological Framework (`ecozone_shp.zip`, Open Government Licence – Canada), stored in `Comparison/data/ecozones/`. Each sampled point and profile takes the ecozone it falls in.
+
+## Limitations
+
+- **Agreement is not accuracy.** Two maps can agree because they share training data or covariates.
+- **Support mismatch.** A soil core or inventory plot is a few square metres; the pixels are 30 m to about 1.3 km.
+- **Temporal mismatch.** Profiles span 1939–2017; maps represent their own reference periods.
+- **Masks differ.** Products exclude water, urban, bedrock or non-forest differently; comparisons use only points where both have data.
+- **Unverified encodings.** The Sothe stock's units and depth, Riley bulk density, and imported encodings of Geng and Li are flagged in the repository QC register.
+
+## Reproduce
+
+From `Comparison/analysis/` with the project environment (`requirements.txt`) and Earth Engine access:
+
+```bash
+Rscript R/01_profile_intervals.R
+Rscript R/02_peat_core_depths.R
+python gee/01_sample_pairs.py
+python gee/02_sample_profiles.py
+python gee/03_pair_maps.py
+```
+
+Then from `Comparison/`, `quarto render` writes the site to `Comparison/_site/`, and `quarto publish gh-pages` publishes it to the repository's `gh-pages` branch for GitHub Pages. The site renders from the files in `Comparison/data/`, so re-rendering does not need Earth Engine.
