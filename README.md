@@ -6,7 +6,7 @@ A community catalogue of forest and soil carbon data for Canada, connecting fiel
 
 Field observations establish the relationship between carbon and ecosystem characteristics. Spatial covariates extend that relationship across the landscape through a fitted model. For forests, inventories often measure tree dimensions and species; biomass and carbon are then estimated using documented allometric equations and conversion factors.
 
-The [Google Sheets master catalogue](https://docs.google.com/spreadsheets/d/14PeDcxAptEf7DOpgLtIN93S5dyVWewP6_hn5nvtTjKU/edit) links studies, ground observations, covariates, maps and Earth Engine assets. Its 16 tabs record geographic study scope separately from native raster resolution, model/output grids, extraction support, time and soil depth. Study-ground links identify the observations used in each study; evidence and status fields distinguish documented predictors from candidates and unresolved details. The original spreadsheet rows are preserved in a source archive.
+The [Google Sheets master catalogue](https://docs.google.com/spreadsheets/d/14PeDcxAptEf7DOpgLtIN93S5dyVWewP6_hn5nvtTjKU/edit) links studies, ground observations, covariates, maps and Earth Engine assets. Its 17 tabs record geographic study scope separately from native raster resolution, model/output grids, extraction support, time and soil depth. Study-ground links identify the observations used in each study; evidence and status fields distinguish documented predictors from candidates and unresolved details. The original spreadsheet rows are preserved in a source archive.
 
 The catalogue is ready for review and tab-by-tab export for Google Cloud preparation. Step 2 adds soil depth/method records, a five-dataset depth audit and a 30-asset QC register. [Soil quality checks and findings](docs/soil_quality_checks.md) document measured versus estimated values, integration/extrapolation and unresolved import metadata. The maintainer supplied the complete 30-asset pixel-mode QC pass: 19 copied images agree at sampled pixels; ten Geng uploads were sampled without comparison to original TIFFs. Access to maps/layers/profiles is complete per maintainer confirmation on 15 October 2026; no independent anonymous-session access test is claimed. Depth/method and import caveats remain documented. Circumpolar thermokarst/Olefeldt work is deferred. Expand the entries below for details.
 
@@ -23,9 +23,17 @@ The [finished extraction plan](docs/covariate_extraction_plan.md) links **what t
 | Forest regions / Canada | 30 or 250 m by study | Landsat temporal features, radar, climate, terrain and study-specific canopy structure |
 | Coastal estuaries | Core/local support | Tidal elevation, fines and vegetation/salinity are field context until mapped and validated |
 
-Native information grid, output spacing, plot/core support and neighbourhood radius are separate fields. Coarse climate does not gain detail when sampled at 30 m. The unchanged notebook defines 43 candidate predictors plus four QA bands; no new extraction has run. Published input/retained evidence is distinguished from proposed candidates and conditional additions. Existing target-derived carbon/soil maps are excluded from default predictors to prevent leakage.
+Native information grid, output spacing, plot/core support and neighbourhood radius are separate fields. Coarse climate does not gain detail when sampled at 30 m. The unchanged notebook defines 43 candidate predictors plus four QA bands. A [20-profile extraction pilot](docs/soil_covariate_pilot.md) has now run at the original 30 m grid; study-specific additions and 100/250 m adaptations remain planned. Published input/retained evidence is distinguished from proposed candidates and conditional additions. Existing target-derived carbon/soil maps are excluded from default predictors to prevent leakage.
 
 Machine-readable: [decisions](data/catalogue/covariate_extraction_plan.json), [scales](data/catalogue/covariate_scale_profiles.json), [study stacks](data/catalogue/study_covariate_stacks.json), [Li source manifest](data/catalogue/li_2025_hbl_covariates.json). [Dated access status](data/catalogue/access_status_20261015.json) records maintainer confirmation without claiming independent verification.
+
+## Extraction pilot — completed, review flags before bulk
+
+The [live 20-profile pilot](docs/soil_covariate_pilot.md) returned all selected IDs and the 47-band baseline: **855/860 predictor values available**, all QA fields present and all 20 source-layer joins valid. The Google Sheet's **Pilot_QC** tab records the results.
+
+One BC coastal profile lacks five ERA5-Land values. Three profiles have extreme radar-ratio dispersion; an acquisition-level check also found a default-versus-exact median difference at one point. These findings, historical field dates and coordinate uncertainty require review before bulk processing. The original notebook and baseline results are preserved.
+
+[Aggregate QA](data/catalogue/soil_covariate_pilot_summary.json) · [Reproduction instructions](docs/soil_covariate_pilot.md#reproduce). Detailed CSV and exact profile locations are retained in the working workspace pending publication approval.
 
 ## Scales and evidence
 
