@@ -1,6 +1,6 @@
 # Carbon State of Data TODOs
 
-Updated 15 October 2026. Current priority: complete numerical/provenance checks on the 16 completed project copies and existing Geng layers. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
+Updated 15 October 2026. Current priority: complete numerical/provenance checks on the 20 completed project copies and existing Geng layers. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
 
 ## Soil maps — active
 
@@ -27,7 +27,7 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 ## Li regional peat maps — new batch
 
 - [x] Catalogue four supplied Li et al. (2025) Hudson Bay Lowlands GEE IDs, paper and Borealis archive; record regional 30 m output and variable modelled peat-depth support.
-- [ ] Run `scripts/05_Copy_Li_HBL_Maps.js` to copy all four into `soils/maps/li_2025_hbl`; save summary and local metadata. These four are pending, separate from the 16 completed copies.
+- [x] Copy all four Li maps into `soils/maps/li_2025_hbl`: maintainer output confirms four individual copied/type-readback results and four successful local metadata results. One `b1`, 30 m nominal scale and identical affine transforms; short CRS null, properties empty. Total copied assets now 20, across the original 16 and Li four.
 - [ ] Check Li imported units/scaling, CRS, pixel alignment, masks and uncertainty encoding against archived files. Keep variable-depth stocks distinct from fixed-depth SOC products.
 - [ ] Catalogue Li public validation peat depths, with source licence and duplicate checks. Training depths require an MNR agreement; do not list as open.
 - [ ] Extract Li Table S1's 16 retained covariates, native grids, dates, extraction supports and regional validation design; retain predictor importance context.
