@@ -16,7 +16,8 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 - [x] Record NRCan peat SAMP_CARB_MGHA → TOTC_Stock naming mismatch, repeated whole-core Org_C_MGHA, missing carbon estimation flags, and Janousek sampled-depth thresholds/extrapolation.
 - [x] Verify provider units/depth/method documentation for SoilGrids, Geng, NCSCDv2 and Li; retain uncertainty/import caveats and the Sothe 0–1 m working assumption.
 - [x] Prepare read-only [06_Soil_Map_QC.js](scripts/06_Soil_Map_QC.js), exact-ID manifest and [run instructions](docs/soil_quality_checks.md). JavaScript syntax and 30-ID manifest validated locally.
-- [ ] Run metadata/ACL pass with RUN_PIXEL_CHECKS=false in maintainer GEE session and retain QC_ROW/QC_ALIGNMENT_JSON/QC_SUMMARY_JSON.
+- [x] Receive first maintainer metadata pass: all 30 destinations returned metadata (29 Image, one Table). Original type_mismatch flags were a script parser bug; 19 copied images have matching returned band metadata. Evidence archived.
+- [ ] Rerun corrected QC v2026-10-15.2 with RUN_PIXEL_CHECKS=false: full WKT per band, Geng collection-scope ACL, and full thermokarst geometry-type inventory. First source/copy thermokarst feature is Empty; polygon usability remains unresolved.
 - [ ] After metadata review, run native-grid pixel samples with RUN_PIXEL_CHECKS=true. Sample agreement is not full raster equivalence; original TIFF encoding checks still required for Geng and imported layers.
 - [ ] Resolve flagged depth intervals, missing method/estimation provenance and source units before publishing standardized-depth stocks. Review 182 Janousek thickness/boundary discrepancies against original sampling/compaction semantics.
 - [ ] Restore omitted source method/estimation fields in new versioned profile preparations after agreeing on correction rules; do not overwrite current assets during QC.
