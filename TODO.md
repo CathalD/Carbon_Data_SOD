@@ -1,8 +1,14 @@
 # Carbon State of Data TODOs
 
-Updated 15 October 2026. Current priority: complete numerical/provenance checks on the 20 completed project copies and existing Geng layers. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
+Updated 15 October 2026. Current status: complete maintainer pixel-mode QC received; map/layer/profile access complete per maintainer. Covariate catalogue finished; extraction not executed. Circumpolar thermokarst/Olefeldt deferred. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
 
-## Master catalogue — step 1 complete
+## Current catalogue additions
+
+- [x] Maintain the existing Google Sheet (16 tabs), adding 17 detailed Li evidence entries (217 total), 114 extraction decisions, 10 scale profiles and 11 study/workflow stacks.
+- [x] Publish [covariate plan](docs/covariate_extraction_plan.md), machine-readable tables, Li Table S1 manifest and dated maintainer access record.
+- [ ] Implement versioned extraction after resolving each selected Hold/Conditional dependency, preserving native support, response depth and leakage-safe grouped/spatial validation.
+
+## Master catalogue — original step 1 complete (historical counts)
 
 - [x] Create the [native Google Sheets master catalogue](https://docs.google.com/spreadsheets/d/14PeDcxAptEf7DOpgLtIN93S5dyVWewP6_hn5nvtTjKU/edit): 10 linked tabs, 24 study records, 28 ground-data resources, 29 study-ground links, 200 covariate/evidence entries, 28 map records, 51 asset records, 20 other sources, all 117 non-empty original spreadsheet rows and a data dictionary.
 - [x] Separate geographic analysis scope, native raster grid, model/output grid, extraction support, temporal context and depth basis; record ground data used by each study and unresolved evidence explicitly.
@@ -23,7 +29,7 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 - [ ] Restore omitted source method/estimation fields in new versioned profile preparations after agreeing on correction rules; do not overwrite current assets during QC.
 
 - [x] Receive partial pixel output: A001–A004 have zero sampled value/mask mismatches (207/229/264/265 common valid pixels from 512 seeded points each). Other six supplied rows report not_run; no final summary provided.
-- [x] Retain completed current pixel-run summary and all 30 results. No numerical execution errors reported; 19 copied-image sample agreements. Public ACL grants are absent in the returned copy/collection scopes; no permissions changed.
+- [x] Retain completed current pixel-run summary and all 30 results. No numerical execution errors reported; 19 copied-image sample agreements. Historical returned copy/collection ACL scopes had no public grant. Superseded for current access status by maintainer confirmation on 15 October; independent verification not claimed.
 
 ## Soil maps — active
 
@@ -35,11 +41,11 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 - [x] Record supplied NCSCDv2 Canada WGS84 0.012° SOCC30/SOCC100/SOCC200 assets in `projects/carbon-learning-library/assets/`. No further upload requested for these three layers.
 - [ ] Verify the three NCSCDv2 imports: expected depth supports 0–30, 0–100 and 100–200 cm, native hg C/m² versus any import conversion, grid, masks and access. Do not assume SOCC200 is cumulative 0–200 cm. The 200–300 cm layer is not yet supplied.
 - [x] Record supplied thermokarst reference `projects/carbon-learning-library/assets/Circumpolar_Thermokarst_Landscapes`.
-- [ ] Complete thermokarst geometry, units, source version and public-permission checks. Supplied output confirms 132,089 features and fields. `TSOC_kgC` is a total-mass label, not stock density; preserve polygon support.
+- Deferred by maintainer: thermokarst geometry, units and source-version follow-up. Access completed per maintainer. Supplied output confirms 132,089 features and fields. `TSOC_kgC` is a total-mass label, not stock density; preserve polygon support.
 - [ ] Locate a working Hengl Alberta raster/field-data archive. The published viewer has a certificate hostname mismatch in the verified connection check. Public GEE asset not found in the searches performed.
 - [ ] Retain Treat and Janousek as review/core-based references rather than new raster upload tasks. Any independently derived map needs its own provenance.
 - [ ] Record image IDs, bands, depths, prediction statistic, uncertainty type, geography, version, licence and runtime verification in the master catalogue spreadsheet.
-- [ ] Verify public-read permissions for project-hosted maps intended for community reuse.
+- [x] Maintainer confirms access to all maps/layers/profiles complete on 15 October 2026. Record owned assets as Maintainer reports public; no independent anonymous-session test claimed.
 
 - [x] Add ABCFlux v2 (ORNL DAAC 2448) to resource tables only, with its own citation; exclude it from map loading/visualization as requested.
 
@@ -53,7 +59,7 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 - [x] Copy all four Li maps into `soils/maps/li_2025_hbl`: maintainer output confirms four individual copied/type-readback results and four successful local metadata results. One `b1`, 30 m nominal scale and identical affine transforms; short CRS null, properties empty. Total copied assets now 20, across the original 16 and Li four.
 - [ ] Check Li imported units/scaling, CRS, pixel alignment, masks and uncertainty encoding against archived files. Keep variable-depth stocks distinct from fixed-depth SOC products.
 - [ ] Catalogue Li public validation peat depths, with source licence and duplicate checks. Training depths require an MNR agreement; do not list as open.
-- [ ] Extract Li Table S1's 16 retained covariates, native grids, dates, extraction supports and regional validation design; retain predictor importance context.
+- [x] Catalogue Li Table S1: 16 Boruta-retained variables plus rejected TWI, native/output support, dates and regional context. Exact coastline/river source and two radar arithmetic recipes remain explicitly on Hold.
 - [x] Assign Sothe `sc_250m_v20` and `sc_uncertainty_250m_v20` to 0–1 m as explicitly requested by the maintainer; retain a working-assumption label, not source verification.
 - [ ] Independently confirm the assumed Sothe 0–1 m depth against original release identity when available; verify uncertainty definition, units and the differing grid origins before paired analysis.
 
@@ -63,15 +69,16 @@ Updated 15 October 2026. Current priority: complete numerical/provenance checks 
 - [ ] Restore Janousek estuary, ecosystem, ecoregion, climate-zone, tidal-elevation, vegetation, depth-standard stock and estimation/extrapolation metadata by original core ID. Do not replace tidal elevation with an unvalidated generic DEM.
 - [ ] Identify Riley's exact OGS report(s)/table, bulk-density units, original core grouping, coordinate derivation and reuse terms; resolve four groups with overlapping intervals before stock integration.
 - [ ] Reconcile shared profiles across WoSIS, NPDB, NRCan peat and other compilations before counting independent observations or defining validation folds.
-- [ ] Verify source licences and public-read permissions for ground assets; obtaining a table is not proof of unrestricted redistribution rights.
+- [x] Record ground-asset access completed per maintainer on 15 October 2026.
+- [ ] Verify original source licences/redistribution terms; access to a hosted table does not establish every historical source's reuse terms.
 
-## Covariate evidence — deferred
+## Covariate catalogue — complete; historical reproduction gaps remain
 
 - [ ] Expand Sothe Table S2's 29 named entries into the reported 40-feature manifest and identify the exact 25 retained features. Definitions are already catalogued in `data/catalogue/sothe_2022_soc_covariates.json`.
 - [ ] Recover the Sothe Geoderma concentration release's exact six interval boundaries. GBC prediction point depths alone do not identify them.
 - [ ] Resolve Table S2's evapotranspiration resolution discrepancy and soil-class source scale; document historical/current product substitutions.
 - [ ] Complete Hengl's exact retained-feature/importance and data-release metadata.
-- [ ] Record native grid, model/output grid, extraction footprint/neighbourhood, geographic training/validation context and time period independently for every study stack.
+- [x] Finish Extraction_plan (114 decisions/recipes), Scale_profiles (10 profiles) and Study_stacks (11 stacks). Separate native/output grids, field/context support, time/depth and proposed validation. Preserve unchanged notebook; no extraction executed.
 
 ## Forest maps — existing outstanding work
 
