@@ -260,7 +260,7 @@ WoSIS v2 restores metadata lost during the original join and corrects the stock 
 
 Riley groups by NTS, peatland number and sampling point; four groups contain overlapping depth intervals. Bulk-density units and separate core identities need confirmation before stock integration. Janousek retains repeated source layer IDs with flags. Reconcile shared observations between NPDB, WoSIS and peat compilations before model validation.
 
-The [Can-Peat metadata portal](https://waterlooclimatedata.ca/) is a discovery/access resource. It is distinct from our local CanPeat files, now reconciled to the NRCan/Bauer peat profile database. The [Loisel et al. 2014 northern peatland synthesis](https://doi.org/10.1177/0959683614538073) is another distinct source, explicitly connected to the Sothe soil work. Community cores are excluded from the present repository workflow.
+The [Can-Peat metadata portal](https://uwaterloo.ca/can-peat/research/canadian-peatland-data-portal) is a discovery/access resource. It is distinct from our local CanPeat files, now reconciled to the NRCan/Bauer peat profile database. The [Loisel et al. 2014 northern peatland synthesis](https://doi.org/10.1177/0959683614538073) is another distinct source, explicitly connected to the Sothe soil work. Community cores are excluded from the present repository workflow.
 
 </details>
 
@@ -493,6 +493,45 @@ Full-column study provenance, native grids, output grids, extraction supports, u
 | ABCFlux v2: Arctic-Boreal CO2 and CH4 In-situ Flux and Environmental Data | Monthly CO2 exchange (NEE, GPP, ecosystem respiration) and CH4 fluxes; Arctic-boreal terrestrial/freshwater sites, 1984–2024; 1,024 sites | [NASA Earthdata record](https://www.earthdata.nasa.gov/data/catalog/ornl-cloud-arctic-boreal-co2-flux-v2-2448-1), [dataset DOI](https://doi.org/10.3334/ORNLDAAC/2448), [Virkkala et al. data paper](https://doi.org/10.5194/essd-18-6357-2026) | Table/resource link only; excluded from map loading and visualization |
 
 This is an independently cited flux synthesis related to the subject of Treat's review, not a new raster produced by Treat et al. (2024). Flux rates are different quantities from soil carbon stocks; retain variable-specific units, measurement methods, temporal aggregation and sign conventions. Do not assign an arbitrary raster resolution to site observations.
+
+## 5. Other resources
+
+[Full regional/pool review — 20 resources](docs/other_carbon_resources.md) · [Structured resource register](data/catalogue/other_carbon_resources.json)
+
+Reviewed 15 October 2026. These are additional resources and access leads, **not newly ingested assets**. Geographic context, plot/core support, raster size and depth basis are recorded separately. Some provide stocks, while others provide biomass, carbon concentration, context or discovery links.
+
+| Addition | Canadian relevance and support | Access/status |
+|---|---|---|
+| Shaw upland forest soil database | 3,253 pedons; forest-floor and mineral soil to 100 cm | [Data paper and supplements](https://doi.org/10.1002/ecy.2159); assess reuse terms and shared-profile overlap |
+| McNicol coastal rainforest SOC | BC/southeast Alaska; about 1,300 profiles and 90.5 m map; mineral soil plus organic horizons | [Revised Dryad data](https://doi.org/10.5061/dryad.5jf6j1r); downloadable database/map |
+| Arsenault regional peat bathymetry | Argenteuil, Québec; 28 peatlands; variable peat-basin depth | [2026 paper](https://doi.org/10.1029/2025JG009407), [data citation](https://doi.org/10.5281/zenodo.17065341); archive files not yet inspected |
+| Martens coastal BC peatlands | Six peatlands; new field observations alongside reused NRCan peat records | [2026 paper](https://doi.org/10.1038/s41598-026-44791-z), [data citation](https://doi.org/10.5281/zenodo.17533263); files not yet inspected |
+| PEATGRIDS | Canadian subset of global 1 km peat thickness and variable-depth carbon | [Awesome GEE](https://gee-community-catalog.org/projects/peatgrids/); documented assets, runtime/encoding checks pending |
+| Lamping coastal forest biomass | Coastal BC/Alaska, 30 m; live biomass and structural attributes | [GeoTIFF archive](https://doi.org/10.5281/zenodo.13932139); biomass is not automatically carbon |
+| Gross Alberta agroforestry | Local grassland/cropland/hedgerow/shelterbelt biomass, deadwood and soil pools | [Dryad CSV data](https://doi.org/10.5061/dryad.0zpc86711); coordinates/schema need checking |
+| Pendea freshwater wetlands | Lake Simcoe watershed; eight 50 cm cores in marshes/swamps | [Paper](https://doi.org/10.1029/2023JG007561), [Borealis archive](https://doi.org/10.5683/SP3/OJRV2I); retain depth versus dated-horizon distinctions |
+| Clayoquot marsh cores | Seven BC marshes; 34 cores and multiple stock-depth supports | [PANGAEA download](https://doi.org/10.1594/PANGAEA.947825); check overlap with Janousek |
+| Epstein seabed sediment carbon | Canadian continental margin; 200 m outputs, upper 30 cm stock | [Paper](https://doi.org/10.5194/essd-16-2165-2024), [Borealis archive](https://doi.org/10.5683/SP3/ICHVVA); distinct marine pool |
+
+<details>
+<summary>Can-Peat, NRCan peat profiles and C-PEAT are different resources</summary>
+
+Our existing `canpeat_*` asset names refer to the NRCan/Bauer Peat Profile Database. The [Waterloo Can-Peat portal](https://uwaterloo.ca/can-peat/research/canadian-peatland-data-portal) is a metadata discovery service linking original sources; Li already appears there. It does not supply an additional independent set of cores merely by listing a study.
+
+[C-PEAT v.2025](https://doi.org/10.1594/PANGAEA.986891) is a separate global peat-core synthesis; select and deduplicate the Canadian records. [Hugelius northern peat maps v2](https://bolin.su.se/data/hugelius-2020-peatland-2) are another coarse reference, available at 10 km or 0.1°, distinct from NCSCDv2. Can-Peat's integrated national-map activity remains a project lead until a released map is verified.
+
+</details>
+
+<details>
+<summary>Grasslands, prairie wetlands and other carbon pools</summary>
+
+The full review also lists [Alberta pasture properties/management](https://doi.org/10.5061/dryad.c2fqz6175), [BC grassland modelling](https://doi.org/10.1080/15481603.2017.1302181) and [Saskatchewan drained-wetland SOC](https://doi.org/10.3389/fenvs.2024.1353802). Access varies: Alberta pasture coordinates are withheld; the other studies do not establish verified public geolocated training tables. Carbon concentration is distinct from stock.
+
+[Cowichan blue carbon](https://doi.org/10.3389/fmars.2022.857586), [Blue Carbon Canada](https://www.bluecarboncanada.ca/publications-data), [ECCC lake sediment chemistry](https://open.canada.ca/data/en/dataset/0af54117-bb0b-4e86-8f3f-2f277158e071) and the [Parks Canada Carbon Atlas](https://publications.gc.ca/collections/collection_2024/pc/R62-581-2023-eng.pdf) broaden the resource list. Chemistry, habitat extent, fluxes and modelled accounting remain clearly labelled.
+
+Coverage still needs improvement for grassland/root biomass, deadwood/litter, Atlantic/Arctic coastal cores, inland-water stocks and deeper permafrost. Do not infer these pools from canopy cover or sum overlapping peat/soil products.
+
+</details>
 
 ## Scope
 
