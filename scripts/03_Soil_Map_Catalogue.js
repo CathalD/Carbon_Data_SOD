@@ -1,9 +1,18 @@
 // Carbon State of Data — soil map references, updated 15 October 2026.
 // Read-only inspection: no exports, uploads, unit conversions or integration.
-// User-reported assets remain subject to runtime and public-read checks.
+// Local copies confirmed by maintainer Console output: 16 copied, 0 failed.
+// Numerical values, source depth/unit definitions and public-read checks remain pending.
 
 var gengRoot = 'projects/northstarlabs/assets/canada_carbon_collection';
-var ncscdRoot = 'projects/carbon-learning-library/assets/';
+var mapsRoot = 'projects/northstarlabs/assets/carbon_state_of_data/soils/maps/';
+var ncscdRoot = mapsRoot + 'ncscdv2/';
+var sotheRoot = mapsRoot + 'sothe_2022/';
+var sotheStockNames = ['sc_250m_v20', 'sc_uncertainty_250m_v20'];
+var sotheConcentrationNames = [
+  'scc_0cm_250m_version10', 'scc_5cm_250m_version10',
+  'scc_15cm_250m_version10', 'scc_30cm_250m_version10',
+  'scc_60cm_250m_version10', 'scc_100cm_250m_version10'
+];
 var gengNames = [
   'BD_0_5_cm', 'BD_5_15_cm', 'BD_15_30_cm', 'BD_30_60_cm',
   'BD_60_100_cm', 'SOC_0_5_cm', 'SOC_5_15_cm', 'SOC_15_30_cm',
@@ -11,16 +20,18 @@ var gengNames = [
 ];
 
 var maps = {
-  sotheStocks: ee.ImageCollection(
-    'projects/sat-io/open-datasets/carbon_stocks_ca/sc'),
-  sotheConcentration: ee.ImageCollection(
-    'projects/sat-io/open-datasets/carbon_stocks_ca/scc'),
-  soilGridsSOC: ee.Image('projects/soilgrids-isric/soc_mean'),
-  soilGridsBD: ee.Image('projects/soilgrids-isric/bdod_mean'),
-  soilGridsDensity: ee.Image('projects/soilgrids-isric/ocd_mean'),
-  soilGridsStock: ee.Image('projects/soilgrids-isric/ocs_mean'),
+  sotheStocks: ee.ImageCollection.fromImages(sotheStockNames.map(function(name) {
+    return ee.Image(sotheRoot + name);
+  })),
+  sotheConcentration: ee.ImageCollection.fromImages(sotheConcentrationNames.map(function(name) {
+    return ee.Image(sotheRoot + name);
+  })),
+  soilGridsSOC: ee.Image(mapsRoot + 'soilgrids_v2/soc_mean'),
+  soilGridsBD: ee.Image(mapsRoot + 'soilgrids_v2/bdod_mean'),
+  soilGridsDensity: ee.Image(mapsRoot + 'soilgrids_v2/ocd_mean'),
+  soilGridsStock: ee.Image(mapsRoot + 'soilgrids_v2/ocs_mean'),
   geng: ee.ImageCollection(gengRoot),
-  thermokarst: ee.FeatureCollection(ncscdRoot +
+  thermokarst: ee.FeatureCollection(mapsRoot + 'olefeldt_2016/' +
     'Circumpolar_Thermokarst_Landscapes'),
   ncscd30: ee.Image(ncscdRoot +
     'NCSCDv2_Canada_WGS84_SOCC30_0012deg'),
@@ -50,6 +61,9 @@ function inspectImage(label, image) {
 
 inspectCollection('Sothe soil stocks', maps.sotheStocks);
 inspectCollection('Sothe SOC concentration', maps.sotheConcentration);
+sotheStockNames.concat(sotheConcentrationNames).forEach(function(name) {
+  inspectImage('Sothe local ' + name, ee.Image(sotheRoot + name));
+});
 inspectImage('SoilGrids SOC', maps.soilGridsSOC);
 inspectImage('SoilGrids bulk density', maps.soilGridsBD);
 inspectImage('SoilGrids carbon density', maps.soilGridsDensity);
