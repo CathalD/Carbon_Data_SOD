@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-15",
+  "javascript_syntax": "Passed node --check; Code Editor UI not executed",
+  "python_quickstart": "Executed live; reads succeeded and valid GeoTIFF downloaded",
+  "example_output": {
+    "wosis_profile_rows": 8825,
+    "soilgrids_soc_bands": 6,
+    "esa_cci_images": 10,
+    "geotiff_dimensions": [
+      29,
+      28
+    ],
+    "geotiff_bytes": 1340,
+    "output_crs": "EPSG:32613",
+    "output_grid_m": 250,
+    "reprojected_demo": true
+  },
+  "public_acl": {
+    "checked": 41,
+    "public_grants": 41,
+    "not_public": 0,
+    "errors": 0
+  },
+  "working_sheet": {
+    "permission": "Restricted",
+    "anonymous_csv_http_status": 401,
+    "sharing_changed": false
+  },
+  "catalogue_validation": {
+    "csvs": 13,
+    "rectangular": true,
+    "precise_pilot_coordinates_included": false
+  },
+  "relative_links": "Resolved against repository and candidate files",
+  "anonymous_download_verification": "Pending post-publication HTTP and content-hash readback"
+}

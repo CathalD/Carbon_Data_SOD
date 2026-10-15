@@ -2,6 +2,19 @@
 
 Updated 15 October 2026. Current status: complete maintainer pixel-mode QC received; map/layer/profile access complete per maintainer. Covariate catalogue finished; 20-profile baseline pilot completed with coverage/radar review flags before bulk processing. Circumpolar thermokarst/Olefeldt deferred. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
 
+## Step 5 — public release candidate prepared
+
+- [x] Add public metadata downloads: 13 CSVs, combined JSON and SHA-256 manifest; no individual pilot rows/coordinates.
+- [x] Add read-only Python/Code Editor examples; execute live reads and download a 29 × 28 demonstration GeoTIFF. Optional browser/Drive export not submitted.
+- [x] Retrieve primary DOI metadata for 22 study entries (21 unique papers); add BibTeX, source/data references and CITATION.cff.
+- [x] Inspect public ACLs for all 41 hosted references. Maintainer enabled public read on Geng collection and it was read back; 10 member images use collection scope.
+- [x] Confirm GitHub/downloads are public; original working Sheet remains restricted. Preserve the maintainer’s older uploaded workbook.
+- [x] Verify SCANFI v2 collection is public but contains 0 images; exclude from working examples.
+- [x] Reserve [Comparison](Comparison/README.md) for the maintainer’s forthcoming analysis; do not supply rankings/conclusions on their behalf.
+- [ ] Select/apply repository code and catalogue licences before a formal open-licensed release announcement; [proposal](docs/release_licensing.md).
+- [ ] Ingest SCANFI v2 images if the provider release is to be hosted; sharing alone does not populate the collection.
+- [ ] Resolve remaining original-source licensing, import encoding, depth/method and citation gaps per catalogue. These do not disappear with successful public ACL checks.
+
 ## Step 4 — extraction pilot complete
 
 - [x] Select four Canadian profiles from each of five hosted sources, seed 20261015; Janousek restricted to BC.
@@ -93,7 +106,8 @@ Updated 15 October 2026. Current status: complete maintainer pixel-mode QC recei
 
 ## Forest maps — existing outstanding work
 
-- [ ] Confirm SCANFI v2 download/ingestion status and populate the prepared `forests/maps/scanfi_v2_biomass` collection. Earlier download was reported in progress; completion has not been confirmed.
+- [x] Live-check SCANFI v2 collection: public ACL verified, 0 images on 15 October 2026.
+- [ ] Populate `forests/maps/scanfi_v2_biomass` from the provider release before offering it as hosted imagery.
 
 ## Other resources — targeted gap review, 15 October 2026
 
