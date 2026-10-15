@@ -2,6 +2,13 @@
 
 Updated 15 October 2026. Current priority: complete numerical/provenance checks on the 20 completed project copies and existing Geng layers. Community cores are excluded. The covariate notebook is retained unchanged as a reference.
 
+## Master catalogue — step 1 complete
+
+- [x] Create the [native Google Sheets master catalogue](https://docs.google.com/spreadsheets/d/14PeDcxAptEf7DOpgLtIN93S5dyVWewP6_hn5nvtTjKU/edit): 10 linked tabs, 24 study records, 28 ground-data resources, 29 study-ground links, 200 covariate/evidence entries, 28 map records, 51 asset records, 20 other sources, all 117 non-empty original spreadsheet rows and a data dictionary.
+- [x] Separate geographic analysis scope, native raster grid, model/output grid, extraction support, temporal context and depth basis; record ground data used by each study and unresolved evidence explicitly.
+- [x] Verify all 8,873 populated cells against the authored catalogue, apply filters/frozen identifiers and status/evidence dropdowns, and preserve source URLs for export.
+- [ ] Step 2: complete the metadata, numerical and public-access checks below before derived products or new extraction workflows. The Sheet does not certify unresolved assets or reproduce every study's exact retained feature list.
+
 ## Soil maps — active
 
 - [ ] Inspect Sothe stock (`carbon_stocks_ca/sc`) and concentration (`carbon_stocks_ca/scc`) collection members, bands, depths, units and uncertainty definitions. Runtime output confirms two stock/uncertainty images and six concentration point-depth IDs; stock and uncertainty each have one `b1`. Both use 0–1 m under the maintainer's working assumption; source confirmation remains deferred.
