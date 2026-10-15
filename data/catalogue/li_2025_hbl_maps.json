@@ -7,7 +7,7 @@
   "archive_citation_year": 2024,
   "geographic_context": "Regional: Hudson Bay Lowlands, including the Hudson and James Bay lowlands; use the actual study footprint/mask, not entire bay watersheds.",
   "reported_output_grid_m": 30,
-  "native_asset_grid": "Pending runtime inspection; 30 m does not establish independent 30 m detail in every input covariate.",
+  "native_asset_grid": "All four local images report 30 m nominal scale and identical affine transforms. Short CRS string is null; full custom CRS remains to inspect. Matching transforms alone do not establish equal CRS or masks.",
   "depth_basis": "Variable, modelled peat-column depth at each pixel. Carbon stock is not a fixed 0–30, 0–100 or 0–200 cm product.",
   "study_units": {
     "peat_depth": "cm",
@@ -21,7 +21,7 @@
     "complete_feature_manifest": "16 final covariates reported; Table S1 definitions, native resolutions, dates and extraction supports remain to catalogue."
   },
   "ground_data_access": "Paper links public validation peat depths through Borealis; training peat depths require an Ontario Ministry of Natural Resources data-sharing agreement. Do not present training data as openly hosted.",
-  "execution_status": "Four source IDs supplied by maintainer. Copies and runtime access not yet confirmed. Existing 16-asset manifest remains a separate completed batch.",
+  "execution_status": "Completed in maintainer-supplied GEE output: all four individual destination lines report copied with expected type, and plain-text metadata loads for all four. COPY SUMMARY object was collapsed; counts are established from individual results, not read from the collapsed object. The original 16-copy batch is separate.",
   "destination_root": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl",
   "method": "ee.data.copyAsset, overwrite=false; copy all four for consistent folder organization, including the two already in northstarlabs.",
   "assets": [
@@ -30,28 +30,58 @@
       "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_PeatDepth_30m",
       "asset_type": "IMAGE",
       "role": "peat_depth",
-      "status": "planned_not_executed"
+      "status": "copied_destination_type_and_metadata_confirmed_maintainer_output"
     },
     {
       "source_id": "projects/northstarlabs/assets/McMaster_Uncertainty_PeatDepth_30m",
       "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_Uncertainty_PeatDepth_30m",
       "asset_type": "IMAGE",
       "role": "peat_depth_uncertainty",
-      "status": "planned_not_executed"
+      "status": "copied_destination_type_and_metadata_confirmed_maintainer_output"
     },
     {
       "source_id": "projects/ee-cathalpdoherty2/assets/McMasterCarbon30mkgm2version1",
       "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterCarbon30mkgm2version1",
       "asset_type": "IMAGE",
       "role": "peat_carbon_stock",
-      "status": "planned_not_executed"
+      "status": "copied_destination_type_and_metadata_confirmed_maintainer_output"
     },
     {
       "source_id": "projects/ee-cathalpdoherty2/assets/McMasterUncertaintyCarbon30mkgm2",
       "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterUncertaintyCarbon30mkgm2",
       "asset_type": "IMAGE",
       "role": "peat_carbon_stock_uncertainty",
-      "status": "planned_not_executed"
+      "status": "copied_destination_type_and_metadata_confirmed_maintainer_output"
     }
-  ]
+  ],
+  "runtime_evidence": {
+    "source": "Maintainer-pasted GEE Console output in this conversation",
+    "copied_individual_results": 4,
+    "failed_individual_results": 0,
+    "skipped_individual_results": 0,
+    "summary_object": "collapsed in pasted output",
+    "common_metadata": {
+      "bands": [
+        "b1"
+      ],
+      "crs": null,
+      "nominal_scale_m": 30,
+      "properties": {},
+      "affine_transform": [
+        30,
+        0,
+        10030.096580487581,
+        0,
+        -30,
+        2302810.187057721
+      ]
+    },
+    "remaining_checks": [
+      "Full CRS definition",
+      "Stored units and scaling against original rasters",
+      "NoData and peatland mask",
+      "Uncertainty encoding",
+      "Public-read permissions and reuse terms"
+    ]
+  }
 }
