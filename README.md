@@ -494,7 +494,22 @@ Full-column study provenance, native grids, output grids, extraction supports, u
 
 This is an independently cited flux synthesis related to the subject of Treat's review, not a new raster produced by Treat et al. (2024). Flux rates are different quantities from soil carbon stocks; retain variable-specific units, measurement methods, temporal aggregation and sign conventions. Do not assign an arbitrary raster resolution to site observations.
 
-## 5. Other resources
+## Scope
+
+- Field plot and soil core observations.
+- Ecological, geographic, climatic and remote sensing covariates.
+- Forest biomass, forest carbon and soil carbon maps.
+
+Biomass and carbon are recorded separately. Consult each dataset's definitions, units, uncertainty documentation and licence before combining products. Source dependencies will be linked through ground-data, covariate-stack, study and map identifiers in the catalogue spreadsheet.
+
+## Contributing
+
+Suggest additions or corrections through [GitHub Issues](https://github.com/CathalD/Carbon_Data_SOD/issues). Include the dataset name, source link or DOI, licence, geographic context, pixel/plot support, and Earth Engine asset ID if available. For covariates, include the supporting study and predictive evidence.
+
+Each dataset retains its original licence and citation requirements.
+
+<details>
+<summary>Other sources</summary>
 
 [Full regional/pool review — 20 resources](docs/other_carbon_resources.md) · [Structured resource register](data/catalogue/other_carbon_resources.json)
 
@@ -513,17 +528,14 @@ Reviewed 15 October 2026. These are additional resources and access leads, **not
 | Clayoquot marsh cores | Seven BC marshes; 34 cores and multiple stock-depth supports | [PANGAEA download](https://doi.org/10.1594/PANGAEA.947825); check overlap with Janousek |
 | Epstein seabed sediment carbon | Canadian continental margin; 200 m outputs, upper 30 cm stock | [Paper](https://doi.org/10.5194/essd-16-2165-2024), [Borealis archive](https://doi.org/10.5683/SP3/ICHVVA); distinct marine pool |
 
-<details>
-<summary>Can-Peat, NRCan peat profiles and C-PEAT are different resources</summary>
+**Can-Peat, NRCan peat profiles and C-PEAT are different resources**
 
 Our existing `canpeat_*` asset names refer to the NRCan/Bauer Peat Profile Database. The [Waterloo Can-Peat portal](https://uwaterloo.ca/can-peat/research/canadian-peatland-data-portal) is a metadata discovery service linking original sources; Li already appears there. It does not supply an additional independent set of cores merely by listing a study.
 
 [C-PEAT v.2025](https://doi.org/10.1594/PANGAEA.986891) is a separate global peat-core synthesis; select and deduplicate the Canadian records. [Hugelius northern peat maps v2](https://bolin.su.se/data/hugelius-2020-peatland-2) are another coarse reference, available at 10 km or 0.1°, distinct from NCSCDv2. Can-Peat's integrated national-map activity remains a project lead until a released map is verified.
 
-</details>
 
-<details>
-<summary>Grasslands, prairie wetlands and other carbon pools</summary>
+**Grasslands, prairie wetlands and other carbon pools**
 
 The full review also lists [Alberta pasture properties/management](https://doi.org/10.5061/dryad.c2fqz6175), [BC grassland modelling](https://doi.org/10.1080/15481603.2017.1302181) and [Saskatchewan drained-wetland SOC](https://doi.org/10.3389/fenvs.2024.1353802). Access varies: Alberta pasture coordinates are withheld; the other studies do not establish verified public geolocated training tables. Carbon concentration is distinct from stock.
 
@@ -532,17 +544,3 @@ The full review also lists [Alberta pasture properties/management](https://doi.o
 Coverage still needs improvement for grassland/root biomass, deadwood/litter, Atlantic/Arctic coastal cores, inland-water stocks and deeper permafrost. Do not infer these pools from canopy cover or sum overlapping peat/soil products.
 
 </details>
-
-## Scope
-
-- Field plot and soil core observations.
-- Ecological, geographic, climatic and remote sensing covariates.
-- Forest biomass, forest carbon and soil carbon maps.
-
-Biomass and carbon are recorded separately. Consult each dataset's definitions, units, uncertainty documentation and licence before combining products. Source dependencies will be linked through ground-data, covariate-stack, study and map identifiers in the catalogue spreadsheet.
-
-## Contributing
-
-Suggest additions or corrections through [GitHub Issues](https://github.com/CathalD/Carbon_Data_SOD/issues). Include the dataset name, source link or DOI, licence, geographic context, pixel/plot support, and Earth Engine asset ID if available. For covariates, include the supporting study and predictive evidence.
-
-Each dataset retains its original licence and citation requirements.
