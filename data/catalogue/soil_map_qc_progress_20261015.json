@@ -1,0 +1,1676 @@
+{
+  "evidence": "Maintainer-pasted Console output containing overlapping metadata and pixel runs",
+  "input_sha256": "fbfa23a7991ab8509231423d815eb857ae566662f5bb459a8b974e2ec1140382",
+  "complete_pixel_run_verified": false,
+  "confirmed_sample_agreement_assets": [
+    "A001",
+    "A002",
+    "A003",
+    "A004",
+    "A005",
+    "A006",
+    "A007",
+    "A008",
+    "A009",
+    "A010"
+  ],
+  "metadata_summary_pixel_flag": false,
+  "records": [
+    {
+      "asset_record_id": "A001",
+      "resource_id": "M_SOTHE_STOCK",
+      "checked_utc": "2026-10-15T18:35:21.600Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_250m_v20",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "b1",
+          "common_valid_points": 207,
+          "destination_max": 291.4085693359375,
+          "destination_mean": 48.829119608598056,
+          "destination_min": 2.304279327392578,
+          "destination_negative_points": 0,
+          "destination_valid_points": 207,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 249.35565937693278,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 207
+        }
+      ],
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A002",
+      "resource_id": "M_SOTHE_UNC",
+      "checked_utc": "2026-10-15T18:35:28.631Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_uncertainty_250m_v20",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "b1",
+          "common_valid_points": 229,
+          "destination_max": 214.91375732421875,
+          "destination_mean": 56.87300675560814,
+          "destination_min": 1.7253501415252686,
+          "destination_negative_points": 0,
+          "destination_valid_points": 229,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 249.35565937693278,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 229
+        }
+      ],
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A003",
+      "resource_id": "M_SOTHE_CONC",
+      "checked_utc": "2026-10-15T18:35:36.790Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_0cm_250m_version10",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "b1",
+          "common_valid_points": 264,
+          "destination_max": 372.68963623046875,
+          "destination_mean": 185.26298919591036,
+          "destination_min": 23.365371704101562,
+          "destination_negative_points": 0,
+          "destination_valid_points": 264,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 249.3556593769326,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 264
+        }
+      ],
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A004",
+      "resource_id": "M_SOTHE_CONC",
+      "checked_utc": "2026-10-15T18:35:47.480Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_5cm_250m_version10",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "b1",
+          "common_valid_points": 265,
+          "destination_max": 336.1697692871094,
+          "destination_mean": 135.55968974131457,
+          "destination_min": 20.660764694213867,
+          "destination_negative_points": 0,
+          "destination_valid_points": 265,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 249.35565937555995,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 265
+        }
+      ],
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A005",
+      "resource_id": "M_SOTHE_CONC",
+      "checked_utc": "2026-10-15T18:35:51.896Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_15cm_250m_version10",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "b1",
+          "common_valid_points": 265,
+          "destination_max": 297.9393310546875,
+          "destination_mean": 69.97346801757813,
+          "destination_min": 5.684267520904541,
+          "destination_negative_points": 0,
+          "destination_valid_points": 265,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 249.35565937555995,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 265
+        }
+      ],
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A006",
+      "resource_id": "M_SOTHE_CONC",
+      "checked_utc": "2026-10-15T18:35:57.632Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_30cm_250m_version10",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "b1",
+          "common_valid_points": 265,
+          "destination_max": 292.4185791015625,
+          "destination_mean": 52.84230301335173,
+          "destination_min": 3.6690473556518555,
+          "destination_negative_points": 0,
+          "destination_valid_points": 265,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 249.35565937555995,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 265
+        }
+      ],
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A007",
+      "resource_id": "M_SOTHE_CONC",
+      "checked_utc": "2026-10-15T18:36:06.363Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_60cm_250m_version10",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "b1",
+          "common_valid_points": 265,
+          "destination_max": 276.93798828125,
+          "destination_mean": 45.84622876779088,
+          "destination_min": 2.1128504276275635,
+          "destination_negative_points": 0,
+          "destination_valid_points": 265,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 249.35565937555995,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 265
+        }
+      ],
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A008",
+      "resource_id": "M_SOTHE_CONC",
+      "checked_utc": "2026-10-15T18:36:14.515Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_100cm_250m_version10",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "b1",
+          "common_valid_points": 265,
+          "destination_max": 265.3699645996094,
+          "destination_mean": 44.99582185835209,
+          "destination_min": 2.0326056480407715,
+          "destination_negative_points": 0,
+          "destination_valid_points": 265,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 249.35565937555995,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 265
+        }
+      ],
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A009",
+      "resource_id": "M_SG_SOC",
+      "checked_utc": "2026-10-15T18:36:28.469Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/soc_mean",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "soc_0-5cm_mean",
+          "common_valid_points": 251,
+          "destination_max": 3667,
+          "destination_mean": 788.0318725099602,
+          "destination_min": 71,
+          "destination_negative_points": 0,
+          "destination_valid_points": 251,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 250,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 251
+        },
+        {
+          "band": "soc_5-15cm_mean",
+          "common_valid_points": 251,
+          "destination_max": 3908,
+          "destination_mean": 614.5537848605578,
+          "destination_min": 48,
+          "destination_negative_points": 0,
+          "destination_valid_points": 251,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 250,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 251
+        },
+        {
+          "band": "soc_15-30cm_mean",
+          "common_valid_points": 251,
+          "destination_max": 3984,
+          "destination_mean": 466.2231075697211,
+          "destination_min": 46,
+          "destination_negative_points": 0,
+          "destination_valid_points": 251,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 250,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 251
+        },
+        {
+          "band": "soc_30-60cm_mean",
+          "common_valid_points": 251,
+          "destination_max": 3791,
+          "destination_mean": 413.62948207171314,
+          "destination_min": 32,
+          "destination_negative_points": 0,
+          "destination_valid_points": 251,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 250,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 251
+        },
+        {
+          "band": "soc_60-100cm_mean",
+          "common_valid_points": 251,
+          "destination_max": 3788,
+          "destination_mean": 405.9601593625498,
+          "destination_min": 18,
+          "destination_negative_points": 0,
+          "destination_valid_points": 251,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 250,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 251
+        },
+        {
+          "band": "soc_100-200cm_mean",
+          "common_valid_points": 251,
+          "destination_max": 3406,
+          "destination_mean": 545.5657370517928,
+          "destination_min": 14,
+          "destination_negative_points": 0,
+          "destination_valid_points": 251,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 250,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 251
+        }
+      ],
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A010",
+      "resource_id": "M_SG_BD",
+      "checked_utc": "2026-10-15T18:36:55.727Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "bdod_0-5cm_mean",
+          "common_valid_points": 251,
+          "destination_max": 147,
+          "destination_mean": 99.06374501992032,
+          "destination_min": 60,
+          "destination_negative_points": 0,
+          "destination_valid_points": 251,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 250,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 251
+        },
+        {
+          "band": "bdod_5-15cm_mean",
+          "common_valid_points": 251,
+          "destination_max": 163,
+          "destination_mean": 117.00398406374502,
+          "destination_min": 82,
+          "destination_negative_points": 0,
+          "destination_valid_points": 251,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 250,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 251
+        },
+        {
+          "band": "bdod_15-30cm_mean",
+          "common_valid_points": 251,
+          "destination_max": 165,
+          "destination_mean": 126.800796812749,
+          "destination_min": 90,
+          "destination_negative_points": 0,
+          "destination_valid_points": 251,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 250,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 251
+        },
+        {
+          "band": "bdod_30-60cm_mean",
+          "common_valid_points": 251,
+          "destination_max": 172,
+          "destination_mean": 139.72908366533864,
+          "destination_min": 95,
+          "destination_negative_points": 0,
+          "destination_valid_points": 251,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 250,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 251
+        },
+        {
+          "band": "bdod_60-100cm_mean",
+          "common_valid_points": 251,
+          "destination_max": 179,
+          "destination_mean": 146.35458167330677,
+          "destination_min": 96,
+          "destination_negative_points": 0,
+          "destination_valid_points": 251,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 250,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 251
+        },
+        {
+          "band": "bdod_100-200cm_mean",
+          "common_valid_points": 251,
+          "destination_max": 184,
+          "destination_mean": 148.22310756972112,
+          "destination_min": 95,
+          "destination_negative_points": 0,
+          "destination_valid_points": 251,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 250,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_valid_points": 251
+        }
+      ],
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A011",
+      "resource_id": "M_SG_OCD",
+      "checked_utc": "2026-10-15T18:35:24.441Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocd_mean",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A012",
+      "resource_id": "M_SG_OCS",
+      "checked_utc": "2026-10-15T18:35:28.031Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocs_mean",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A013",
+      "resource_id": "M_NCSCD_30",
+      "checked_utc": "2026-10-15T18:35:30.307Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC30_0012deg",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A014",
+      "resource_id": "M_NCSCD_100",
+      "checked_utc": "2026-10-15T18:35:33.578Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC100_0012deg",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A015",
+      "resource_id": "M_NCSCD_200",
+      "checked_utc": "2026-10-15T18:35:35.311Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC200_0012deg",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A016",
+      "resource_id": "M_THERMOKARST",
+      "checked_utc": "2026-10-15T18:35:37.517Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": null,
+      "numerical_status": "table_count_schema_and_geometry_inventory_not_full_equivalence",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/olefeldt_2016/Circumpolar_Thermokarst_Landscapes",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": {
+        "destination_first_feature_fields": [
+          "AREA_ha",
+          "HTKTA_ha",
+          "HTKTSOCkgC",
+          "LATITUDE",
+          "LONGITUDE",
+          "LTKTA_ha",
+          "LTKTSOCkgC",
+          "NTKTA_ha",
+          "NTKTSOCkgC",
+          "TKHP",
+          "TKThLP",
+          "TKWP",
+          "TSOC_kgC",
+          "WTKTA_ha",
+          "WTKTSOCkgC",
+          "system:index"
+        ],
+        "destination_first_geometry_type": "Empty",
+        "destination_geometry_types": {
+          "Empty": 95,
+          "GeometryCollection": 5707,
+          "LineString": 19747,
+          "MultiLineString": 4240,
+          "MultiPolygon": 19978,
+          "Point": 49,
+          "Polygon": 82273
+        },
+        "destination_rows": 132089,
+        "destination_rows_with_coordinate_fields": 132089,
+        "source_first_feature_fields": [
+          "AREA_ha",
+          "HTKTA_ha",
+          "HTKTSOCkgC",
+          "LATITUDE",
+          "LONGITUDE",
+          "LTKTA_ha",
+          "LTKTSOCkgC",
+          "NTKTA_ha",
+          "NTKTSOCkgC",
+          "TKHP",
+          "TKThLP",
+          "TKWP",
+          "TSOC_kgC",
+          "WTKTA_ha",
+          "WTKTSOCkgC",
+          "system:index"
+        ],
+        "source_first_geometry_type": "Empty",
+        "source_geometry_types": {
+          "Empty": 95,
+          "GeometryCollection": 5707,
+          "LineString": 19747,
+          "MultiLineString": 4240,
+          "MultiPolygon": 19978,
+          "Point": 49,
+          "Polygon": 82273
+        },
+        "source_rows": 132089
+      }
+    },
+    {
+      "asset_record_id": "A017",
+      "resource_id": "M_LI_DEPTH",
+      "checked_utc": "2026-10-15T18:36:12.487Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_PeatDepth_30m",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A018",
+      "resource_id": "M_LI_DEPTH_UNC",
+      "checked_utc": "2026-10-15T18:36:19.111Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_Uncertainty_PeatDepth_30m",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A019",
+      "resource_id": "M_LI_C",
+      "checked_utc": "2026-10-15T18:36:28.042Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterCarbon30mkgm2version1",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A020",
+      "resource_id": "M_LI_C_UNC",
+      "checked_utc": "2026-10-15T18:36:37.050Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterUncertaintyCarbon30mkgm2",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A021",
+      "resource_id": "M_GENG_BD",
+      "checked_utc": "2026-10-15T18:36:44.064Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": null,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+        "inherited_collection_scope": true,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A022",
+      "resource_id": "M_GENG_BD",
+      "checked_utc": "2026-10-15T18:36:47.121Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": null,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+        "inherited_collection_scope": true,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A023",
+      "resource_id": "M_GENG_BD",
+      "checked_utc": "2026-10-15T18:36:50.027Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": null,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+        "inherited_collection_scope": true,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A024",
+      "resource_id": "M_GENG_BD",
+      "checked_utc": "2026-10-15T18:36:53.032Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": null,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+        "inherited_collection_scope": true,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A025",
+      "resource_id": "M_GENG_BD",
+      "checked_utc": "2026-10-15T18:36:56.291Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": null,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+        "inherited_collection_scope": true,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A026",
+      "resource_id": "M_GENG_SOC",
+      "checked_utc": "2026-10-15T18:37:25.132Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": null,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+        "inherited_collection_scope": true,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A027",
+      "resource_id": "M_GENG_SOC",
+      "checked_utc": "2026-10-15T18:37:27.314Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": null,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+        "inherited_collection_scope": true,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A028",
+      "resource_id": "M_GENG_SOC",
+      "checked_utc": "2026-10-15T18:37:28.415Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": null,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+        "inherited_collection_scope": true,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A029",
+      "resource_id": "M_GENG_SOC",
+      "checked_utc": "2026-10-15T18:37:29.426Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": null,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+        "inherited_collection_scope": true,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    },
+    {
+      "asset_record_id": "A030",
+      "resource_id": "M_GENG_SOC",
+      "checked_utc": "2026-10-15T18:37:30.531Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": null,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+        "inherited_collection_scope": true,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null,
+      "table_check": null
+    }
+  ],
+  "qc_alignment_json": [
+    {
+      "left": "A001",
+      "right": "A002",
+      "first_band_grid_equal": false,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A009",
+      "right": "A010",
+      "first_band_grid_equal": true,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A009",
+      "right": "A011",
+      "first_band_grid_equal": false,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A009",
+      "right": "A012",
+      "first_band_grid_equal": false,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A013",
+      "right": "A014",
+      "first_band_grid_equal": false,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A014",
+      "right": "A015",
+      "first_band_grid_equal": true,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A017",
+      "right": "A018",
+      "first_band_grid_equal": true,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A017",
+      "right": "A019",
+      "first_band_grid_equal": false,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A019",
+      "right": "A020",
+      "first_band_grid_equal": false,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A021",
+      "right": "A026",
+      "first_band_grid_equal": true,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A022",
+      "right": "A027",
+      "first_band_grid_equal": true,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A023",
+      "right": "A028",
+      "first_band_grid_equal": true,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A024",
+      "right": "A029",
+      "first_band_grid_equal": true,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    },
+    {
+      "left": "A025",
+      "right": "A030",
+      "first_band_grid_equal": true,
+      "note": "False may include differing extents; inspect CRS, transform and dimensions."
+    }
+  ],
+  "qc_summary_json": {
+    "qc_version": "2026-10-15.2",
+    "planned": 30,
+    "reported": 30,
+    "pixel_checks_requested": false,
+    "results": [
+      {
+        "asset_record_id": "A001",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_250m_v20",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A002",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_uncertainty_250m_v20",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A003",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_0cm_250m_version10",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A004",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_5cm_250m_version10",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A005",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_15cm_250m_version10",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A006",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_30cm_250m_version10",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A007",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_60cm_250m_version10",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A008",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_100cm_250m_version10",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A009",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/soc_mean",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A010",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A011",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocd_mean",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A012",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocs_mean",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A013",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC30_0012deg",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A014",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC100_0012deg",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A015",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC200_0012deg",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A016",
+        "metadata_status": "type_matches",
+        "numerical_status": "table_count_schema_and_geometry_inventory_not_full_equivalence",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/olefeldt_2016/Circumpolar_Thermokarst_Landscapes",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A017",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_PeatDepth_30m",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A018",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_Uncertainty_PeatDepth_30m",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A019",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterCarbon30mkgm2version1",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A020",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterUncertaintyCarbon30mkgm2",
+          "inherited_collection_scope": false,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A021",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+          "inherited_collection_scope": true,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A022",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+          "inherited_collection_scope": true,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A023",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+          "inherited_collection_scope": true,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A024",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+          "inherited_collection_scope": true,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A025",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+          "inherited_collection_scope": true,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A026",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+          "inherited_collection_scope": true,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A027",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+          "inherited_collection_scope": true,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A028",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+          "inherited_collection_scope": true,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A029",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+          "inherited_collection_scope": true,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      },
+      {
+        "asset_record_id": "A030",
+        "metadata_status": "type_matches",
+        "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+        "public_read": {
+          "status": "no_public_grant_in_returned_acl",
+          "all_users_can_read": false,
+          "acl_scope": "projects/northstarlabs/assets/canada_carbon_collection",
+          "inherited_collection_scope": true,
+          "returned_keys": [
+            "owners",
+            "writers",
+            "readers"
+          ],
+          "note": "Read-only ACL observation, not a separate-account access or licence test."
+        }
+      }
+    ],
+    "note": "No conversions, stock integration, ACL writes or cloud uploads performed."
+  },
+  "note": "Long projection strings omitted from this compact progress record; original pasted output fingerprint retained."
+}
