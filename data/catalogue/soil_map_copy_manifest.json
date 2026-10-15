@@ -12,14 +12,30 @@
       "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_250m_v20",
       "asset_type": "IMAGE",
       "citation": "https://doi.org/10.1029/2021GB007213",
-      "status": "copied_destination_type_confirmed_maintainer_output"
+      "status": "copied_destination_type_confirmed_maintainer_output",
+      "depth_support": {
+        "upper_cm": 0,
+        "lower_cm": 100,
+        "basis": "maintainer_working_assumption",
+        "source_verified": false,
+        "applies_to": "stock estimate and corresponding uncertainty",
+        "instruction": "Assume the Sothe et al. is to 1 meter for both the estimate and the uncertainty."
+      }
     },
     {
       "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/sc/sc_uncertainty_250m_v20",
       "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_uncertainty_250m_v20",
       "asset_type": "IMAGE",
       "citation": "https://doi.org/10.1029/2021GB007213",
-      "status": "copied_destination_type_confirmed_maintainer_output"
+      "status": "copied_destination_type_confirmed_maintainer_output",
+      "depth_support": {
+        "upper_cm": 0,
+        "lower_cm": 100,
+        "basis": "maintainer_working_assumption",
+        "source_verified": false,
+        "applies_to": "stock estimate and corresponding uncertainty",
+        "instruction": "Assume the Sothe et al. is to 1 meter for both the estimate and the uncertainty."
+      }
     },
     {
       "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_0cm_250m_version10",
