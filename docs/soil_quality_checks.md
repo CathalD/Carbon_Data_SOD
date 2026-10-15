@@ -1,6 +1,6 @@
 # Step 2 — soil metadata, depth and methods QC
 
-Reviewed 15 October 2026. The master Google Sheet now includes **QC_register**, **Soil_methods** and **Soil_depth_QC**. This pass checks provider documentation and local prepared tables. The maintainer subsequently supplied a first live metadata pass. Its original parsing bugs and corrected interpretation are recorded below. Pixel checks have not run; no uploaded data were changed.
+Reviewed 15 October 2026. The master Google Sheet now includes **QC_register**, **Soil_methods** and **Soil_depth_QC**. This pass checks provider documentation and local prepared tables. The maintainer subsequently supplied a first live metadata pass. Its original parsing bugs and corrected interpretation are recorded below. The later complete maintainer pixel pass reports 30/30 results: 19 copied images agree at sampled values/masks and ten Geng uploads were sampled without original-TIFF comparison. Access to maps/layers/profiles is complete per maintainer on 15 October 2026, recorded as Maintainer reports public rather than independently verified. Circumpolar thermokarst/Olefeldt suitability work is deferred. Historical ACL findings below describe earlier runs; no uploaded data were changed during this catalogue work.
 
 ## Depth and method distinctions
 
