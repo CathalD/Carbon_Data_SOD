@@ -1,0 +1,383 @@
+{
+  "evidence": "Maintainer-pasted partial Console output; header says Pixel checks: true",
+  "input_sha256": "51d9d95407738630b30c8d607d98c7d51f6746655cced3564441dfdb5d429e24",
+  "final_summary_present": false,
+  "complete_run_verified": false,
+  "interpretation": "Four assets report sample agreement; six report not_run. May combine overlapping runs; no 30-asset completion claimed.",
+  "records": [
+    {
+      "asset_record_id": "A010",
+      "resource_id": "M_SG_BD",
+      "checked_utc": "2026-10-15T18:35:21.438Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null
+    },
+    {
+      "asset_record_id": "A011",
+      "resource_id": "M_SG_OCD",
+      "checked_utc": "2026-10-15T18:35:24.441Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocd_mean",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null
+    },
+    {
+      "asset_record_id": "A001",
+      "resource_id": "M_SOTHE_STOCK",
+      "checked_utc": "2026-10-15T18:35:21.600Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_250m_v20",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "b1",
+          "common_valid_points": 207,
+          "destination_max": 291.4085693359375,
+          "destination_mean": 48.829119608598056,
+          "destination_min": 2.304279327392578,
+          "destination_negative_points": 0,
+          "destination_projection": {
+            "type": "Projection",
+            "crs": "EPSG:4326",
+            "transform": [
+              0.00224,
+              0,
+              -141.01985,
+              0,
+              -0.00224,
+              83.63315
+            ]
+          },
+          "destination_valid_points": 207,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 249.35565937693278,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_projection": {
+            "type": "Projection",
+            "crs": "EPSG:4326",
+            "transform": [
+              0.00224,
+              0,
+              -141.01985,
+              0,
+              -0.00224,
+              83.63315
+            ]
+          },
+          "source_valid_points": 207
+        }
+      ]
+    },
+    {
+      "asset_record_id": "A012",
+      "resource_id": "M_SG_OCS",
+      "checked_utc": "2026-10-15T18:35:28.031Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocs_mean",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null
+    },
+    {
+      "asset_record_id": "A013",
+      "resource_id": "M_NCSCD_30",
+      "checked_utc": "2026-10-15T18:35:30.307Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC30_0012deg",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null
+    },
+    {
+      "asset_record_id": "A014",
+      "resource_id": "M_NCSCD_100",
+      "checked_utc": "2026-10-15T18:35:33.578Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC100_0012deg",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null
+    },
+    {
+      "asset_record_id": "A002",
+      "resource_id": "M_SOTHE_UNC",
+      "checked_utc": "2026-10-15T18:35:28.631Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_uncertainty_250m_v20",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "b1",
+          "common_valid_points": 229,
+          "destination_max": 214.91375732421875,
+          "destination_mean": 56.87300675560814,
+          "destination_min": 1.7253501415252686,
+          "destination_negative_points": 0,
+          "destination_projection": {
+            "type": "Projection",
+            "crs": "EPSG:4326",
+            "transform": [
+              0.0022400000000000002,
+              0,
+              -141.01985,
+              0,
+              -0.00224,
+              79.99949
+            ]
+          },
+          "destination_valid_points": 229,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 249.35565937693278,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_projection": {
+            "type": "Projection",
+            "crs": "EPSG:4326",
+            "transform": [
+              0.0022400000000000002,
+              0,
+              -141.01985,
+              0,
+              -0.00224,
+              79.99949
+            ]
+          },
+          "source_valid_points": 229
+        }
+      ]
+    },
+    {
+      "asset_record_id": "A015",
+      "resource_id": "M_NCSCD_200",
+      "checked_utc": "2026-10-15T18:35:35.311Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "not_run_set_RUN_PIXEL_CHECKS_true",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC200_0012deg",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": null
+    },
+    {
+      "asset_record_id": "A003",
+      "resource_id": "M_SOTHE_CONC",
+      "checked_utc": "2026-10-15T18:35:36.790Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_0cm_250m_version10",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "b1",
+          "common_valid_points": 264,
+          "destination_max": 372.68963623046875,
+          "destination_mean": 185.26298919591036,
+          "destination_min": 23.365371704101562,
+          "destination_negative_points": 0,
+          "destination_projection": {
+            "type": "Projection",
+            "crs": "EPSG:4326",
+            "transform": [
+              0.002239999999999999,
+              0,
+              -141.01985403,
+              0,
+              -0.002239999999999998,
+              79.99948516
+            ]
+          },
+          "destination_valid_points": 264,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 249.3556593769326,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_projection": {
+            "type": "Projection",
+            "crs": "EPSG:4326",
+            "transform": [
+              0.002239999999999999,
+              0,
+              -141.01985403,
+              0,
+              -0.002239999999999998,
+              79.99948516
+            ]
+          },
+          "source_valid_points": 264
+        }
+      ]
+    },
+    {
+      "asset_record_id": "A004",
+      "resource_id": "M_SOTHE_CONC",
+      "checked_utc": "2026-10-15T18:35:47.480Z",
+      "metadata_status": "type_matches",
+      "copy_grid_schema": true,
+      "numerical_status": "sample_agreement_only_not_full_raster_validation",
+      "public_read": {
+        "status": "no_public_grant_in_returned_acl",
+        "all_users_can_read": false,
+        "acl_scope": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_5cm_250m_version10",
+        "inherited_collection_scope": false,
+        "returned_keys": [
+          "owners",
+          "writers",
+          "readers"
+        ],
+        "note": "Read-only ACL observation, not a separate-account access or licence test."
+      },
+      "samples": [
+        {
+          "band": "b1",
+          "common_valid_points": 265,
+          "destination_max": 336.1697692871094,
+          "destination_mean": 135.55968974131457,
+          "destination_min": 20.660764694213867,
+          "destination_negative_points": 0,
+          "destination_projection": {
+            "type": "Projection",
+            "crs": "EPSG:4326",
+            "transform": [
+              0.0022399999999876677,
+              0,
+              -141.01985403,
+              0,
+              -0.0022399999999876677,
+              79.99948516
+            ]
+          },
+          "destination_valid_points": 265,
+          "destination_zero_points": 0,
+          "mask_mismatch_points": 0,
+          "max_abs_difference": 0,
+          "nominal_scale_m": 249.35565937555995,
+          "requested_points": 512,
+          "returned_points": 512,
+          "source_projection": {
+            "type": "Projection",
+            "crs": "EPSG:4326",
+            "transform": [
+              0.0022399999999876677,
+              0,
+              -141.01985403,
+              0,
+              -0.0022399999999876677,
+              79.99948516
+            ]
+          },
+          "source_valid_points": 265
+        }
+      ]
+    }
+  ]
+}
