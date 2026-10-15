@@ -32,5 +32,18 @@
     "precise_pilot_coordinates_included": false
   },
   "relative_links": "Resolved against repository and candidate files",
-  "anonymous_download_verification": "Pending post-publication HTTP and content-hash readback"
+  "anonymous_download_verification": {
+    "files_checked": 33,
+    "http_200": 33,
+    "content_readbacks_match": 33,
+    "zip_integrity": true,
+    "evidence": "data/catalogue/public_download_verification_20261015.json",
+    "verified_commit": "fbaf1bf8861e7faf38a27d7fbbbdea18738db7d4"
+  },
+  "citation_file_check": {
+    "official_schema_required_fields": true,
+    "known_properties": true,
+    "entity_author_name": true,
+    "format": "JSON-valid YAML 1.2"
+  }
 }
