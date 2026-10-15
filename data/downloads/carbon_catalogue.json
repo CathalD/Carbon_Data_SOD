@@ -7065,7 +7065,7 @@
           "External loaded",
           "Unverified",
           "Numerical QC pending",
-          "SBFI biomass field 088_STRUCTURE_AGB_AVG; SD field 089_STRUCTURE_AGB_SD is spatial variation."
+          "External forest-carbon stock image with b1. Keep forest stock distinct from biomass and soil carbon; source encoding and units remain per catalogue."
         ],
         [
           "A042",
@@ -7082,7 +7082,7 @@
           "External loaded",
           "Unverified",
           "Numerical QC pending",
-          "SBFI biomass field 088_STRUCTURE_AGB_AVG; SD field 089_STRUCTURE_AGB_SD is spatial variation."
+          "External forest-carbon uncertainty image with b1. Confirm the source uncertainty statistic and units before interpreting or combining it."
         ],
         [
           "A043",
@@ -7099,7 +7099,7 @@
           "External loaded",
           "Unverified",
           "Numerical QC pending",
-          "SBFI biomass field 088_STRUCTURE_AGB_AVG; SD field 089_STRUCTURE_AGB_SD is spatial variation."
+          "SCANFI v1.2 has biomass and 14 additional forest attributes. Biomass is distinct from carbon; this release is separate from SCANFI v2."
         ],
         [
           "A044",
@@ -7133,7 +7133,7 @@
           "External loaded",
           "Unverified",
           "Numerical QC pending",
-          "SBFI biomass field 088_STRUCTURE_AGB_AVG; SD field 089_STRUCTURE_AGB_SD is spatial variation."
+          "Live quickstart confirms 10 ESA CCI images with AGB and SD bands. Aboveground biomass is not automatically carbon."
         ],
         [
           "A046",
