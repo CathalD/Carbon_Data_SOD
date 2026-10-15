@@ -71,6 +71,31 @@ All ten supplied rows report matching types and full copy-grid schema. Each retu
 
 Let the active pixel run finish, then retain its final summary and remaining asset rows before deciding whether a rerun is necessary.
 
+## Further progress — ten image sample checks confirmed
+
+The newer pasted output contains 31 QC_ROW entries for 30 distinct assets. It includes the completed **metadata-only** summary (`pixel_checks_requested: false`) interleaved with a pixel run that has reached A010. Preserve positive pixel evidence when a metadata-only entry for the same asset is also present.
+
+All eight Sothe images (A001–A008), SoilGrids SOC (A009, six bands) and SoilGrids bulk density (A010, six bands) have zero sampled absolute differences and zero sampled mask mismatches. Each band returned 512 seeded points; common valid counts are 207, 229, 264, 265, 265, 265, 265, 265, 251 and 251 by asset, respectively. This remains sampled agreement, not full-raster validation.
+
+Thermokarst source and destination geometry distributions are identical:
+
+| Geometry | Rows in each |
+|---|---:|
+| Polygon | 82,273 |
+| MultiPolygon | 19,978 |
+| GeometryCollection | 5,707 |
+| LineString | 19,747 |
+| MultiLineString | 4,240 |
+| Point | 49 |
+| Empty | 95 |
+| Total | 132,089 |
+
+Thus mixed/empty geometry is present in the source asset, not newly introduced by the copy. Inspect original polygon provenance and GeometryCollection contents before areal calculations; no automatic geometry repair or row deletion has been performed.
+
+The Li images have equal dimensions and numeric affine transforms. Their strict grid-comparison failures arise from differing WKT authority annotations and ellipsoid precision (`298.257222101` versus `298.257222101004`). String inequality alone does not establish spatial displacement; semantic CRS equivalence remains to confirm. Other cross-product grid differences should also be reviewed before pixelwise calculations.
+
+[Progress evidence](../data/catalogue/soil_map_qc_progress_20261015.json) retains the supplied metadata-only summary, alignment flags, geometry counts and best individual sample results. A completed summary with `pixel_checks_requested: true` is still required.
+
 ## Run the live checks
 
 1. Paste [06_Soil_Map_QC.js](../scripts/06_Soil_Map_QC.js) into the GEE Code Editor with project `northstarlabs`. Leave `RUN_PIXEL_CHECKS = false` for the first pass.
