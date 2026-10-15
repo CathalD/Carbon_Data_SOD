@@ -282,6 +282,36 @@
     "errors": 0
   },
   "repository_commit_verified": "fbaf1bf8861e7faf38a27d7fbbbdea18738db7d4",
-  "note": "The files and mutable main-branch ZIP were verified at this commit. Later verification-report edits do not change the catalogue CSV/JSON or examples.",
-  "snapshot_zip_url": "https://codeload.github.com/CathalD/Carbon_Data_SOD/zip/fbaf1bf8861e7faf38a27d7fbbbdea18738db7d4"
+  "note": "The initial 33 files were checked at repository_commit_verified. A later correction to four forest asset notes and associated catalogue hashes is verified in followup; refer to its immutable snapshot ZIP for the corrected candidate.",
+  "snapshot_zip_url": "https://codeload.github.com/CathalD/Carbon_Data_SOD/zip/fbaf1bf8861e7faf38a27d7fbbbdea18738db7d4",
+  "followup": {
+    "checked_utc": "2026-10-15T20:14:17.162331+00:00",
+    "repository_commit": "cfd2a03f90e365722a45964304f1aec90b31ed9e",
+    "anonymous": true,
+    "files": [
+      {
+        "path": "data/downloads/Assets.csv",
+        "http_status": 200,
+        "sha256": "f549b07ba7aaba9ebe29986a9df4c031e42e39df256c377964f846313d824473",
+        "bytes": 27748
+      },
+      {
+        "path": "data/downloads/carbon_catalogue.json",
+        "http_status": 200,
+        "sha256": "b62d2f93e217080a3d997ab52b54c31f6d64bb2a3584a4aee979aae56af4669c",
+        "bytes": 577448
+      },
+      {
+        "path": "data/catalogue/public_release_manifest.json",
+        "http_status": 200,
+        "sha256": "b1aaee29f612fc8e07eb7aa6690a01e4604a309eab0c8402dcef421c488c307b",
+        "bytes": 5288
+      }
+    ],
+    "manifest_hashes_match": true,
+    "forest_note_scope_correct": true,
+    "zip_integrity": true,
+    "zip_http_status": 200,
+    "zip_url": "https://codeload.github.com/CathalD/Carbon_Data_SOD/zip/cfd2a03f90e365722a45964304f1aec90b31ed9e"
+  }
 }
