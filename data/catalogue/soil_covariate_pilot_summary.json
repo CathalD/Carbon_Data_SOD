@@ -1,0 +1,520 @@
+{
+  "run_status": "PASS",
+  "scope": "Software/data-availability smoke test; not target-model validation or authorisation for bulk processing",
+  "row_count": 20,
+  "source_counts": {
+    "JANOUSEK": 4,
+    "NPDB": 4,
+    "NRCAN_PEAT": 4,
+    "RILEY": 4,
+    "WOSIS": 4
+  },
+  "schema": {
+    "metadata": 6,
+    "predictors": 43,
+    "qa": 4
+  },
+  "predictor_missing_cells": 5,
+  "predictor_total_cells": 860,
+  "modelling_readiness": "REVIEW: climate coverage, radar tails, coordinate support and temporal mismatch before bulk processing",
+  "cautions": [
+    "Source metadata/dates/coordinate uncertainty retained; no target stock reconstruction.",
+    "JRC occurrence/seasonality/recurrence follow notebook unmask(0); zero does not prove universal absence of water.",
+    "No model fitted, accuracy score calculated, or Canada-wide extraction launched.",
+    "No study-specific Conditional/Hold feature is implemented by this baseline pilot."
+  ],
+  "run_utc": "2026-10-15T19:32:16.128974+00:00",
+  "notebook_blob": "b98e8b33f861e8b9dc1c1535fd78c165cde9c8f0",
+  "ee_api_version": "1.6.11",
+  "grid_m": 30,
+  "context_radii_m": [
+    120,
+    1000
+  ],
+  "period": "2019–2023",
+  "returned_rows": 20,
+  "complete_predictor_rows": 19,
+  "source_layer_joins": {
+    "profiles_matched": 20,
+    "horizon_rows": 367
+  },
+  "radar_tail_profiles": 3,
+  "default_exact_median_discrepancies_verified": 1,
+  "field_dates": {
+    "outside_composite_period": 11,
+    "unknown": 9
+  },
+  "detailed_publication_status": "Exact profile locations and detailed row payload retained outside GitHub pending explicit publication approval",
+  "bands": [
+    {
+      "band": "local_s2_ndmi_spring_median",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": -0.9583333134651184,
+      "maximum": 0.4132501482963562,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s2_ndmi_spring_temporal_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.041266877204179764,
+      "maximum": 0.4687492847442627,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s2_ndvi_summer_median",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": -0.3166334927082062,
+      "maximum": 0.8955643773078918,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s2_ndvi_summer_temporal_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.04343043640255928,
+      "maximum": 0.42976370453834534,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s2_evi_summer_median",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": -0.025829477235674858,
+      "maximum": 0.7173277735710144,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s2_evi_summer_temporal_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.011184236966073513,
+      "maximum": 0.23060089349746704,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s2_ndvi_120m_mean",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": -0.30053868889808655,
+      "maximum": 0.8914598226547241,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s2_ndvi_120m_spatial_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.006953466217964888,
+      "maximum": 0.29333630204200745,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_dw_tree_prob_mean",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.04002770781517029,
+      "maximum": 0.7324155569076538,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_dw_tree_prob_temporal_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.00456471461802721,
+      "maximum": 0.16452008485794067,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_dw_tree_120m_mean",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.04038051515817642,
+      "maximum": 0.7307819724082947,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_dw_shrub_prob_mean",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.03021010011434555,
+      "maximum": 0.3643971383571625,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_dw_shrub_prob_temporal_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.002465240890160203,
+      "maximum": 0.1099485233426094,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_dw_shrub_120m_mean",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.03049665503203869,
+      "maximum": 0.31694167852401733,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_dw_floodedveg_prob_mean",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.027989108115434647,
+      "maximum": 0.34510740637779236,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_dw_floodedveg_prob_temporal_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.0018074054969474673,
+      "maximum": 0.1316843032836914,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_dw_floodedveg_120m_mean",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.027583498507738113,
+      "maximum": 0.34051477909088135,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_dw_water_prob_mean",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.02874702773988247,
+      "maximum": 0.685024619102478,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_dw_water_prob_temporal_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.0017605309840291739,
+      "maximum": 0.19606466591358185,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_dw_water_120m_mean",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.029353534802794456,
+      "maximum": 0.6785000562667847,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s1_vv_db_median",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": -23.44179344177246,
+      "maximum": -8.725226402282715,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s1_vv_db_temporal_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 1.7683156728744507,
+      "maximum": 6.261709690093994,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s1_vh_db_median",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": -29.046545028686523,
+      "maximum": -14.265091896057129,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s1_vh_db_temporal_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 1.7766151428222656,
+      "maximum": 4.601579666137695,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s1_vv_minus_vh_db_median",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 5.391611099243164,
+      "maximum": 9.286824226379395,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s1_vv_minus_vh_db_temporal_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 2.1901726722717285,
+      "maximum": 5.366884231567383,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s1_vv_over_vh_linear_median",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 3.3083014488220215,
+      "maximum": 11.199816703796387,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_s1_vv_over_vh_linear_temporal_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 2.03403377532959,
+      "maximum": 825.9682006835938,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_slope_deg",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0,
+      "maximum": 16.75205421447754,
+      "unique_values": 6,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_relative_elevation_120m",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": -3.81632661819458,
+      "maximum": 0.6938775777816772,
+      "unique_values": 19,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "local_elevation_120m_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0,
+      "maximum": 17.974668502807617,
+      "unique_values": 18,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "regional_jrc_water_occurrence_pct",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0,
+      "maximum": 98,
+      "unique_values": 4,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "regional_jrc_water_seasonality_months",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0,
+      "maximum": 12,
+      "unique_values": 2,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "regional_jrc_water_recurrence_pct",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0,
+      "maximum": 100,
+      "unique_values": 3,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "regional_observed_water_distance_m",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0,
+      "maximum": 2269.911865234375,
+      "unique_values": 18,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "regional_elevation_m",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0,
+      "maximum": 1256,
+      "unique_values": 17,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "regional_relative_elevation_1000m",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": -43.380313873291016,
+      "maximum": 8.830528259277344,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "regional_elevation_1000m_sd",
+      "role": "Predictor",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 0.787021815776825,
+      "maximum": 64.52311706542969,
+      "unique_values": 20,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "broad_era5_mean_temperature_c",
+      "role": "Predictor",
+      "valid_rows": 19,
+      "missing_rows": 1,
+      "minimum": -5.995282173156738,
+      "maximum": 10.510210990905762,
+      "unique_values": 19,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "broad_era5_monthly_temperature_sd_c",
+      "role": "Predictor",
+      "valid_rows": 19,
+      "missing_rows": 1,
+      "minimum": 4.40342903137207,
+      "maximum": 16.109949111938477,
+      "unique_values": 19,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "broad_era5_mean_annual_precip_mm",
+      "role": "Predictor",
+      "valid_rows": 19,
+      "missing_rows": 1,
+      "minimum": 298.3907775878906,
+      "maximum": 2899.934326171875,
+      "unique_values": 19,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "broad_era5_annual_precip_sd_mm",
+      "role": "Predictor",
+      "valid_rows": 19,
+      "missing_rows": 1,
+      "minimum": 23.090436935424805,
+      "maximum": 388.45355224609375,
+      "unique_values": 19,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "broad_era5_mean_freezing_months",
+      "role": "Predictor",
+      "valid_rows": 19,
+      "missing_rows": 1,
+      "minimum": 0,
+      "maximum": 7,
+      "unique_values": 11,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "qa_s2_spring_observations",
+      "role": "QA",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 18,
+      "maximum": 129,
+      "unique_values": 16,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "qa_s2_summer_observations",
+      "role": "QA",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 31,
+      "maximum": 187,
+      "unique_values": 19,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "qa_dynamic_world_observations",
+      "role": "QA",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 18,
+      "maximum": 145,
+      "unique_values": 19,
+      "constant_in_pilot": false
+    },
+    {
+      "band": "qa_sentinel1_observations",
+      "role": "QA",
+      "valid_rows": 20,
+      "missing_rows": 0,
+      "minimum": 49,
+      "maximum": 436,
+      "unique_values": 16,
+      "constant_in_pilot": false
+    }
+  ]
+}
