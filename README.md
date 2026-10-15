@@ -4,11 +4,49 @@ A community catalogue of forest and soil carbon data for Canada, connecting fiel
 
 **Plot observations → landscape covariates → fitted models → carbon maps**
 
+## Start here
+
+- [Download the catalogue](DOWNLOADS.md): 13 current CSV tables, combined JSON and source/provider links.
+- [Run the examples](examples/README.md): public soil/forest reads and a tested small GeoTIFF download using your own Earth Engine project.
+- [Cite the data](SOURCES.md): original papers/releases plus [catalogue citation](CITATION.cff).
+- [Sharing verification](docs/public_access.md): **41/41 hosted references have public-read grants**, including Geng at collection scope.
+- [Release notes](docs/releases/0.1.0.md): scope, validation and remaining limitations.
+
+**Summary and comparison analysis:** forthcoming from the maintainer in [Comparison](Comparison/README.md). This catalogue does not yet contain that analysis or its conclusions.
+
+Public release: **0.1.0** (15 October 2026). No repository licence has been added, as directed by the maintainer; original source terms are retained. See [licensing status](docs/release_licensing.md). SCANFI v2 is public but has **0 hosted images**, so use its provider release until ingestion is complete. Detailed pilot rows/locations are not added to this public package.
+
+
 Field observations establish the relationship between carbon and ecosystem characteristics. Spatial covariates extend that relationship across the landscape through a fitted model. For forests, inventories often measure tree dimensions and species; biomass and carbon are then estimated using documented allometric equations and conversion factors.
 
-The [Google Sheets master catalogue](https://docs.google.com/spreadsheets/d/14PeDcxAptEf7DOpgLtIN93S5dyVWewP6_hn5nvtTjKU/edit) links studies, ground observations, covariates, maps and Earth Engine assets. Its 10 tabs record geographic study scope separately from native raster resolution, model/output grids, extraction support, time and soil depth. Study-ground links identify the observations used in each study; evidence and status fields distinguish documented predictors from candidates and unresolved details. The original spreadsheet rows are preserved in a source archive.
+The [public catalogue downloads](DOWNLOADS.md) link studies, ground observations, covariates, maps and Earth Engine assets. Geographic scope, native/output grids, field/context support, time and soil depth are recorded separately. The [working Google Sheet](https://docs.google.com/spreadsheets/d/14PeDcxAptEf7DOpgLtIN93S5dyVWewP6_hn5nvtTjKU/edit) is restricted to authorised collaborators; public readers can use the CSV/JSON package without it.
 
-The catalogue is ready for review and tab-by-tab export for Google Cloud preparation. Step 2 adds soil depth/method records, a five-dataset depth audit and a 30-asset QC register. [Soil quality checks and findings](docs/soil_quality_checks.md) document measured versus estimated values, integration/extrapolation and unresolved import metadata. Run [06_Soil_Map_QC.js](scripts/06_Soil_Map_QC.js) for the live Earth Engine checks; numerical asset QC and public access remain pending. Expand the entries below for details.
+The catalogue is ready for review and tab-by-tab export for Google Cloud preparation. Step 2 adds soil depth/method records, a five-dataset depth audit and a 30-asset QC register. [Soil quality checks and findings](docs/soil_quality_checks.md) document measured versus estimated values, integration/extrapolation and unresolved import metadata. The maintainer supplied the complete 30-asset pixel-mode QC pass: 19 copied images agree at sampled pixels; ten Geng uploads were sampled without comparison to original TIFFs. Public-read ACLs have been inspected for all 41 hosted references on 15 October 2026, including Geng’s collection-level grant. Anonymous Earth Engine computation is not claimed. Depth/method and import caveats remain documented. Circumpolar thermokarst/Olefeldt work is deferred. Expand the entries below for details.
+
+## Covariate extraction catalogue
+
+The [finished extraction plan](docs/covariate_extraction_plan.md) links **what to extract, why, where and at which spatial support**. In the Google Sheet, use **Extraction_plan** (114 decisions/recipes), **Scale_profiles** (10 profiles) and **Study_stacks** (11 study/workflow stacks). The evidence register now has 217 entries, including Li's 16 retained variables and rejected TWI.
+
+| Analysis context | Output grid | Main candidate families |
+|---|---:|---|
+| Canada — soil properties | 250 m | Optical/radar, climate, terrain, vegetation/thermal seasonality and response depth |
+| Canada — agricultural soil context | 100 m | Geng climate, monthly MODIS, Landsat, terrain and parent-material inputs |
+| Hudson and James Bay Lowlands — peat | 30 m | Li seasonal radar/EVI/LST, elevation and distance context; exact source gaps marked Hold |
+| Alberta — agriculture | 30 m | Hengl vegetation/climate and multiscale terrain families; exact historical selection remains a source-matching gap |
+| Forest regions / Canada | 30 or 250 m by study | Landsat temporal features, radar, climate, terrain and study-specific canopy structure |
+| Coastal estuaries | Core/local support | Tidal elevation, fines and vegetation/salinity are field context until mapped and validated |
+
+Native information grid, output spacing, plot/core support and neighbourhood radius are separate fields. Coarse climate does not gain detail when sampled at 30 m. The unchanged notebook defines 43 candidate predictors plus four QA bands. A [20-profile extraction pilot](docs/soil_covariate_pilot.md) has now run at the original 30 m grid; study-specific additions and 100/250 m adaptations remain planned. Published input/retained evidence is distinguished from proposed candidates and conditional additions. Existing target-derived carbon/soil maps are excluded from default predictors to prevent leakage.
+
+Machine-readable: [decisions](data/catalogue/covariate_extraction_plan.json), [scales](data/catalogue/covariate_scale_profiles.json), [study stacks](data/catalogue/study_covariate_stacks.json), [Li source manifest](data/catalogue/li_2025_hbl_covariates.json). [Verified access status](data/catalogue/public_access_verified_20261015.json) records the inspected asset/collection public-read grants; the earlier maintainer report is retained as history.
+
+## Extraction pilot — completed, review flags before bulk
+
+The [live 20-profile pilot](docs/soil_covariate_pilot.md) returned all selected IDs and the 47-band baseline: **855/860 predictor values available**, all QA fields present and all 20 source-layer joins valid. The Google Sheet's **Pilot_QC** tab records the results.
+
+One BC coastal profile lacks five ERA5-Land values. Three profiles have extreme radar-ratio dispersion; an acquisition-level check also found a default-versus-exact median difference at one point. These findings, historical field dates and coordinate uncertainty require review before bulk processing. The original notebook and baseline results are preserved.
+
+[Aggregate QA](data/catalogue/soil_covariate_pilot_summary.json) · [Reproduction instructions](docs/soil_covariate_pilot.md#reproduce). Detailed CSV and exact profile locations are retained in the working workspace pending publication approval.
 
 ## Scales and evidence
 
@@ -471,7 +509,7 @@ Uncertainty is kept separate from predictions. Public validation peat depths and
 
 Run [04_Copy_External_Soil_Maps.js](scripts/04_Copy_External_Soil_Maps.js) in the GEE Code Editor. It creates four child folders and copies 16 external assets without overwrite, clipping, resampling or conversion: eight Sothe images, four global SoilGrids images, three NCSCDv2 images and one thermokarst table. Exact source/destination pairs and citations are in the [manifest](data/catalogue/soil_map_copy_manifest.json).
 
-Copies run directly through the asset API; watch the Console and refresh Assets, with no export Tasks to start. Rerunning skips existing destinations without certifying their provenance. **Completed: maintainer Console output confirms 16 copied, 0 failed, 0 skipped and expected destination types for all assets.** Numerical checks and public-read access remain pending. Geng is already in our project at its existing collection and remains there. Public-read permissions and source licences require separate checks.
+Copies run directly through the asset API; watch the Console and refresh Assets, with no export Tasks to start. Rerunning skips existing destinations without certifying their provenance. **Completed: maintainer Console output confirms 16 copied, 0 failed, 0 skipped and expected destination types for all assets.** The later 30-asset pixel pass and [41-reference sharing audit](docs/public_access.md) supersede the original pending checks. Geng remains in its existing collection. Source encoding, original licences and depth/method caveats remain recorded separately.
 
 </details>
 
