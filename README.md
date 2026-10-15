@@ -432,16 +432,16 @@ The viewer link does not establish a downloadable field dataset, raster package 
 
 ### Soil map catalogue and availability
 
-[Map inventory and upload status](docs/soil_map_inventory.md) · [Read-only GEE inspection script](scripts/03_Soil_Map_Catalogue.js) · [Project TODOs](TODO.md)
+[Map inventory and upload status](docs/soil_map_inventory.md) · [Read-only GEE inspection script](scripts/03_Soil_Map_Catalogue.js) · [Project TODOs](TODO.md) · [Copy external maps into our project](scripts/04_Copy_External_Soil_Maps.js)
 
-Catalogue checks on 14 October 2026 found existing references for Sothe and SoilGrids. On 15 October, the user supplied a completed ten-image Geng ImageCollection at `projects/northstarlabs/assets/canada_carbon_collection`, plus thermokarst and three NCSCDv2 assets in `projects/carbon-learning-library/assets/`. Exact IDs and status are in the linked inventory. Uploaded status is user-reported; runtime access, schema, scaling and public permissions remain to be checked. Hengl hosting remains unresolved.
+Catalogue checks on 14 October 2026 found existing references for Sothe and SoilGrids. On 15 October, the user supplied a completed ten-image Geng ImageCollection at `projects/northstarlabs/assets/canada_carbon_collection`, plus thermokarst and three NCSCDv2 assets in `projects/carbon-learning-library/assets/`. Exact IDs and status are in the linked inventory. The subsequent maintainer-supplied GEE output confirms the source maps load. Scaling, masks, complete depth definitions and public permissions still need checking. A [native-copy script](scripts/04_Copy_External_Soil_Maps.js) and [16-asset manifest](data/catalogue/soil_map_copy_manifest.json) now prepare external copies under `projects/northstarlabs/assets/carbon_state_of_data/soils/maps`; execution is pending. Hengl hosting remains unresolved.
 
 | Map/reference | Depth/product | Access and current GEE status |
 |---|---|---|
-| Sothe concentration | g C/kg; exact six intervals to 1 m pending release check | [Study](https://doi.org/10.1016/j.geoderma.2021.115402); [Awesome GEE](https://gee-community-catalog.org/projects/scs/): `projects/sat-io/open-datasets/carbon_stocks_ca/scc` |
+| Sothe concentration | Six image point-depth labels: 0, 5, 15, 30, 60, 100 cm; verify stored units and release semantics | [Study](https://doi.org/10.1016/j.geoderma.2021.115402); [Awesome GEE](https://gee-community-catalog.org/projects/scs/): `projects/sat-io/open-datasets/carbon_stocks_ca/scc` |
 | Sothe stocks — initial Canada reference | kg C/m²; 0–0.3, 0–1, 0–2 m with uncertainty | [Study](https://doi.org/10.1029/2021GB007213); Awesome GEE collection `projects/sat-io/open-datasets/carbon_stocks_ca/sc` |
 | SoilGrids 2.0 | Concentration/density at six intervals to 2 m; native released stock 0–30 cm | [Provider access](https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_02.html), [GEE catalogue](https://gee-community-catalog.org/projects/isric/); `projects/soilgrids-isric/soc_mean`, `ocd_mean`, `ocs_mean` |
-| Geng 100 m grids | SOC %, bulk density and other soil properties at five intervals to 1 m; quantiles | [CanSIS downloads](https://sis.agr.gc.ca/cansis/nsdb/psm/index.html), [archive](https://doi.org/10.5281/zenodo.15473720), [code](https://github.com/CanSISPSM/PSM100mCanada); user-reported completed ImageCollection `projects/northstarlabs/assets/canada_carbon_collection` with all ten BD/SOC prediction images; runtime QC pending |
+| Geng 100 m grids | SOC %, bulk density and other soil properties at five intervals to 1 m; quantiles | [CanSIS downloads](https://sis.agr.gc.ca/cansis/nsdb/psm/index.html), [archive](https://doi.org/10.5281/zenodo.15473720), [code](https://github.com/CanSISPSM/PSM100mCanada); user-reported completed ImageCollection `projects/northstarlabs/assets/canada_carbon_collection` with all ten BD/SOC prediction images; loads in supplied output; numerical/provenance QC pending |
 | Hengl Alberta 30 m | Modelled SOC/density; integrated stocks to 1 m in t/ha | [Study](https://doi.org/10.1139/facets-2023-0040), [published viewer](https://g3w.soils.app/en/map/alberta-soil-carbon/); certificate/access issue observed; raster download and GEE asset unconfirmed |
 | Olefeldt thermokarst landscapes | Polygon landscape fractions and associated 0–3 m SOC | [ORNL DAAC archive](https://doi.org/10.3334/ORNLDAAC/1332); user-supplied GEE table `projects/carbon-learning-library/assets/Circumpolar_Thermokarst_Landscapes`, runtime QC pending |
 | NCSCDv2 | Polygon stocks; rasterized 0–30, 0–100, 100–200, 200–300 cm | [Maps](https://bolin.su.se/data/ncscd/tiff.php) and [pedons](https://bolin.su.se/data/ncscd/pedon.php); three user-supplied Canada WGS84 0.012° assets (SOCC30/100/200), [exact IDs](docs/soil_map_inventory.md#newly-supplied-gee-references); runtime QC pending |
@@ -450,7 +450,16 @@ Catalogue checks on 14 October 2026 found existing references for Sothe and Soil
 
 For the supplied NCSCDv2 imports, source definitions distinguish 0–30 cm, 0–100 cm and the deep **100–200 cm** stock layer (SOCC200). Verify the imported file metadata before interpreting or integrating values. The selected source raster grid is 0.012°; native gridded stock units are hg C/m² unless converted during preparation.
 
-The assistant has not independently loaded these soil map assets. The user has supplied completed Geng image listings and thermokarst/NCSCDv2 asset references. Check image IDs, bands, depths, scaling and uncertainty definitions before use; do not mosaic stock and uncertainty members together. Soil maps are predictions/reference products, not extra ground observations or automatically independent validation data. The initial reference label is a workflow choice, not a claim of universal superiority.
+The assistant has not independently executed GEE. The maintainer's supplied output confirms source loading: two Sothe stock/uncertainty members, six Sothe concentration images, SoilGrids SOC/BD/OCD with six bands each, SoilGrids OCS with only `ocs_0-30cm_mean`, all ten Geng IDs, 132,089 thermokarst features, and three NCSCDv2 rasters. SoilGrids property grids and NCSCDv2 depth grids have some different origins; preserve native copies and align deliberately before arithmetic. Check image IDs, bands, depths, scaling and uncertainty definitions before use; do not mosaic stock and uncertainty members together. Soil maps are predictions/reference products, not extra ground observations or automatically independent validation data. The initial reference label is a workflow choice, not a claim of universal superiority.
+
+<details>
+<summary>Copy external maps into our soils/maps assets</summary>
+
+Run [04_Copy_External_Soil_Maps.js](scripts/04_Copy_External_Soil_Maps.js) in the GEE Code Editor. It creates four child folders and copies 16 external assets without overwrite, clipping, resampling or conversion: eight Sothe images, four global SoilGrids images, three NCSCDv2 images and one thermokarst table. Exact source/destination pairs and citations are in the [manifest](data/catalogue/soil_map_copy_manifest.json).
+
+Copies run directly through the asset API; watch the Console and refresh Assets, with no export Tasks to start. Rerunning skips existing destinations without certifying their provenance. **Copies are prepared, not yet confirmed executed.** Geng is already in our project at its existing collection and remains there. Public-read permissions and source licences require separate checks.
+
+</details>
 
 <details>
 <summary>Source gaps to resolve before exact study reproduction</summary>
