@@ -6,7 +6,9 @@ A community catalogue of forest and soil carbon data for Canada, connecting fiel
 
 Field observations establish the relationship between carbon and ecosystem characteristics. Spatial covariates extend that relationship across the landscape through a fitted model. For forests, inventories often measure tree dimensions and species; biomass and carbon are then estimated using documented allometric equations and conversion factors.
 
-This repository is being built with forest and soil resources. The catalogue spreadsheet will record sources, access conditions, Earth Engine asset IDs, scales, units, methods and uncertainty. Expand the entries below for details.
+The [Google Sheets master catalogue](https://docs.google.com/spreadsheets/d/14PeDcxAptEf7DOpgLtIN93S5dyVWewP6_hn5nvtTjKU/edit) links studies, ground observations, covariates, maps and Earth Engine assets. Its 10 tabs record geographic study scope separately from native raster resolution, model/output grids, extraction support, time and soil depth. Study-ground links identify the observations used in each study; evidence and status fields distinguish documented predictors from candidates and unresolved details. The original spreadsheet rows are preserved in a source archive.
+
+The catalogue is ready for review and tab-by-tab export for Google Cloud preparation. Numerical asset QC, public access checks and unresolved metadata remain pending. Expand the entries below for details.
 
 ## Scales and evidence
 
