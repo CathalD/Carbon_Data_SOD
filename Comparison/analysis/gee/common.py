@@ -51,9 +51,9 @@ def products():
                        "NCSCDv2 SOC 0–30 cm")
     p["ncscd_0_100"] = (ee.Image(f"{OURS}/ncscdv2/NCSCDv2_Canada_WGS84_SOCC100_0012deg").select(0), 0.1,
                         "NCSCDv2 SOC 0–100 cm")
-    # Sothe: study unit kg C/m2; stored encoding unverified, depth 0-1 m is a working assumption.
+    # Sothe (McMaster/WWF): SOC stock 0-1 m in kg C/m2 (depth confirmed by the maintainer, 2026-10-16).
     p["sothe_0_100"] = (ee.Image(f"{OURS}/sothe_2022/sc_250m_v20").select(0), 1.0,
-                        "Sothe SOC stock (0–1 m assumed)")
+                        "Sothe SOC stock 0–1 m (McMaster/WWF)")
     # SoilGrids 0-100 cm stock DERIVED from carbon density (not a released SoilGrids layer):
     # sum over the five intervals of OCD (hg/m3 / 10 = kg/m3) x interval thickness (m) -> kg C/m2.
     # A pixel missing any interval is masked, because the stock needs all five.
@@ -98,10 +98,10 @@ def pairs():
     out = [
         dict(id="sothe_sg_0_100", a="sothe_0_100", b="sg_ocs_0_100_derived", family="sothe_sg",
              quantity="SOC stock 0–100 cm", unit="kg C/m²", region="canada", grid="b", domain="soil", mcmaster=True,
-             note="Sothe as stored (study kg C/m²); SoilGrids carbon density hg/m³ ÷10 × interval thickness, summed over 0–100 cm",
-             datum="Same nominal 0–100 cm. Sothe archive identifies the top 1 m (hosted-file identity and datum unverified); "
-                   "SoilGrids excludes overlying organic layers and its 0–100 cm stock is derived here, not released",
-             datum_status="to verify"),
+             note="Sothe kg C/m² (0–1 m); SoilGrids carbon density hg/m³ ÷10 × interval thickness, summed over 0–100 cm",
+             datum="Both 0–100 cm. The SoilGrids stock is derived here from its carbon density (no 0–100 cm stock is released), "
+                   "and SoilGrids excludes overlying organic layers",
+             datum_status="derived"),
         dict(id="mcm_scanfi_c", a="mcm_forest_c", b="scanfi_agb_c", family="mcm_forest",
              quantity="Forest carbon: McMaster/WWF total vs SCANFI aboveground", unit="kg C/m²", region="canada",
              grid="a", domain="forest", mcmaster=True,
@@ -125,10 +125,9 @@ def pairs():
                    "pedons measured from the soil surface (organic treatment to verify)",
              datum_status="may differ"),
         dict(id="ocs_0_100", a="sothe_0_100", b="ncscd_0_100", family="stock100", mcmaster=True,
-             quantity="SOC stock 0–100 cm (provisional)", unit="kg C/m²", region="canada", grid="b",
-             domain="soil", note="Sothe depth assumed 0–1 m and stored units unverified; NCSCDv2 hg C/m² ÷10",
-             datum="Sothe archive identifies the top 1 m; datum and identity of the hosted file unverified",
-             datum_status="to verify"),
+             quantity="SOC stock 0–100 cm", unit="kg C/m²", region="canada", grid="b",
+             domain="soil", note="Sothe kg C/m² (0–1 m); NCSCDv2 hg C/m² ÷10",
+             datum="Both 0–100 cm stocks", datum_status="matched"),
         dict(id="peat_depth", a="li_depth", b="pg_depth", family="peat", quantity="Peat thickness",
              unit="cm", region="hbl", grid="b", domain="soil", note="Both are modelled full peat columns",
              datum="Full modelled peat column in both", datum_status="matched"),
