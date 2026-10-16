@@ -1,0 +1,33 @@
+{
+  "description": "SHA-256 hashes of the transfer package files, excluding this manifest itself.",
+  "files": {
+    "README.md": "50b7de36f576f9b15cef06bfd98fe4fd40b6bbfd5f0ab35e30b554b118c37251",
+    "START_HERE.md": "777d45f5c203689b750563726d2e947c17cdcb84b59aa27efdee09039c9e1876",
+    "docs/comparisons.md": "4b53f92e84e5733519516b17ffd238e047fe81e5ab1d97511a9ba6320c44291d",
+    "docs/images/summaries/map-canopy_height_max.png": "112f5f3a5e18eec67eed2e025e27b48cab1fc0918b7676fd6121b7be55967b9b",
+    "docs/images/summaries/map-esa_cci_2020.png": "422f9e5e685b41142b2ba33d0e4bfae1617ace024540cc411a689cadfebdafb0",
+    "docs/images/summaries/map-forest_carbon.png": "1c20f5ac8d8648f9529c11c1d6047be6642f6ef5f98a924bc15b48158e1f4a6d",
+    "docs/images/summaries/map-geng_soc_0_5.png": "635fa1a4b9068c9b064c0b9d18b006e3047e955e2bffc35e80fc3bf73f23a6e8",
+    "docs/images/summaries/map-li_peat_carbon.png": "6c6eb8b40f26b9634c077bb8c4100da77ffb9de032e829023e22a33e60c9124b",
+    "docs/images/summaries/map-li_peat_depth.png": "c76c8bc5c90ec97351618710196b0d4c37bb42be233007670a945b620c65b105",
+    "docs/images/summaries/map-ncscd_100.png": "a1fc5ec45253fe913ba1a0490f30a254250ae8b55697b9f8d7f728f457dbc761",
+    "docs/images/summaries/map-peatgrids_stock.png": "a9587f38b0061bdd9613e654cacb675ae5f04ae87e5f2abf7271dad2e72968ea",
+    "docs/images/summaries/map-scanfi_biomass.png": "3a208716e3f66ca80b5bb18121e5af2c18074c20537c78fb8da13ae36ba71d22",
+    "docs/images/summaries/map-soilgrids_ocs.png": "dad6efe80db4754d0523fb71c35c655d7a5472dd8eb22288b1bbd0f4bb9a2af6",
+    "docs/images/summaries/map-sothe_stock.png": "5e802732509cb3ce17d50cd5af9c965fc7455e4c559f7294b3d0dc9aceb4f716",
+    "docs/images/summaries/soil-depth-and-availability.png": "04d8db0be1c4226af7932259e378012bd6da1482c8311d36b518eca309fd54ba",
+    "docs/images/summaries/soil-depth-profiles-mineral.png": "ad97853a2ecb6955d9786717138d76a24bce567975b5977a1283dd1255706def",
+    "docs/images/summaries/soil-depth-profiles-surface.png": "873d2974bf9d6abd7735af4f94d0e0dddd6f3e721ff3cf9c172e4d6ae2ee4f9a",
+    "docs/images/summaries/soil-distributions-mineral.png": "442827d88e0b9145f727c44970403f5f57156d8811000980b87459aa50f5cbd9",
+    "docs/images/summaries/soil-distributions-surface.png": "0d9bb803d24b3b14967b73a0a3555d10f332801e7999cc58799379a703b59cd9",
+    "docs/images/summaries/soil-observation-locations.png": "2f27ec8327db43051bd863ac6496faac3346a8f0744d9ea6c4a9538adb61de5e",
+    "docs/images/summaries/soil-site-stocks-mineral.png": "ce4b30c36fe9c1cdc8feb6a2b6467b5f6f34f5f29192f7efc4f4732d684dfdda",
+    "docs/images/summaries/soil-site-stocks-surface.png": "a4c5c1384e4efb531fcae162b857414d16e2a89d9552ca7ed04f805278dee906",
+    "docs/images/summaries/source_manifest.json": "d89994c18894fd4906fdee8d7a0d083f933d2d0a3cb12e2d3f5b73b39dcb2f86",
+    "docs/summaries.md": "963716f3b6bbd8da572bb139dface8ec57a7c947324568b49557aeef07d9f809",
+    "handover/company-repository.zip": "41c0e8cea80caf26f94ab2dfa8a8daa1932894bc4887adbbc37d18abdc15ee45",
+    "handover/repository_setup_guide.md": "8f65519455f563ab7bb92c6d5bea31c7278dbd006a3cda5fd24d4f746926d4f6",
+    "handover/summaries-preview.html": "5e31de16244ec7e426288ab037ef4af01e6031933744d5aa0599ae7479231e5e",
+    "handover/summary_scaffold_instructions.md": "c5730564ae6a3341d9a9353e7462647b7bec7c672edcc598b25c46f250211633"
+  }
+}
