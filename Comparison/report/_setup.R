@@ -22,8 +22,8 @@ rel_data <- if (file.exists("_quarto.yml")) "data" else file.path("..", "data")
 data_dir <- file.path(comp_dir, "data")
 derived <- file.path(data_dir, "derived")
 repo_dir <- normalizePath(file.path(comp_dir, ".."))
-# Repository links: switch repo_branch to "main" once the comparison-analysis PR is merged.
-repo_branch <- "comparison-analysis"
+# Branch used for repository links on the site.
+repo_branch <- "main"
 gh_blob <- function(path) sprintf("https://github.com/CathalD/Carbon_Data_SOD/blob/%s/%s", repo_branch, path)
 gh_raw <- function(path) sprintf("https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/%s/%s", repo_branch, path)
 

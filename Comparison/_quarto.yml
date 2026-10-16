@@ -16,9 +16,7 @@ website:
   site-url: "https://cathald.github.io/Carbon_Data_SOD/"
   repo-url: "https://github.com/CathalD/Carbon_Data_SOD"
   repo-subdir: "Comparison"
-  # Source lives on the comparison-analysis branch until PR #1 is merged; switch to main then
-  # (and repo_branch in report/_setup.R).
-  repo-branch: comparison-analysis
+  repo-branch: main
   repo-actions: [source, issue]
   page-navigation: false
   navbar:
@@ -45,7 +43,7 @@ website:
         aria-label: GitHub repository
   page-footer:
     left: "Carbon State of Data for Canada. No map is treated as truth; agreement is not accuracy."
-    right: "Built with Quarto from [Comparison/](https://github.com/CathalD/Carbon_Data_SOD/tree/comparison-analysis/Comparison)"
+    right: "Built with Quarto from [Comparison/](https://github.com/CathalD/Carbon_Data_SOD/tree/main/Comparison)"
 
 format:
   html:
