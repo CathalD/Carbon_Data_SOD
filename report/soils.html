@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Soils – Carbon State of Data · Comparisons</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-138a9145ecad1124718f867e5b4babdc.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4867cd1986c891942ea621d4179a1c95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Carbon State of Data · Comparisons</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../report/forest.html"> 
+<span class="menu-text">Forest</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../report/soils.html" aria-current="page"> 
+<span class="menu-text">Soils</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../report/methods.html"> 
+<span class="menu-text">Methods</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../state_of_data_summary/state_of_data_summary.html"> 
+<span class="menu-text">State of Data summary</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/CathalD/Carbon_Data_SOD"> <i class="bi bi-github" role="img" aria-label="GitHub repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Soils</h1>
+<p class="subtitle lead">Profiles and layers first, then the covariates and training data behind each map, then the maps compared with each other and with the profiles.</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="domain-soil">
+<section id="profiles" class="level2">
+<h2 class="anchored" data-anchor-id="profiles">1. Profile and layer data</h2>
+<div class="lede">
+<p>Five prepared datasets hold 20,690 located profiles. They differ in where they sample, how deep they go and which variables they carry, and that shapes every comparison that follows.</p>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>These counts are not independent.</strong> WoSIS, the National Pedon Database and the peat compilations share profiles. Layers within a core are repeated depth observations, not separate locations. Profiles have not been deduplicated across datasets here.</p>
+</div>
+</div>
+</div>
+<section id="where-the-profiles-are" class="level3">
+<h3 class="anchored" data-anchor-id="where-the-profiles-are">Where the profiles are</h3>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div id="fig-profile-map" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-profile-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="soils_files/figure-html/fig-profile-map-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-profile-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones (EPSG:3978). Janousek also extends along the US and Mexican Pacific coast, outside this frame.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="profiles-per-ecozone" class="level3">
+<h3 class="anchored" data-anchor-id="profiles-per-ecozone">Profiles per ecozone</h3>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-ecozone-counts-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="how-deep-the-profiles-reach" class="level3">
+<h3 class="anchored" data-anchor-id="how-deep-the-profiles-reach">How deep the profiles reach</h3>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-coverage-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="organic-carbon-and-bulk-density-by-depth" class="level3">
+<h3 class="anchored" data-anchor-id="organic-carbon-and-bulk-density-by-depth">Organic carbon and bulk density by depth</h3>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-soc-bd-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Median observed value (profiles in brackets). SOC in g/kg, BD in g/cm³. Riley bulk-density units are unverified.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: left;">BD 0–5 cm</th>
+<th style="text-align: left;">BD 30–60 cm</th>
+<th style="text-align: left;">SOC 0–5 cm</th>
+<th style="text-align: left;">SOC 30–60 cm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">1.26 (21)</td>
+<td style="text-align: left;">1.54 (21)</td>
+<td style="text-align: left;">264 (7,975)</td>
+<td style="text-align: left;">6.03 (6,129)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">1.1 (539)</td>
+<td style="text-align: left;">1.4 (462)</td>
+<td style="text-align: left;">64.9 (5,650)</td>
+<td style="text-align: left;">6 (3,882)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NRCan peat</td>
+<td style="text-align: left;">0.079 (1,213)</td>
+<td style="text-align: left;">0.0901 (1,178)</td>
+<td style="text-align: left;">480 (1,213)</td>
+<td style="text-align: left;">481 (1,177)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Janousek</td>
+<td style="text-align: left;">0.537 (1,282)</td>
+<td style="text-align: left;">0.73 (643)</td>
+<td style="text-align: left;">61.8 (1,282)</td>
+<td style="text-align: left;">36.8 (643)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Riley</td>
+<td style="text-align: left;">0.1 (320)</td>
+<td style="text-align: left;">0.12 (323)</td>
+<td style="text-align: left;">458 (279)</td>
+<td style="text-align: left;">501 (272)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="observed-carbon-stocks" class="level3">
+<h3 class="anchored" data-anchor-id="observed-carbon-stocks">Observed carbon stocks</h3>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-obs-stock-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Stocks can only be computed where layers carry bulk density. That leaves 14 WoSIS and 338 NPDB profiles at 0–30 cm, against 1,211 NRCan peat cores. Observed-stock comparisons are therefore dominated by peat and coastal cores.</p>
+</section>
+</section>
+<section id="covariates" class="level2">
+<h2 class="anchored" data-anchor-id="covariates">2. Covariates and training data</h2>
+<p>What each soil map was trained on, where, and at what scale. Compiled from the catalogue’s Studies, Study_ground and Covariates tabs.</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Training data relationships are as recorded in the catalogue; historical training snapshots are not our current uploads.</caption>
+<colgroup>
+<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 43%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 3%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Study</th>
+<th style="text-align: left;">Geography</th>
+<th style="text-align: left;">Training / reference data</th>
+<th style="text-align: left;">Locations reported</th>
+<th style="text-align: left;">Output grid (m)</th>
+<th style="text-align: left;">Covariate entries</th>
+<th style="text-align: left;">Predictive evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sothe et al.&nbsp;2022 GBC soil stocks</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">WoSIS Canada v2 (Historical training sources; snapshot not our current preparation); Historical Lehigh peatland training compilation (Historical training sources; snapshot not our current preparation)</td>
+<td style="text-align: left;">6,533</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">33</td>
+<td style="text-align: left;">Table definitions verified; exact expanded/retained feature IDs unresolved</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sothe et al.&nbsp;2022 Geoderma</td>
+<td style="text-align: left;">Canada; spatial and vertical SOC modelling</td>
+<td style="text-align: left;">WoSIS Canada v2 (Historical training sources; snapshot not our current preparation); Historical Lehigh peatland training compilation (Historical training sources; snapshot not our current preparation)</td>
+<td style="text-align: left;">6,533</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">Depth, surface temperature and elevation ranked highly; exact retention pending</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Poggio et al.&nbsp;2021 SoilGrids 2.0</td>
+<td style="text-align: left;">Global including Canada</td>
+<td style="text-align: left;">SoilGrids global training profiles (Training and validation)</td>
+<td style="text-align: left;">240,000</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">Candidate families; individual retained feature evidence not catalogued</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Geng et al.&nbsp;2025 Soil Landscape Grids</td>
+<td style="text-align: left;">Canada; observations concentrated in southern agricultural areas</td>
+<td style="text-align: left;">National Pedon Database preparation (CanSIS legacy source family; exact training subset unresolved)</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">Model inputs; SOC-specific ranks unresolved</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hugelius et al.&nbsp;2013 NCSCDv2</td>
+<td style="text-align: left;">Northern circumpolar permafrost region</td>
+<td style="text-align: left;">NCSCDv2 source pedons (Map-unit stock upscaling)</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Classification/upscaling, not RF feature selection</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Li et al.&nbsp;2025 Hudson Bay Lowlands</td>
+<td style="text-align: left;">Hudson and James Bay Lowlands</td>
+<td style="text-align: left;">Li peat-depth training (Training); Li public validation peat depths (External field validation)</td>
+<td style="text-align: left;">495</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">Coast distance, elevation and VH/VV ratio important in regional peat-depth context</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hengl et al.&nbsp;2023 Alberta</td>
+<td style="text-align: left;">Alberta agricultural lands; 22 pilot farms</td>
+<td style="text-align: left;">Alberta pilot-farm soil samples (Training and validation)</td>
+<td style="text-align: left;">404</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">Source inputs; exact retained-feature importance pending</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Janousek et al.&nbsp;2025 blue carbon</td>
+<td style="text-align: left;">Pacific coast Alaska to Mexico; Canadian BC subset</td>
+<td style="text-align: left;">Janousek coastal core preparation (Core-based analysis)</td>
+<td style="text-align: left;">1,284</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">Local/estuary context more explanatory than broad climate; not universal independent predictor proof</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-soil-scale-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="which-maps-share-training-sources-with-our-profiles" class="level3">
+<h3 class="anchored" data-anchor-id="which-maps-share-training-sources-with-our-profiles">Which maps share training sources with our profiles</h3>
+<p>Where a profile dataset fed a map’s training, agreement at those profiles is not independent evidence. The catalogue records these relationships:</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>From the Study_ground tab and README. ‘Not recorded’ means no documented link, not proven independence.</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 22%">
+<col style="width: 18%">
+<col style="width: 25%">
+<col style="width: 10%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Profile dataset</th>
+<th style="text-align: left;">Geng</th>
+<th style="text-align: left;">SoilGrids</th>
+<th style="text-align: left;">Sothe</th>
+<th style="text-align: left;">NCSCDv2</th>
+<th style="text-align: left;">Li / PEATGRIDS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Training source family</td>
+<td style="text-align: left;">Historical WoSIS snapshot</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">CanSIS legacy source family</td>
+<td style="text-align: left;">Possible via WoSIS</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NRCan peat</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded (Lehigh peat used)</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Janousek</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Riley</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">Not recorded</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="maps" class="level2">
+<h2 class="anchored" data-anchor-id="maps">3. Maps compared with each other</h2>
+<p>Only products with the same quantity and the same depth are paired. Each pair is compared on the coarser of its two native grids, with the finer product averaged up to it. Values are converted to one unit with the providers’ documented factors. Statistics come from 30,000 area-uniform random points across Canada (1,500 in the Hudson Plain for peat). Map figures are display-resolution summaries of the same differences.</p>
+<section id="organic-carbon-concentration-geng-vs-soilgrids" class="level3">
+<h3 class="anchored" data-anchor-id="organic-carbon-concentration-geng-vs-soilgrids">Organic carbon concentration · Geng vs SoilGrids</h3>
+<p>Both report SOC concentration at the same five intervals to 1 m. Geng (100 m) is averaged to the SoilGrids 250 m grid.</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="pair-maps"><figure class="figure"><img src="../data/derived/pair_maps/soc_0_5_a.png" alt="A · Geng SOC 0–5 cm" loading="lazy" class="figure-img"><figcaption><span class="t">A · Geng SOC 0–5 cm</span><div class="legend"><span>7.1</span><div class="bar seq"></div><span>202 g/kg</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/soc_0_5_b.png" alt="B · SoilGrids SOC 0–5 cm" loading="lazy" class="figure-img"><figcaption><span class="t">B · SoilGrids SOC 0–5 cm</span><div class="legend"><span>7.1</span><div class="bar seq"></div><span>202 g/kg</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/soc_0_5_diff.png" alt="A − B" loading="lazy" class="figure-img"><figcaption><span class="t">A − B</span><div class="legend"><span>−94.3 (B higher)</span><div class="bar div"></div><span>+94.3 (A higher)</span></div></figcaption></figure></div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="small-multiples"><figure class="figure"><img src="../data/derived/pair_maps/soc_0_5_diff.png" alt="Difference 0–5 cm" loading="lazy" class="figure-img"><figcaption>0–5 cm<br>±94.3 g/kg</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/soc_5_15_diff.png" alt="Difference 5–15 cm" loading="lazy" class="figure-img"><figcaption>5–15 cm<br>±82.5 g/kg</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/soc_15_30_diff.png" alt="Difference 15–30 cm" loading="lazy" class="figure-img"><figcaption>15–30 cm<br>±83.2 g/kg</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/soc_30_60_diff.png" alt="Difference 30–60 cm" loading="lazy" class="figure-img"><figcaption>30–60 cm<br>±85 g/kg</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/soc_60_100_diff.png" alt="Difference 60–100 cm" loading="lazy" class="figure-img"><figcaption>60–100 cm<br>±92.9 g/kg</figcaption></figure></div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-soc-hex-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Units: g/kg. A minus B; RMSD = root-mean-square difference; r = Pearson correlation.</caption>
+<colgroup>
+<col style="width: 34%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Comparison</th>
+<th style="text-align: right;">Points</th>
+<th style="text-align: right;">Mean A</th>
+<th style="text-align: right;">Mean B</th>
+<th style="text-align: right;">Mean A − B</th>
+<th style="text-align: right;">RMSD</th>
+<th style="text-align: right;">r</th>
+<th style="text-align: right;">Within ±25%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SOC concentration 0–5 cm</td>
+<td style="text-align: right;">17,121</td>
+<td style="text-align: right;">62.5</td>
+<td style="text-align: right;">79.8</td>
+<td style="text-align: right;">-17.3</td>
+<td style="text-align: right;">49.1</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">28%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SOC concentration 5–15 cm</td>
+<td style="text-align: right;">17,121</td>
+<td style="text-align: right;">55.2</td>
+<td style="text-align: right;">65.6</td>
+<td style="text-align: right;">-10.5</td>
+<td style="text-align: right;">42.6</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">33%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SOC concentration 15–30 cm</td>
+<td style="text-align: right;">17,121</td>
+<td style="text-align: right;">50.6</td>
+<td style="text-align: right;">52.1</td>
+<td style="text-align: right;">-1.48</td>
+<td style="text-align: right;">41.3</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">27%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SOC concentration 30–60 cm</td>
+<td style="text-align: right;">17,121</td>
+<td style="text-align: right;">41.5</td>
+<td style="text-align: right;">47.2</td>
+<td style="text-align: right;">-5.65</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">0.69</td>
+<td style="text-align: right;">22%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SOC concentration 60–100 cm</td>
+<td style="text-align: right;">17,121</td>
+<td style="text-align: right;">40.5</td>
+<td style="text-align: right;">46.7</td>
+<td style="text-align: right;">-6.24</td>
+<td style="text-align: right;">45.4</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">18%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-soc-ecozone-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bulk-density-geng-vs-soilgrids" class="level3">
+<h3 class="anchored" data-anchor-id="bulk-density-geng-vs-soilgrids">Bulk density · Geng vs SoilGrids</h3>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="pair-maps"><figure class="figure"><img src="../data/derived/pair_maps/bd_0_5_a.png" alt="A · Geng BD 0–5 cm" loading="lazy" class="figure-img"><figcaption><span class="t">A · Geng BD 0–5 cm</span><div class="legend"><span>0.638</span><div class="bar seq"></div><span>1.34 g/cm³</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/bd_0_5_b.png" alt="B · SoilGrids BD 0–5 cm" loading="lazy" class="figure-img"><figcaption><span class="t">B · SoilGrids BD 0–5 cm</span><div class="legend"><span>0.638</span><div class="bar seq"></div><span>1.34 g/cm³</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/bd_0_5_diff.png" alt="A − B" loading="lazy" class="figure-img"><figcaption><span class="t">A − B</span><div class="legend"><span>−0.59 (B higher)</span><div class="bar div"></div><span>+0.59 (A higher)</span></div></figcaption></figure></div>
+</div>
+<div class="cell-output-display">
+<div class="small-multiples"><figure class="figure"><img src="../data/derived/pair_maps/bd_0_5_diff.png" alt="Difference 0–5 cm" loading="lazy" class="figure-img"><figcaption>0–5 cm<br>±0.59 g/cm³</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/bd_5_15_diff.png" alt="Difference 5–15 cm" loading="lazy" class="figure-img"><figcaption>5–15 cm<br>±0.425 g/cm³</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/bd_15_30_diff.png" alt="Difference 15–30 cm" loading="lazy" class="figure-img"><figcaption>15–30 cm<br>±0.373 g/cm³</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/bd_30_60_diff.png" alt="Difference 30–60 cm" loading="lazy" class="figure-img"><figcaption>30–60 cm<br>±0.44 g/cm³</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/bd_60_100_diff.png" alt="Difference 60–100 cm" loading="lazy" class="figure-img"><figcaption>60–100 cm<br>±0.548 g/cm³</figcaption></figure></div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-bd-hex-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Units: g/cm³. A minus B; RMSD = root-mean-square difference; r = Pearson correlation.</caption>
+<colgroup>
+<col style="width: 29%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Comparison</th>
+<th style="text-align: right;">Points</th>
+<th style="text-align: right;">Mean A</th>
+<th style="text-align: right;">Mean B</th>
+<th style="text-align: right;">Mean A − B</th>
+<th style="text-align: right;">RMSD</th>
+<th style="text-align: right;">r</th>
+<th style="text-align: right;">Within ±25%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Bulk density 0–5 cm</td>
+<td style="text-align: right;">17,119</td>
+<td style="text-align: right;">1.18</td>
+<td style="text-align: right;">0.913</td>
+<td style="text-align: right;">0.268</td>
+<td style="text-align: right;">0.339</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">46%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bulk density 5–15 cm</td>
+<td style="text-align: right;">17,119</td>
+<td style="text-align: right;">1.22</td>
+<td style="text-align: right;">1.12</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.224</td>
+<td style="text-align: right;">-0.05</td>
+<td style="text-align: right;">80%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bulk density 15–30 cm</td>
+<td style="text-align: right;">17,119</td>
+<td style="text-align: right;">1.28</td>
+<td style="text-align: right;">1.23</td>
+<td style="text-align: right;">0.0479</td>
+<td style="text-align: right;">0.195</td>
+<td style="text-align: right;">-0.06</td>
+<td style="text-align: right;">89%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bulk density 30–60 cm</td>
+<td style="text-align: right;">17,119</td>
+<td style="text-align: right;">1.32</td>
+<td style="text-align: right;">1.37</td>
+<td style="text-align: right;">-0.0467</td>
+<td style="text-align: right;">0.208</td>
+<td style="text-align: right;">-0.02</td>
+<td style="text-align: right;">88%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bulk density 60–100 cm</td>
+<td style="text-align: right;">17,119</td>
+<td style="text-align: right;">1.37</td>
+<td style="text-align: right;">1.43</td>
+<td style="text-align: right;">-0.056</td>
+<td style="text-align: right;">0.261</td>
+<td style="text-align: right;">0.13</td>
+<td style="text-align: right;">82%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="carbon-stock-030-cm-soilgrids-vs-ncscdv2" class="level3">
+<h3 class="anchored" data-anchor-id="carbon-stock-030-cm-soilgrids-vs-ncscdv2">Carbon stock 0–30 cm · SoilGrids vs NCSCDv2</h3>
+<p>The NCSCDv2 Canada rasterization covers nearly all land where SoilGrids has values, so the comparison spans most of the country. SoilGrids (250 m) is averaged to the NCSCDv2 0.012° grid.</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="pair-maps"><figure class="figure"><img src="../data/derived/pair_maps/ocs_0_30_a.png" alt="A · SoilGrids OC stock 0–30 cm" loading="lazy" class="figure-img"><figcaption><span class="t">A · SoilGrids OC stock 0–30 cm</span><div class="legend"><span>0.5</span><div class="bar seq"></div><span>19.2 kg C/m²</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/ocs_0_30_b.png" alt="B · NCSCDv2 SOC 0–30 cm" loading="lazy" class="figure-img"><figcaption><span class="t">B · NCSCDv2 SOC 0–30 cm</span><div class="legend"><span>0.5</span><div class="bar seq"></div><span>19.2 kg C/m²</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/ocs_0_30_diff.png" alt="A − B" loading="lazy" class="figure-img"><figcaption><span class="t">A − B</span><div class="legend"><span>−12.4 (B higher)</span><div class="bar div"></div><span>+12.4 (A higher)</span></div></figcaption></figure></div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-s30-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Units: kg C/m². A minus B; RMSD = root-mean-square difference; r = Pearson correlation.</caption>
+<colgroup>
+<col style="width: 24%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Comparison</th>
+<th style="text-align: right;">Points</th>
+<th style="text-align: right;">Mean A</th>
+<th style="text-align: right;">Mean B</th>
+<th style="text-align: right;">Mean A − B</th>
+<th style="text-align: right;">RMSD</th>
+<th style="text-align: right;">r</th>
+<th style="text-align: right;">Within ±25%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SOC stock 0–30 cm</td>
+<td style="text-align: right;">15,836</td>
+<td style="text-align: right;">6.72</td>
+<td style="text-align: right;">7.89</td>
+<td style="text-align: right;">-1.17</td>
+<td style="text-align: right;">6.22</td>
+<td style="text-align: right;">-0.04</td>
+<td style="text-align: right;">20%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<p>NCSCDv2 is exactly zero at 2.1% of points, mostly in the Pacific Maritime and Arctic Cordillera (rock and ice map units). These are recorded values and are kept; leaving them out gives r = -0.03, so the weak relationship is not caused by zeros. NCSCDv2 assigns stocks to soil-map polygons, while SoilGrids predicts each pixel, which is one reason their patterns differ.</p>
+</div>
+</section>
+<section id="carbon-stock-0100-cm-sothe-vs-ncscdv2-provisional" class="level3">
+<h3 class="anchored" data-anchor-id="carbon-stock-0100-cm-sothe-vs-ncscdv2-provisional">Carbon stock 0–100 cm · Sothe vs NCSCDv2 <span class="pill prov">provisional</span></h3>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Provisional.</strong> Sothe’s 0–1 m depth is a working assumption and its stored units are unverified. This pair is shown because the comparison itself bears on those open questions. Treat the differences as a check on the Sothe layer, not as a finding about soil carbon.</p>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="pair-maps"><figure class="figure"><img src="../data/derived/pair_maps/ocs_0_100_a.png" alt="A · Sothe SOC stock (0–1 m assumed)" loading="lazy" class="figure-img"><figcaption><span class="t">A · Sothe SOC stock (0–1 m assumed)</span><div class="legend"><span>1.1</span><div class="bar seq"></div><span>143 kg C/m²</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/ocs_0_100_b.png" alt="B · NCSCDv2 SOC 0–100 cm" loading="lazy" class="figure-img"><figcaption><span class="t">B · NCSCDv2 SOC 0–100 cm</span><div class="legend"><span>1.1</span><div class="bar seq"></div><span>143 kg C/m²</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/ocs_0_100_diff.png" alt="A − B" loading="lazy" class="figure-img"><figcaption><span class="t">A − B</span><div class="legend"><span>−104 (B higher)</span><div class="bar div"></div><span>+104 (A higher)</span></div></figcaption></figure></div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-s100-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Units: kg C/m² (Sothe as stored). A minus B; RMSD = root-mean-square difference; r = Pearson correlation.</caption>
+<colgroup>
+<col style="width: 37%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Comparison</th>
+<th style="text-align: right;">Points</th>
+<th style="text-align: right;">Mean A</th>
+<th style="text-align: right;">Mean B</th>
+<th style="text-align: right;">Mean A − B</th>
+<th style="text-align: right;">RMSD</th>
+<th style="text-align: right;">r</th>
+<th style="text-align: right;">Within ±25%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SOC stock 0–100 cm (provisional)</td>
+<td style="text-align: right;">15,804</td>
+<td style="text-align: right;">49.6</td>
+<td style="text-align: right;">20.5</td>
+<td style="text-align: right;">29.1</td>
+<td style="text-align: right;">48.6</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">10%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<p>Across the shared area the median Sothe:NCSCDv2 ratio is <strong>2.7</strong> (interquartile range 1.4–5.3, points where NCSCDv2 is above zero). A ratio near 1 everywhere would support reading Sothe as 0–1 m kg C/m²; a consistently large ratio would point to a units or depth difference. The two maps also use different methods (pixel prediction versus soil-map polygons), so part of the gap is genuine disagreement. The profile comparison <a href="#carbon-stocks-at-profiles">below</a> adds field evidence.</p>
+</div>
+</section>
+<section id="peat-column-li-et-al.-vs-peatgrids-hudson-bay-lowlands" class="level3">
+<h3 class="anchored" data-anchor-id="peat-column-li-et-al.-vs-peatgrids-hudson-bay-lowlands">Peat column · Li et al.&nbsp;vs PEATGRIDS, Hudson Bay Lowlands</h3>
+<p>Both model the full peat column, so peat thickness and whole-column carbon can be compared directly. Li (30 m) is averaged to the PEATGRIDS 1 km grid.</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="pair-maps"><figure class="figure"><img src="../data/derived/pair_maps/peat_depth_a.png" alt="A · Li peat depth" loading="lazy" class="figure-img"><figcaption><span class="t">A · Li peat depth</span><div class="legend"><span>81.8</span><div class="bar seq"></div><span>286 cm</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/peat_depth_b.png" alt="B · PEATGRIDS peat thickness" loading="lazy" class="figure-img"><figcaption><span class="t">B · PEATGRIDS peat thickness</span><div class="legend"><span>81.8</span><div class="bar seq"></div><span>286 cm</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/peat_depth_diff.png" alt="A − B" loading="lazy" class="figure-img"><figcaption><span class="t">A − B</span><div class="legend"><span>−94.6 (B higher)</span><div class="bar div"></div><span>+94.6 (A higher)</span></div></figcaption></figure></div>
+</div>
+<div class="cell-output-display">
+<div class="pair-maps"><figure class="figure"><img src="../data/derived/pair_maps/peat_carbon_a.png" alt="A · Li peat carbon" loading="lazy" class="figure-img"><figcaption><span class="t">A · Li peat carbon</span><div class="legend"><span>47.8</span><div class="bar seq"></div><span>192 kg C/m²</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/peat_carbon_b.png" alt="B · PEATGRIDS peat carbon" loading="lazy" class="figure-img"><figcaption><span class="t">B · PEATGRIDS peat carbon</span><div class="legend"><span>47.8</span><div class="bar seq"></div><span>192 kg C/m²</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/peat_carbon_diff.png" alt="A − B" loading="lazy" class="figure-img"><figcaption><span class="t">A − B</span><div class="legend"><span>−117 (B higher)</span><div class="bar div"></div><span>+117 (A higher)</span></div></figcaption></figure></div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-peat-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Units: cm (thickness); kg C/m² (carbon). A minus B; RMSD = root-mean-square difference; r = Pearson correlation.</caption>
+<colgroup>
+<col style="width: 32%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Comparison</th>
+<th style="text-align: right;">Points</th>
+<th style="text-align: right;">Mean A</th>
+<th style="text-align: right;">Mean B</th>
+<th style="text-align: right;">Mean A − B</th>
+<th style="text-align: right;">RMSD</th>
+<th style="text-align: right;">r</th>
+<th style="text-align: right;">Within ±25%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Peat carbon (full column)</td>
+<td style="text-align: right;">1,230</td>
+<td style="text-align: right;">84.5</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">-37.6</td>
+<td style="text-align: right;">52.1</td>
+<td style="text-align: right;">-0.02</td>
+<td style="text-align: right;">43%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Peat thickness</td>
+<td style="text-align: right;">1,230</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">206</td>
+<td style="text-align: right;">-26.1</td>
+<td style="text-align: right;">47.9</td>
+<td style="text-align: right;">0.63</td>
+<td style="text-align: right;">67%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<p>Thickness agrees far better than carbon. Within each product, Li’s whole-column carbon follows Li’s peat depth almost exactly (r = 1.00 across sampled pixels), whereas PEATGRIDS carbon barely follows PEATGRIDS thickness (r = 0.10). The two products build carbon from depth in different ways, so similar thickness does not give similar carbon.</p>
+</div>
+</section>
+<section id="products-not-compared-and-why" class="level3">
+<h3 class="anchored" data-anchor-id="products-not-compared-and-why">Products not compared, and why</h3>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 14%">
+<col style="width: 9%">
+<col style="width: 32%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Product A</th>
+<th style="text-align: left;">Product B</th>
+<th style="text-align: left;">Reason</th>
+<th style="text-align: left;">Detail</th>
+<th style="text-align: left;">What would make it comparable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sothe SOC concentration (point depths 0/5/15/30/60/100 cm)</td>
+<td style="text-align: left;">Geng or SoilGrids SOC (depth intervals)</td>
+<td style="text-align: left;">Different depth</td>
+<td style="text-align: left;">Point-depth predictions versus interval means; the release’s interval semantics are unresolved.</td>
+<td style="text-align: left;">Confirm what each Sothe image represents.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sothe SOC stock (0–1 m assumed)</td>
+<td style="text-align: left;">SoilGrids OCS or NCSCDv2 (0–30 cm)</td>
+<td style="text-align: left;">Different depth</td>
+<td style="text-align: left;">0–100 cm versus 0–30 cm.</td>
+<td style="text-align: left;">None without deriving partial-depth stocks.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SoilGrids OC stock (0–30 cm)</td>
+<td style="text-align: left;">NCSCDv2 SOCC100 or Sothe (0–100 cm)</td>
+<td style="text-align: left;">Different depth</td>
+<td style="text-align: left;">0–30 cm versus 0–100 cm.</td>
+<td style="text-align: left;">A SoilGrids 0–100 cm stock is not released.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NCSCDv2 SOCC200 (100–200 cm stock)</td>
+<td style="text-align: left;">SoilGrids OCD 100–200 cm (density)</td>
+<td style="text-align: left;">Different quantity</td>
+<td style="text-align: left;">Stock (mass per area) versus carbon density (mass per volume).</td>
+<td style="text-align: left;">Integrate density over the interval (a derivation not done here).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Geng SOC and BD (concentration)</td>
+<td style="text-align: left;">Any stock product</td>
+<td style="text-align: left;">Different quantity</td>
+<td style="text-align: left;">Concentration and bulk density are not stocks.</td>
+<td style="text-align: left;">Integrate SOC × BD (with coarse fragments) to a stock; not done here.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids OCD (carbon density)</td>
+<td style="text-align: left;">Any</td>
+<td style="text-align: left;">No partner</td>
+<td style="text-align: left;">No other hosted product reports carbon density.</td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Circumpolar thermokarst landscapes (0–3 m; polygons)</td>
+<td style="text-align: left;">Any</td>
+<td style="text-align: left;">Different depth and support</td>
+<td style="text-align: left;">0–3 m polygon totals versus pixel stocks at shallower depths.</td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Li et al.&nbsp;peat carbon or PEATGRIDS (variable peat column)</td>
+<td style="text-align: left;">Sothe or NCSCDv2 (fixed 0–100 cm)</td>
+<td style="text-align: left;">Different depth</td>
+<td style="text-align: left;">Full modelled peat column versus a fixed 1 m.</td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Li et al.&nbsp;peat maps</td>
+<td style="text-align: left;">PEATGRIDS outside the Hudson Bay Lowlands</td>
+<td style="text-align: left;">Different extent</td>
+<td style="text-align: left;">Li covers the Hudson Bay Lowlands only.</td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sothe stock uncertainty</td>
+<td style="text-align: left;">Other uncertainty layers</td>
+<td style="text-align: left;">Different statistic</td>
+<td style="text-align: left;">Uncertainty definitions differ (and are unresolved for Sothe).</td>
+<td style="text-align: left;">Confirm each statistic.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hengl Alberta; McNicol NPCTR; Epstein seabed; Hugelius peat v2</td>
+<td style="text-align: left;">Any</td>
+<td style="text-align: left;">Not hosted</td>
+<td style="text-align: left;">Identified but not in Earth Engine.</td>
+<td style="text-align: left;">Locate and ingest the releases.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="profiles-vs-maps" class="level2">
+<h2 class="anchored" data-anchor-id="profiles-vs-maps">4. Maps compared with profiles</h2>
+<p>Each profile takes the value of the map pixel that contains it, at the map’s native grid. Observed values are thickness-weighted over layers that fully cover the map’s interval. This is a comparison, not a validation: some datasets trained some maps (see <a href="#covariates">above</a>), and a 250 m pixel average is not the same support as a soil core.</p>
+<section id="organic-carbon-at-profiles" class="level3">
+<h3 class="anchored" data-anchor-id="organic-carbon-at-profiles">Organic carbon at profiles</h3>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-soc-profiles-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>All five intervals pooled, one row per profile and interval (g/kg). r computed on log(1 + value). Peat cores sit far above both maps’ range, which is expected for mineral-soil products.</caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 18%">
+<col style="width: 16%">
+<col style="width: 11%">
+<col style="width: 22%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Map</th>
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: left;">Profile-intervals</th>
+<th style="text-align: left;">Median observed</th>
+<th style="text-align: left;">Median map</th>
+<th style="text-align: left;">Median map − observed</th>
+<th style="text-align: left;">r (log)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Geng</td>
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">29,795</td>
+<td style="text-align: left;">19</td>
+<td style="text-align: left;">9.16</td>
+<td style="text-align: left;">-4.92</td>
+<td style="text-align: left;">0.45</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Geng</td>
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">20,806</td>
+<td style="text-align: left;">16.3</td>
+<td style="text-align: left;">9.32</td>
+<td style="text-align: left;">-3.42</td>
+<td style="text-align: left;">0.63</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Geng</td>
+<td style="text-align: left;">NRCan peat</td>
+<td style="text-align: left;">4,713</td>
+<td style="text-align: left;">480</td>
+<td style="text-align: left;">67.7</td>
+<td style="text-align: left;">-411</td>
+<td style="text-align: left;">-0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Geng</td>
+<td style="text-align: left;">Janousek</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">313</td>
+<td style="text-align: left;">89.8</td>
+<td style="text-align: left;">-257</td>
+<td style="text-align: left;">-0.82</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Geng</td>
+<td style="text-align: left;">Riley</td>
+<td style="text-align: left;">1,180</td>
+<td style="text-align: left;">484</td>
+<td style="text-align: left;">43.8</td>
+<td style="text-align: left;">-439</td>
+<td style="text-align: left;">-0.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids</td>
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">32,710</td>
+<td style="text-align: left;">19.4</td>
+<td style="text-align: left;">22.3</td>
+<td style="text-align: left;">0.7</td>
+<td style="text-align: left;">0.64</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SoilGrids</td>
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">22,550</td>
+<td style="text-align: left;">16.6</td>
+<td style="text-align: left;">24.2</td>
+<td style="text-align: left;">3.33</td>
+<td style="text-align: left;">0.63</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids</td>
+<td style="text-align: left;">NRCan peat</td>
+<td style="text-align: left;">5,305</td>
+<td style="text-align: left;">480</td>
+<td style="text-align: left;">48</td>
+<td style="text-align: left;">-424</td>
+<td style="text-align: left;">-0.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SoilGrids</td>
+<td style="text-align: left;">Janousek</td>
+<td style="text-align: left;">2,019</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;">47</td>
+<td style="text-align: left;">-22.4</td>
+<td style="text-align: left;">0.29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids</td>
+<td style="text-align: left;">Riley</td>
+<td style="text-align: left;">1,313</td>
+<td style="text-align: left;">480</td>
+<td style="text-align: left;">26.8</td>
+<td style="text-align: left;">-450</td>
+<td style="text-align: left;">-0.24</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="bulk-density-at-profiles" class="level3">
+<h3 class="anchored" data-anchor-id="bulk-density-at-profiles">Bulk density at profiles</h3>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>All five intervals pooled, one row per profile and interval (g/cm³). Riley bulk-density units unverified.</caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 18%">
+<col style="width: 16%">
+<col style="width: 11%">
+<col style="width: 22%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Map</th>
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: left;">Profile-intervals</th>
+<th style="text-align: left;">Median observed</th>
+<th style="text-align: left;">Median map</th>
+<th style="text-align: left;">Median map − observed</th>
+<th style="text-align: left;">r (log)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Geng</td>
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">89</td>
+<td style="text-align: left;">1.49</td>
+<td style="text-align: left;">1.25</td>
+<td style="text-align: left;">-0.205</td>
+<td style="text-align: left;">0.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Geng</td>
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">2,373</td>
+<td style="text-align: left;">1.3</td>
+<td style="text-align: left;">1.28</td>
+<td style="text-align: left;">0.00559</td>
+<td style="text-align: left;">0.77</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Geng</td>
+<td style="text-align: left;">NRCan peat</td>
+<td style="text-align: left;">4,714</td>
+<td style="text-align: left;">0.079</td>
+<td style="text-align: left;">1.32</td>
+<td style="text-align: left;">1.24</td>
+<td style="text-align: left;">-0.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Geng</td>
+<td style="text-align: left;">Janousek</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">0.115</td>
+<td style="text-align: left;">1.07</td>
+<td style="text-align: left;">0.972</td>
+<td style="text-align: left;">-0.71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Geng</td>
+<td style="text-align: left;">Riley</td>
+<td style="text-align: left;">1,354</td>
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">1.31</td>
+<td style="text-align: left;">1.21</td>
+<td style="text-align: left;">0.02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids</td>
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">89</td>
+<td style="text-align: left;">1.49</td>
+<td style="text-align: left;">1.35</td>
+<td style="text-align: left;">-0.12</td>
+<td style="text-align: left;">0.72</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SoilGrids</td>
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">2,455</td>
+<td style="text-align: left;">1.3</td>
+<td style="text-align: left;">1.33</td>
+<td style="text-align: left;">0.0767</td>
+<td style="text-align: left;">0.29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids</td>
+<td style="text-align: left;">NRCan peat</td>
+<td style="text-align: left;">5,306</td>
+<td style="text-align: left;">0.079</td>
+<td style="text-align: left;">1.26</td>
+<td style="text-align: left;">1.17</td>
+<td style="text-align: left;">0.07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SoilGrids</td>
+<td style="text-align: left;">Janousek</td>
+<td style="text-align: left;">2,019</td>
+<td style="text-align: left;">0.49</td>
+<td style="text-align: left;">1.18</td>
+<td style="text-align: left;">0.69</td>
+<td style="text-align: left;">0.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids</td>
+<td style="text-align: left;">Riley</td>
+<td style="text-align: left;">1,538</td>
+<td style="text-align: left;">0.11</td>
+<td style="text-align: left;">1.4</td>
+<td style="text-align: left;">1.28</td>
+<td style="text-align: left;">0.18</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="carbon-stocks-at-profiles" class="level3">
+<h3 class="anchored" data-anchor-id="carbon-stocks-at-profiles">Carbon stocks at profiles</h3>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-stock-profiles-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<p>For the Sothe units question: at profiles with an observed 0–100 cm stock, the ratio of Sothe’s median to the observed median is 1.5 for NPDB (126 profiles) and 1.2 for NRCan peat (983 profiles). That is much closer than its ratio to NCSCDv2, which suggests that NCSCDv2, not only Sothe, contributes to the map-to-map gap. These profiles are few and peat-heavy, so this narrows the question but does not settle it.</p>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>kg C/m². Observed stocks are dominated by peat and coastal cores, which mineral-soil maps are not designed to represent.</caption>
+<colgroup>
+<col style="width: 35%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 21%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Map</th>
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: left;">Profiles</th>
+<th style="text-align: left;">Median observed</th>
+<th style="text-align: left;">Median map</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">NCSCDv2 0–100</td>
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">27</td>
+<td style="text-align: left;">38.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NCSCDv2 0–100</td>
+<td style="text-align: left;">NRCan peat</td>
+<td style="text-align: left;">428</td>
+<td style="text-align: left;">46.9</td>
+<td style="text-align: left;">27.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NCSCDv2 0–30</td>
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">8.46</td>
+<td style="text-align: left;">13.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NCSCDv2 0–30</td>
+<td style="text-align: left;">NRCan peat</td>
+<td style="text-align: left;">495</td>
+<td style="text-align: left;">12.3</td>
+<td style="text-align: left;">10.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NCSCDv2 0–30</td>
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">5.21</td>
+<td style="text-align: left;">4.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids OCS</td>
+<td style="text-align: left;">Janousek</td>
+<td style="text-align: left;">498</td>
+<td style="text-align: left;">9.96</td>
+<td style="text-align: left;">7.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SoilGrids OCS</td>
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">330</td>
+<td style="text-align: left;">6.83</td>
+<td style="text-align: left;">5.65</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids OCS</td>
+<td style="text-align: left;">NRCan peat</td>
+<td style="text-align: left;">1,091</td>
+<td style="text-align: left;">11.4</td>
+<td style="text-align: left;">5.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SoilGrids OCS</td>
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">6.08</td>
+<td style="text-align: left;">4.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sothe 0–100 (provisional)</td>
+<td style="text-align: left;">Janousek</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">19.7</td>
+<td style="text-align: left;">65.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sothe 0–100 (provisional)</td>
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">126</td>
+<td style="text-align: left;">11.1</td>
+<td style="text-align: left;">16.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sothe 0–100 (provisional)</td>
+<td style="text-align: left;">NRCan peat</td>
+<td style="text-align: left;">983</td>
+<td style="text-align: left;">43.2</td>
+<td style="text-align: left;">53.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sothe 0–100 (provisional)</td>
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">16.3</td>
+<td style="text-align: left;">23.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="peat-thickness-at-peat-cores" class="level3">
+<h3 class="anchored" data-anchor-id="peat-thickness-at-peat-cores">Peat thickness at peat cores</h3>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-peat-cores-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 7%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Map</th>
+<th style="text-align: left;">Cores</th>
+<th style="text-align: left;">Median recorded (cm)</th>
+<th style="text-align: left;">Median modelled (cm)</th>
+<th style="text-align: left;">r</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Li et al.&nbsp;(HBL, 30 m)</td>
+<td style="text-align: left;">54</td>
+<td style="text-align: left;">212</td>
+<td style="text-align: left;">189</td>
+<td style="text-align: left;">0.72</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PEATGRIDS (national, 1 km)</td>
+<td style="text-align: left;">642</td>
+<td style="text-align: left;">235</td>
+<td style="text-align: left;">231</td>
+<td style="text-align: left;">0.80</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cathald\.github\.io\/Carbon_Data_SOD\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Descriptive comparison of catalogued products. No map is treated as truth.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/main/Comparison/report/soils.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with Quarto from <a href="https://github.com/CathalD/Carbon_Data_SOD/tree/main/Comparison">Comparison/</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
