@@ -1,7 +1,7 @@
 {
  "version": "0.2.0-draft",
  "catalogue_date": "2026-10-16",
- "source_revision": "2bdbab4",
+ "source_revision": "8e4b056",
  "generated_from": "data/downloads/*.csv",
  "scope": "Dataset catalogue metadata, not individual field observations or pilot rows",
  "working_sheet_access": "Restricted; public downloads do not require it",

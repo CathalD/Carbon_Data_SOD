@@ -71,15 +71,15 @@ The [raster download page](https://bolin.su.se/data/ncscd/tiff.php) specifies st
 
 ## Read-only verification script
 
-Use [`03_Soil_Map_Catalogue.js`](../scripts/03_Soil_Map_Catalogue.js) in the Earth Engine Code Editor. It now loads the completed project copies for Sothe, SoilGrids, thermokarst and NCSCDv2, and retains Geng's existing collection. It lists individual Sothe stock/concentration bands and properties as well as the other product metadata. Geng loading is now enabled. ABCFlux is deliberately absent from map objects. The script starts no export or upload.
+Use [`03_Soil_Map_Catalogue.js`](../archive/imports/03_Soil_Map_Catalogue.js) in the Earth Engine Code Editor. It now loads the completed project copies for Sothe, SoilGrids, thermokarst and NCSCDv2, and retains Geng's existing collection. It lists individual Sothe stock/concentration bands and properties as well as the other product metadata. Geng loading is now enabled. ABCFlux is deliberately absent from map objects. The script starts no export or upload.
 
-See [TODOs](../TODO.md) for deferred provenance and active ingestion checks.
+See [TODOs](maintenance/backlog.md) for deferred provenance and active ingestion checks.
 
 ## Native copies under soils/maps
 
-Run [04_Copy_External_Soil_Maps.js](../scripts/04_Copy_External_Soil_Maps.js) in the authenticated Earth Engine Code Editor. It uses [ee.data.copyAsset](https://developers.google.com/earth-engine/apidocs/ee-data-copyasset) with overwrite disabled. Copies preserve native rasters/tables without clipping, reprojection, resampling, unit conversion or stock integration. SoilGrids retains global extent. This is a direct asset operation: no export Tasks need to be started.
+Run [04_Copy_External_Soil_Maps.js](../archive/imports/04_Copy_External_Soil_Maps.js) in the authenticated Earth Engine Code Editor. It uses [ee.data.copyAsset](https://developers.google.com/earth-engine/apidocs/ee-data-copyasset) with overwrite disabled. Copies preserve native rasters/tables without clipping, reprojection, resampling, unit conversion or stock integration. SoilGrids retains global extent. This is a direct asset operation: no export Tasks need to be started.
 
-The [copy manifest](../data/catalogue/soil_map_copy_manifest.json) records all 16 exact source/destination pairs and citations. **Completed in maintainer-supplied output: 16 copied, 0 failed, 0 skipped; all destination types confirmed.** The script checks the existing root, creates the following child folders, reads each source, skips existing destinations, copies missing assets and reads back destination types. Save its Console summary as execution evidence. A skipped destination is not certified as equivalent to the source.
+The [copy manifest](../archive/imports/soil_map_copy_manifest.json) records all 16 exact source/destination pairs and citations. **Completed in maintainer-supplied output: 16 copied, 0 failed, 0 skipped; all destination types confirmed.** The script checks the existing root, creates the following child folders, reads each source, skips existing destinations, copies missing assets and reads back destination types. Save its Console summary as execution evidence. A skipped destination is not certified as equivalent to the source.
 
 Root: `projects/northstarlabs/assets/carbon_state_of_data/soils/maps`.
 
@@ -102,7 +102,7 @@ Geng remains at `projects/northstarlabs/assets/canada_carbon_collection`, alread
 
 ## Li et al. (2025) — regional Hudson Bay Lowlands peat maps
 
-[Paper](https://doi.org/10.1029/2024GL110679) · [Borealis data citation, 2024](https://doi.org/10.5683/SP3/TIRAXJ) · [Structured provenance](../data/catalogue/li_2025_hbl_maps.json) · [Copy script](../scripts/05_Copy_Li_HBL_Maps.js)
+[Paper](https://doi.org/10.1029/2024GL110679) · [Borealis data citation, 2024](https://doi.org/10.5683/SP3/TIRAXJ) · [Structured provenance](../archive/imports/li_2025_hbl_maps.json) · [Copy script](../archive/imports/05_Copy_Li_HBL_Maps.js)
 
 **Depth basis: variable modelled peat-column depth at each pixel.** Carbon stock must not be treated as a fixed 0–30, 0–100 or 0–200 cm estimate. Retain the peat-depth raster alongside carbon and use the study footprint/mask. All four local images load with one `b1`, 30 m nominal scale, empty properties and identical affine transforms `[30, 0, 10030.096580487581, 0, -30, 2302810.187057721]`. The short CRS string is null. Full CRS, stored units/scaling and masks remain unverified; identical affine transforms alone do not establish complete grid equivalence.
 
