@@ -89,17 +89,60 @@ ggplot(fam, aes(group, study_name, fill = evidence_level)) +
 
 ## 3. Maps compared with each other {#maps}
 
-### Aboveground biomass 2020 · SCANFI v1.2 vs ESA CCI v6
+**The McMaster/WWF comparison comes first** because it is the most cited Canadian forest carbon map. Statistics and maps both come from 30,000 area-uniform random points, read on each pair's coarser native grid; points where both products are zero (non-forest in both) are left out.
 
-Both products map aboveground biomass for 2020 in Mg/ha. SCANFI (30 m) is averaged to the ESA CCI 100 m grid. Points where both products are zero (non-forest in both) are left out, so agreement is not inflated by empty land.
+### McMaster/WWF forest carbon vs SCANFI aboveground carbon {#mcmaster-scanfi}
+
+::: {.callout-note appearance="simple"}
+**The pools differ, so read the difference carefully.** McMaster/WWF (Sothe et al. 2022) maps aboveground, belowground and dead plant carbon in kg C/m². SCANFI v1.2 maps aboveground biomass; it is converted to carbon here as biomass × 0.5 (carbon fraction) × 0.1 (t/ha to kg/m²). McMaster minus SCANFI carbon therefore mixes belowground and dead carbon with genuine disagreement about aboveground carbon, and cannot be read as either alone. McMaster inputs mostly represent 2015–2019; SCANFI is 2020. SCANFI (30 m) is averaged to the McMaster ≈250 m grid.
+:::
 
 ```{r}
-pair_maps_html("agb_2020")
+mcm <- read_pair_samples("mcm_forest")
+if (!is.null(mcm)) mcm <- mcm |> filter(a > 0 | b > 0)
 ```
+
+```{r}
+#| label: chart-mcm-maps
+#| fig-width: 10
+#| fig-height: 4.3
+#| fig-cap: !expr hex_caption(100000, 5)
+if (!is.null(mcm)) hex_trio(mcm, "kg C/m²", "McMaster/WWF (above + below + dead)", "SCANFI aboveground × 0.5")
+```
+
+```{r}
+#| label: chart-mcm
+#| fig-height: 4.2
+if (!is.null(mcm)) {
+  hex_pair(mcm, "kg C/m²", "McMaster/WWF", "SCANFI carbon", bins = 50) | ecozone_bias(mcm, "kg C/m²", "McMaster/WWF", "SCANFI carbon")
+}
+```
+
+```{r}
+#| results: asis
+if (!is.null(mcm)) {
+  mcm |> group_by(id) |> agree_stats() |> mutate(label = "Forest carbon (McMaster total vs SCANFI aboveground)") |> stats_table("kg C/m²") |> print()
+  r <- mcm |> filter(a > 0, b > 0) |> summarise(q1 = quantile(a / b, 0.25), med = median(a / b), q3 = quantile(a / b, 0.75))
+  cat(sprintf("\n\nWhere both are above zero, McMaster/WWF carbon is a median **%.2f×** SCANFI aboveground carbon (interquartile range %.2f–%.2f). A ratio above 1 is expected because McMaster includes belowground and dead pools; how far above 1, and where, is the part to check against pool ratios and against disagreement. Using the IPCC default carbon fraction of 0.47 instead of 0.5 would raise these ratios by about 6%%.\n",
+              r$med, r$q1, r$q3))
+}
+```
+
+### Aboveground biomass 2020 · SCANFI v1.2 vs ESA CCI v6
+
+Both products map aboveground biomass for 2020 in Mg/ha. SCANFI (30 m) is averaged to the ESA CCI 100 m grid.
 
 ```{r}
 agb <- read_pair_samples("agb")
 if (!is.null(agb)) agb <- agb |> filter(a > 0 | b > 0)
+```
+
+```{r}
+#| label: chart-agb-maps
+#| fig-width: 10
+#| fig-height: 4.3
+#| fig-cap: !expr hex_caption(100000, 5)
+if (!is.null(agb)) hex_trio(agb, "Mg/ha", "SCANFI v1.2", "ESA CCI v6")
 ```
 
 ```{r}
@@ -111,14 +154,11 @@ if (!is.null(agb)) {
 ```
 
 ```{r}
-if (!is.null(agb)) agb |> group_by(id) |> agree_stats() |> mutate(label = "Aboveground biomass 2020") |> stats_table("Mg/ha")
-```
-
-```{r}
 #| results: asis
 if (!is.null(agb)) {
+  agb |> group_by(id) |> agree_stats() |> mutate(label = "Aboveground biomass 2020") |> stats_table("Mg/ha") |> print()
   z <- agb |> summarise(only_a = mean(a > 0 & b == 0), only_b = mean(a == 0 & b > 0))
-  cat(sprintf("Of the points where either product shows biomass, **%s** have biomass only in SCANFI and **%s** only in ESA CCI. These are differences in where forest is mapped, separate from differences in how much biomass it holds.\n",
+  cat(sprintf("\n\nOf the points where either product shows biomass, %s have biomass only in SCANFI and %s only in ESA CCI; these are differences in where forest is mapped rather than in how much biomass it holds.\n",
               percent(z$only_a, 0.1), percent(z$only_b, 0.1)))
 }
 ```

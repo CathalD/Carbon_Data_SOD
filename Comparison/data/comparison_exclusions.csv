@@ -1,15 +1,15 @@
 domain,product_a,product_b,reason_type,why_not_compared,what_would_make_it_comparable
-forest,McMaster/WWF forest carbon (AGB + BGB + dead plant; kg C/m²),SCANFI v1.2 or ESA CCI aboveground biomass (Mg/ha),Different pool,Total vegetation carbon versus aboveground biomass only.,Separate the aboveground pool and apply a documented carbon fraction.
+forest,McMaster/WWF forest carbon (AGB + BGB + dead plant; kg C/m²),ESA CCI v6 aboveground biomass (Mg/ha),Different pool (not yet run),Same pool difference as SCANFI; this pass compares McMaster with SCANFI only.,"Repeat the SCANFI approach: ESA biomass × carbon fraction, with the same pool caveat."
 forest,Canadian SBFI stand AGB (polygons; 2020),SCANFI v1.2 or ESA CCI AGB (2020),Different support,Same pool and year but stand polygons rather than pixels; deferred to a polygon-level comparison.,Summarise each raster within SBFI polygons and compare polygon means.
 forest,ESA CCI AGB (2007–2022 except 2020),SCANFI v1.2 AGB (2020),Different year,Only the 2020 ESA CCI layer matches the SCANFI v1.2 reference year.,Use SCANFI v2 years when its ingestion is confirmed.
 forest,SCANFI v2 historical biomass,Any,Not available,Earth Engine ingestion not yet confirmed.,Confirm and populate forests/maps/scanfi_v2_biomass.
 forest,Lamping coastal forest biomass,Any,Not hosted,Identified but not in Earth Engine.,Ingest the GeoTIFF release.
 soil,Sothe SOC concentration (point depths 0/5/15/30/60/100 cm),Geng or SoilGrids SOC (depth intervals),Different depth,Point-depth predictions versus interval means; the release's interval semantics are unresolved.,Confirm what each Sothe image represents.
 soil,Sothe SOC stock (0–1 m assumed),SoilGrids OCS or NCSCDv2 (0–30 cm),Different depth,0–100 cm versus 0–30 cm.,None without deriving partial-depth stocks.
-soil,SoilGrids OC stock (0–30 cm),NCSCDv2 SOCC100 or Sothe (0–100 cm),Different depth,0–30 cm versus 0–100 cm.,A SoilGrids 0–100 cm stock is not released.
+soil,SoilGrids OC stock (0–30 cm),NCSCDv2 SOCC100 or Sothe (0–100 cm),Different depth,0–30 cm versus 0–100 cm.,Sothe is instead compared with a SoilGrids 0–100 cm stock derived from carbon density (Section 3).
 soil,NCSCDv2 SOCC200 (100–200 cm stock),SoilGrids OCD 100–200 cm (density),Different quantity,Stock (mass per area) versus carbon density (mass per volume).,Integrate density over the interval (a derivation not done here).
 soil,Geng SOC and BD (concentration),Any stock product,Different quantity,Concentration and bulk density are not stocks.,Integrate SOC × BD (with coarse fragments) to a stock; not done here.
-soil,SoilGrids OCD (carbon density),Any,No partner,No other hosted product reports carbon density.,–
+soil,SoilGrids OCD (carbon density),Any,Used for derivation,Used only to derive the SoilGrids 0–100 cm stock; not compared as a density.,–
 soil,Circumpolar thermokarst landscapes (0–3 m; polygons),Any,Different depth and support,0–3 m polygon totals versus pixel stocks at shallower depths.,–
 soil,Li et al. peat carbon or PEATGRIDS (variable peat column),Sothe or NCSCDv2 (fixed 0–100 cm),Different depth,Full modelled peat column versus a fixed 1 m.,–
 soil,Li et al. peat maps,PEATGRIDS outside the Hudson Bay Lowlands,Different extent,Li covers the Hudson Bay Lowlands only.,–

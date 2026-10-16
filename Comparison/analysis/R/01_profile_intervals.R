@@ -7,9 +7,18 @@
 #   * Stocks (kg C/m2) for 0-30 and 0-100 cm: sum of each layer's own stock
 #     value times the fraction of the layer inside the interval, using the
 #     dataset's own stock fields only (no new bulk-density gap filling).
-#   * Depth datum: each prepared table's own. NPDB organic horizons carry
-#     negative depths; the NPDB preparation's datum is the profile top, so
-#     NPDB depths are shifted so the profile top is 0.
+#   * Two depth datums, kept separate (they are not interchangeable):
+#       surface - depth from the top of the profile, organic surface layers
+#                 included (NPDB shifted so its profile top is 0; others as
+#                 prepared). Used with organic-inclusive stock maps.
+#       mineral - organic surface layers (WoSIS organic_surface = TRUE; NPDB
+#                 horizons above 0 cm, i.e. LFH) removed and the first remaining
+#                 layer set to 0. WoSIS and NPDB only. Used with mineral-soil
+#                 products (SoilGrids removes overlying organic layers).
+#   * Riley bulk density units are unverified: excluded from quantitative use
+#     (kept as bd_unverified in the harmonised layers).
+#   * Janousek profiles whose recorded thickness disagrees with their
+#     boundaries (> 0.01 cm) are excluded from depth integration.
 #
 # Inputs : prepared layer CSVs in Carbon_Resources/ (parent of the repo)
 # Outputs: ../../data/derived/profile_intervals.csv  (long: profile x interval x variable)
@@ -33,30 +42,47 @@ rd <- function(f) read_csv(file.path(local_dir, f), show_col_types = FALSE, prog
 
 # ---------------------------------------------------------------- common units
 # soc_gkg: organic carbon g/kg; bd: g/cm3; stock_kgm2: layer carbon stock kg C/m2
-layers <- bind_rows(
-  rd("wosis_canada_layers_v2.csv") |>
-    transmute(dataset = "WoSIS", profile_uid, top = upper_depth, bot = lower_depth,
-              soc_gkg = OrgC, bd = BDOD, stock_kgm2 = OrgC_stock_kgm2),
-  rd("npdb_canada_layers_v1_upload_fixed.csv") |>
-    group_by(profile_uid) |>
-    mutate(shift = min(top_depth_cm, na.rm = TRUE)) |>
-    ungroup() |>
-    transmute(dataset = "NPDB", profile_uid, top = top_depth_cm - shift, bot = bot_depth_cm - shift,
-              soc_gkg = carbon_pct * 10, bd = bulk_density, stock_kgm2 = stock_Mgha / 10),
+wosis <- rd("wosis_canada_layers_v2.csv") |>
+  transmute(dataset = "WoSIS", profile_uid, top = upper_depth, bot = lower_depth,
+            organic_surface = as.logical(organic_surface),
+            soc_gkg = OrgC, bd = BDOD, stock_kgm2 = OrgC_stock_kgm2)
+npdb <- rd("npdb_canada_layers_v1_upload_fixed.csv") |>
+  transmute(dataset = "NPDB", profile_uid, top = top_depth_cm, bot = bot_depth_cm,
+            organic_surface = top_depth_cm < 0,   # LFH horizons sit above the mineral surface (0 cm)
+            soc_gkg = carbon_pct * 10, bd = bulk_density, stock_kgm2 = stock_Mgha / 10)
+jan_raw <- rd("janousek_layers_v1.csv")
+jan_bad <- jan_raw |> filter(abs(layer_thickness_cm - (lower_depth - upper_depth)) > 0.01) |> distinct(profile_uid)
+message(sprintf("Janousek profiles excluded for thickness/boundary mismatch: %d", nrow(jan_bad)))
+others <- bind_rows(
   rd("canpeat_layers_v1.csv") |>
     transmute(dataset = "NRCan peat", profile_uid, top = upper_depth, bot = lower_depth,
               soc_gkg = OrgC * 10, bd = BDOD,
               # provider sample carbon mass (SAMP_CARB_MGHA, Mg C/ha) -> kg C/m2
               stock_kgm2 = TOTC_Stock / 10),
-  rd("janousek_layers_v1.csv") |>
+  jan_raw |> anti_join(jan_bad, by = "profile_uid") |>
     transmute(dataset = "Janousek", profile_uid, top = upper_depth, bot = lower_depth,
               soc_gkg = OrgC_pct * 10, bd = BDOD, stock_kgm2 = OrgC_Stock_kgm2),
   rd("riley_layers_v1.csv") |>
     transmute(dataset = "Riley", profile_uid, top = upper_depth_cm, bot = lower_depth_cm,
               soc_gkg = organic_carbon_pct * 10,
-              bd = dry_bulk_density_source,   # units unverified in the source preparation
+              bd = NA_real_, bd_unverified = dry_bulk_density_source,   # units unverified: not used
               stock_kgm2 = NA_real_)
-) |>
+)
+
+surface <- bind_rows(
+  wosis |> select(-organic_surface),
+  npdb |> group_by(profile_uid) |> mutate(shift = min(top, na.rm = TRUE)) |> ungroup() |>
+    mutate(top = top - shift, bot = bot - shift) |> select(-shift, -organic_surface),
+  others
+) |> mutate(datum = "surface")
+
+mineral <- bind_rows(wosis, npdb) |>
+  filter(!organic_surface) |>
+  group_by(profile_uid) |> mutate(shift = min(top, na.rm = TRUE)) |> ungroup() |>
+  mutate(top = top - shift, bot = bot - shift) |> select(-shift, -organic_surface) |>
+  mutate(datum = "mineral")
+
+layers <- bind_rows(surface, mineral) |>
   filter(!is.na(top), !is.na(bot), bot > top)
 
 write_csv(layers, file.path(out_dir, "profile_layers_harmonised.csv"))
@@ -93,7 +119,7 @@ summarise_interval <- function(L, itop, ibot) {
 }
 
 res <- layers |>
-  group_by(dataset, profile_uid) |>
+  group_by(datum, dataset, profile_uid) |>
   group_modify(function(L, key) {
     map_dfr(seq_len(nrow(intervals)), function(i) {
       r <- summarise_interval(L, intervals$itop[i], intervals$ibot[i])
@@ -111,4 +137,4 @@ long <- res |>
 
 write_csv(long, file.path(out_dir, "profile_intervals.csv"))
 message(sprintf("layers: %s | interval values: %s", format(nrow(layers), big.mark = ","), format(nrow(long), big.mark = ",")))
-print(long |> count(dataset, variable, interval) |> pivot_wider(names_from = interval, values_from = n), n = 50, width = 200)
+print(long |> count(datum, dataset, variable, interval) |> pivot_wider(names_from = interval, values_from = n), n = 50, width = 200)

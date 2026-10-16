@@ -7,6 +7,8 @@ Design
   * Each point reads both products of a pair on the pair's comparison grid
     (coarser native grid, finer product mean-aggregated). Values are in the
     common unit for the quantity (see common.py).
+  * Bands are sampled independently (sampling.py): a point missing one depth
+    or one product is missing only for that pair, never for the others.
   * Ecozone is attached locally from the AAFC ecozone polygons.
 
 Output: ../../data/derived/pair_samples_<family>.csv
@@ -24,6 +26,7 @@ import pandas as pd
 from shapely.geometry import Point
 
 import common
+import sampling
 
 warnings.filterwarnings("ignore")
 HERE = Path(__file__).resolve().parent
@@ -59,27 +62,9 @@ def random_points(zones, n, seed):
 
 
 def sample(img, df, label, chunk_size=CHUNK):
-    """Sample img (already on its comparison grid) at df points, in chunks."""
-    parts = []
-    for start in range(0, len(df), chunk_size):
-        chunk = df.iloc[start:start + chunk_size]
-        fc = ee.FeatureCollection([ee.Feature(ee.Geometry.Point([r.lon, r.lat]), {"pid": int(r.pid)})
-                                   for r in chunk.itertuples()])
-        for attempt in range(4):
-            try:
-                res = ee.data.computeFeatures({
-                    "expression": img.sampleRegions(collection=fc, properties=["pid"], geometries=False, tileScale=4),
-                    "fileFormat": "PANDAS_DATAFRAME"})
-                parts.append(res)
-                break
-            except Exception as e:
-                wait = 20 * (attempt + 1)
-                print(f"   {label} chunk {start}: {str(e)[:120]} (retry in {wait}s)", flush=True)
-                time.sleep(wait)
-        else:
-            raise RuntimeError(f"{label}: chunk {start} failed")
-    got = pd.concat(parts, ignore_index=True) if parts else pd.DataFrame(columns=["pid"])
-    return df.merge(got.drop(columns=[c for c in got.columns if c == "geo"], errors="ignore"), on="pid", how="left")
+    """Sample img (already on its comparison grid) at df points; bands independent."""
+    got = sampling.sample_bands(img, df, label, chunk_size)
+    return df.merge(got, on="pid", how="left")
 
 
 def family_image(fam_pairs):

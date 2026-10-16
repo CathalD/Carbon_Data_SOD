@@ -9,14 +9,14 @@ source(file.path("report", "_setup.R"))
 ```
 
 ::: {.lede}
-Canada has several national and regional carbon maps built from different field data, covariates and grids. This report compares them only where they claim to measure the same thing at the same depth, and shows where they agree and disagree. No map is treated as truth.
+Canada has several national and regional carbon maps built from different field data, covariates and grids. This report compares them only where they claim to measure the same thing at the same depth or pool, and shows where they agree and disagree. **The McMaster/WWF maps (Sothe et al. 2022) lead**, because they are the most cited: Sothe soil carbon against SoilGrids at 0–100 cm, and McMaster forest carbon against SCANFI. No map is treated as truth.
 :::
 
 ```{r}
 fams <- unique(pairs$family)
 all_s <- bind_rows(lapply(fams, read_pair_samples))
 if (nrow(all_s)) {
-  all_s <- all_s |> filter(!(id == "agb_2020" & a == 0 & b == 0))
+  all_s <- all_s |> filter(!(id %in% c("agb_2020", "mcm_scanfi_c") & a == 0 & b == 0))
   s <- all_s |> group_by(id) |> agree_stats() |> left_join(pairs |> select(id, quantity, unit, domain, a_label, b_label), by = "id")
 }
 ```
@@ -26,11 +26,12 @@ if (nrow(all_s)) {
 ```{r}
 if (nrow(all_s)) {
   s |> arrange(match(id, pairs$id)) |>
-    transmute(Domain = tools::toTitleCase(domain), Quantity = quantity,
+    left_join(pairs |> select(id, datum_status, mcmaster), by = "id") |>
+    transmute(` ` = ifelse(sapply(mcmaster, isTRUE), "McMaster/WWF", ""), Domain = tools::toTitleCase(domain), Quantity = quantity,
               `A vs B` = paste(sub(" .*", "", a_label), "vs", sub(" .*", "", b_label)),
               Unit = unit, Points = fmt_n(n), `Mean A − B` = fmt_s(bias), r = sprintf("%.2f", r),
-              `Within ±25%` = percent(within25, accuracy = 1)) |>
-    kable(caption = "Pixel comparisons on each pair's coarser native grid, from area-uniform random points. 'Within ±25%' = share of points where |A − B| is at most 25% of their mean.")
+              `Within ±25%` = percent(within25, accuracy = 1), `Depth / pool` = datum_pill(datum_status)) |>
+    kable(escape = FALSE, caption = "Pixel comparisons on each pair's coarser native grid, from area-uniform random points, each band sampled independently. 'Within ±25%' = share of points where |A − B| is at most 25% of their mean. 'Datum to verify / may differ / pools differ' flags pairs whose nominal match is not yet fully equivalent.")
 } else {
   cat("Comparison samples not yet generated.")
 }
@@ -65,4 +66,5 @@ if (nrow(all_s)) {
 - Agreement between two maps is not accuracy; both can share the same training data or the same blind spots.
 - Differences are reported on each pair's coarser native grid; they say nothing about finer detail.
 - Profile comparisons set a soil core beside a pixel average. Several profile datasets trained some of the maps, so agreement there is not independent validation.
-- The Sothe 0–100 cm comparison is provisional: its depth is a working assumption and its stored units are unverified.
+- Sothe's hosted 0–1 m depth and encoding are unverified, and the SoilGrids 0–100 cm stock is derived here from carbon density rather than released.
+- McMaster/WWF forest carbon includes belowground and dead pools that SCANFI does not, so their difference mixes pools with disagreement.

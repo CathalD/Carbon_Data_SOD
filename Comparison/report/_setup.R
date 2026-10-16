@@ -62,9 +62,6 @@ fmt_s <- function(x, d = 3) ifelse(is.na(x), "–", formatC(signif(x, d), format
 
 # ---------------------------------------------------------------- data
 pairs <- fromJSON(file.path(derived, "pairs.json"), simplifyDataFrame = TRUE)
-pair_maps <- if (file.exists(file.path(derived, "pair_maps", "pair_maps.json")))
-  fromJSON(file.path(derived, "pair_maps", "pair_maps.json"), simplifyDataFrame = FALSE) else list()
-names(pair_maps) <- vapply(pair_maps, `[[`, "", "id")
 exclusions <- read_csv(file.path(data_dir, "comparison_exclusions.csv"), show_col_types = FALSE)
 
 ecozones <- local({
@@ -122,35 +119,64 @@ ecozone_bias <- function(d, unit, a_lab, b_lab, min_n = 30) {
          caption = "Point = median difference; bar = interquartile range of sampled pixels. Ecozones with fewer than 30 points omitted.")
 }
 
-# HTML strip: A and B on a shared scale, then A - B.
-pair_maps_html <- function(id) {
-  m <- pair_maps[[id]]
-  if (is.null(m)) return(HTML("<p class='text-muted'>Map figures not yet rendered.</p>"))
-  rel <- function(f) file.path("..", "data", "derived", f)
-  lg <- function(cls, lo, hi) sprintf("<div class='legend'><span>%s</span><div class='bar %s'></div><span>%s</span></div>", lo, cls, hi)
-  fig <- function(tag, title, legend) {
-    f <- m$files[[tag]]
-    if (is.null(f)) return("")
-    sprintf("<figure><img src='%s' alt='%s' loading='lazy'><figcaption><span class='t'>%s</span>%s</figcaption></figure>",
-            rel(f), htmlEscape(title), htmlEscape(title), legend)
-  }
-  u <- m$unit
-  HTML(paste0("<div class='pair-maps'>",
-    fig("a", paste0("A · ", m$a_label), lg("seq", fmt_s(m$lo), paste(fmt_s(m$hi), u))),
-    fig("b", paste0("B · ", m$b_label), lg("seq", fmt_s(m$lo), paste(fmt_s(m$hi), u))),
-    fig("diff", "A − B", lg("div", paste0("−", fmt_s(m$dlim), " (B higher)"), paste0("+", fmt_s(m$dlim), " (A higher)"))),
-    "</div>"))
+# ---------------------------------------------------------------- hexagon maps
+# Maps are drawn from the SAME comparison-grid samples as the statistics: each
+# hexagon shows the mean of the sampled pixels inside it (A, B and A - B), using
+# only points where both products are valid. The aggregation is explicit and
+# the eligibility rules match the numbers in the tables.
+canada_3978 <- st_union(ecozones)
+hudson_3978 <- ecozones |> filter(ecozone == "Hudson Plain") |> st_union()
+
+hex_summary <- function(d, region, cellsize, min_n) {
+  hex <- st_make_grid(region, cellsize = cellsize, square = FALSE) |> st_sf(geometry = _) |>
+    mutate(hex = row_number())
+  pts <- st_as_sf(d, coords = c("lon", "lat"), crs = 4326) |> st_transform(3978)
+  joined <- st_join(pts, hex, join = st_within) |> st_drop_geometry()
+  agg <- joined |> filter(!is.na(hex)) |> group_by(across(any_of(c("id", "hex")))) |>
+    summarise(n = n(), a = mean(a), b = mean(b), diff = mean(a - b), .groups = "drop") |>
+    filter(n >= min_n)
+  hex |> inner_join(agg, by = "hex")
 }
 
-diff_multiples_html <- function(ids, labels) {
-  rel <- function(f) file.path("..", "data", "derived", f)
-  items <- mapply(function(id, lab) {
-    m <- pair_maps[[id]]
-    if (is.null(m) || is.null(m$files$diff)) return("")
-    sprintf("<figure><img src='%s' alt='Difference %s' loading='lazy'><figcaption>%s<br>±%s %s</figcaption></figure>",
-            rel(m$files$diff), lab, lab, fmt_s(m$dlim), m$unit)
-  }, ids, labels)
-  HTML(paste0("<div class='small-multiples'>", paste(items, collapse = ""), "</div>"))
+hex_map_theme <- theme(axis.text = element_blank(), panel.grid = element_blank(), panel.grid.major = element_blank(),
+                       legend.position = "bottom", legend.title = element_text(size = rel(0.8), vjust = 0.8),
+                       legend.key.width = unit(26, "pt"), legend.key.height = unit(6, "pt"),
+                       plot.title = element_text(size = rel(0.95)))
+
+hex_trio <- function(d, unit, a_lab, b_lab, region = canada_3978, cellsize = 100000, min_n = 5) {
+  h <- hex_summary(d, region, cellsize, min_n)
+  lim <- as.numeric(quantile(c(h$a, h$b), c(0.02, 0.98), na.rm = TRUE))
+  dlim <- as.numeric(quantile(abs(h$diff), 0.95, na.rm = TRUE))
+  bb <- st_bbox(region)
+  base <- function() list(geom_sf(data = st_sf(geometry = region), fill = "#eef0ea", colour = NA),
+                          coord_sf(xlim = bb[c(1, 3)], ylim = bb[c(2, 4)], datum = NA))
+  seq_fill <- scale_fill_gradientn(colours = pal$seq, limits = lim, oob = squish, name = unit, breaks = scales::breaks_pretty(3))
+  pa <- ggplot() + base() + geom_sf(data = h, aes(fill = a), colour = NA) + seq_fill + labs(title = paste("A ·", a_lab))
+  pb <- ggplot() + base() + geom_sf(data = h, aes(fill = b), colour = NA) + seq_fill + labs(title = paste("B ·", b_lab))
+  pd <- ggplot() + base() + geom_sf(data = h, aes(fill = diff), colour = NA) +
+    scale_fill_gradientn(colours = pal$div, limits = c(-dlim, dlim), oob = squish, name = unit, breaks = scales::breaks_pretty(3)) +
+    labs(title = "A − B", subtitle = "red: A higher · blue: B higher")
+  (pa | pb | pd) & hex_map_theme
+}
+
+hex_diff_facets <- function(d, unit, labels, region = canada_3978, cellsize = 100000, min_n = 5) {
+  h <- hex_summary(d, region, cellsize, min_n) |> mutate(panel = factor(labels[id], unname(labels)))
+  dlim <- as.numeric(quantile(abs(h$diff), 0.95, na.rm = TRUE))
+  bb <- st_bbox(region)
+  ggplot() + geom_sf(data = st_sf(geometry = region), fill = "#eef0ea", colour = NA) +
+    geom_sf(data = h, aes(fill = diff), colour = NA) +
+    scale_fill_gradientn(colours = pal$div, limits = c(-dlim, dlim), oob = squish, name = paste("A − B,", unit)) +
+    facet_wrap(~panel, nrow = 1) + coord_sf(xlim = bb[c(1, 3)], ylim = bb[c(2, 4)], datum = NA) + hex_map_theme
+}
+
+hex_caption <- function(cellsize, min_n) sprintf(
+  "A and B share one colour scale. Each hexagon (%d km across) shows the mean of the sampled comparison-grid pixels inside it, using only points where both products have data; hexagons with fewer than %d points are left blank. These are the same points as the statistics.",
+  round(cellsize / 1000), min_n)
+
+datum_pill <- function(status) {
+  cls <- c(matched = "ok", `to verify` = "prov", `may differ` = "prov", `pools differ` = "prov")[status]
+  label <- c(matched = "matched", `to verify` = "datum to verify", `may differ` = "datum may differ", `pools differ` = "pools differ")[status]
+  sprintf("<span class='pill %s'>%s</span>", ifelse(is.na(cls), "", cls), ifelse(is.na(label), status, label))
 }
 
 stats_table <- function(s, unit, digits = 3) {

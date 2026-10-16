@@ -28,6 +28,12 @@ def soilgrids(prop, top, bot):
     return ee.Image(f"{OURS}/soilgrids_v2/{prop}_mean").select(f"{prop}_{top}-{bot}cm_mean")
 
 
+def nonnegative(img):
+    """Mask missing values that are stored as NaN with an unmasked pixel (PEATGRIDS
+    outside peatlands). NaN >= 0 is false, so NaN becomes masked; zero stays valid."""
+    return img.updateMask(img.gte(0))
+
+
 # ---------------------------------------------------------------- products
 # Each entry: image (native grid), multiplier to the common unit, label.
 def products():
@@ -48,14 +54,29 @@ def products():
     # Sothe: study unit kg C/m2; stored encoding unverified, depth 0-1 m is a working assumption.
     p["sothe_0_100"] = (ee.Image(f"{OURS}/sothe_2022/sc_250m_v20").select(0), 1.0,
                         "Sothe SOC stock (0–1 m assumed)")
+    # SoilGrids 0-100 cm stock DERIVED from carbon density (not a released SoilGrids layer):
+    # sum over the five intervals of OCD (hg/m3 / 10 = kg/m3) x interval thickness (m) -> kg C/m2.
+    # A pixel missing any interval is masked, because the stock needs all five.
+    ocd = ee.Image(f"{OURS}/soilgrids_v2/ocd_mean")
+    sg100 = ee.Image.cat([ocd.select(f"ocd_{t}-{b}cm_mean").multiply(0.1 * (b - t) / 100.0) for t, b in INTERVALS]) \
+        .reduce(ee.Reducer.sum()).updateMask(
+            ee.Image.cat([ocd.select(f"ocd_{t}-{b}cm_mean").mask() for t, b in INTERVALS]).reduce(ee.Reducer.min())) \
+        .setDefaultProjection(ocd.projection())
+    p["sg_ocs_0_100_derived"] = (sg100, 1.0, "SoilGrids SOC stock 0–100 cm (derived from carbon density)")
+    # McMaster/WWF forest carbon (Sothe et al. 2022): AGB + BGB + dead plant carbon, kg C/m2.
+    p["mcm_forest_c"] = (ee.Image("projects/sat-io/open-datasets/carbon_stocks_ca/fc/fc_250m_version10").select(0), 1.0,
+                         "McMaster/WWF forest carbon (above + below + dead)")
+    # SCANFI aboveground biomass as carbon: t/ha x 0.5 carbon fraction x 0.1 (t/ha -> kg/m2).
+    p["scanfi_agb_c"] = (ee.Image("projects/gcpm041u-lemur/assets/scanfi_v12/SCANFI_v1_2").select("biomass"), 0.05,
+                         "SCANFI v1.2 aboveground carbon (biomass × 0.5)")
     # Peat column (variable modelled depth in both).
     p["li_depth"] = (ee.Image(f"{OURS}/li_2025_hbl/McMaster_PeatDepth_30m").select(0), 1.0, "Li peat depth")
-    p["pg_depth"] = (ee.Image("projects/sat-io/open-datasets/PEATGRIDS/THICKNESS_CM").select("THICKNESS_CM_MEAN"),
+    p["pg_depth"] = (nonnegative(ee.Image("projects/sat-io/open-datasets/PEATGRIDS/THICKNESS_CM").select("THICKNESS_CM_MEAN")),
                      1.0, "PEATGRIDS peat thickness")
     p["li_carbon"] = (ee.Image(f"{OURS}/li_2025_hbl/McMasterCarbon30mkgm2version1").select(0), 1.0,
                       "Li peat carbon")
-    p["pg_carbon"] = (ee.Image("projects/sat-io/open-datasets/PEATGRIDS/C_STOCK_MGC_PER_M2")
-                      .select("C_STOCK_MgC_per_m2_MEAN"), 1000.0, "PEATGRIDS peat carbon")
+    p["pg_carbon"] = (nonnegative(ee.Image("projects/sat-io/open-datasets/PEATGRIDS/C_STOCK_MGC_PER_M2")
+                      .select("C_STOCK_MgC_per_m2_MEAN")), 1000.0, "PEATGRIDS peat carbon (full column)")
     # Aboveground biomass 2020 -> Mg/ha (t/ha = Mg/ha).
     p["scanfi_agb"] = (ee.Image("projects/gcpm041u-lemur/assets/scanfi_v12/SCANFI_v1_2").select("biomass"), 1.0,
                        "SCANFI v1.2 AGB 2020")
@@ -66,31 +87,61 @@ def products():
 
 # ---------------------------------------------------------------- pairs
 # id, A key(s), B key(s), quantity, unit, region, coarser side ("a" or "b"), note
+MINERAL = dict(
+    datum="Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths "
+          "(mineral surface = 0, to verify)",
+    datum_status="to verify")
+
+
 def pairs():
-    out = []
+    # McMaster/WWF (Sothe et al.) comparisons lead: they are the most cited Canadian carbon maps.
+    out = [
+        dict(id="sothe_sg_0_100", a="sothe_0_100", b="sg_ocs_0_100_derived", family="sothe_sg",
+             quantity="SOC stock 0–100 cm", unit="kg C/m²", region="canada", grid="b", domain="soil", mcmaster=True,
+             note="Sothe as stored (study kg C/m²); SoilGrids carbon density hg/m³ ÷10 × interval thickness, summed over 0–100 cm",
+             datum="Same nominal 0–100 cm. Sothe archive identifies the top 1 m (hosted-file identity and datum unverified); "
+                   "SoilGrids excludes overlying organic layers and its 0–100 cm stock is derived here, not released",
+             datum_status="to verify"),
+        dict(id="mcm_scanfi_c", a="mcm_forest_c", b="scanfi_agb_c", family="mcm_forest",
+             quantity="Forest carbon: McMaster/WWF total vs SCANFI aboveground", unit="kg C/m²", region="canada",
+             grid="a", domain="forest", mcmaster=True,
+             note="SCANFI t/ha × 0.5 carbon fraction × 0.1; compared where at least one product is above zero",
+             datum="Pools differ: McMaster includes belowground and dead carbon, SCANFI is aboveground only; "
+                   "A − B mixes those pools with genuine disagreement. McMaster ~2015–2019 inputs vs SCANFI 2020",
+             datum_status="pools differ"),
+    ]
     for t, b in INTERVALS:
         out.append(dict(id=f"soc_{t}_{b}", a=f"geng_soc_{t}_{b}", b=f"sg_soc_{t}_{b}", family="soc",
                         quantity=f"SOC concentration {t}–{b} cm", unit="g/kg", region="canada", grid="b",
-                        domain="soil", note="Geng % ×10; SoilGrids dg/kg ÷10"))
+                        domain="soil", note="Geng % ×10; SoilGrids dg/kg ÷10", **MINERAL))
         out.append(dict(id=f"bd_{t}_{b}", a=f"geng_bd_{t}_{b}", b=f"sg_bd_{t}_{b}", family="bd",
                         quantity=f"Bulk density {t}–{b} cm", unit="g/cm³", region="canada", grid="b",
-                        domain="soil", note="SoilGrids cg/cm³ ÷100"))
+                        domain="soil", note="SoilGrids cg/cm³ ÷100", **MINERAL))
     out += [
         dict(id="ocs_0_30", a="sg_ocs_0_30", b="ncscd_0_30", family="stock30", quantity="SOC stock 0–30 cm",
              unit="kg C/m²", region="canada", grid="b", domain="soil",
-             note="SoilGrids t/ha ÷10; NCSCDv2 hg C/m² ÷10"),
-        dict(id="ocs_0_100", a="sothe_0_100", b="ncscd_0_100", family="stock100",
+             note="SoilGrids t/ha ÷10; NCSCDv2 hg C/m² ÷10",
+             datum="Same nominal 0–30 cm, but SoilGrids excludes overlying organic layers while NCSCDv2 is built from "
+                   "pedons measured from the soil surface (organic treatment to verify)",
+             datum_status="may differ"),
+        dict(id="ocs_0_100", a="sothe_0_100", b="ncscd_0_100", family="stock100", mcmaster=True,
              quantity="SOC stock 0–100 cm (provisional)", unit="kg C/m²", region="canada", grid="b",
-             domain="soil", note="Sothe depth assumed 0–1 m and stored units unverified; NCSCDv2 hg C/m² ÷10"),
+             domain="soil", note="Sothe depth assumed 0–1 m and stored units unverified; NCSCDv2 hg C/m² ÷10",
+             datum="Sothe archive identifies the top 1 m; datum and identity of the hosted file unverified",
+             datum_status="to verify"),
         dict(id="peat_depth", a="li_depth", b="pg_depth", family="peat", quantity="Peat thickness",
-             unit="cm", region="hbl", grid="b", domain="soil", note="Both are modelled full peat columns"),
+             unit="cm", region="hbl", grid="b", domain="soil", note="Both are modelled full peat columns",
+             datum="Full modelled peat column in both", datum_status="matched"),
         dict(id="peat_carbon", a="li_carbon", b="pg_carbon", family="peat", quantity="Peat carbon (full column)",
-             unit="kg C/m²", region="hbl", grid="b", domain="soil", note="PEATGRIDS Mg C/m² ×1000"),
+             unit="kg C/m²", region="hbl", grid="b", domain="soil", note="PEATGRIDS Mg C/m² ×1000",
+             datum="Full modelled peat column in both", datum_status="matched"),
         dict(id="agb_2020", a="scanfi_agb", b="esa_agb", family="agb", quantity="Aboveground biomass 2020",
              unit="Mg/ha", region="canada", grid="b", domain="forest",
-             note="Both aboveground biomass for 2020; compared where at least one product is above zero"),
+             note="Both aboveground biomass for 2020; compared where at least one product is above zero",
+             datum="Aboveground pool, 2020, in both", datum_status="matched"),
     ]
-    return out
+    rank = {"sothe_sg": 0, "mcm_forest": 1, "stock100": 2}
+    return sorted(out, key=lambda q: rank.get(q["family"], 9))
 
 
 def converted(key):

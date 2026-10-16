@@ -86,11 +86,10 @@ GROUP_ORDER = ["Optical time series", "Optical reflectance", "Vegetation indices
 # Observations from the sampled preview statistics that bear on open QC items.
 # They are prompts to check the source release, not conclusions or corrections.
 PREVIEW_FLAGS = {
-    "sothe_stock": ("Check before use: sampled values (median 35, 98th percentile 171) are high for "
-                    "0–1 m if stored as kg C/m²; peat holds roughly 50–80 kg C/m² per metre. "
-                    "This bears on the unverified 0–1 m assumption and the pending stored-encoding check."),
-    "sothe_stock_unc": ("Check before use: the sampled median (41.5) exceeds the stock image's median (35); "
-                        "confirm what statistic this image stores."),
+    "sothe_stock": ("Check before use: The hosted file's identity, depth definition and stored encoding are "
+                    "unverified. Value ranges alone cannot verify units; settle this from source metadata."),
+    "sothe_stock_unc": ("Check before use: Confirm which statistic this image stores (SD, interval or index) "
+                        "before comparing it with the stock image."),
 }
 
 
@@ -206,7 +205,8 @@ def soil_profiles():
         country=w.country_name, n_layers=len(wl),
         vars={"Organic C": wl.OrgC.notna().mean(), "Total C": wl.TOTC.notna().mean(),
               "Bulk density": wl.BDOD.notna().mean(),
-              "Layer stock computable": truthy(wl.OrgC_stock_computable).mean()},
+              "Stock value present": wl.OrgC_stock_kgm2.notna().mean(),
+              "Stock computable (dataset flag)": truthy(wl.OrgC_stock_computable).mean()},
         notes=["Stock sums are partial and lack coarse-fragment adjustment.",
                "WoSIS v1 is superseded."])
 
@@ -220,7 +220,8 @@ def soil_profiles():
         country=pd.Series(["Canada"] * len(n)), n_layers=len(nl),
         vars={"Organic C": nl.carbon_pct.notna().mean(), "Total C": None,
               "Bulk density": nl.bulk_density.notna().mean(),
-              "Layer stock computable": truthy(nl.stock_computable).mean()},
+              "Stock value present": nl.stock_Mgha.notna().mean(),
+              "Stock computable (dataset flag)": truthy(nl.stock_computable).mean()},
         notes=[f"{int(truthy(n.flag_location_conf_poor).sum()):,} profiles flagged for poor location confidence."])
 
     cl = pd.read_csv(LOCAL / "canpeat_layers_v1.csv", low_memory=False)
@@ -236,7 +237,8 @@ def soil_profiles():
         country=pd.Series(["Canada"] * len(cp)), n_layers=len(cl),
         vars={"Organic C": cl.OrgC.notna().mean(), "Total C": cl.TOTC.notna().mean(),
               "Bulk density": cl.BDOD.notna().mean(),
-              "Layer stock computable": cl.TOTC_Stock.notna().mean()},
+              "Stock value present": cl.TOTC_Stock.notna().mean(),
+              "Stock computable (dataset flag)": None},
         bd_flags=bd_flag.value_counts().to_dict(),
         notes=["Provider flags: 736 measured vs 35,929 estimated organic-C rows (flags omitted from v1).",
                "TOTC_Stock is the provider's SAMP_CARB_MGHA sample carbon mass."])
@@ -251,7 +253,8 @@ def soil_profiles():
         country=j.country_name, n_layers=len(jl),
         vars={"Organic C": jl.OrgC_pct.notna().mean(), "Total C": jl.TOTC_pct.notna().mean(),
               "Bulk density": jl.BDOD.notna().mean(),
-              "Layer stock computable": jl.OrgC_Stock_kgm2.notna().mean()},
+              "Stock value present": jl.OrgC_Stock_kgm2.notna().mean(),
+              "Stock computable (dataset flag)": None},
         notes=["Pacific coast Alaska to Mexico; only part is in Canada.",
                "182 thickness/boundary discrepancies await review."])
 
@@ -266,7 +269,7 @@ def soil_profiles():
         vars={"Organic C": rl.organic_carbon_pct.notna().mean(),
               "Total C": rl.total_carbon_pct.notna().mean(),
               "Bulk density": rl.dry_bulk_density_source.notna().mean(),
-              "Layer stock computable": None},
+              "Stock value present": None, "Stock computable (dataset flag)": None},
         notes=["Groups are NTS + peatland + sampling point, not confirmed cores.",
                "Bulk-density units unverified; no sampling dates in the table."])
 
@@ -362,6 +365,8 @@ def main():
     data["qc"] = qc()
     data["todo"] = todo()
     data["repo_head"] = git_head()
+    from datetime import datetime, timezone
+    data["generated_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
     previews = json.loads((HERE / "map_previews.json").read_text())
     for p in previews:

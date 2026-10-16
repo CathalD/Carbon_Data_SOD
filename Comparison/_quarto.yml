@@ -6,7 +6,6 @@ project:
     - index.qmd
     - report/*.qmd
   resources:
-    - data/derived/pair_maps/*.png
     - state_of_data_summary/state_of_data_summary.html
 
 website:
@@ -14,6 +13,8 @@ website:
   site-url: "https://cathald.github.io/Carbon_Data_SOD/"
   repo-url: "https://github.com/CathalD/Carbon_Data_SOD"
   repo-subdir: "Comparison"
+  # Source lives on the comparison-analysis branch until PR #1 is merged; switch to main then.
+  repo-branch: comparison-analysis
   repo-actions: [source, issue]
   page-navigation: true
   navbar:
@@ -34,7 +35,7 @@ website:
         aria-label: GitHub repository
   page-footer:
     left: "Descriptive comparison of catalogued products. No map is treated as truth."
-    right: "Built with Quarto from [Comparison/](https://github.com/CathalD/Carbon_Data_SOD/tree/main/Comparison)"
+    right: "Built with Quarto from [Comparison/](https://github.com/CathalD/Carbon_Data_SOD/tree/comparison-analysis/Comparison)"
 
 format:
   html:

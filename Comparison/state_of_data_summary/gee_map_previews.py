@@ -100,6 +100,9 @@ def canada_region_3978():
 def render(key, title, asset, band, region_kind):
     img = ee.Image(asset)
     img = img.select(band) if band else img.select(0)
+    if "PEATGRIDS" in asset:
+        # PEATGRIDS stores missing values as NaN in unmasked pixels; mask them (NaN >= 0 is false).
+        img = img.updateMask(img.gte(0))
     native_scale = img.projection().nominalScale().getInfo()
 
     if region_kind == "li":

@@ -19,6 +19,7 @@ import geopandas as gpd
 import pandas as pd
 
 import common
+import sampling
 
 warnings.filterwarnings("ignore")
 HERE = Path(__file__).resolve().parent
@@ -35,6 +36,7 @@ GROUPS = {
     "sothe": ["sothe_0_100"],
     "peatgrids": ["pg_depth", "pg_carbon"],
     "li": ["li_depth", "li_carbon"],
+    "soilgrids_derived": ["sg_ocs_0_100_derived"],
 }
 
 
@@ -69,40 +71,34 @@ def group_image(keys):
 
 
 def sample(img, proj, df, label):
-    parts = []
-    for start in range(0, len(df), CHUNK):
-        chunk = df.iloc[start:start + CHUNK]
-        fc = ee.FeatureCollection([ee.Feature(ee.Geometry.Point([r.lon, r.lat]), {"pid": int(r.pid)})
-                                   for r in chunk.itertuples()])
-        for attempt in range(4):
-            try:
-                parts.append(ee.data.computeFeatures({
-                    "expression": img.sampleRegions(collection=fc, properties=["pid"], projection=proj,
-                                                    geometries=False, tileScale=4),
-                    "fileFormat": "PANDAS_DATAFRAME"}))
-                break
-            except Exception as e:
-                print(f"   {label} chunk {start}: {str(e)[:120]} (retry)", flush=True)
-                time.sleep(20 * (attempt + 1))
-        else:
-            raise RuntimeError(f"{label}: chunk {start} failed")
-    return pd.concat(parts, ignore_index=True) if parts else pd.DataFrame(columns=["pid"])
+    """Native-grid values at profile points; each band independent (sampling.py)."""
+    return sampling.sample_bands(img, df, label, CHUNK)
 
 
-def main():
+def main(only=None):
+    """Sample all map groups, or only the named groups (merged into the existing table)."""
     loc = profile_locations()
     loc.to_csv(OUT / "profile_locations.csv", index=False)
     print(f"profile locations: {len(loc)}  by dataset: {loc.dataset.value_counts().to_dict()}", flush=True)
     vals = loc[["pid"]].copy()
+    prev = OUT / "profile_map_values.csv"
+    if only and prev.exists():
+        old = pd.read_csv(prev)
+        drop = [k for g in only for k in GROUPS[g]]
+        vals = loc[["pid"]].merge(old.drop(columns=["profile_uid", "dataset"] + [c for c in drop if c in old], errors="ignore"),
+                                  on="pid", how="left")
     for name, keys in GROUPS.items():
+        if only and name not in only:
+            continue
         t0 = time.time()
         img, proj = group_image(keys)
         pts = loc if name != "li" else loc[loc.ecozone == "Hudson Plain"]
         got = sample(img, proj, pts, name)
-        vals = vals.merge(got.drop(columns=["geo"], errors="ignore"), on="pid", how="left")
+        vals = vals.merge(got, on="pid", how="left")
         print(f"ok {name:10s} {time.time() - t0:5.0f}s  non-null first band: {int(vals[keys[0]].notna().sum())}", flush=True)
     loc[["pid", "profile_uid", "dataset"]].merge(vals, on="pid").to_csv(OUT / "profile_map_values.csv", index=False)
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(set(sys.argv[sys.argv.index("--only") + 1].split(",")) if "--only" in sys.argv else None)

@@ -1,5 +1,56 @@
 [
  {
+  "id": "sothe_sg_0_100",
+  "a": "sothe_0_100",
+  "b": "sg_ocs_0_100_derived",
+  "family": "sothe_sg",
+  "quantity": "SOC stock 0\u2013100 cm",
+  "unit": "kg C/m\u00b2",
+  "region": "canada",
+  "grid": "b",
+  "domain": "soil",
+  "mcmaster": true,
+  "note": "Sothe as stored (study kg C/m\u00b2); SoilGrids carbon density hg/m\u00b3 \u00f710 \u00d7 interval thickness, summed over 0\u2013100 cm",
+  "datum": "Same nominal 0\u2013100 cm. Sothe archive identifies the top 1 m (hosted-file identity and datum unverified); SoilGrids excludes overlying organic layers and its 0\u2013100 cm stock is derived here, not released",
+  "datum_status": "to verify",
+  "a_label": "Sothe SOC stock (0\u20131 m assumed)",
+  "b_label": "SoilGrids SOC stock 0\u2013100 cm (derived from carbon density)"
+ },
+ {
+  "id": "mcm_scanfi_c",
+  "a": "mcm_forest_c",
+  "b": "scanfi_agb_c",
+  "family": "mcm_forest",
+  "quantity": "Forest carbon: McMaster/WWF total vs SCANFI aboveground",
+  "unit": "kg C/m\u00b2",
+  "region": "canada",
+  "grid": "a",
+  "domain": "forest",
+  "mcmaster": true,
+  "note": "SCANFI t/ha \u00d7 0.5 carbon fraction \u00d7 0.1; compared where at least one product is above zero",
+  "datum": "Pools differ: McMaster includes belowground and dead carbon, SCANFI is aboveground only; A \u2212 B mixes those pools with genuine disagreement. McMaster ~2015\u20132019 inputs vs SCANFI 2020",
+  "datum_status": "pools differ",
+  "a_label": "McMaster/WWF forest carbon (above + below + dead)",
+  "b_label": "SCANFI v1.2 aboveground carbon (biomass \u00d7 0.5)"
+ },
+ {
+  "id": "ocs_0_100",
+  "a": "sothe_0_100",
+  "b": "ncscd_0_100",
+  "family": "stock100",
+  "mcmaster": true,
+  "quantity": "SOC stock 0\u2013100 cm (provisional)",
+  "unit": "kg C/m\u00b2",
+  "region": "canada",
+  "grid": "b",
+  "domain": "soil",
+  "note": "Sothe depth assumed 0\u20131 m and stored units unverified; NCSCDv2 hg C/m\u00b2 \u00f710",
+  "datum": "Sothe archive identifies the top 1 m; datum and identity of the hosted file unverified",
+  "datum_status": "to verify",
+  "a_label": "Sothe SOC stock (0\u20131 m assumed)",
+  "b_label": "NCSCDv2 SOC 0\u2013100 cm"
+ },
+ {
   "id": "soc_0_5",
   "a": "geng_soc_0_5",
   "b": "sg_soc_0_5",
@@ -10,6 +61,8 @@
   "grid": "b",
   "domain": "soil",
   "note": "Geng % \u00d710; SoilGrids dg/kg \u00f710",
+  "datum": "Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)",
+  "datum_status": "to verify",
   "a_label": "Geng SOC 0\u20135 cm",
   "b_label": "SoilGrids SOC 0\u20135 cm"
  },
@@ -24,6 +77,8 @@
   "grid": "b",
   "domain": "soil",
   "note": "SoilGrids cg/cm\u00b3 \u00f7100",
+  "datum": "Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)",
+  "datum_status": "to verify",
   "a_label": "Geng BD 0\u20135 cm",
   "b_label": "SoilGrids BD 0\u20135 cm"
  },
@@ -38,6 +93,8 @@
   "grid": "b",
   "domain": "soil",
   "note": "Geng % \u00d710; SoilGrids dg/kg \u00f710",
+  "datum": "Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)",
+  "datum_status": "to verify",
   "a_label": "Geng SOC 5\u201315 cm",
   "b_label": "SoilGrids SOC 5\u201315 cm"
  },
@@ -52,6 +109,8 @@
   "grid": "b",
   "domain": "soil",
   "note": "SoilGrids cg/cm\u00b3 \u00f7100",
+  "datum": "Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)",
+  "datum_status": "to verify",
   "a_label": "Geng BD 5\u201315 cm",
   "b_label": "SoilGrids BD 5\u201315 cm"
  },
@@ -66,6 +125,8 @@
   "grid": "b",
   "domain": "soil",
   "note": "Geng % \u00d710; SoilGrids dg/kg \u00f710",
+  "datum": "Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)",
+  "datum_status": "to verify",
   "a_label": "Geng SOC 15\u201330 cm",
   "b_label": "SoilGrids SOC 15\u201330 cm"
  },
@@ -80,6 +141,8 @@
   "grid": "b",
   "domain": "soil",
   "note": "SoilGrids cg/cm\u00b3 \u00f7100",
+  "datum": "Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)",
+  "datum_status": "to verify",
   "a_label": "Geng BD 15\u201330 cm",
   "b_label": "SoilGrids BD 15\u201330 cm"
  },
@@ -94,6 +157,8 @@
   "grid": "b",
   "domain": "soil",
   "note": "Geng % \u00d710; SoilGrids dg/kg \u00f710",
+  "datum": "Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)",
+  "datum_status": "to verify",
   "a_label": "Geng SOC 30\u201360 cm",
   "b_label": "SoilGrids SOC 30\u201360 cm"
  },
@@ -108,6 +173,8 @@
   "grid": "b",
   "domain": "soil",
   "note": "SoilGrids cg/cm\u00b3 \u00f7100",
+  "datum": "Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)",
+  "datum_status": "to verify",
   "a_label": "Geng BD 30\u201360 cm",
   "b_label": "SoilGrids BD 30\u201360 cm"
  },
@@ -122,6 +189,8 @@
   "grid": "b",
   "domain": "soil",
   "note": "Geng % \u00d710; SoilGrids dg/kg \u00f710",
+  "datum": "Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)",
+  "datum_status": "to verify",
   "a_label": "Geng SOC 60\u2013100 cm",
   "b_label": "SoilGrids SOC 60\u2013100 cm"
  },
@@ -136,6 +205,8 @@
   "grid": "b",
   "domain": "soil",
   "note": "SoilGrids cg/cm\u00b3 \u00f7100",
+  "datum": "Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)",
+  "datum_status": "to verify",
   "a_label": "Geng BD 60\u2013100 cm",
   "b_label": "SoilGrids BD 60\u2013100 cm"
  },
@@ -150,22 +221,10 @@
   "grid": "b",
   "domain": "soil",
   "note": "SoilGrids t/ha \u00f710; NCSCDv2 hg C/m\u00b2 \u00f710",
+  "datum": "Same nominal 0\u201330 cm, but SoilGrids excludes overlying organic layers while NCSCDv2 is built from pedons measured from the soil surface (organic treatment to verify)",
+  "datum_status": "may differ",
   "a_label": "SoilGrids OC stock 0\u201330 cm",
   "b_label": "NCSCDv2 SOC 0\u201330 cm"
- },
- {
-  "id": "ocs_0_100",
-  "a": "sothe_0_100",
-  "b": "ncscd_0_100",
-  "family": "stock100",
-  "quantity": "SOC stock 0\u2013100 cm (provisional)",
-  "unit": "kg C/m\u00b2",
-  "region": "canada",
-  "grid": "b",
-  "domain": "soil",
-  "note": "Sothe depth assumed 0\u20131 m and stored units unverified; NCSCDv2 hg C/m\u00b2 \u00f710",
-  "a_label": "Sothe SOC stock (0\u20131 m assumed)",
-  "b_label": "NCSCDv2 SOC 0\u2013100 cm"
  },
  {
   "id": "peat_depth",
@@ -178,6 +237,8 @@
   "grid": "b",
   "domain": "soil",
   "note": "Both are modelled full peat columns",
+  "datum": "Full modelled peat column in both",
+  "datum_status": "matched",
   "a_label": "Li peat depth",
   "b_label": "PEATGRIDS peat thickness"
  },
@@ -192,8 +253,10 @@
   "grid": "b",
   "domain": "soil",
   "note": "PEATGRIDS Mg C/m\u00b2 \u00d71000",
+  "datum": "Full modelled peat column in both",
+  "datum_status": "matched",
   "a_label": "Li peat carbon",
-  "b_label": "PEATGRIDS peat carbon"
+  "b_label": "PEATGRIDS peat carbon (full column)"
  },
  {
   "id": "agb_2020",
@@ -206,6 +269,8 @@
   "grid": "b",
   "domain": "forest",
   "note": "Both aboveground biomass for 2020; compared where at least one product is above zero",
+  "datum": "Aboveground pool, 2020, in both",
+  "datum_status": "matched",
   "a_label": "SCANFI v1.2 AGB 2020",
   "b_label": "ESA CCI v6 AGB 2020"
  }

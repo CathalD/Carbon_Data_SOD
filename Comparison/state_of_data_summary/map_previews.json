@@ -157,9 +157,9 @@
   "band": "C_STOCK_MgC_per_m2_MEAN",
   "units_note": "Mg C/m\u00b2; variable modelled depth",
   "map_id": "M_PEATGRIDS",
-  "p2": 0.09083376095822975,
-  "p50": 0.1357076734630213,
-  "p98": 0.21577787326956258,
+  "p2": 0.0908773663355886,
+  "p50": 0.1357802664493627,
+  "p98": 0.21390079305239834,
   "native_scale_m": 1000,
   "file": "thumbs/peatgrids_stock.png",
   "stretch_scale_m": 5000
