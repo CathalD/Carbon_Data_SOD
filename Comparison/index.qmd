@@ -1,70 +1,264 @@
 ---
-title: "Where Canada's carbon maps agree, and where they don't"
-subtitle: "A like-for-like comparison of forest and soil carbon products, and of soil maps against field profiles."
+title: "Carbon data for Canada"
+subtitle: "Explore ground observations, environmental covariates and maps for Canadian forests and soils. See what the data contain, how they compare, and where to access them. GEE tools for using the data are planned."
+aliases:
+  - state_of_data_summary/state_of_data_summary.html
 ---
 
 ```{r}
 #| label: setup
 source(file.path("report", "_setup.R"))
+G <- cat_tbl("Ground_data"); M <- cat_tbl("Maps"); S <- cat_tbl("Studies"); A <- cat_tbl("Assets")
+O <- cat_tbl("Other_sources"); C <- cat_tbl("Covariates"); L <- cat_tbl("Study_ground")
+xw <- crosswalk |> select(record_id, domain, data_type, ecosystem)
+period <- S |> select(study_id, temporal_context)
+dom_label <- c(forests = "Forests", soils = "Soils", both = "Forests and soils")
+access_label <- function(status) c(Hosted = "Project GEE", `External asset` = "Public GEE")[status] %|% "Provider"
 ```
 
 ::: {.lede}
-Canada has several national and regional carbon maps built from different field data, covariates and grids. This report compares them only where they claim to measure the same thing at the same depth or pool, and shows where they agree and disagree. **The McMaster/WWF maps (Sothe et al. 2022) lead**, because they are the most cited: Sothe soil carbon against SoilGrids at 0–100 cm, and McMaster forest carbon against SCANFI. No map is treated as truth.
+Coverage is strongest for forest biomass and terrestrial soils; regional coastal, wetland and other resources are included where documented. This is not an exhaustive inventory of every Canadian carbon dataset.
 :::
 
 ```{r}
-fams <- unique(pairs$family)
-all_s <- bind_rows(lapply(fams, read_pair_samples))
-if (nrow(all_s)) {
-  all_s <- all_s |> filter(!(id %in% c("agb_2020", "mcm_scanfi_c") & a == 0 & b == 0))
-  s <- all_s |> group_by(id) |> agree_stats() |> left_join(pairs |> select(id, quantity, unit, domain, a_label, b_label), by = "id")
-}
+#| results: asis
+st <- function(id) comp_stats[comp_stats$id == id, ]
+mcm <- read_pair_samples("mcm_forest") |> filter(a > 0, b > 0)
+ssg <- read_pair_samples("sothe_sg")
+hz <- ssg |> filter(ecozone == "Hudson Plain") |> summarise(a = median(a), b = median(b))
+cat(sprintf(
+"::: {.callout-tip appearance=\"simple\"}
+**What the comparisons show** ([details](compare.qmd))
+
+- **McMaster/WWF forest carbon vs SCANFI:** McMaster/WWF (above + below + dead) is a median %.2f× SCANFI aboveground carbon, and the two share their spatial pattern (r = %.2f). The pools differ, so they are not expected to match.
+- **Sothe (McMaster/WWF) vs SoilGrids, 0–100 cm:** the two soil stock maps are close to uncorrelated (r = %.2f), with the largest gap in the peat-rich Hudson Plain (median %.0f vs %.0f kg C/m²), where SoilGrids excludes overlying organic layers.
+- **Peat thickness:** Li et al. and PEATGRIDS agree within ±25%% at %s of sampled Hudson Plain points, but their whole-column carbon does not.
+:::
+", median(mcm$a / mcm$b), st("mcm_scanfi_c")$pearson_r, st("sothe_sg_0_100")$pearson_r, hz$a, hz$b,
+   percent(st("peat_depth")$within_25pct, 1)))
 ```
 
-## The comparisons at a glance
+## Find a dataset {#find}
+
+Search, or filter by ecosystem, data type, quantity, coverage or access. "Not hosted by this project" never means unavailable: follow the access link to the provider.
 
 ```{r}
-if (nrow(all_s)) {
-  s |> arrange(match(id, pairs$id)) |>
-    left_join(pairs |> select(id, datum_status, mcmaster), by = "id") |>
-    transmute(` ` = ifelse(sapply(mcmaster, isTRUE), "McMaster/WWF", ""), Domain = tools::toTitleCase(domain), Quantity = quantity,
-              `A vs B` = paste(sub(" .*", "", a_label), "vs", sub(" .*", "", b_label)),
-              Unit = unit, Points = fmt_n(n), `Mean A − B` = fmt_s(bias), r = sprintf("%.2f", r),
-              `Within ±25%` = percent(within25, accuracy = 1), `Depth / pool` = datum_pill(datum_status)) |>
-    kable(escape = FALSE, caption = "Pixel comparisons on each pair's coarser native grid, from area-uniform random points, each band sampled independently. 'Within ±25%' = share of points where |A − B| is at most 25% of their mean. 'Datum to verify / may differ / pools differ' flags pairs whose nominal match is not yet fully equivalent.")
-} else {
-  cat("Comparison samples not yet generated.")
+#| label: find-table
+#| column: page
+find <- bind_rows(
+  G |> transmute(record_id = ground_id, Name = resource_name, Quantity = carbon_pool_or_measurement, Coverage = geographic_coverage,
+                 Support = observation_support, `Depth / pool` = depth_support, url = source_url,
+                 Access = ifelse(record_status == "Hosted", "Project GEE; provider", access_route)),
+  M |> transmute(record_id = map_id, Name = product_name, Quantity = paste0(carbon_pool_or_quantity, " (", source_units_and_scaling, ")"),
+                 Coverage = geographic_coverage, Support = ifelse(is.na(reported_output_grid_m), "–", paste(reported_output_grid_m, "m grid")),
+                 `Depth / pool` = depth_support, url = source_url, Access = access_label(record_status)),
+  O |> transmute(record_id = other_source_id, Name = resource_name, Quantity = depth_or_pool, Coverage = geographic_context,
+                 Support = spatial_support, `Depth / pool` = depth_or_pool, url = source_url, Access = access_status)
+) |>
+  left_join(xw, by = "record_id") |>
+  transmute(Name = ifelse(is.na(url), htmlEscape(Name), sprintf("<a href='%s' target='_blank' rel='noopener'>%s</a>", url, htmlEscape(Name))),
+            `Forests / soils` = dom_label[domain], `Data type` = tools::toTitleCase(data_type), Ecosystem = ecosystem,
+            Quantity, Coverage, Support, `Depth / pool`, Access)
+DT::datatable(find, escape = FALSE, rownames = FALSE, filter = "top", class = "compact stripe",
+              options = list(pageLength = 10, autoWidth = FALSE, dom = "ftip", scrollX = TRUE))
+```
+
+# Forests {#forests}
+
+## Ground data {#forests-ground}
+
+Forest plot and tree datasets for Canada. None is hosted by this project yet; each is available from its provider, sometimes on request.
+
+```{r}
+fg <- G |> filter(in_domain(ground_id, "forests"))
+roles <- L |> left_join(S |> select(study_id, study_name), by = "study_id") |>
+  group_by(ground_id) |> summarise(roles = paste0(study_name, " (", study_role, ")", collapse = "; "), .groups = "drop")
+fg |> transmute(Dataset = resource_name, Measures = carbon_pool_or_measurement, Coverage = geographic_coverage,
+                `Plot support` = na_dash(observation_support), Access = link_md(source_url, na_dash(access_route)),
+                `Use and limitations` = first_sentence(considerations)) |>
+  kable()
+```
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Details: study roles and licences
+
+```{r}
+fg |> left_join(roles, by = "ground_id") |>
+  transmute(Dataset = resource_name, `Used by (role)` = na_dash(roles), Licence = na_dash(licence_note), `Catalogue status` = record_status) |> kable()
+```
+:::
+
+## Covariates {#forests-covariates}
+
+Environmentally correlated variables (reflectance, radar, canopy structure, climate, terrain) that forest studies used to map biomass and carbon. Entry counts are not predictor importance.
+
+```{r}
+cov_summary <- function(ids) {
+  C |> filter(study_id %in% ids) |>
+    group_by(study_id) |>
+    summarise(Families = paste(sort(unique(family)), collapse = ", "),
+              grids = list(suppressWarnings(as.numeric(native_grid_m))),
+              Periods = paste(head(unique(na.omit(temporal_window)), 3), collapse = "; "),
+              `Evidence recorded` = paste(names(sort(table(evidence_level), decreasing = TRUE)), collapse = ", "), .groups = "drop") |>
+    mutate(`Source grids (m)` = vapply(grids, function(g) if (all(is.na(g))) "–" else paste(fmt_n(min(g, na.rm = TRUE)), "–", fmt_n(max(g, na.rm = TRUE))), "")) |>
+    left_join(S |> select(study_id, study_name, output_grid_m), by = "study_id") |>
+    transmute(Study = coalesce(study_name, study_id), `Output grid (m)` = na_dash(output_grid_m), Families, `Source grids (m)`,
+              Periods = na_dash(Periods), `Evidence recorded`)
+}
+cov_summary(S$study_id[in_domain(S$study_id, "forests")]) |> kable()
+```
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Details: every forest covariate entry
+
+```{r}
+C |> filter(in_domain(study_id, "forests")) |>
+  transmute(Study = study_id, Variable = feature_name, Family = family, `Native grid (m)` = native_grid_m, Period = temporal_window,
+            Source = source_asset_or_product, Evidence = evidence_level) |>
+  DT::datatable(rownames = FALSE, filter = "top", class = "compact stripe", options = list(pageLength = 8, scrollX = TRUE, dom = "ftip"))
+```
+
+```{r}
+preview_html("canopy_height_max")
+```
+:::
+
+## Maps {#forests-maps}
+
+```{r}
+map_records <- function(dom) {
+  M |> filter(in_domain(map_id, dom)) |> left_join(period, by = "study_id") |>
+    transmute(map_id, Product = product_name, Quantity = paste0(carbon_pool_or_quantity, " (", source_units_and_scaling, ")"),
+              Coverage = geographic_coverage, `Grid (m)` = na_dash(reported_output_grid_m), `Depth / pool` = depth_support,
+              Period = na_dash(temporal_context), Access = link_md(source_url, access_label(record_status)),
+              `Use and limitations` = first_sentence(considerations))
+}
+map_records("forests") |> select(-map_id) |> kable()
+```
+
+```{r}
+preview_html(c("forest_carbon", "scanfi_biomass", "esa_cci_2020"))
+```
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Details: uncertainty layers and exact assets
+
+```{r}
+preview_html("forest_carbon_unc")
+```
+
+```{r}
+A |> filter(resource_id %in% M$map_id[in_domain(M$map_id, "forests")]) |>
+  transmute(Resource = resource_id, Asset = project_or_current_asset, `Bands / schema` = bands_or_schema, `Nominal scale (m)` = nominal_scale_m,
+            Units = units_note, `Public read` = public_read_status) |> kable()
+```
+:::
+
+# Soils {#soils}
+
+## Ground data {#soils-ground}
+
+Five soil profile and core datasets are prepared and hosted by this project; more are catalogued from their providers. **`r fmt_n(sum(profile_summary$profiles))` profile records, of which `r fmt_n(sum(profile_summary$outside_canada_ecozones))` lie outside Canada's terrestrial ecozones (mostly Pacific coast cores); records are not deduplicated across datasets.**
+
+```{r}
+profile_summary |>
+  transmute(Dataset = dataset, `Profiles / layers` = paste(fmt_n(profiles), "/", fmt_n(layers)),
+            Dates = ifelse(is.na(year_min), "Not recorded", paste0(year_min, "–", year_max, " (", fmt_n(profiles_dated), " dated)")),
+            `Recorded depth` = paste0("median ", fmt_n(median_deepest_layer_cm), " cm; ", percent(share_reaching_100cm, 1), " reach 1 m"),
+            `SOC / density / stock in layers` = paste(percent(layers_with_soc, 1), ifelse(is.na(layers_with_bd), "not used", percent(layers_with_bd, 1)),
+                                                       ifelse(is.na(layers_with_stock_value), "–", percent(layers_with_stock_value, 1)), sep = " / "),
+            `Depth datum` = depth_datum, Qualifiers = qualifiers) |>
+  kable(caption = "Share of layer rows with a value; values may be measured or estimated (see qualifiers).")
+```
+
+```{r}
+#| label: fig-profile-map
+#| fig-height: 6
+#| fig-cap: "Profile locations by dataset (EPSG:3978). Janousek also extends along the US and Mexican Pacific coast, outside this frame."
+locs <- read_csv(file.path(derived, "profile_locations.csv"), show_col_types = FALSE) |> mutate(dataset = factor(dataset, dataset_levels))
+pts <- locs |> filter(!is.na(lon), !is.na(lat)) |> st_as_sf(coords = c("lon", "lat"), crs = 4326) |> st_transform(3978)
+bb <- st_bbox(ecozones)
+ggplot() +
+  geom_sf(data = ecozones, fill = "#eef0ea", colour = "#c9cdc4", linewidth = 0.15) +
+  geom_sf(data = pts, aes(colour = dataset), size = 0.35, alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = dataset_cols) + facet_wrap(~dataset, ncol = 3) +
+  coord_sf(xlim = bb[c(1, 3)], ylim = bb[c(2, 4)], datum = NA) +
+  theme(axis.text = element_blank(), panel.grid = element_blank(), panel.grid.major = element_blank())
+```
+
+```{r}
+G |> filter(in_domain(ground_id, "soils"), record_status != "Hosted") |>
+  transmute(Dataset = resource_name, Measures = carbon_pool_or_measurement, Coverage = geographic_coverage,
+            `Sites / profiles` = na_dash(profile_or_site_count), `Depth support` = na_dash(depth_support),
+            Access = link_md(source_url, na_dash(access_route))) |>
+  kable(caption = "Further soil observation datasets, available from their providers (not hosted by this project).")
+```
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Details: profiles by ecozone
+
+```{r}
+#| fig-height: 4.6
+counts <- locs |> filter(!is.na(ecozone)) |> count(ecozone, dataset)
+ord <- counts |> group_by(ecozone) |> summarise(n = sum(n)) |> arrange(n) |> pull(ecozone)
+ggplot(counts, aes(dataset, factor(ecozone, ord), fill = n)) +
+  geom_tile(colour = "white", linewidth = 1) + geom_text(aes(label = fmt_n(n), colour = n > 600), size = 3) +
+  scale_fill_gradientn(colours = pal$seq, trans = "log10", guide = "none") +
+  scale_colour_manual(values = c(`TRUE` = "white", `FALSE` = pal$ink), guide = "none") +
+  labs(x = NULL, y = NULL) + theme(panel.grid = element_blank())
+```
+:::
+
+## Covariates {#soils-covariates}
+
+Environmentally correlated variables that soil and peat studies used: climate, terrain, vegetation, reflectance, geology and depth.
+
+```{r}
+cov_summary(S$study_id[in_domain(S$study_id, "soils")]) |> kable()
+```
+
+## Maps {#soils-maps}
+
+Grouped by what they represent. Concentration, density, fixed-depth stocks and full-column peat stocks are different quantities.
+
+```{r}
+#| results: asis
+sm <- map_records("soils") |> left_join(M |> select(map_id, carbon_pool_or_quantity, depth_support_raw = depth_support), by = "map_id") |>
+  mutate(Group = case_when(
+    grepl("peat", paste(Product, carbon_pool_or_quantity), ignore.case = TRUE) ~ "Full-column peat",
+    grepl("polygon|landscape", paste(Product, carbon_pool_or_quantity, depth_support_raw), ignore.case = TRUE) ~ "Landscape polygons",
+    grepl("stock", carbon_pool_or_quantity, ignore.case = TRUE) ~ "Fixed-depth stock",
+    TRUE ~ "Concentration and density"))
+for (g in c("Fixed-depth stock", "Concentration and density", "Full-column peat", "Landscape polygons")) {
+  t <- sm |> filter(Group == g) |> select(Product, Quantity, Coverage, `Grid (m)`, `Depth / pool`, Period, Access, `Use and limitations`)
+  if (nrow(t)) { cat("\n\n**", g, "**\n\n::: {.cell-output-display}\n\n", sep = ""); print(kable(t)); cat("\n\n:::\n\n") }
 }
 ```
 
 ```{r}
-#| label: chart-overview
-#| fig-height: 4.4
-if (nrow(all_s)) {
-  ov <- s |> mutate(label = paste0(quantity, "  ·  ", sub(" .*", "", a_label), " vs ", sub(" .*", "", b_label)),
-                    label = reorder(label, within25))
-  ggplot(ov, aes(within25, label, colour = domain)) +
-    geom_segment(aes(x = 0, xend = within25, yend = label), linewidth = 0.6, colour = pal$rule) +
-    geom_point(size = 3.2) +
-    scale_colour_manual(values = c(forest = pal$forest, soil = pal$soil), name = NULL) +
-    scale_x_continuous(labels = label_percent(), limits = c(0, 1), expand = expansion(mult = c(0, 0.02))) +
-    labs(x = "Share of points where the two products are within ±25% of each other", y = NULL,
-         title = "Agreement by comparison") +
-    theme(panel.grid.major.y = element_blank())
-}
+preview_html(c("sothe_stock", "soilgrids_ocs", "geng_soc_0_5", "ncscd_100", "peatgrids_stock", "li_peat_carbon", "li_peat_depth"))
 ```
 
-## Read the sections
+::: {.callout-note collapse="true" appearance="simple"}
+## Details: uncertainty layers and exact assets
 
-- **[Forest](report/forest.qmd)**: forest plot data (placeholder until plots are ingested), the training data and covariates behind each forest map, and SCANFI vs ESA CCI aboveground biomass.
-- **[Soils](report/soils.qmd)**: the five profile datasets compared with each other, the training data and covariates behind each soil map, map-to-map comparisons at matching depths, and maps against profiles.
-- **[Methods](report/methods.qmd)**: the rules, grids, unit conversions, sampling design and limitations.
-- **[State of Data summary](state_of_data_summary/state_of_data_summary.html)**: the inventory this comparison builds on.
+```{r}
+preview_html("sothe_stock_unc")
+```
 
-## What this comparison does not claim
+```{r}
+A |> filter(resource_id %in% M$map_id[in_domain(M$map_id, "soils")]) |>
+  transmute(Resource = resource_id, Asset = project_or_current_asset, `Bands / schema` = bands_or_schema, `Nominal scale (m)` = nominal_scale_m,
+            Units = units_note, `Public read` = public_read_status) |> kable()
+```
+:::
 
-- Agreement between two maps is not accuracy; both can share the same training data or the same blind spots.
-- Differences are reported on each pair's coarser native grid; they say nothing about finer detail.
-- Profile comparisons set a soil core beside a pixel average. Several profile datasets trained some of the maps, so agreement there is not independent validation.
-- Sothe's hosted 0–1 m depth and encoding are unverified, and the SoilGrids 0–100 cm stock is derived here from carbon density rather than released.
-- McMaster/WWF forest carbon includes belowground and dead pools that SCANFI does not, so their difference mixes pools with disagreement.
+## Further resources {#further}
+
+```{r}
+O |> left_join(xw, by = c("other_source_id" = "record_id")) |>
+  transmute(Resource = resource_name, `Forests / soils` = dom_label[domain], Category = category, Context = geographic_context,
+            Support = spatial_support, `Depth / pool` = depth_or_pool, Access = link_md(source_url, na_dash(access_status))) |> kable()
+```
+
+<p class="small text-muted">Catalogue version `r build_info$catalogue_version` · source revision `r build_info$revision` · generated `r build_info$date`.</p>

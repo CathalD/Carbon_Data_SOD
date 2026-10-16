@@ -20,8 +20,8 @@ source("_setup.R")
 
 ## Rules for pairing products
 
-1. **Same quantity, same depth or pool.** Products are paired only when both report the same quantity for the same depth interval, or the same pool and year. Everything else is listed, with the reason, in the "not compared" tables. Two pairs are deliberate exceptions requested for the McMaster/WWF maps, and both are labelled:
-    - **Sothe vs SoilGrids 0–100 cm.** SoilGrids has no released 0–100 cm stock, so one is derived.
+1. **Same quantity, same depth or pool.** Products are paired only when both report the same quantity for the same depth interval, or the same pool and year. Everything else is listed, with the reason, under "Products not compared". Two McMaster/WWF pairs are labelled exceptions:
+    - **Sothe vs SoilGrids 0–100 cm.** SoilGrids has no released 0–100 cm stock, so one is derived from its carbon density.
     - **McMaster/WWF forest carbon vs SCANFI.** The pools differ: McMaster includes belowground and dead carbon.
 2. **Depth datum, not just depth label.** Each pair records its depth datum and whether that is matched, still to verify, or may differ. Fixed-depth mineral-soil stocks, organic-inclusive stocks and full-column peat stocks are kept in separate categories and never ranked together.
 3. **Coarser grid per pair.** Each pair is compared on the coarser of its two native grids. The finer product is mean-aggregated (Earth Engine `reduceResolution`, mean of contributing pixels) to that grid. Nothing is upsampled.
@@ -70,7 +70,7 @@ Statistics come from **30,000 random points**, uniform in area. They are drawn i
 | Geng SOC | % | g/kg | × 10 | Provider (CanSIS); imported encoding still pending |
 | Geng BD | g/cm³ | g/cm³ | 1 | Provider (CanSIS); imported encoding still pending |
 | NCSCDv2 SOCC30 / SOCC100 | hg C/m² | kg C/m² | ÷ 10 | Bolin Centre NCSCD raster documentation |
-| Sothe stock (hosted v2.0) | kg C/m² (study) | kg C/m² | 1 | Archive identifies the top 1 m; identity and encoding of the hosted file unverified |
+| Sothe stock (hosted v2.0) | kg C/m² | kg C/m² | 1 | Sothe et al. 2022; 0–1 m (maintainer-confirmed 2026-10-16) |
 | PEATGRIDS carbon / thickness | Mg C/m² / cm | kg C/m² / cm | × 1000 / 1 | PEATGRIDS v2.1 metadata (full modelled peat column) |
 | Li et al. carbon / depth | kg C/m² / cm | same | 1 | Study units; import encoding unverified |
 | McMaster/WWF forest carbon | kg C/m² | kg C/m² | 1 | Sothe et al. 2022; above + below + dead pools |
@@ -86,19 +86,39 @@ Canada's 15 terrestrial ecozones from the AAFC National Ecological Framework (`e
 - **Agreement is not accuracy.** Two maps can agree because they share training data or covariates.
 - **Support mismatch.** A soil core or inventory plot covers a few square metres; the pixels are 30 m to about 1.3 km.
 - **Temporal mismatch.** Profiles span 1939–2017; maps represent their own reference periods.
-- **Depth datums.** Several products' datums are documented only partly (Geng, NCSCDv2, Sothe's hosted file); those pairs are flagged rather than assumed equivalent.
-- **Unverified encodings.** Sothe's hosted stock, and the imported encodings of Geng and Li, are flagged in the repository QC register. Distributions of values cannot settle these; source metadata and file identity must.
+- **Depth datums.** Geng's and NCSCDv2's organic-layer treatment is documented only partly; pairs that depend on it are labelled rather than assumed equivalent. SoilGrids excludes overlying organic layers.
+- **Imported encodings.** The imported encodings of Geng and Li are tracked in the repository QC register. Distributions of values cannot settle these; source metadata and file identity must.
 - **Uncertainty layers** use different statistics (SD, quantile intervals, model disagreement) and are not compared.
+
+## Verification status
+
+```{r}
+q <- cat_tbl("QC_register")
+q |> count(`Runtime check` = runtime_status, `Public access` = public_access_status, name = "Assets") |> kable(caption = "Hosted soil-map assets in the QC register. Sample agreement means 512 seeded points per band matched the source exactly; it is not full raster equality and does not confirm units or uncertainty meaning.")
+```
+
+```{r}
+da <- jsonlite::fromJSON(file.path(repo_dir, "data", "catalogue", "soil_depth_audit.json"))
+da |> transmute(Dataset = ground_id, `Layer rows` = fmt_n(rows), `Depth range (cm)` = paste(round(min_top_cm), "to", round(max_bottom_cm)),
+                `Missing bounds` = fmt_n(missing_boundaries), `Profiles with overlaps` = fmt_n(groups_with_overlap),
+                `Profiles with gaps` = fmt_n(groups_with_gap), `Thickness ≠ bounds` = fmt_n(thickness_boundary_mismatch_rows)) |>
+  kable(caption = "Depth-interval checks on the uploaded layer tables (local prepared CSVs).")
+```
 
 ## Reproduce
 
-From `Comparison/analysis/` with the project environment (`requirements.txt`) and Earth Engine access:
+**Render the published snapshot** (no Earth Engine needed): from `Comparison/`, run `quarto render`, which writes `Comparison/_site/`; `quarto publish gh-pages` publishes it.
+
+**Refresh the analysis** (Earth Engine and the prepared profile tables in `CSOD_LOCAL_DATA` needed), from `Comparison/analysis/`:
 
 ```bash
 Rscript R/01_profile_intervals.R
 Rscript R/02_peat_core_depths.R
 python gee/01_sample_pairs.py
 python gee/02_sample_profiles.py
+python profile_summary.py
+Rscript R/03_comparison_statistics.R
+python gee/catalogue_previews.py   # optional: refresh dataset previews
 ```
 
-Then, from `Comparison/`, run `quarto render` to write the site to `Comparison/_site/`, and `quarto publish gh-pages` to publish it. The site renders from the files in `Comparison/data/`, so re-rendering does not need Earth Engine.
+Set `EE_PROJECT` to your Earth Engine project (default `northstarlabs`) and `CSOD_LOCAL_DATA` to the folder holding the prepared profile CSVs.

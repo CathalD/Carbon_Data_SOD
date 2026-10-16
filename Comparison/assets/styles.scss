@@ -77,3 +77,13 @@ thead th { font-family: $headings-font-family; text-transform: uppercase; letter
 .pill.prov { color: #855700; border-color: #fab219; }
 .pill.ok { color: #0b6b0b; border-color: #0ca30c; }
 code { color: #1d5a47; }
+
+// Interactive tables scroll inside their own box, never the page.
+.datatables, .dataTables_wrapper { max-width: 100%; overflow-x: auto; }
+.dataTables_wrapper .dataTables_filter input { max-width: 60vw; }
+table.dataTable td, table.dataTable th { font-size: 0.82rem; }
+.preview-grid figcaption .muted { color: var(--muted); font-size: 0.74rem; }
+
+// Wide record tables scroll within their block rather than widening the page.
+.cell-output-display { overflow-x: auto; }
+.cell-output-display table { min-width: 100%; }

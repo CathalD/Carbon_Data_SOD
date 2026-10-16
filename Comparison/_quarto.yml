@@ -1,40 +1,50 @@
 project:
   type: website
   output-dir: _site
-  # Only the report pages are rendered; the working notes in README.md stay as they are.
+  # Only the site pages are rendered; README.md and analysis notes stay as they are.
   render:
     - index.qmd
-    - report/*.qmd
-  resources:
-    - state_of_data_summary/state_of_data_summary.html
+    - compare.qmd
+    - use.qmd
+    - downloads.qmd
+    - sources.qmd
+    - contribute.qmd
+    - report/methods.qmd
 
 website:
-  title: "Carbon State of Data · Comparisons"
+  title: "Carbon State of Data"
   site-url: "https://cathald.github.io/Carbon_Data_SOD/"
   repo-url: "https://github.com/CathalD/Carbon_Data_SOD"
   repo-subdir: "Comparison"
-  # Source lives on the comparison-analysis branch until PR #1 is merged; switch to main then.
+  # Source lives on the comparison-analysis branch until PR #1 is merged; switch to main then
+  # (and repo_branch in report/_setup.R).
   repo-branch: comparison-analysis
   repo-actions: [source, issue]
-  page-navigation: true
+  page-navigation: false
   navbar:
     left:
       - href: index.qmd
-        text: Overview
-      - href: report/forest.qmd
-        text: Forest
-      - href: report/soils.qmd
-        text: Soils
-      - href: report/methods.qmd
-        text: Methods
-      - href: state_of_data_summary/state_of_data_summary.html
-        text: State of Data summary
+        text: Data and summaries
+      - href: compare.qmd
+        text: Comparisons
+      - href: use.qmd
+        text: How to use
     right:
+      - text: More
+        menu:
+          - href: report/methods.qmd
+            text: Methods
+          - href: downloads.qmd
+            text: Downloads
+          - href: sources.qmd
+            text: Sources
+          - href: contribute.qmd
+            text: Contribute
       - icon: github
         href: https://github.com/CathalD/Carbon_Data_SOD
         aria-label: GitHub repository
   page-footer:
-    left: "Descriptive comparison of catalogued products. No map is treated as truth."
+    left: "Carbon State of Data for Canada. No map is treated as truth; agreement is not accuracy."
     right: "Built with Quarto from [Comparison/](https://github.com/CathalD/Carbon_Data_SOD/tree/comparison-analysis/Comparison)"
 
 format:

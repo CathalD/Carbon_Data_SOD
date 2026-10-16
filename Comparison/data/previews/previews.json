@@ -11,7 +11,7 @@
   "p50": 4.061811200762826,
   "p98": 9.061792735584795,
   "native_scale_m": 250.02077480189206,
-  "file": "thumbs/forest_carbon.png",
+  "file": "forest_carbon.png",
   "stretch_scale_m": 5000
  },
  {
@@ -26,7 +26,7 @@
   "p50": 4.015556589412065,
   "p98": 5.89047704582015,
   "native_scale_m": 250.02077480189206,
-  "file": "thumbs/forest_carbon_unc.png",
+  "file": "forest_carbon_unc.png",
   "stretch_scale_m": 5000
  },
  {
@@ -41,7 +41,7 @@
   "p50": 21.455806617827484,
   "p98": 157.5465299424678,
   "native_scale_m": 30,
-  "file": "thumbs/scanfi_biomass.png",
+  "file": "scanfi_biomass.png",
   "stretch_scale_m": 5000
  },
  {
@@ -56,7 +56,7 @@
   "p50": 64.5069564216425,
   "p98": 230.51286265479575,
   "native_scale_m": 98.95065848290984,
-  "file": "thumbs/esa_cci_2020.png",
+  "file": "esa_cci_2020.png",
   "stretch_scale_m": 5000
  },
  {
@@ -71,7 +71,7 @@
   "p50": 11.374192904467508,
   "p98": 23.127899842321824,
   "native_scale_m": 249.99077848847384,
-  "file": "thumbs/canopy_height_max.png",
+  "file": "canopy_height_max.png",
   "stretch_scale_m": 5000
  },
  {
@@ -86,7 +86,7 @@
   "p50": 35.004745925083945,
   "p98": 170.9844046042118,
   "native_scale_m": 249.35565937693278,
-  "file": "thumbs/sothe_stock.png",
+  "file": "sothe_stock.png",
   "stretch_scale_m": 5000
  },
  {
@@ -101,7 +101,7 @@
   "p50": 41.49716171100386,
   "p98": 157.48292089893084,
   "native_scale_m": 249.35565937693278,
-  "file": "thumbs/sothe_stock_unc.png",
+  "file": "sothe_stock_unc.png",
   "stretch_scale_m": 5000
  },
  {
@@ -116,7 +116,7 @@
   "p50": 64.4845261031664,
   "p98": 90.97258141371648,
   "native_scale_m": 250,
-  "file": "thumbs/soilgrids_ocs.png",
+  "file": "soilgrids_ocs.png",
   "stretch_scale_m": 5000
  },
  {
@@ -131,7 +131,7 @@
   "p50": 4.623624186718826,
   "p98": 21.624660829289933,
   "native_scale_m": 100,
-  "file": "thumbs/geng_soc_0_5.png",
+  "file": "geng_soc_0_5.png",
   "stretch_scale_m": 5000
  },
  {
@@ -146,7 +146,7 @@
   "p50": 131.62593170244946,
   "p98": 661.2332700937925,
   "native_scale_m": 1335.833889519283,
-  "file": "thumbs/ncscd_100.png",
+  "file": "ncscd_100.png",
   "stretch_scale_m": 5000
  },
  {
@@ -161,7 +161,7 @@
   "p50": 0.1357802664493627,
   "p98": 0.21390079305239834,
   "native_scale_m": 1000,
-  "file": "thumbs/peatgrids_stock.png",
+  "file": "peatgrids_stock.png",
   "stretch_scale_m": 5000
  },
  {
@@ -176,7 +176,7 @@
   "p50": 88.50046689718287,
   "p98": 117.49198499908735,
   "native_scale_m": 30,
-  "file": "thumbs/li_peat_carbon.png",
+  "file": "li_peat_carbon.png",
   "stretch_scale_m": 1000
  },
  {
@@ -191,7 +191,7 @@
   "p50": 189.00436758352737,
   "p98": 269.0149396144074,
   "native_scale_m": 30,
-  "file": "thumbs/li_peat_depth.png",
+  "file": "li_peat_depth.png",
   "stretch_scale_m": 1000
  }
 ]

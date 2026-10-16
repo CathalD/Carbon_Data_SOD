@@ -9,9 +9,12 @@ Rules this file encodes (agreed with the maintainer, 15 Oct 2026):
   * No map is treated as truth: differences are always A - B.
 """
 
+import os
+
 import ee
 
-ee.Initialize(project="northstarlabs")
+# Earth Engine project: set EE_PROJECT to use your own (default: the maintainer's project).
+ee.Initialize(project=os.environ.get("EE_PROJECT", "northstarlabs"))
 # Fail (and retry) any single request that hangs instead of waiting forever.
 ee.data.setDeadline(180_000)
 

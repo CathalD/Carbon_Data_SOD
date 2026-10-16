@@ -1,19 +1,19 @@
-"""Render preview thumbnails of the catalogued carbon maps from Earth Engine.
+"""Render one preview image per catalogued map product from Earth Engine.
 
 Previews are for orientation only. Each panel keeps its native stored values
 and gets its own colour stretch (2nd-98th percentile of values sampled at a
 coarse scale), so colours are NOT comparable between panels. Nothing is
 resampled, rescaled, unit-converted or harmonised for analysis.
 
-Outputs (next to this script):
-  thumbs/<key>.png      preview images (EPSG:3978, Canada Atlas Lambert)
-  map_previews.json     per-panel metadata: asset, band, stretch, native grid
-  outlines.json         simplified Canada / USA outlines (EPSG:4326) for charts
+Outputs:
+  ../../data/previews/<key>.png    preview images (EPSG:3978, Canada Atlas Lambert)
+  ../../data/previews/previews.json per-panel metadata: asset, band, stretch, native grid
 
-Run:  ../../../.venv/bin/python gee_map_previews.py [--only key1,key2]
+Run:  python catalogue_previews.py [--only key1,key2]
 """
 
 import json
+import os
 import urllib.request
 import warnings
 from pathlib import Path
@@ -21,10 +21,11 @@ from pathlib import Path
 import ee
 
 warnings.filterwarnings("ignore")
-ee.Initialize(project="northstarlabs")
+# Earth Engine project: set EE_PROJECT to use your own (default: the maintainer's project).
+ee.Initialize(project=os.environ.get("EE_PROJECT", "northstarlabs"))
 
 HERE = Path(__file__).resolve().parent
-THUMBS = HERE / "thumbs"
+THUMBS = HERE.parents[1] / "data" / "previews"
 THUMBS.mkdir(exist_ok=True)
 
 OURS = "projects/northstarlabs/assets/carbon_state_of_data/soils/maps"
@@ -32,7 +33,6 @@ LSIB = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017")
 # Simplified (2 km) outline: the full LSIB boundary makes clip/stats very slow.
 CANADA = LSIB.filter(ee.Filter.eq("country_na", "Canada")).geometry().simplify(maxError=2000)
 CANADA_FC = ee.FeatureCollection([ee.Feature(CANADA)])
-USA = LSIB.filter(ee.Filter.eq("country_na", "United States")).geometry()
 
 # Sequential single-hue ramp (light -> dark), shared by every panel.
 PALETTE = ["cde2fb", "9ec5f4", "6da7ec", "3987e5", "256abf", "184f95", "0d366b"]
@@ -137,13 +137,15 @@ def render(key, title, asset, band, region_kind):
     })
     out = THUMBS / f"{key}.png"
     urllib.request.urlretrieve(url, out)
+    from PIL import Image  # palette-quantise to keep the site light
+    Image.open(out).convert("RGBA").quantize(colors=128, method=Image.Quantize.FASTOCTREE).save(out, optimize=True)
     return {"p2": p2, "p50": p50, "p98": p98, "native_scale_m": native_scale,
-            "file": f"thumbs/{key}.png", "stretch_scale_m": stats_scale}
+            "file": f"{key}.png", "stretch_scale_m": stats_scale}
 
 
 def main(only=None):
     """Render all panels, or only the given keys (merged into the existing JSON)."""
-    out_json = HERE / "map_previews.json"
+    out_json = THUMBS / "previews.json"
     meta = []
     for key, domain, title, asset, band, units, map_id, region_kind in PANELS:
         if only and key not in only:
@@ -166,12 +168,7 @@ def main(only=None):
     if only:
         return
 
-    outlines = {
-        "canada": CANADA.simplify(maxError=6000).getInfo(),
-        "usa": USA.simplify(maxError=12000).getInfo(),
-    }
-    (HERE / "outlines.json").write_text(json.dumps(outlines))
-    print("outlines written")
+
 
 
 if __name__ == "__main__":

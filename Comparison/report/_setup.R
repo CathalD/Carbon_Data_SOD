@@ -18,10 +18,26 @@ suppressPackageStartupMessages({
 
 # Pages render from Comparison/ (index) or Comparison/report/ (sections).
 comp_dir <- if (file.exists("_quarto.yml")) normalizePath(".") else normalizePath("..")
+rel_data <- if (file.exists("_quarto.yml")) "data" else file.path("..", "data")
 data_dir <- file.path(comp_dir, "data")
 derived <- file.path(data_dir, "derived")
 repo_dir <- normalizePath(file.path(comp_dir, ".."))
-xlsx <- file.path(repo_dir, "Carbon State of Data Summary Sheet.xlsx")
+# Repository links: switch repo_branch to "main" once the comparison-analysis PR is merged.
+repo_branch <- "comparison-analysis"
+gh_blob <- function(path) sprintf("https://github.com/CathalD/Carbon_Data_SOD/blob/%s/%s", repo_branch, path)
+gh_raw <- function(path) sprintf("https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/%s/%s", repo_branch, path)
+
+# Canonical catalogue: data/downloads/*.csv (the same tables offered for download).
+cat_dir <- file.path(repo_dir, "data", "downloads")
+cat_tbl <- function(name) read_csv(file.path(cat_dir, paste0(name, ".csv")), show_col_types = FALSE,
+                                   col_types = cols(.default = col_character()))
+crosswalk <- read_csv(file.path(repo_dir, "data", "catalogue", "presentation_crosswalk.csv"), show_col_types = FALSE)
+in_domain <- function(ids, dom) ids %in% crosswalk$record_id[crosswalk$domain %in% c(dom, "both")]
+build_info <- local({
+  rev <- tryCatch(system2("git", c("-C", repo_dir, "rev-parse", "--short", "HEAD"), stdout = TRUE), error = function(e) NA)
+  ver <- tryCatch(fromJSON(file.path(cat_dir, "carbon_catalogue.json"))$version, error = function(e) NA)
+  list(revision = rev, catalogue_version = ver, date = format(Sys.Date(), "%-d %B %Y"))
+})
 
 knitr::opts_chunk$set(fig.align = "left", out.width = "100%", dev = "png", dpi = 144)
 
@@ -63,6 +79,34 @@ fmt_s <- function(x, d = 3) ifelse(is.na(x), "–", formatC(signif(x, d), format
 # ---------------------------------------------------------------- data
 pairs <- fromJSON(file.path(derived, "pairs.json"), simplifyDataFrame = TRUE)
 exclusions <- read_csv(file.path(data_dir, "comparison_exclusions.csv"), show_col_types = FALSE)
+comp_stats <- read_csv(file.path(derived, "comparison_statistics.csv"), show_col_types = FALSE)
+previews <- fromJSON(file.path(data_dir, "previews", "previews.json"), simplifyDataFrame = FALSE)
+names(previews) <- vapply(previews, `[[`, "", "key")
+profile_summary <- read_csv(file.path(derived, "profile_dataset_summary.csv"), show_col_types = FALSE)
+
+# ---------------------------------------------------------------- records
+first_sentence <- function(x) ifelse(is.na(x), "–", sub("^(.*?[.;])\\s.*$", "\\1", x, perl = TRUE))
+link_md <- function(url, text = "Source") ifelse(is.na(url) | url == "", "–", sprintf("[%s](%s)", text, url))
+na_dash <- function(x) ifelse(is.na(x) | x == "", "–", x)
+`%|%` <- function(x, y) ifelse(is.na(x), y, x)  # vectorised fallback for missing values
+
+# One preview figure per product: image, legend range in stored units, and grid.
+preview_html <- function(keys) {
+  items <- vapply(keys, function(k) {
+    p <- previews[[k]]
+    if (is.null(p) || !is.null(p$error)) return("")
+    sprintf("<figure><img src='%s' alt='%s preview' loading='lazy'><figcaption><span class='t'>%s</span><div class='legend'><span>%s</span><div class='bar seq'></div><span>%s</span></div><span class='muted'>%s · ≈%s m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure>",
+            file.path(rel_data, "previews", p$file), htmlEscape(p$title), htmlEscape(p$title),
+            fmt_s(p$p2), fmt_s(p$p98), htmlEscape(p$units_note), fmt_s(p$native_scale_m))
+  }, "")
+  HTML(paste0("<div class='pair-maps preview-grid'>", paste(items, collapse = ""), "</div>"))
+}
+
+stat_line <- function(pid) {
+  r <- comp_stats[comp_stats$id == pid, ]
+  if (!nrow(r)) return("")
+  sprintf("**Mean A − B:** %s %s · **RMSD:** %s %s · **n:** %s points", fmt_s(r$mean_diff), r$unit, fmt_s(r$rmsd), r$unit, fmt_n(r$n))
+}
 
 ecozones <- local({
   ez <- st_read(file.path(data_dir, "ecozones", "Ecozones", "ecozones.shp"), quiet = TRUE)
@@ -86,7 +130,7 @@ read_pair_samples <- function(family) {
 # Agreement statistics. "Within 25%" = |A - B| <= 0.25 x mean(A, B).
 agree_stats <- function(d) {
   d |> summarise(
-    n = n(), mean_a = mean(a), mean_b = mean(b), bias = mean(a - b), median_diff = median(a - b),
+    n = n(), mean_a = mean(a), mean_b = mean(b), bias = mean(a - b),
     rmsd = sqrt(mean((a - b)^2)), r = suppressWarnings(cor(a, b)),
     within25 = mean(abs(a - b) <= 0.25 * (a + b) / 2), .groups = "drop")
 }
