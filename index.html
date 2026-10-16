@@ -139,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#read-the-sections" id="toc-read-the-sections" class="nav-link" data-scroll-target="#read-the-sections">Read the sections</a></li>
   <li><a href="#what-this-comparison-does-not-claim" id="toc-what-this-comparison-does-not-claim" class="nav-link" data-scroll-target="#what-this-comparison-does-not-claim">What this comparison does not claim</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/main/Comparison/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/comparison-analysis/Comparison/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -165,26 +165,29 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="lede">
-<p>Canada has several national and regional carbon maps built from different field data, covariates and grids. This report compares them only where they claim to measure the same thing at the same depth, and shows where they agree and disagree. No map is treated as truth.</p>
+<p>Canada has several national and regional carbon maps built from different field data, covariates and grids. This report compares them only where they claim to measure the same thing at the same depth or pool, and shows where they agree and disagree. <strong>The McMaster/WWF maps (Sothe et al.&nbsp;2022) lead</strong>, because they are the most cited: Sothe soil carbon against SoilGrids at 0–100 cm, and McMaster forest carbon against SCANFI. No map is treated as truth.</p>
 </div>
 <section id="the-comparisons-at-a-glance" class="level2">
 <h2 class="anchored" data-anchor-id="the-comparisons-at-a-glance">The comparisons at a glance</h2>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Pixel comparisons on each pair’s coarser native grid, from area-uniform random points. ‘Within ±25%’ = share of points where |A − B| is at most 25% of their mean.</caption>
+<caption>Pixel comparisons on each pair’s coarser native grid, from area-uniform random points, each band sampled independently. ‘Within ±25%’ = share of points where |A − B| is at most 25% of their mean. ‘Datum to verify / may differ / pools differ’ flags pairs whose nominal match is not yet fully equivalent.</caption>
 <colgroup>
 <col style="width: 6%">
-<col style="width: 31%">
-<col style="width: 20%">
-<col style="width: 7%">
-<col style="width: 6%">
-<col style="width: 10%">
+<col style="width: 3%">
+<col style="width: 29%">
+<col style="width: 12%">
+<col style="width: 4%">
+<col style="width: 3%">
 <col style="width: 5%">
-<col style="width: 11%">
+<col style="width: 3%">
+<col style="width: 6%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
+<th style="text-align: left;"></th>
 <th style="text-align: left;">Domain</th>
 <th style="text-align: left;">Quantity</th>
 <th style="text-align: left;">A vs B</th>
@@ -193,120 +196,36 @@ ul.task-list li input[type="checkbox"] {
 <th style="text-align: left;">Mean A − B</th>
 <th style="text-align: left;">r</th>
 <th style="text-align: left;">Within ±25%</th>
+<th style="text-align: left;">Depth / pool</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">McMaster/WWF</td>
 <td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC concentration 0–5 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/kg</td>
-<td style="text-align: left;">17,121</td>
-<td style="text-align: left;">-17.3</td>
-<td style="text-align: left;">0.62</td>
-<td style="text-align: left;">28%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">Bulk density 0–5 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/cm³</td>
-<td style="text-align: left;">17,119</td>
-<td style="text-align: left;">0.268</td>
-<td style="text-align: left;">0.01</td>
-<td style="text-align: left;">46%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC concentration 5–15 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/kg</td>
-<td style="text-align: left;">17,121</td>
-<td style="text-align: left;">-10.5</td>
-<td style="text-align: left;">0.62</td>
-<td style="text-align: left;">33%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">Bulk density 5–15 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/cm³</td>
-<td style="text-align: left;">17,119</td>
-<td style="text-align: left;">0.1</td>
-<td style="text-align: left;">-0.05</td>
-<td style="text-align: left;">80%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC concentration 15–30 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/kg</td>
-<td style="text-align: left;">17,121</td>
-<td style="text-align: left;">-1.48</td>
-<td style="text-align: left;">0.66</td>
-<td style="text-align: left;">27%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">Bulk density 15–30 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/cm³</td>
-<td style="text-align: left;">17,119</td>
-<td style="text-align: left;">0.0479</td>
-<td style="text-align: left;">-0.06</td>
-<td style="text-align: left;">89%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC concentration 30–60 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/kg</td>
-<td style="text-align: left;">17,121</td>
-<td style="text-align: left;">-5.65</td>
-<td style="text-align: left;">0.69</td>
-<td style="text-align: left;">22%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">Bulk density 30–60 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/cm³</td>
-<td style="text-align: left;">17,119</td>
-<td style="text-align: left;">-0.0467</td>
-<td style="text-align: left;">-0.02</td>
-<td style="text-align: left;">88%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC concentration 60–100 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/kg</td>
-<td style="text-align: left;">17,121</td>
-<td style="text-align: left;">-6.24</td>
-<td style="text-align: left;">0.68</td>
-<td style="text-align: left;">18%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">Bulk density 60–100 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/cm³</td>
-<td style="text-align: left;">17,119</td>
-<td style="text-align: left;">-0.056</td>
-<td style="text-align: left;">0.13</td>
-<td style="text-align: left;">82%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC stock 0–30 cm</td>
-<td style="text-align: left;">SoilGrids vs NCSCDv2</td>
+<td style="text-align: left;">SOC stock 0–100 cm</td>
+<td style="text-align: left;">Sothe vs SoilGrids</td>
 <td style="text-align: left;">kg C/m²</td>
-<td style="text-align: left;">15,836</td>
-<td style="text-align: left;">-1.17</td>
-<td style="text-align: left;">-0.04</td>
-<td style="text-align: left;">20%</td>
+<td style="text-align: left;">19,900</td>
+<td style="text-align: left;">27.1</td>
+<td style="text-align: left;">0.07</td>
+<td style="text-align: left;">19%</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">McMaster/WWF</td>
+<td style="text-align: left;">Forest</td>
+<td style="text-align: left;">Forest carbon: McMaster/WWF total vs SCANFI aboveground</td>
+<td style="text-align: left;">McMaster/WWF vs SCANFI</td>
+<td style="text-align: left;">kg C/m²</td>
+<td style="text-align: left;">10,616</td>
+<td style="text-align: left;">1.3</td>
+<td style="text-align: left;">0.59</td>
+<td style="text-align: left;">19%</td>
+<td style="text-align: left;"><span class="pill prov">pools differ</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">McMaster/WWF</td>
 <td style="text-align: left;">Soil</td>
 <td style="text-align: left;">SOC stock 0–100 cm (provisional)</td>
 <td style="text-align: left;">Sothe vs NCSCDv2</td>
@@ -315,8 +234,142 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">29.1</td>
 <td style="text-align: left;">0.28</td>
 <td style="text-align: left;">10%</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil</td>
+<td style="text-align: left;">SOC concentration 0–5 cm</td>
+<td style="text-align: left;">Geng vs SoilGrids</td>
+<td style="text-align: left;">g/kg</td>
+<td style="text-align: left;">17,575</td>
+<td style="text-align: left;">-17.3</td>
+<td style="text-align: left;">0.62</td>
+<td style="text-align: left;">28%</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil</td>
+<td style="text-align: left;">Bulk density 0–5 cm</td>
+<td style="text-align: left;">Geng vs SoilGrids</td>
+<td style="text-align: left;">g/cm³</td>
+<td style="text-align: left;">17,573</td>
+<td style="text-align: left;">0.267</td>
+<td style="text-align: left;">0.02</td>
+<td style="text-align: left;">47%</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil</td>
+<td style="text-align: left;">SOC concentration 5–15 cm</td>
+<td style="text-align: left;">Geng vs SoilGrids</td>
+<td style="text-align: left;">g/kg</td>
+<td style="text-align: left;">17,414</td>
+<td style="text-align: left;">-10.4</td>
+<td style="text-align: left;">0.62</td>
+<td style="text-align: left;">33%</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil</td>
+<td style="text-align: left;">Bulk density 5–15 cm</td>
+<td style="text-align: left;">Geng vs SoilGrids</td>
+<td style="text-align: left;">g/cm³</td>
+<td style="text-align: left;">17,412</td>
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">-0.05</td>
+<td style="text-align: left;">80%</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil</td>
+<td style="text-align: left;">SOC concentration 15–30 cm</td>
+<td style="text-align: left;">Geng vs SoilGrids</td>
+<td style="text-align: left;">g/kg</td>
+<td style="text-align: left;">17,330</td>
+<td style="text-align: left;">-1.42</td>
+<td style="text-align: left;">0.66</td>
+<td style="text-align: left;">27%</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil</td>
+<td style="text-align: left;">Bulk density 15–30 cm</td>
+<td style="text-align: left;">Geng vs SoilGrids</td>
+<td style="text-align: left;">g/cm³</td>
+<td style="text-align: left;">17,328</td>
+<td style="text-align: left;">0.0481</td>
+<td style="text-align: left;">-0.06</td>
+<td style="text-align: left;">89%</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil</td>
+<td style="text-align: left;">SOC concentration 30–60 cm</td>
+<td style="text-align: left;">Geng vs SoilGrids</td>
+<td style="text-align: left;">g/kg</td>
+<td style="text-align: left;">17,261</td>
+<td style="text-align: left;">-5.57</td>
+<td style="text-align: left;">0.69</td>
+<td style="text-align: left;">22%</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil</td>
+<td style="text-align: left;">Bulk density 30–60 cm</td>
+<td style="text-align: left;">Geng vs SoilGrids</td>
+<td style="text-align: left;">g/cm³</td>
+<td style="text-align: left;">17,259</td>
+<td style="text-align: left;">-0.0465</td>
+<td style="text-align: left;">-0.02</td>
+<td style="text-align: left;">88%</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil</td>
+<td style="text-align: left;">SOC concentration 60–100 cm</td>
+<td style="text-align: left;">Geng vs SoilGrids</td>
+<td style="text-align: left;">g/kg</td>
+<td style="text-align: left;">17,121</td>
+<td style="text-align: left;">-6.24</td>
+<td style="text-align: left;">0.68</td>
+<td style="text-align: left;">18%</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil</td>
+<td style="text-align: left;">Bulk density 60–100 cm</td>
+<td style="text-align: left;">Geng vs SoilGrids</td>
+<td style="text-align: left;">g/cm³</td>
+<td style="text-align: left;">17,119</td>
+<td style="text-align: left;">-0.056</td>
+<td style="text-align: left;">0.13</td>
+<td style="text-align: left;">82%</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Soil</td>
+<td style="text-align: left;">SOC stock 0–30 cm</td>
+<td style="text-align: left;">SoilGrids vs NCSCDv2</td>
+<td style="text-align: left;">kg C/m²</td>
+<td style="text-align: left;">15,836</td>
+<td style="text-align: left;">-1.17</td>
+<td style="text-align: left;">-0.04</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;"><span class="pill prov">datum may differ</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Soil</td>
 <td style="text-align: left;">Peat thickness</td>
 <td style="text-align: left;">Li vs PEATGRIDS</td>
@@ -325,8 +378,10 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">-26.1</td>
 <td style="text-align: left;">0.63</td>
 <td style="text-align: left;">67%</td>
+<td style="text-align: left;"><span class="pill ok">matched</span></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Soil</td>
 <td style="text-align: left;">Peat carbon (full column)</td>
 <td style="text-align: left;">Li vs PEATGRIDS</td>
@@ -335,8 +390,10 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">-37.6</td>
 <td style="text-align: left;">-0.02</td>
 <td style="text-align: left;">43%</td>
+<td style="text-align: left;"><span class="pill ok">matched</span></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Forest</td>
 <td style="text-align: left;">Aboveground biomass 2020</td>
 <td style="text-align: left;">SCANFI vs ESA</td>
@@ -345,6 +402,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">-24</td>
 <td style="text-align: left;">0.71</td>
 <td style="text-align: left;">23%</td>
+<td style="text-align: left;"><span class="pill ok">matched</span></td>
 </tr>
 </tbody>
 </table>
@@ -375,7 +433,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Agreement between two maps is not accuracy; both can share the same training data or the same blind spots.</li>
 <li>Differences are reported on each pair’s coarser native grid; they say nothing about finer detail.</li>
 <li>Profile comparisons set a soil core beside a pixel average. Several profile datasets trained some of the maps, so agreement there is not independent validation.</li>
-<li>The Sothe 0–100 cm comparison is provisional: its depth is a working assumption and its stored units are unverified.</li>
+<li>Sothe’s hosted 0–1 m depth and encoding are unverified, and the SoilGrids 0–100 cm stock is derived here from carbon density rather than released.</li>
+<li>McMaster/WWF forest carbon includes belowground and dead pools that SCANFI does not, so their difference mixes pools with disagreement.</li>
 </ul>
 
 
@@ -795,9 +854,9 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/main/Comparison/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/comparison-analysis/Comparison/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>Built with Quarto from <a href="https://github.com/CathalD/Carbon_Data_SOD/tree/main/Comparison">Comparison/</a></p>
+<p>Built with Quarto from <a href="https://github.com/CathalD/Carbon_Data_SOD/tree/comparison-analysis/Comparison">Comparison/</a></p>
 </div>
   </div>
 </footer>

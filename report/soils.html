@@ -160,7 +160,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="profiles" class="level2">
 <h2 class="anchored" data-anchor-id="profiles">1. Profile and layer data</h2>
 <div class="lede">
-<p>Five prepared datasets hold 20,690 located profiles. They differ in where they sample, how deep they go and which variables they carry, and that shapes every comparison that follows.</p>
+<p>Five prepared datasets hold <strong>20,690 profile records, of which 1,116 fall outside Canada’s terrestrial ecozones; they are not deduplicated.</strong> The datasets differ in where they sample, how deep they go and which variables they carry, and that shapes every comparison that follows.</p>
 </div>
 <div class="callout callout-style-simple callout-important">
 <div class="callout-body d-flex">
@@ -227,7 +227,7 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Median observed value (profiles in brackets). SOC in g/kg, BD in g/cm³. Riley bulk-density units are unverified.</caption>
+<caption>Median observed value (profiles in brackets), depth from each profile’s top including organic surface layers. SOC in g/kg, BD in g/cm³. Riley bulk density is omitted because its units are unverified.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Dataset</th>
@@ -261,15 +261,15 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </tr>
 <tr class="even">
 <td style="text-align: left;">Janousek</td>
-<td style="text-align: left;">0.537 (1,282)</td>
-<td style="text-align: left;">0.73 (643)</td>
-<td style="text-align: left;">61.8 (1,282)</td>
-<td style="text-align: left;">36.8 (643)</td>
+<td style="text-align: left;">0.55 (1,240)</td>
+<td style="text-align: left;">0.73 (638)</td>
+<td style="text-align: left;">59.1 (1,240)</td>
+<td style="text-align: left;">36.8 (638)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Riley</td>
-<td style="text-align: left;">0.1 (320)</td>
-<td style="text-align: left;">0.12 (323)</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: left;">458 (279)</td>
 <td style="text-align: left;">501 (272)</td>
 </tr>
@@ -479,18 +479,308 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </section>
 <section id="maps" class="level2">
 <h2 class="anchored" data-anchor-id="maps">3. Maps compared with each other</h2>
-<p>Only products with the same quantity and the same depth are paired. Each pair is compared on the coarser of its two native grids, with the finer product averaged up to it. Values are converted to one unit with the providers’ documented factors. Statistics come from 30,000 area-uniform random points across Canada (1,500 in the Hudson Plain for peat). Map figures are display-resolution summaries of the same differences.</p>
-<section id="organic-carbon-concentration-geng-vs-soilgrids" class="level3">
-<h3 class="anchored" data-anchor-id="organic-carbon-concentration-geng-vs-soilgrids">Organic carbon concentration · Geng vs SoilGrids</h3>
+<p>Products are paired only when quantity and depth or pool match. <strong>The McMaster/WWF (Sothe et al.) comparisons come first</strong> because they are the most cited Canadian carbon maps. Each pair is compared on the coarser of its two native grids, with the finer product averaged up to it. Values are converted with the providers’ documented factors. Statistics and maps both come from 30,000 area-uniform random points (1,500 in the Hudson Plain for peat), and each band is sampled independently, so a point missing one depth is dropped only for that pair.</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Soil pairs, in report order. ‘To verify’ and ‘may differ’ mean the nominal depths match but the documentation does not yet confirm the same depth datum.</caption>
+<colgroup>
+<col style="width: 3%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 15%">
+<col style="width: 64%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: left;">A</th>
+<th style="text-align: left;">B</th>
+<th style="text-align: left;">Depth datum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">McMaster/WWF</td>
+<td style="text-align: left;">SOC stock 0–100 cm</td>
+<td style="text-align: left;">Sothe SOC stock (0–1 m assumed)</td>
+<td style="text-align: left;">SoilGrids SOC stock 0–100 cm (derived from carbon density)</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Same nominal 0–100 cm. Sothe archive identifies the top 1 m (hosted-file identity and datum unverified); SoilGrids excludes overlying organic layers and its 0–100 cm stock is derived here, not released</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">McMaster/WWF</td>
+<td style="text-align: left;">SOC stock 0–100 cm (provisional)</td>
+<td style="text-align: left;">Sothe SOC stock (0–1 m assumed)</td>
+<td style="text-align: left;">NCSCDv2 SOC 0–100 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Sothe archive identifies the top 1 m; datum and identity of the hosted file unverified</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SOC concentration 0–5 cm</td>
+<td style="text-align: left;">Geng SOC 0–5 cm</td>
+<td style="text-align: left;">SoilGrids SOC 0–5 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Bulk density 0–5 cm</td>
+<td style="text-align: left;">Geng BD 0–5 cm</td>
+<td style="text-align: left;">SoilGrids BD 0–5 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SOC concentration 5–15 cm</td>
+<td style="text-align: left;">Geng SOC 5–15 cm</td>
+<td style="text-align: left;">SoilGrids SOC 5–15 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Bulk density 5–15 cm</td>
+<td style="text-align: left;">Geng BD 5–15 cm</td>
+<td style="text-align: left;">SoilGrids BD 5–15 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SOC concentration 15–30 cm</td>
+<td style="text-align: left;">Geng SOC 15–30 cm</td>
+<td style="text-align: left;">SoilGrids SOC 15–30 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Bulk density 15–30 cm</td>
+<td style="text-align: left;">Geng BD 15–30 cm</td>
+<td style="text-align: left;">SoilGrids BD 15–30 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SOC concentration 30–60 cm</td>
+<td style="text-align: left;">Geng SOC 30–60 cm</td>
+<td style="text-align: left;">SoilGrids SOC 30–60 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Bulk density 30–60 cm</td>
+<td style="text-align: left;">Geng BD 30–60 cm</td>
+<td style="text-align: left;">SoilGrids BD 30–60 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SOC concentration 60–100 cm</td>
+<td style="text-align: left;">Geng SOC 60–100 cm</td>
+<td style="text-align: left;">SoilGrids SOC 60–100 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Bulk density 60–100 cm</td>
+<td style="text-align: left;">Geng BD 60–100 cm</td>
+<td style="text-align: left;">SoilGrids BD 60–100 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SOC stock 0–30 cm</td>
+<td style="text-align: left;">SoilGrids OC stock 0–30 cm</td>
+<td style="text-align: left;">NCSCDv2 SOC 0–30 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum may differ</span> Same nominal 0–30 cm, but SoilGrids excludes overlying organic layers while NCSCDv2 is built from pedons measured from the soil surface (organic treatment to verify)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Peat thickness</td>
+<td style="text-align: left;">Li peat depth</td>
+<td style="text-align: left;">PEATGRIDS peat thickness</td>
+<td style="text-align: left;"><span class="pill ok">matched</span> Full modelled peat column in both</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Peat carbon (full column)</td>
+<td style="text-align: left;">Li peat carbon</td>
+<td style="text-align: left;">PEATGRIDS peat carbon (full column)</td>
+<td style="text-align: left;"><span class="pill ok">matched</span> Full modelled peat column in both</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="sothe-soilgrids" class="level3">
+<h3 class="anchored" data-anchor-id="sothe-soilgrids">Sothe (McMaster/WWF) vs SoilGrids · SOC stock 0–100 cm</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Same nominal depth, two caveats kept visible.</strong> Sothe’s hosted v2.0 stock is used as stored; its archive identifies the top 1 m, but the hosted file’s identity and datum are not yet verified. SoilGrids does not release a 0–100 cm stock, so one is <strong>derived</strong> here by summing its carbon density over its five intervals to 1 m; SoilGrids also excludes overlying organic layers. Sothe (≈250 m in degrees) is averaged to the SoilGrids 250 m grid.</p>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-sothe-sg-maps-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>A and B share one colour scale. Each hexagon (100 km across) shows the mean of the sampled comparison-grid pixels inside it, using only points where both products have data; hexagons with fewer than 5 points are left blank. These are the same points as the statistics.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-sothe-sg-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Units: kg C/m². A minus B; RMSD = root-mean-square difference; r = Pearson correlation.</caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Comparison</th>
+<th style="text-align: right;">Points</th>
+<th style="text-align: right;">Mean A</th>
+<th style="text-align: right;">Mean B</th>
+<th style="text-align: right;">Mean A − B</th>
+<th style="text-align: right;">RMSD</th>
+<th style="text-align: right;">r</th>
+<th style="text-align: right;">Within ±25%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SOC stock 0–100 cm</td>
+<td style="text-align: right;">19,900</td>
+<td style="text-align: right;">48.1</td>
+<td style="text-align: right;">20.9</td>
+<td style="text-align: right;">27.1</td>
+<td style="text-align: right;">50.8</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">19%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<p>The two maps are close to uncorrelated nationally (Spearman ρ = 0.13), and within ecozones ρ ranges from -0.05 to 0.53. The largest gap is in the Hudson Plain, where the median Sothe stock is 124 kg C/m² against 22 for SoilGrids. That is a peat-dominated region, where organic-layer treatment matters most.</p>
+</div>
+<p>Before reading these differences as disagreement about soil carbon, check the depth datum and organic-layer treatment: SoilGrids removes overlying organic layers, and the treatment in Sothe’s hosted file is not yet confirmed. The difference warrants checking source identity, depth definition and processing; agreement alone cannot verify units or depth.</p>
+</section>
+<section id="sothe-mcmasterwwf-vs-ncscdv2-soc-stock-0100-cm-provisional" class="level3">
+<h3 class="anchored" data-anchor-id="sothe-mcmasterwwf-vs-ncscdv2-soc-stock-0100-cm-provisional">Sothe (McMaster/WWF) vs NCSCDv2 · SOC stock 0–100 cm <span class="pill prov">provisional</span></h3>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Provisional.</strong> Sothe’s 0–1 m depth is a working assumption for the hosted file and its stored encoding is unverified. NCSCDv2 assigns stocks to soil-map polygons rather than predicting each pixel.</p>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-s100-maps-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>A and B share one colour scale. Each hexagon (100 km across) shows the mean of the sampled comparison-grid pixels inside it, using only points where both products have data; hexagons with fewer than 5 points are left blank. These are the same points as the statistics.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-s100-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<table class="caption-top table table-sm table-striped small">
+<caption>Units: kg C/m² (Sothe as stored). A minus B; RMSD = root-mean-square difference; r = Pearson correlation.</caption>
+<colgroup>
+<col style="width: 37%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Comparison</th>
+<th style="text-align: right;">Points</th>
+<th style="text-align: right;">Mean A</th>
+<th style="text-align: right;">Mean B</th>
+<th style="text-align: right;">Mean A − B</th>
+<th style="text-align: right;">RMSD</th>
+<th style="text-align: right;">r</th>
+<th style="text-align: right;">Within ±25%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SOC stock 0–100 cm (provisional)</td>
+<td style="text-align: right;">15,804</td>
+<td style="text-align: right;">49.6</td>
+<td style="text-align: right;">20.5</td>
+<td style="text-align: right;">29.1</td>
+<td style="text-align: right;">48.6</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">10%</td>
+</tr>
+</tbody>
+</table>
+<p>The median Sothe:NCSCDv2 ratio is 2.7 (interquartile range 1.4–5.3). The difference warrants checking source identity, depth definition and processing; agreement alone cannot verify units.</p>
+</div>
+</section>
+<section id="other-soil-comparisons" class="level3">
+<h3 class="anchored" data-anchor-id="other-soil-comparisons">Other soil comparisons</h3>
+<section id="organic-carbon-concentration-geng-vs-soilgrids" class="level4">
+<h4 class="anchored" data-anchor-id="organic-carbon-concentration-geng-vs-soilgrids">Organic carbon concentration · Geng vs SoilGrids</h4>
 <p>Both report SOC concentration at the same five intervals to 1 m. Geng (100 m) is averaged to the SoilGrids 250 m grid.</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div class="pair-maps"><figure class="figure"><img src="../data/derived/pair_maps/soc_0_5_a.png" alt="A · Geng SOC 0–5 cm" loading="lazy" class="figure-img"><figcaption><span class="t">A · Geng SOC 0–5 cm</span><div class="legend"><span>7.1</span><div class="bar seq"></div><span>202 g/kg</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/soc_0_5_b.png" alt="B · SoilGrids SOC 0–5 cm" loading="lazy" class="figure-img"><figcaption><span class="t">B · SoilGrids SOC 0–5 cm</span><div class="legend"><span>7.1</span><div class="bar seq"></div><span>202 g/kg</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/soc_0_5_diff.png" alt="A − B" loading="lazy" class="figure-img"><figcaption><span class="t">A − B</span><div class="legend"><span>−94.3 (B higher)</span><div class="bar div"></div><span>+94.3 (A higher)</span></div></figcaption></figure></div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-soc-maps-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>A and B share one colour scale. Each hexagon (100 km across) shows the mean of the sampled comparison-grid pixels inside it, using only points where both products have data; hexagons with fewer than 5 points are left blank. These are the same points as the statistics.</figcaption>
+</figure>
+</div>
 </div>
 </div>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div class="small-multiples"><figure class="figure"><img src="../data/derived/pair_maps/soc_0_5_diff.png" alt="Difference 0–5 cm" loading="lazy" class="figure-img"><figcaption>0–5 cm<br>±94.3 g/kg</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/soc_5_15_diff.png" alt="Difference 5–15 cm" loading="lazy" class="figure-img"><figcaption>5–15 cm<br>±82.5 g/kg</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/soc_15_30_diff.png" alt="Difference 15–30 cm" loading="lazy" class="figure-img"><figcaption>15–30 cm<br>±83.2 g/kg</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/soc_30_60_diff.png" alt="Difference 30–60 cm" loading="lazy" class="figure-img"><figcaption>30–60 cm<br>±85 g/kg</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/soc_60_100_diff.png" alt="Difference 60–100 cm" loading="lazy" class="figure-img"><figcaption>60–100 cm<br>±92.9 g/kg</figcaption></figure></div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="soils_files/figure-html/chart-soc-diff-facets-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="cell" data-layout-align="left">
@@ -531,41 +821,41 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">SOC concentration 0–5 cm</td>
-<td style="text-align: right;">17,121</td>
+<td style="text-align: right;">17,575</td>
 <td style="text-align: right;">62.5</td>
 <td style="text-align: right;">79.8</td>
 <td style="text-align: right;">-17.3</td>
-<td style="text-align: right;">49.1</td>
+<td style="text-align: right;">49.2</td>
 <td style="text-align: right;">0.62</td>
 <td style="text-align: right;">28%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SOC concentration 5–15 cm</td>
-<td style="text-align: right;">17,121</td>
+<td style="text-align: right;">17,414</td>
 <td style="text-align: right;">55.2</td>
 <td style="text-align: right;">65.6</td>
-<td style="text-align: right;">-10.5</td>
-<td style="text-align: right;">42.6</td>
+<td style="text-align: right;">-10.4</td>
+<td style="text-align: right;">42.8</td>
 <td style="text-align: right;">0.62</td>
 <td style="text-align: right;">33%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SOC concentration 15–30 cm</td>
-<td style="text-align: right;">17,121</td>
+<td style="text-align: right;">17,330</td>
 <td style="text-align: right;">50.6</td>
-<td style="text-align: right;">52.1</td>
-<td style="text-align: right;">-1.48</td>
-<td style="text-align: right;">41.3</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">-1.42</td>
+<td style="text-align: right;">41.4</td>
 <td style="text-align: right;">0.66</td>
 <td style="text-align: right;">27%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SOC concentration 30–60 cm</td>
-<td style="text-align: right;">17,121</td>
-<td style="text-align: right;">41.5</td>
-<td style="text-align: right;">47.2</td>
-<td style="text-align: right;">-5.65</td>
-<td style="text-align: right;">43</td>
+<td style="text-align: right;">17,261</td>
+<td style="text-align: right;">41.6</td>
+<td style="text-align: right;">47.1</td>
+<td style="text-align: right;">-5.57</td>
+<td style="text-align: right;">43.1</td>
 <td style="text-align: right;">0.69</td>
 <td style="text-align: right;">22%</td>
 </tr>
@@ -583,24 +873,16 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </table>
 </div>
 </div>
+</section>
+<section id="bulk-density-geng-vs-soilgrids" class="level4">
+<h4 class="anchored" data-anchor-id="bulk-density-geng-vs-soilgrids">Bulk density · Geng vs SoilGrids</h4>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="soils_files/figure-html/chart-soc-ecozone-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+<p><img src="soils_files/figure-html/chart-bd-diff-facets-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
 </figure>
 </div>
-</div>
-</div>
-</section>
-<section id="bulk-density-geng-vs-soilgrids" class="level3">
-<h3 class="anchored" data-anchor-id="bulk-density-geng-vs-soilgrids">Bulk density · Geng vs SoilGrids</h3>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="pair-maps"><figure class="figure"><img src="../data/derived/pair_maps/bd_0_5_a.png" alt="A · Geng BD 0–5 cm" loading="lazy" class="figure-img"><figcaption><span class="t">A · Geng BD 0–5 cm</span><div class="legend"><span>0.638</span><div class="bar seq"></div><span>1.34 g/cm³</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/bd_0_5_b.png" alt="B · SoilGrids BD 0–5 cm" loading="lazy" class="figure-img"><figcaption><span class="t">B · SoilGrids BD 0–5 cm</span><div class="legend"><span>0.638</span><div class="bar seq"></div><span>1.34 g/cm³</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/bd_0_5_diff.png" alt="A − B" loading="lazy" class="figure-img"><figcaption><span class="t">A − B</span><div class="legend"><span>−0.59 (B higher)</span><div class="bar div"></div><span>+0.59 (A higher)</span></div></figcaption></figure></div>
-</div>
-<div class="cell-output-display">
-<div class="small-multiples"><figure class="figure"><img src="../data/derived/pair_maps/bd_0_5_diff.png" alt="Difference 0–5 cm" loading="lazy" class="figure-img"><figcaption>0–5 cm<br>±0.59 g/cm³</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/bd_5_15_diff.png" alt="Difference 5–15 cm" loading="lazy" class="figure-img"><figcaption>5–15 cm<br>±0.425 g/cm³</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/bd_15_30_diff.png" alt="Difference 15–30 cm" loading="lazy" class="figure-img"><figcaption>15–30 cm<br>±0.373 g/cm³</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/bd_30_60_diff.png" alt="Difference 30–60 cm" loading="lazy" class="figure-img"><figcaption>30–60 cm<br>±0.44 g/cm³</figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/bd_60_100_diff.png" alt="Difference 60–100 cm" loading="lazy" class="figure-img"><figcaption>60–100 cm<br>±0.548 g/cm³</figcaption></figure></div>
 </div>
 </div>
 <div class="cell" data-layout-align="left">
@@ -641,17 +923,17 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Bulk density 0–5 cm</td>
-<td style="text-align: right;">17,119</td>
+<td style="text-align: right;">17,573</td>
 <td style="text-align: right;">1.18</td>
 <td style="text-align: right;">0.913</td>
-<td style="text-align: right;">0.268</td>
-<td style="text-align: right;">0.339</td>
-<td style="text-align: right;">0.01</td>
-<td style="text-align: right;">46%</td>
+<td style="text-align: right;">0.267</td>
+<td style="text-align: right;">0.338</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">47%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Bulk density 5–15 cm</td>
-<td style="text-align: right;">17,119</td>
+<td style="text-align: right;">17,412</td>
 <td style="text-align: right;">1.22</td>
 <td style="text-align: right;">1.12</td>
 <td style="text-align: right;">0.1</td>
@@ -661,21 +943,21 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Bulk density 15–30 cm</td>
-<td style="text-align: right;">17,119</td>
+<td style="text-align: right;">17,328</td>
 <td style="text-align: right;">1.28</td>
 <td style="text-align: right;">1.23</td>
-<td style="text-align: right;">0.0479</td>
+<td style="text-align: right;">0.0481</td>
 <td style="text-align: right;">0.195</td>
 <td style="text-align: right;">-0.06</td>
 <td style="text-align: right;">89%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Bulk density 30–60 cm</td>
-<td style="text-align: right;">17,119</td>
+<td style="text-align: right;">17,259</td>
 <td style="text-align: right;">1.32</td>
 <td style="text-align: right;">1.37</td>
-<td style="text-align: right;">-0.0467</td>
-<td style="text-align: right;">0.208</td>
+<td style="text-align: right;">-0.0465</td>
+<td style="text-align: right;">0.207</td>
 <td style="text-align: right;">-0.02</td>
 <td style="text-align: right;">88%</td>
 </tr>
@@ -694,25 +976,20 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </div>
 </div>
 </section>
-<section id="carbon-stock-030-cm-soilgrids-vs-ncscdv2" class="level3">
-<h3 class="anchored" data-anchor-id="carbon-stock-030-cm-soilgrids-vs-ncscdv2">Carbon stock 0–30 cm · SoilGrids vs NCSCDv2</h3>
-<p>The NCSCDv2 Canada rasterization covers nearly all land where SoilGrids has values, so the comparison spans most of the country. SoilGrids (250 m) is averaged to the NCSCDv2 0.012° grid.</p>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="pair-maps"><figure class="figure"><img src="../data/derived/pair_maps/ocs_0_30_a.png" alt="A · SoilGrids OC stock 0–30 cm" loading="lazy" class="figure-img"><figcaption><span class="t">A · SoilGrids OC stock 0–30 cm</span><div class="legend"><span>0.5</span><div class="bar seq"></div><span>19.2 kg C/m²</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/ocs_0_30_b.png" alt="B · NCSCDv2 SOC 0–30 cm" loading="lazy" class="figure-img"><figcaption><span class="t">B · NCSCDv2 SOC 0–30 cm</span><div class="legend"><span>0.5</span><div class="bar seq"></div><span>19.2 kg C/m²</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/ocs_0_30_diff.png" alt="A − B" loading="lazy" class="figure-img"><figcaption><span class="t">A − B</span><div class="legend"><span>−12.4 (B higher)</span><div class="bar div"></div><span>+12.4 (A higher)</span></div></figcaption></figure></div>
-</div>
-</div>
+<section id="carbon-stock-030-cm-soilgrids-vs-ncscdv2-datum-may-differ" class="level4">
+<h4 class="anchored" data-anchor-id="carbon-stock-030-cm-soilgrids-vs-ncscdv2-datum-may-differ">Carbon stock 0–30 cm · SoilGrids vs NCSCDv2 <span class="pill prov">datum may differ</span></h4>
+<p>Same nominal 0–30 cm, but SoilGrids excludes overlying organic layers, while NCSCDv2 is built from pedons measured from the soil surface (its organic treatment is still to verify). Read differences as indicative. SoilGrids (250 m) is averaged to the NCSCDv2 0.012° grid.</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="soils_files/figure-html/chart-s30-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+<p><img src="soils_files/figure-html/chart-s30-maps-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>A and B share one colour scale. Each hexagon (100 km across) shows the mean of the sampled comparison-grid pixels inside it, using only points where both products have data; hexagons with fewer than 5 points are left blank. These are the same points as the statistics.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="left">
-<div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Units: kg C/m². A minus B; RMSD = root-mean-square difference; r = Pearson correlation.</caption>
 <colgroup>
@@ -750,105 +1027,32 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="cell" data-layout-align="left">
-<p>NCSCDv2 is exactly zero at 2.1% of points, mostly in the Pacific Maritime and Arctic Cordillera (rock and ice map units). These are recorded values and are kept; leaving them out gives r = -0.03, so the weak relationship is not caused by zeros. NCSCDv2 assigns stocks to soil-map polygons, while SoilGrids predicts each pixel, which is one reason their patterns differ.</p>
+<p>NCSCDv2 is exactly zero at 2.1% of points (mostly rock and ice map units); these are recorded values and are kept. Leaving them out gives r = -0.03.</p>
 </div>
 </section>
-<section id="carbon-stock-0100-cm-sothe-vs-ncscdv2-provisional" class="level3">
-<h3 class="anchored" data-anchor-id="carbon-stock-0100-cm-sothe-vs-ncscdv2-provisional">Carbon stock 0–100 cm · Sothe vs NCSCDv2 <span class="pill prov">provisional</span></h3>
-<div class="callout callout-style-simple callout-warning">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Provisional.</strong> Sothe’s 0–1 m depth is a working assumption and its stored units are unverified. This pair is shown because the comparison itself bears on those open questions. Treat the differences as a check on the Sothe layer, not as a finding about soil carbon.</p>
-</div>
-</div>
-</div>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="pair-maps"><figure class="figure"><img src="../data/derived/pair_maps/ocs_0_100_a.png" alt="A · Sothe SOC stock (0–1 m assumed)" loading="lazy" class="figure-img"><figcaption><span class="t">A · Sothe SOC stock (0–1 m assumed)</span><div class="legend"><span>1.1</span><div class="bar seq"></div><span>143 kg C/m²</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/ocs_0_100_b.png" alt="B · NCSCDv2 SOC 0–100 cm" loading="lazy" class="figure-img"><figcaption><span class="t">B · NCSCDv2 SOC 0–100 cm</span><div class="legend"><span>1.1</span><div class="bar seq"></div><span>143 kg C/m²</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/ocs_0_100_diff.png" alt="A − B" loading="lazy" class="figure-img"><figcaption><span class="t">A − B</span><div class="legend"><span>−104 (B higher)</span><div class="bar div"></div><span>+104 (A higher)</span></div></figcaption></figure></div>
-</div>
-</div>
+<section id="peat-column-li-et-al.-vs-peatgrids-hudson-bay-lowlands" class="level4">
+<h4 class="anchored" data-anchor-id="peat-column-li-et-al.-vs-peatgrids-hudson-bay-lowlands">Peat column · Li et al.&nbsp;vs PEATGRIDS, Hudson Bay Lowlands</h4>
+<p>Both model the full peat column, so peat thickness and whole-column carbon are compared directly; these are not fixed-depth stocks and are not ranked against 0–1 m products. PEATGRIDS missing values (stored as NaN outside mapped peatland) are masked before sampling. Li (30 m) is averaged to the PEATGRIDS 1 km grid.</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="soils_files/figure-html/chart-s100-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+<p><img src="soils_files/figure-html/chart-peat-maps-depth-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>A and B share one colour scale. Each hexagon (40 km across) shows the mean of the sampled comparison-grid pixels inside it, using only points where both products have data; hexagons with fewer than 3 points are left blank. These are the same points as the statistics.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Units: kg C/m² (Sothe as stored). A minus B; RMSD = root-mean-square difference; r = Pearson correlation.</caption>
-<colgroup>
-<col style="width: 37%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 12%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 13%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Comparison</th>
-<th style="text-align: right;">Points</th>
-<th style="text-align: right;">Mean A</th>
-<th style="text-align: right;">Mean B</th>
-<th style="text-align: right;">Mean A − B</th>
-<th style="text-align: right;">RMSD</th>
-<th style="text-align: right;">r</th>
-<th style="text-align: right;">Within ±25%</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">SOC stock 0–100 cm (provisional)</td>
-<td style="text-align: right;">15,804</td>
-<td style="text-align: right;">49.6</td>
-<td style="text-align: right;">20.5</td>
-<td style="text-align: right;">29.1</td>
-<td style="text-align: right;">48.6</td>
-<td style="text-align: right;">0.28</td>
-<td style="text-align: right;">10%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell" data-layout-align="left">
-<p>Across the shared area the median Sothe:NCSCDv2 ratio is <strong>2.7</strong> (interquartile range 1.4–5.3, points where NCSCDv2 is above zero). A ratio near 1 everywhere would support reading Sothe as 0–1 m kg C/m²; a consistently large ratio would point to a units or depth difference. The two maps also use different methods (pixel prediction versus soil-map polygons), so part of the gap is genuine disagreement. The profile comparison <a href="#carbon-stocks-at-profiles">below</a> adds field evidence.</p>
-</div>
-</section>
-<section id="peat-column-li-et-al.-vs-peatgrids-hudson-bay-lowlands" class="level3">
-<h3 class="anchored" data-anchor-id="peat-column-li-et-al.-vs-peatgrids-hudson-bay-lowlands">Peat column · Li et al.&nbsp;vs PEATGRIDS, Hudson Bay Lowlands</h3>
-<p>Both model the full peat column, so peat thickness and whole-column carbon can be compared directly. Li (30 m) is averaged to the PEATGRIDS 1 km grid.</p>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="pair-maps"><figure class="figure"><img src="../data/derived/pair_maps/peat_depth_a.png" alt="A · Li peat depth" loading="lazy" class="figure-img"><figcaption><span class="t">A · Li peat depth</span><div class="legend"><span>81.8</span><div class="bar seq"></div><span>286 cm</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/peat_depth_b.png" alt="B · PEATGRIDS peat thickness" loading="lazy" class="figure-img"><figcaption><span class="t">B · PEATGRIDS peat thickness</span><div class="legend"><span>81.8</span><div class="bar seq"></div><span>286 cm</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/peat_depth_diff.png" alt="A − B" loading="lazy" class="figure-img"><figcaption><span class="t">A − B</span><div class="legend"><span>−94.6 (B higher)</span><div class="bar div"></div><span>+94.6 (A higher)</span></div></figcaption></figure></div>
-</div>
-<div class="cell-output-display">
-<div class="pair-maps"><figure class="figure"><img src="../data/derived/pair_maps/peat_carbon_a.png" alt="A · Li peat carbon" loading="lazy" class="figure-img"><figcaption><span class="t">A · Li peat carbon</span><div class="legend"><span>47.8</span><div class="bar seq"></div><span>192 kg C/m²</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/peat_carbon_b.png" alt="B · PEATGRIDS peat carbon" loading="lazy" class="figure-img"><figcaption><span class="t">B · PEATGRIDS peat carbon</span><div class="legend"><span>47.8</span><div class="bar seq"></div><span>192 kg C/m²</span></div></figcaption></figure><figure class="figure"><img src="../data/derived/pair_maps/peat_carbon_diff.png" alt="A − B" loading="lazy" class="figure-img"><figcaption><span class="t">A − B</span><div class="legend"><span>−117 (B higher)</span><div class="bar div"></div><span>+117 (A higher)</span></div></figcaption></figure></div>
-</div>
-</div>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="soils_files/figure-html/chart-peat-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+<p><img src="soils_files/figure-html/chart-peat-maps-carbon-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="left">
-<div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Units: cm (thickness); kg C/m² (carbon). A minus B; RMSD = root-mean-square difference; r = Pearson correlation.</caption>
 <colgroup>
@@ -896,11 +1100,9 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </tr>
 </tbody>
 </table>
+<p>Within each product, Li’s whole-column carbon follows Li’s peat depth almost exactly (r = 1.00 across sampled pixels), whereas PEATGRIDS carbon follows PEATGRIDS thickness only weakly (r = 0.10). The products build carbon from depth differently, so similar thickness does not give similar carbon.</p>
 </div>
-</div>
-<div class="cell" data-layout-align="left">
-<p>Thickness agrees far better than carbon. Within each product, Li’s whole-column carbon follows Li’s peat depth almost exactly (r = 1.00 across sampled pixels), whereas PEATGRIDS carbon barely follows PEATGRIDS thickness (r = 0.10). The two products build carbon from depth in different ways, so similar thickness does not give similar carbon.</p>
-</div>
+</section>
 </section>
 <section id="products-not-compared-and-why" class="level3">
 <h3 class="anchored" data-anchor-id="products-not-compared-and-why">Products not compared, and why</h3>
@@ -908,11 +1110,11 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 21%">
-<col style="width: 14%">
-<col style="width: 9%">
-<col style="width: 32%">
-<col style="width: 23%">
+<col style="width: 19%">
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 29%">
+<col style="width: 30%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -943,7 +1145,7 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 <td style="text-align: left;">NCSCDv2 SOCC100 or Sothe (0–100 cm)</td>
 <td style="text-align: left;">Different depth</td>
 <td style="text-align: left;">0–30 cm versus 0–100 cm.</td>
-<td style="text-align: left;">A SoilGrids 0–100 cm stock is not released.</td>
+<td style="text-align: left;">Sothe is instead compared with a SoilGrids 0–100 cm stock derived from carbon density (Section 3).</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">NCSCDv2 SOCC200 (100–200 cm stock)</td>
@@ -962,8 +1164,8 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 <tr class="even">
 <td style="text-align: left;">SoilGrids OCD (carbon density)</td>
 <td style="text-align: left;">Any</td>
-<td style="text-align: left;">No partner</td>
-<td style="text-align: left;">No other hosted product reports carbon density.</td>
+<td style="text-align: left;">Used for derivation</td>
+<td style="text-align: left;">Used only to derive the SoilGrids 0–100 cm stock; not compared as a density.</td>
 <td style="text-align: left;">–</td>
 </tr>
 <tr class="odd">
@@ -1009,9 +1211,47 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </section>
 <section id="profiles-vs-maps" class="level2">
 <h2 class="anchored" data-anchor-id="profiles-vs-maps">4. Maps compared with profiles</h2>
-<p>Each profile takes the value of the map pixel that contains it, at the map’s native grid. Observed values are thickness-weighted over layers that fully cover the map’s interval. This is a comparison, not a validation: some datasets trained some maps (see <a href="#covariates">above</a>), and a 250 m pixel average is not the same support as a soil core.</p>
-<section id="organic-carbon-at-profiles" class="level3">
-<h3 class="anchored" data-anchor-id="organic-carbon-at-profiles">Organic carbon at profiles</h3>
+<p>Each profile takes the value of the map pixel that contains it, at the map’s native grid. Observed values are thickness-weighted over layers that fully cover the map’s interval. This is a comparison, not a validation: some datasets trained some maps (see <a href="#covariates">above</a>), and a pixel average is not the same support as a soil core.</p>
+<p><strong>Eligibility.</strong> A matching depth label is not enough; the depth datum must match the product too:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Map products</th>
+<th>Profile depth datum</th>
+<th>Profiles used</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Geng, SoilGrids (SOC, BD, 0–30 cm stock, derived 0–100 cm stock)</td>
+<td>Mineral surface: organic surface layers removed, first mineral layer = 0 cm</td>
+<td>WoSIS, NPDB</td>
+<td>Mineral-soil products; SoilGrids removes overlying organic layers. Peat, coastal and Riley profiles are outside these products’ scope</td>
+</tr>
+<tr class="even">
+<td>Sothe, NCSCDv2 (stocks)</td>
+<td>Profile surface, organic layers included</td>
+<td>All datasets with stocks</td>
+<td>Organic-inclusive stock products (Sothe’s datum still to verify)</td>
+</tr>
+<tr class="odd">
+<td>PEATGRIDS, Li et al.&nbsp;(peat thickness)</td>
+<td>Recorded peat (organic) depth per core</td>
+<td>NRCan peat</td>
+<td>Full-column peat products</td>
+</tr>
+</tbody>
+</table>
+<p>Riley bulk density is excluded everywhere because its units are unverified. Janousek profiles with thickness/boundary mismatches are excluded from depth integration.</p>
+<section id="organic-carbon-at-profiles-mineral-surface-datum" class="level3">
+<h3 class="anchored" data-anchor-id="organic-carbon-at-profiles-mineral-surface-datum">Organic carbon at profiles · mineral-surface datum</h3>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
@@ -1024,14 +1264,14 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>All five intervals pooled, one row per profile and interval (g/kg). r computed on log(1 + value). Peat cores sit far above both maps’ range, which is expected for mineral-soil products.</caption>
+<caption>WoSIS and NPDB mineral layers, five intervals pooled, one row per profile and interval (g/kg). r computed on log(1 + value). WoSIS fed SoilGrids’ training and NPDB is Geng’s source family, so this is not independent validation.</caption>
 <colgroup>
 <col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 19%">
+<col style="width: 17%">
 <col style="width: 11%">
-<col style="width: 18%">
-<col style="width: 16%">
-<col style="width: 11%">
-<col style="width: 22%">
+<col style="width: 23%">
 <col style="width: 8%">
 </colgroup>
 <thead>
@@ -1049,111 +1289,57 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 <tr class="odd">
 <td style="text-align: left;">Geng</td>
 <td style="text-align: left;">WoSIS</td>
-<td style="text-align: left;">29,795</td>
-<td style="text-align: left;">19</td>
-<td style="text-align: left;">9.16</td>
-<td style="text-align: left;">-4.92</td>
-<td style="text-align: left;">0.45</td>
+<td style="text-align: left;">30,884</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">9.51</td>
+<td style="text-align: left;">-1.92</td>
+<td style="text-align: left;">0.67</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Geng</td>
 <td style="text-align: left;">NPDB</td>
-<td style="text-align: left;">20,806</td>
-<td style="text-align: left;">16.3</td>
-<td style="text-align: left;">9.32</td>
-<td style="text-align: left;">-3.42</td>
-<td style="text-align: left;">0.63</td>
+<td style="text-align: left;">22,050</td>
+<td style="text-align: left;">11.8</td>
+<td style="text-align: left;">9.55</td>
+<td style="text-align: left;">-2.4</td>
+<td style="text-align: left;">0.86</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Geng</td>
-<td style="text-align: left;">NRCan peat</td>
-<td style="text-align: left;">4,713</td>
-<td style="text-align: left;">480</td>
-<td style="text-align: left;">67.7</td>
-<td style="text-align: left;">-411</td>
-<td style="text-align: left;">-0.01</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Geng</td>
-<td style="text-align: left;">Janousek</td>
-<td style="text-align: left;">9</td>
-<td style="text-align: left;">313</td>
-<td style="text-align: left;">89.8</td>
-<td style="text-align: left;">-257</td>
-<td style="text-align: left;">-0.82</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Geng</td>
-<td style="text-align: left;">Riley</td>
-<td style="text-align: left;">1,180</td>
-<td style="text-align: left;">484</td>
-<td style="text-align: left;">43.8</td>
-<td style="text-align: left;">-439</td>
-<td style="text-align: left;">-0.15</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">SoilGrids</td>
 <td style="text-align: left;">WoSIS</td>
-<td style="text-align: left;">32,710</td>
-<td style="text-align: left;">19.4</td>
-<td style="text-align: left;">22.3</td>
-<td style="text-align: left;">0.7</td>
-<td style="text-align: left;">0.64</td>
+<td style="text-align: left;">33,387</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">23</td>
+<td style="text-align: left;">6.77</td>
+<td style="text-align: left;">0.71</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">SoilGrids</td>
 <td style="text-align: left;">NPDB</td>
-<td style="text-align: left;">22,550</td>
-<td style="text-align: left;">16.6</td>
-<td style="text-align: left;">24.2</td>
-<td style="text-align: left;">3.33</td>
-<td style="text-align: left;">0.63</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SoilGrids</td>
-<td style="text-align: left;">NRCan peat</td>
-<td style="text-align: left;">5,305</td>
-<td style="text-align: left;">480</td>
-<td style="text-align: left;">48</td>
-<td style="text-align: left;">-424</td>
-<td style="text-align: left;">-0.02</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SoilGrids</td>
-<td style="text-align: left;">Janousek</td>
-<td style="text-align: left;">2,019</td>
-<td style="text-align: left;">70</td>
-<td style="text-align: left;">47</td>
-<td style="text-align: left;">-22.4</td>
-<td style="text-align: left;">0.29</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SoilGrids</td>
-<td style="text-align: left;">Riley</td>
-<td style="text-align: left;">1,313</td>
-<td style="text-align: left;">480</td>
-<td style="text-align: left;">26.8</td>
-<td style="text-align: left;">-450</td>
-<td style="text-align: left;">-0.24</td>
+<td style="text-align: left;">23,410</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">24.9</td>
+<td style="text-align: left;">7.42</td>
+<td style="text-align: left;">0.70</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </section>
-<section id="bulk-density-at-profiles" class="level3">
-<h3 class="anchored" data-anchor-id="bulk-density-at-profiles">Bulk density at profiles</h3>
+<section id="bulk-density-at-profiles-mineral-surface-datum" class="level3">
+<h3 class="anchored" data-anchor-id="bulk-density-at-profiles-mineral-surface-datum">Bulk density at profiles · mineral-surface datum</h3>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>All five intervals pooled, one row per profile and interval (g/cm³). Riley bulk-density units unverified.</caption>
+<caption>WoSIS and NPDB mineral layers, five intervals pooled (g/cm³).</caption>
 <colgroup>
 <col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 19%">
+<col style="width: 17%">
 <col style="width: 11%">
-<col style="width: 18%">
-<col style="width: 16%">
-<col style="width: 11%">
-<col style="width: 22%">
+<col style="width: 23%">
 <col style="width: 8%">
 </colgroup>
 <thead>
@@ -1171,92 +1357,38 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 <tr class="odd">
 <td style="text-align: left;">Geng</td>
 <td style="text-align: left;">WoSIS</td>
-<td style="text-align: left;">89</td>
+<td style="text-align: left;">90</td>
 <td style="text-align: left;">1.49</td>
 <td style="text-align: left;">1.25</td>
-<td style="text-align: left;">-0.205</td>
+<td style="text-align: left;">-0.203</td>
 <td style="text-align: left;">0.21</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Geng</td>
 <td style="text-align: left;">NPDB</td>
-<td style="text-align: left;">2,373</td>
+<td style="text-align: left;">2,619</td>
 <td style="text-align: left;">1.3</td>
-<td style="text-align: left;">1.28</td>
-<td style="text-align: left;">0.00559</td>
-<td style="text-align: left;">0.77</td>
+<td style="text-align: left;">1.27</td>
+<td style="text-align: left;">0.00185</td>
+<td style="text-align: left;">0.82</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Geng</td>
-<td style="text-align: left;">NRCan peat</td>
-<td style="text-align: left;">4,714</td>
-<td style="text-align: left;">0.079</td>
-<td style="text-align: left;">1.32</td>
-<td style="text-align: left;">1.24</td>
-<td style="text-align: left;">-0.06</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Geng</td>
-<td style="text-align: left;">Janousek</td>
-<td style="text-align: left;">9</td>
-<td style="text-align: left;">0.115</td>
-<td style="text-align: left;">1.07</td>
-<td style="text-align: left;">0.972</td>
-<td style="text-align: left;">-0.71</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Geng</td>
-<td style="text-align: left;">Riley</td>
-<td style="text-align: left;">1,354</td>
-<td style="text-align: left;">0.1</td>
-<td style="text-align: left;">1.31</td>
-<td style="text-align: left;">1.21</td>
-<td style="text-align: left;">0.02</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">SoilGrids</td>
 <td style="text-align: left;">WoSIS</td>
-<td style="text-align: left;">89</td>
+<td style="text-align: left;">90</td>
 <td style="text-align: left;">1.49</td>
-<td style="text-align: left;">1.35</td>
+<td style="text-align: left;">1.34</td>
 <td style="text-align: left;">-0.12</td>
 <td style="text-align: left;">0.72</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">SoilGrids</td>
 <td style="text-align: left;">NPDB</td>
-<td style="text-align: left;">2,455</td>
+<td style="text-align: left;">2,673</td>
 <td style="text-align: left;">1.3</td>
-<td style="text-align: left;">1.33</td>
-<td style="text-align: left;">0.0767</td>
-<td style="text-align: left;">0.29</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SoilGrids</td>
-<td style="text-align: left;">NRCan peat</td>
-<td style="text-align: left;">5,306</td>
-<td style="text-align: left;">0.079</td>
-<td style="text-align: left;">1.26</td>
-<td style="text-align: left;">1.17</td>
-<td style="text-align: left;">0.07</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SoilGrids</td>
-<td style="text-align: left;">Janousek</td>
-<td style="text-align: left;">2,019</td>
-<td style="text-align: left;">0.49</td>
-<td style="text-align: left;">1.18</td>
-<td style="text-align: left;">0.69</td>
-<td style="text-align: left;">0.06</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SoilGrids</td>
-<td style="text-align: left;">Riley</td>
-<td style="text-align: left;">1,538</td>
-<td style="text-align: left;">0.11</td>
-<td style="text-align: left;">1.4</td>
-<td style="text-align: left;">1.28</td>
-<td style="text-align: left;">0.18</td>
+<td style="text-align: left;">1.31</td>
+<td style="text-align: left;">0.04</td>
+<td style="text-align: left;">0.21</td>
 </tr>
 </tbody>
 </table>
@@ -1275,22 +1407,21 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </div>
 </div>
 <div class="cell" data-layout-align="left">
-<p>For the Sothe units question: at profiles with an observed 0–100 cm stock, the ratio of Sothe’s median to the observed median is 1.5 for NPDB (126 profiles) and 1.2 for NRCan peat (983 profiles). That is much closer than its ratio to NCSCDv2, which suggests that NCSCDv2, not only Sothe, contributes to the map-to-map gap. These profiles are few and peat-heavy, so this narrows the question but does not settle it.</p>
-</div>
-<div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>kg C/m². Observed stocks are dominated by peat and coastal cores, which mineral-soil maps are not designed to represent.</caption>
+<caption>kg C/m². Profile-surface stocks are dominated by peat and coastal cores.</caption>
 <colgroup>
-<col style="width: 35%">
-<col style="width: 15%">
-<col style="width: 12%">
-<col style="width: 21%">
-<col style="width: 15%">
+<col style="width: 24%">
+<col style="width: 32%">
+<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 10%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Map</th>
+<th style="text-align: left;">Profile datum</th>
 <th style="text-align: left;">Dataset</th>
 <th style="text-align: left;">Profiles</th>
 <th style="text-align: left;">Median observed</th>
@@ -1299,7 +1430,72 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">Sothe 0–100 (McMaster/WWF)</td>
+<td style="text-align: left;">Profile surface (organic included)</td>
+<td style="text-align: left;">Janousek</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">19.7</td>
+<td style="text-align: left;">65.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sothe 0–100 (McMaster/WWF)</td>
+<td style="text-align: left;">Profile surface (organic included)</td>
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">126</td>
+<td style="text-align: left;">11.1</td>
+<td style="text-align: left;">16.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sothe 0–100 (McMaster/WWF)</td>
+<td style="text-align: left;">Profile surface (organic included)</td>
+<td style="text-align: left;">NRCan peat</td>
+<td style="text-align: left;">983</td>
+<td style="text-align: left;">43.2</td>
+<td style="text-align: left;">53.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sothe 0–100 (McMaster/WWF)</td>
+<td style="text-align: left;">Profile surface (organic included)</td>
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">16.3</td>
+<td style="text-align: left;">23.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SoilGrids 0–100 (derived)</td>
+<td style="text-align: left;">Mineral surface</td>
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">158</td>
+<td style="text-align: left;">9.61</td>
+<td style="text-align: left;">13.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids 0–100 (derived)</td>
+<td style="text-align: left;">Mineral surface</td>
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">16.3</td>
+<td style="text-align: left;">16.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SoilGrids 0–30 (released)</td>
+<td style="text-align: left;">Mineral surface</td>
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">403</td>
+<td style="text-align: left;">6.15</td>
+<td style="text-align: left;">5.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids 0–30 (released)</td>
+<td style="text-align: left;">Mineral surface</td>
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">5.73</td>
+<td style="text-align: left;">4.5</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">NCSCDv2 0–100</td>
+<td style="text-align: left;">Profile surface (organic included)</td>
 <td style="text-align: left;">NPDB</td>
 <td style="text-align: left;">2</td>
 <td style="text-align: left;">27</td>
@@ -1307,13 +1503,15 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </tr>
 <tr class="even">
 <td style="text-align: left;">NCSCDv2 0–100</td>
+<td style="text-align: left;">Profile surface (organic included)</td>
 <td style="text-align: left;">NRCan peat</td>
-<td style="text-align: left;">428</td>
+<td style="text-align: left;">429</td>
 <td style="text-align: left;">46.9</td>
 <td style="text-align: left;">27.8</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">NCSCDv2 0–30</td>
+<td style="text-align: left;">Profile surface (organic included)</td>
 <td style="text-align: left;">NPDB</td>
 <td style="text-align: left;">13</td>
 <td style="text-align: left;">8.46</td>
@@ -1321,73 +1519,19 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </tr>
 <tr class="even">
 <td style="text-align: left;">NCSCDv2 0–30</td>
+<td style="text-align: left;">Profile surface (organic included)</td>
 <td style="text-align: left;">NRCan peat</td>
-<td style="text-align: left;">495</td>
+<td style="text-align: left;">497</td>
 <td style="text-align: left;">12.3</td>
 <td style="text-align: left;">10.9</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">NCSCDv2 0–30</td>
+<td style="text-align: left;">Profile surface (organic included)</td>
 <td style="text-align: left;">WoSIS</td>
 <td style="text-align: left;">10</td>
 <td style="text-align: left;">5.21</td>
 <td style="text-align: left;">4.4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SoilGrids OCS</td>
-<td style="text-align: left;">Janousek</td>
-<td style="text-align: left;">498</td>
-<td style="text-align: left;">9.96</td>
-<td style="text-align: left;">7.3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SoilGrids OCS</td>
-<td style="text-align: left;">NPDB</td>
-<td style="text-align: left;">330</td>
-<td style="text-align: left;">6.83</td>
-<td style="text-align: left;">5.65</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SoilGrids OCS</td>
-<td style="text-align: left;">NRCan peat</td>
-<td style="text-align: left;">1,091</td>
-<td style="text-align: left;">11.4</td>
-<td style="text-align: left;">5.6</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SoilGrids OCS</td>
-<td style="text-align: left;">WoSIS</td>
-<td style="text-align: left;">13</td>
-<td style="text-align: left;">6.08</td>
-<td style="text-align: left;">4.4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sothe 0–100 (provisional)</td>
-<td style="text-align: left;">Janousek</td>
-<td style="text-align: left;">6</td>
-<td style="text-align: left;">19.7</td>
-<td style="text-align: left;">65.3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Sothe 0–100 (provisional)</td>
-<td style="text-align: left;">NPDB</td>
-<td style="text-align: left;">126</td>
-<td style="text-align: left;">11.1</td>
-<td style="text-align: left;">16.9</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sothe 0–100 (provisional)</td>
-<td style="text-align: left;">NRCan peat</td>
-<td style="text-align: left;">983</td>
-<td style="text-align: left;">43.2</td>
-<td style="text-align: left;">53.6</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Sothe 0–100 (provisional)</td>
-<td style="text-align: left;">WoSIS</td>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">16.3</td>
-<td style="text-align: left;">23.2</td>
 </tr>
 </tbody>
 </table>
@@ -1863,9 +2007,9 @@ Figure&nbsp;1: Profile locations by dataset over Canada’s terrestrial ecozones
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/main/Comparison/report/soils.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/comparison-analysis/Comparison/report/soils.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>Built with Quarto from <a href="https://github.com/CathalD/Carbon_Data_SOD/tree/main/Comparison">Comparison/</a></p>
+<p>Built with Quarto from <a href="https://github.com/CathalD/Carbon_Data_SOD/tree/comparison-analysis/Comparison">Comparison/</a></p>
 </div>
   </div>
 </footer>

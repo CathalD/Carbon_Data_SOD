@@ -172,14 +172,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#analytical-design" id="toc-analytical-design" class="nav-link active" data-scroll-target="#analytical-design">Analytical design</a></li>
   <li><a href="#rules-for-pairing-products" id="toc-rules-for-pairing-products" class="nav-link" data-scroll-target="#rules-for-pairing-products">Rules for pairing products</a></li>
-  <li><a href="#sampling-design-for-map-statistics" id="toc-sampling-design-for-map-statistics" class="nav-link" data-scroll-target="#sampling-design-for-map-statistics">Sampling design for map statistics</a></li>
+  <li><a href="#sampling-and-maps" id="toc-sampling-and-maps" class="nav-link" data-scroll-target="#sampling-and-maps">Sampling and maps</a></li>
   <li><a href="#profiles" id="toc-profiles" class="nav-link" data-scroll-target="#profiles">Profiles</a></li>
   <li><a href="#unit-conversions" id="toc-unit-conversions" class="nav-link" data-scroll-target="#unit-conversions">Unit conversions</a></li>
   <li><a href="#ecozones" id="toc-ecozones" class="nav-link" data-scroll-target="#ecozones">Ecozones</a></li>
   <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
   <li><a href="#reproduce" id="toc-reproduce" class="nav-link" data-scroll-target="#reproduce">Reproduce</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/main/Comparison/report/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/comparison-analysis/Comparison/report/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -214,11 +214,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td><strong>Question</strong></td>
-<td>Where do Canadian carbon products agree or disagree when compared like with like, and how do soil maps compare with field profiles?</td>
+<td>Where do Canadian carbon products agree or disagree when compared like with like, and how do soil maps compare with field profiles? The McMaster/WWF maps (Sothe et al.&nbsp;2022) are compared first.</td>
 </tr>
 <tr class="even">
 <td><strong>Estimand</strong></td>
-<td>Per-pixel differences (A − B) on each pair’s coarser native grid, summarised as mean difference, RMSD, Pearson r and share within ±25%, nationally and by terrestrial ecozone. At profiles: map value at the containing pixel vs the thickness-weighted observed value for the same interval.</td>
+<td>Per-pixel differences (A − B) on each pair’s coarser native grid, summarised as mean difference, RMSD, Pearson r and share within ±25%, nationally and by terrestrial ecozone. At profiles: map value at the containing pixel vs the thickness-weighted observed value for the same interval and depth datum.</td>
 </tr>
 <tr class="odd">
 <td><strong>Data roles</strong></td>
@@ -226,11 +226,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td><strong>Method</strong></td>
-<td>Documented unit conversion, mean aggregation of the finer product to the coarser grid, differencing and descriptive statistics. No modelling, gap-filling or bias correction.</td>
+<td>Documented unit conversion, mean aggregation of the finer product to the coarser grid, differencing and descriptive statistics. Two derivations, both labelled: a SoilGrids 0–100 cm stock from its carbon density, and SCANFI carbon from biomass × 0.5. No modelling, gap-filling or bias correction.</td>
 </tr>
 <tr class="odd">
 <td><strong>Not part of this analysis</strong></td>
-<td>Deriving stocks from concentration × bulk density for maps; deduplicating profiles across datasets; forest plot comparisons (no plots ingested yet); propagating map uncertainty.</td>
+<td>Deriving stocks from concentration × bulk density for Geng; deduplicating profiles across datasets; forest plot comparisons (no plots ingested yet); propagating map uncertainty.</td>
 </tr>
 </tbody>
 </table>
@@ -238,188 +238,242 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="rules-for-pairing-products" class="level2">
 <h2 class="anchored" data-anchor-id="rules-for-pairing-products">Rules for pairing products</h2>
 <ol type="1">
-<li><strong>Same quantity, same depth or pool.</strong> Products are paired only when both report the same quantity (e.g.&nbsp;SOC concentration) for the same depth interval (e.g.&nbsp;0–5 cm) or the same pool and year. Everything else is listed, with the reason, in the “not compared” tables.</li>
-<li><strong>Coarser grid per pair.</strong> Each pair is compared on the coarser of its two native grids. The finer product is mean-aggregated (Earth Engine <code>reduceResolution</code>, mean of contributing pixels) to that grid. Nothing is upsampled, because resampling a coarse map to a finer grid adds no information.</li>
-<li><strong>Documented units only.</strong> Values are converted with the providers’ documented factors to one unit per quantity. No other rescaling.</li>
+<li><strong>Same quantity, same depth or pool.</strong> Products are paired only when both report the same quantity for the same depth interval, or the same pool and year. Everything else is listed, with the reason, in the “not compared” tables. Two pairs are deliberate exceptions requested for the McMaster/WWF maps, and both are labelled:
+<ul>
+<li><strong>Sothe vs SoilGrids 0–100 cm.</strong> SoilGrids has no released 0–100 cm stock, so one is derived.</li>
+<li><strong>McMaster/WWF forest carbon vs SCANFI.</strong> The pools differ: McMaster includes belowground and dead carbon.</li>
+</ul></li>
+<li><strong>Depth datum, not just depth label.</strong> Each pair records its depth datum and whether that is matched, still to verify, or may differ. Fixed-depth mineral-soil stocks, organic-inclusive stocks and full-column peat stocks are kept in separate categories and never ranked together.</li>
+<li><strong>Coarser grid per pair.</strong> Each pair is compared on the coarser of its two native grids. The finer product is mean-aggregated (Earth Engine <code>reduceResolution</code>, mean of contributing pixels) to that grid. Nothing is upsampled.</li>
+<li><strong>Documented units only.</strong> Values are converted with the providers’ documented factors to one unit per quantity.</li>
+<li><strong>Missing data stay missing.</strong> PEATGRIDS stores missing values as NaN in unmasked pixels outside mapped peatland. Its non-negative variables are masked with <code>updateMask(image.gte(0))</code> at the product definition, before any sampling, aggregation or display. Recorded zeros (for example NCSCDv2 rock and ice units) are kept as values.</li>
 </ol>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>All pairs. In every pair B is the coarser product, so the comparison grid is B’s native grid.</caption>
+<caption>All pairs, in report order.</caption>
 <colgroup>
-<col style="width: 4%">
-<col style="width: 13%">
-<col style="width: 12%">
-<col style="width: 9%">
-<col style="width: 14%">
+<col style="width: 2%">
 <col style="width: 8%">
-<col style="width: 36%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 11%">
+<col style="width: 3%">
+<col style="width: 18%">
+<col style="width: 38%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Pair</th>
+<th style="text-align: left;"></th>
 <th style="text-align: left;">Quantity</th>
 <th style="text-align: left;">A</th>
 <th style="text-align: left;">B</th>
 <th style="text-align: left;">Comparison grid</th>
 <th style="text-align: left;">Region</th>
-<th style="text-align: left;">Unit and conversions</th>
+<th style="text-align: left;">Units and conversions</th>
+<th style="text-align: left;">Depth / pool</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">soc_0_5</td>
-<td style="text-align: left;">SOC concentration 0–5 cm</td>
-<td style="text-align: left;">Geng SOC 0–5 cm</td>
-<td style="text-align: left;">SoilGrids SOC 0–5 cm</td>
-<td style="text-align: left;">SoilGrids SOC 0–5 cm native grid</td>
+<td style="text-align: left;">McMaster/WWF</td>
+<td style="text-align: left;">SOC stock 0–100 cm</td>
+<td style="text-align: left;">Sothe SOC stock (0–1 m assumed)</td>
+<td style="text-align: left;">SoilGrids SOC stock 0–100 cm (derived from carbon density)</td>
+<td style="text-align: left;">SoilGrids SOC stock 0–100 cm (derived from carbon density) native grid</td>
 <td style="text-align: left;">Canada</td>
-<td style="text-align: left;">g/kg; Geng % ×10; SoilGrids dg/kg ÷10</td>
+<td style="text-align: left;">kg C/m²; Sothe as stored (study kg C/m²); SoilGrids carbon density hg/m³ ÷10 × interval thickness, summed over 0–100 cm</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Same nominal 0–100 cm. Sothe archive identifies the top 1 m (hosted-file identity and datum unverified); SoilGrids excludes overlying organic layers and its 0–100 cm stock is derived here, not released</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">bd_0_5</td>
-<td style="text-align: left;">Bulk density 0–5 cm</td>
-<td style="text-align: left;">Geng BD 0–5 cm</td>
-<td style="text-align: left;">SoilGrids BD 0–5 cm</td>
-<td style="text-align: left;">SoilGrids BD 0–5 cm native grid</td>
+<td style="text-align: left;">McMaster/WWF</td>
+<td style="text-align: left;">Forest carbon: McMaster/WWF total vs SCANFI aboveground</td>
+<td style="text-align: left;">McMaster/WWF forest carbon (above + below + dead)</td>
+<td style="text-align: left;">SCANFI v1.2 aboveground carbon (biomass × 0.5)</td>
+<td style="text-align: left;">McMaster/WWF forest carbon (above + below + dead) native grid</td>
 <td style="text-align: left;">Canada</td>
-<td style="text-align: left;">g/cm³; SoilGrids cg/cm³ ÷100</td>
+<td style="text-align: left;">kg C/m²; SCANFI t/ha × 0.5 carbon fraction × 0.1; compared where at least one product is above zero</td>
+<td style="text-align: left;"><span class="pill prov">pools differ</span> Pools differ: McMaster includes belowground and dead carbon, SCANFI is aboveground only; A − B mixes those pools with genuine disagreement. McMaster ~2015–2019 inputs vs SCANFI 2020</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">soc_5_15</td>
-<td style="text-align: left;">SOC concentration 5–15 cm</td>
-<td style="text-align: left;">Geng SOC 5–15 cm</td>
-<td style="text-align: left;">SoilGrids SOC 5–15 cm</td>
-<td style="text-align: left;">SoilGrids SOC 5–15 cm native grid</td>
-<td style="text-align: left;">Canada</td>
-<td style="text-align: left;">g/kg; Geng % ×10; SoilGrids dg/kg ÷10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">bd_5_15</td>
-<td style="text-align: left;">Bulk density 5–15 cm</td>
-<td style="text-align: left;">Geng BD 5–15 cm</td>
-<td style="text-align: left;">SoilGrids BD 5–15 cm</td>
-<td style="text-align: left;">SoilGrids BD 5–15 cm native grid</td>
-<td style="text-align: left;">Canada</td>
-<td style="text-align: left;">g/cm³; SoilGrids cg/cm³ ÷100</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">soc_15_30</td>
-<td style="text-align: left;">SOC concentration 15–30 cm</td>
-<td style="text-align: left;">Geng SOC 15–30 cm</td>
-<td style="text-align: left;">SoilGrids SOC 15–30 cm</td>
-<td style="text-align: left;">SoilGrids SOC 15–30 cm native grid</td>
-<td style="text-align: left;">Canada</td>
-<td style="text-align: left;">g/kg; Geng % ×10; SoilGrids dg/kg ÷10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">bd_15_30</td>
-<td style="text-align: left;">Bulk density 15–30 cm</td>
-<td style="text-align: left;">Geng BD 15–30 cm</td>
-<td style="text-align: left;">SoilGrids BD 15–30 cm</td>
-<td style="text-align: left;">SoilGrids BD 15–30 cm native grid</td>
-<td style="text-align: left;">Canada</td>
-<td style="text-align: left;">g/cm³; SoilGrids cg/cm³ ÷100</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">soc_30_60</td>
-<td style="text-align: left;">SOC concentration 30–60 cm</td>
-<td style="text-align: left;">Geng SOC 30–60 cm</td>
-<td style="text-align: left;">SoilGrids SOC 30–60 cm</td>
-<td style="text-align: left;">SoilGrids SOC 30–60 cm native grid</td>
-<td style="text-align: left;">Canada</td>
-<td style="text-align: left;">g/kg; Geng % ×10; SoilGrids dg/kg ÷10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">bd_30_60</td>
-<td style="text-align: left;">Bulk density 30–60 cm</td>
-<td style="text-align: left;">Geng BD 30–60 cm</td>
-<td style="text-align: left;">SoilGrids BD 30–60 cm</td>
-<td style="text-align: left;">SoilGrids BD 30–60 cm native grid</td>
-<td style="text-align: left;">Canada</td>
-<td style="text-align: left;">g/cm³; SoilGrids cg/cm³ ÷100</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">soc_60_100</td>
-<td style="text-align: left;">SOC concentration 60–100 cm</td>
-<td style="text-align: left;">Geng SOC 60–100 cm</td>
-<td style="text-align: left;">SoilGrids SOC 60–100 cm</td>
-<td style="text-align: left;">SoilGrids SOC 60–100 cm native grid</td>
-<td style="text-align: left;">Canada</td>
-<td style="text-align: left;">g/kg; Geng % ×10; SoilGrids dg/kg ÷10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">bd_60_100</td>
-<td style="text-align: left;">Bulk density 60–100 cm</td>
-<td style="text-align: left;">Geng BD 60–100 cm</td>
-<td style="text-align: left;">SoilGrids BD 60–100 cm</td>
-<td style="text-align: left;">SoilGrids BD 60–100 cm native grid</td>
-<td style="text-align: left;">Canada</td>
-<td style="text-align: left;">g/cm³; SoilGrids cg/cm³ ÷100</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ocs_0_30</td>
-<td style="text-align: left;">SOC stock 0–30 cm</td>
-<td style="text-align: left;">SoilGrids OC stock 0–30 cm</td>
-<td style="text-align: left;">NCSCDv2 SOC 0–30 cm</td>
-<td style="text-align: left;">NCSCDv2 SOC 0–30 cm native grid</td>
-<td style="text-align: left;">Canada</td>
-<td style="text-align: left;">kg C/m²; SoilGrids t/ha ÷10; NCSCDv2 hg C/m² ÷10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ocs_0_100</td>
+<td style="text-align: left;">McMaster/WWF</td>
 <td style="text-align: left;">SOC stock 0–100 cm (provisional)</td>
 <td style="text-align: left;">Sothe SOC stock (0–1 m assumed)</td>
 <td style="text-align: left;">NCSCDv2 SOC 0–100 cm</td>
 <td style="text-align: left;">NCSCDv2 SOC 0–100 cm native grid</td>
 <td style="text-align: left;">Canada</td>
 <td style="text-align: left;">kg C/m²; Sothe depth assumed 0–1 m and stored units unverified; NCSCDv2 hg C/m² ÷10</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Sothe archive identifies the top 1 m; datum and identity of the hosted file unverified</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SOC concentration 0–5 cm</td>
+<td style="text-align: left;">Geng SOC 0–5 cm</td>
+<td style="text-align: left;">SoilGrids SOC 0–5 cm</td>
+<td style="text-align: left;">SoilGrids SOC 0–5 cm native grid</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">g/kg; Geng % ×10; SoilGrids dg/kg ÷10</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">peat_depth</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Bulk density 0–5 cm</td>
+<td style="text-align: left;">Geng BD 0–5 cm</td>
+<td style="text-align: left;">SoilGrids BD 0–5 cm</td>
+<td style="text-align: left;">SoilGrids BD 0–5 cm native grid</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">g/cm³; SoilGrids cg/cm³ ÷100</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SOC concentration 5–15 cm</td>
+<td style="text-align: left;">Geng SOC 5–15 cm</td>
+<td style="text-align: left;">SoilGrids SOC 5–15 cm</td>
+<td style="text-align: left;">SoilGrids SOC 5–15 cm native grid</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">g/kg; Geng % ×10; SoilGrids dg/kg ÷10</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Bulk density 5–15 cm</td>
+<td style="text-align: left;">Geng BD 5–15 cm</td>
+<td style="text-align: left;">SoilGrids BD 5–15 cm</td>
+<td style="text-align: left;">SoilGrids BD 5–15 cm native grid</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">g/cm³; SoilGrids cg/cm³ ÷100</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SOC concentration 15–30 cm</td>
+<td style="text-align: left;">Geng SOC 15–30 cm</td>
+<td style="text-align: left;">SoilGrids SOC 15–30 cm</td>
+<td style="text-align: left;">SoilGrids SOC 15–30 cm native grid</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">g/kg; Geng % ×10; SoilGrids dg/kg ÷10</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Bulk density 15–30 cm</td>
+<td style="text-align: left;">Geng BD 15–30 cm</td>
+<td style="text-align: left;">SoilGrids BD 15–30 cm</td>
+<td style="text-align: left;">SoilGrids BD 15–30 cm native grid</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">g/cm³; SoilGrids cg/cm³ ÷100</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SOC concentration 30–60 cm</td>
+<td style="text-align: left;">Geng SOC 30–60 cm</td>
+<td style="text-align: left;">SoilGrids SOC 30–60 cm</td>
+<td style="text-align: left;">SoilGrids SOC 30–60 cm native grid</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">g/kg; Geng % ×10; SoilGrids dg/kg ÷10</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Bulk density 30–60 cm</td>
+<td style="text-align: left;">Geng BD 30–60 cm</td>
+<td style="text-align: left;">SoilGrids BD 30–60 cm</td>
+<td style="text-align: left;">SoilGrids BD 30–60 cm native grid</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">g/cm³; SoilGrids cg/cm³ ÷100</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SOC concentration 60–100 cm</td>
+<td style="text-align: left;">Geng SOC 60–100 cm</td>
+<td style="text-align: left;">SoilGrids SOC 60–100 cm</td>
+<td style="text-align: left;">SoilGrids SOC 60–100 cm native grid</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">g/kg; Geng % ×10; SoilGrids dg/kg ÷10</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Bulk density 60–100 cm</td>
+<td style="text-align: left;">Geng BD 60–100 cm</td>
+<td style="text-align: left;">SoilGrids BD 60–100 cm</td>
+<td style="text-align: left;">SoilGrids BD 60–100 cm native grid</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">g/cm³; SoilGrids cg/cm³ ÷100</td>
+<td style="text-align: left;"><span class="pill prov">datum to verify</span> Mineral surface: SoilGrids removes overlying organic layers; Geng follows CanSIS pedon depths (mineral surface = 0, to verify)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SOC stock 0–30 cm</td>
+<td style="text-align: left;">SoilGrids OC stock 0–30 cm</td>
+<td style="text-align: left;">NCSCDv2 SOC 0–30 cm</td>
+<td style="text-align: left;">NCSCDv2 SOC 0–30 cm native grid</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">kg C/m²; SoilGrids t/ha ÷10; NCSCDv2 hg C/m² ÷10</td>
+<td style="text-align: left;"><span class="pill prov">datum may differ</span> Same nominal 0–30 cm, but SoilGrids excludes overlying organic layers while NCSCDv2 is built from pedons measured from the soil surface (organic treatment to verify)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Peat thickness</td>
 <td style="text-align: left;">Li peat depth</td>
 <td style="text-align: left;">PEATGRIDS peat thickness</td>
 <td style="text-align: left;">PEATGRIDS peat thickness native grid</td>
 <td style="text-align: left;">Hudson Plain ecozone</td>
 <td style="text-align: left;">cm; Both are modelled full peat columns</td>
+<td style="text-align: left;"><span class="pill ok">matched</span> Full modelled peat column in both</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">peat_carbon</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Peat carbon (full column)</td>
 <td style="text-align: left;">Li peat carbon</td>
-<td style="text-align: left;">PEATGRIDS peat carbon</td>
-<td style="text-align: left;">PEATGRIDS peat carbon native grid</td>
+<td style="text-align: left;">PEATGRIDS peat carbon (full column)</td>
+<td style="text-align: left;">PEATGRIDS peat carbon (full column) native grid</td>
 <td style="text-align: left;">Hudson Plain ecozone</td>
 <td style="text-align: left;">kg C/m²; PEATGRIDS Mg C/m² ×1000</td>
+<td style="text-align: left;"><span class="pill ok">matched</span> Full modelled peat column in both</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">agb_2020</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">Aboveground biomass 2020</td>
 <td style="text-align: left;">SCANFI v1.2 AGB 2020</td>
 <td style="text-align: left;">ESA CCI v6 AGB 2020</td>
 <td style="text-align: left;">ESA CCI v6 AGB 2020 native grid</td>
 <td style="text-align: left;">Canada</td>
 <td style="text-align: left;">Mg/ha; Both aboveground biomass for 2020; compared where at least one product is above zero</td>
+<td style="text-align: left;"><span class="pill ok">matched</span> Aboveground pool, 2020, in both</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </section>
-<section id="sampling-design-for-map-statistics" class="level2">
-<h2 class="anchored" data-anchor-id="sampling-design-for-map-statistics">Sampling design for map statistics</h2>
-<p>Statistics are computed from <strong>30,000 random points</strong>, uniform in area. They are drawn in Canada Albers equal-area (ESRI:102001) within the terrestrial ecozones, seed 42. The peat pairs use <strong>1,500 points</strong> in the Hudson Plain ecozone (seed 43). At each point both products are read on the pair’s comparison grid. Points where either product has no data are dropped for that pair. For aboveground biomass, points where both products are zero are also dropped, so shared non-forest does not inflate agreement.</p>
-<p>Random sampling keeps the statistics cheap and unbiased by area. The map figures are display summaries: Earth Engine averages each product to the display grid (about 7 km per pixel nationally, 1.5 km in the Hudson Plain) before differencing. They show broad patterns, not pixel-level detail.</p>
+<section id="sampling-and-maps" class="level2">
+<h2 class="anchored" data-anchor-id="sampling-and-maps">Sampling and maps</h2>
+<p>Statistics come from <strong>30,000 random points</strong>, uniform in area. They are drawn in Canada Albers equal-area (ESRI:102001) within the terrestrial ecozones, seed 42. The peat pairs use <strong>1,500 points</strong> in the Hudson Plain ecozone (seed 43). At each point, both products of a pair are read on the pair’s comparison grid.</p>
+<p><strong>Each band is sampled independently</strong> (<code>reduceRegions</code> with a per-band <code>first</code> reducer). A point missing one depth, one variable or one product is dropped only for the pair that needs it. Earth Engine’s <code>sampleRegions</code> would instead drop a point from every band when any band is masked. For aboveground biomass and forest carbon, points where both products are zero are dropped, so shared non-forest does not inflate agreement.</p>
+<p><strong>Maps are drawn from the same samples.</strong> Each hexagon shows the mean of the sampled comparison-grid pixels inside it, for A, B and A − B. Hexagons are 100 km across nationally and 40 km in the Hudson Plain, and only points where both products have data are used. The aggregation is therefore explicit, and the maps use the same points, units and eligibility rules as the tables.</p>
 </section>
 <section id="profiles" class="level2">
 <h2 class="anchored" data-anchor-id="profiles">Profiles</h2>
 <ul>
-<li><strong>Depth matching:</strong> each profile’s layers are combined into the map intervals by thickness-weighted mean, only where the layers cover the whole interval with no gaps or overlaps. No extrapolation and no splines.</li>
+<li><strong>Depth matching:</strong> layers are combined into each map interval by thickness-weighted mean, only where they cover the whole interval with no gaps or overlaps. No extrapolation and no splines.</li>
+<li><strong>Two depth datums, kept separate:</strong>
+<ul>
+<li><em>Mineral surface</em>: organic surface layers removed (WoSIS <code>organic_surface</code>; NPDB horizons above 0 cm, i.e.&nbsp;LFH) and the first remaining layer set to 0 cm. WoSIS and NPDB only. Used with Geng and SoilGrids, because SoilGrids removes overlying organic layers.</li>
+<li><em>Profile surface</em>: depth from the top of the profile, organic layers included; NPDB is shifted so its profile top is 0. Used with the organic-inclusive stock maps (Sothe, NCSCDv2) and for the dataset inventory.</li>
+</ul></li>
+<li><strong>Peat thickness:</strong> the NRCan peat cores’ recorded organic depth (<code>ORG_DEPTH</code>) is compared with modelled peat thickness.</li>
 <li><strong>Stocks at 0–30 and 0–100 cm:</strong> sums of each dataset’s own layer stock values times the fraction of each layer inside the interval. No bulk density is gap-filled.</li>
-<li><strong>Depth datum:</strong> each preparation’s own. NPDB organic horizons have negative depths; following the NPDB preparation (datum = profile top), depths are shifted so the profile top is 0.</li>
-<li><strong>Map values:</strong> each profile takes the value of the map pixel that contains it, at the map’s native grid.</li>
-<li><strong>Units:</strong> organic carbon in g/kg (WoSIS is stored in g/kg; the other datasets in %, ×10); bulk density in g/cm³; stocks in kg C/m². Riley bulk-density units are unverified.</li>
+<li><strong>Exclusions:</strong>
+<ul>
+<li>Riley bulk density: units are unverified, so it is kept in the inventory but excluded from every quantitative result.</li>
+<li>Janousek: profiles whose recorded layer thickness disagrees with their boundaries by more than 0.01 cm are excluded from depth integration.</li>
+</ul></li>
+<li><strong>Map values:</strong> each profile takes the value of the map pixel that contains it, at the map’s native grid, with each band read independently.</li>
+<li><strong>Units:</strong> organic carbon in g/kg (WoSIS stored in g/kg; the others in %, ×10); bulk density in g/cm³; stocks in kg C/m². Layer stocks reproduce <code>C(g/kg) × BD × thickness / 100</code> for WoSIS and <code>C(%) × BD × thickness / 10</code> for Janousek. NRCan provider stocks are close to, but not identical with, the corresponding expression, so the provider values are used as given.</li>
 </ul>
 </section>
 <section id="unit-conversions" class="level2">
@@ -464,69 +518,91 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>ISRIC SoilGrids FAQ</td>
 </tr>
 <tr class="even">
+<td>SoilGrids <code>ocd</code> → 0–100 cm stock (derived)</td>
+<td>hg/m³</td>
+<td>kg C/m²</td>
+<td>÷ 10, × interval thickness (m), summed over 0–5 … 60–100 cm</td>
+<td>ISRIC SoilGrids FAQ; derivation here</td>
+</tr>
+<tr class="odd">
 <td>Geng SOC</td>
 <td>%</td>
 <td>g/kg</td>
 <td>× 10</td>
-<td>Provider (CanSIS); stored range consistent with %</td>
+<td>Provider (CanSIS); imported encoding still pending</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Geng BD</td>
 <td>g/cm³</td>
 <td>g/cm³</td>
 <td>1</td>
-<td>Provider (CanSIS)</td>
+<td>Provider (CanSIS); imported encoding still pending</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>NCSCDv2 SOCC30 / SOCC100</td>
 <td>hg C/m²</td>
 <td>kg C/m²</td>
 <td>÷ 10</td>
 <td>Bolin Centre NCSCD raster documentation</td>
 </tr>
-<tr class="odd">
-<td>Sothe stock</td>
+<tr class="even">
+<td>Sothe stock (hosted v2.0)</td>
 <td>kg C/m² (study)</td>
 <td>kg C/m²</td>
 <td>1</td>
-<td>Study units; <strong>stored encoding unverified</strong></td>
-</tr>
-<tr class="even">
-<td>PEATGRIDS carbon</td>
-<td>Mg C/m²</td>
-<td>kg C/m²</td>
-<td>× 1000</td>
-<td>Asset metadata</td>
+<td>Archive identifies the top 1 m; identity and encoding of the hosted file unverified</td>
 </tr>
 <tr class="odd">
+<td>PEATGRIDS carbon / thickness</td>
+<td>Mg C/m² / cm</td>
+<td>kg C/m² / cm</td>
+<td>× 1000 / 1</td>
+<td>PEATGRIDS v2.1 metadata (full modelled peat column)</td>
+</tr>
+<tr class="even">
 <td>Li et al.&nbsp;carbon / depth</td>
 <td>kg C/m² / cm</td>
 <td>same</td>
 <td>1</td>
 <td>Study units; import encoding unverified</td>
 </tr>
+<tr class="odd">
+<td>McMaster/WWF forest carbon</td>
+<td>kg C/m²</td>
+<td>kg C/m²</td>
+<td>1</td>
+<td>Sothe et al.&nbsp;2022; above + below + dead pools</td>
+</tr>
 <tr class="even">
+<td>SCANFI biomass → carbon</td>
+<td>t/ha</td>
+<td>kg C/m²</td>
+<td>× 0.5 carbon fraction × 0.1</td>
+<td>Fraction chosen for this report; IPCC default 0.47 would lower SCANFI carbon by 6%</td>
+</tr>
+<tr class="odd">
 <td>SCANFI biomass / ESA CCI AGB</td>
 <td>t/ha / Mg/ha</td>
 <td>Mg/ha</td>
 <td>1</td>
-<td>Provider documentation</td>
+<td>Provider documentation; biomass is not carbon</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="ecozones" class="level2">
 <h2 class="anchored" data-anchor-id="ecozones">Ecozones</h2>
-<p>Canada’s 15 terrestrial ecozones from the AAFC National Ecological Framework (<code>ecozone_shp.zip</code>, Open Government Licence – Canada), stored in <code>Comparison/data/ecozones/</code>. Each sampled point and profile takes the ecozone it falls in.</p>
+<p>Canada’s 15 terrestrial ecozones from the AAFC National Ecological Framework (<code>ecozone_shp.zip</code>, Open Government Licence – Canada), stored in <code>Comparison/data/ecozones/</code>.</p>
 </section>
 <section id="limitations" class="level2">
 <h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
 <ul>
 <li><strong>Agreement is not accuracy.</strong> Two maps can agree because they share training data or covariates.</li>
-<li><strong>Support mismatch.</strong> A soil core or inventory plot is a few square metres; the pixels are 30 m to about 1.3 km.</li>
+<li><strong>Support mismatch.</strong> A soil core or inventory plot covers a few square metres; the pixels are 30 m to about 1.3 km.</li>
 <li><strong>Temporal mismatch.</strong> Profiles span 1939–2017; maps represent their own reference periods.</li>
-<li><strong>Masks differ.</strong> Products exclude water, urban, bedrock or non-forest differently; comparisons use only points where both have data.</li>
-<li><strong>Unverified encodings.</strong> The Sothe stock’s units and depth, Riley bulk density, and imported encodings of Geng and Li are flagged in the repository QC register.</li>
+<li><strong>Depth datums.</strong> Several products’ datums are documented only partly (Geng, NCSCDv2, Sothe’s hosted file); those pairs are flagged rather than assumed equivalent.</li>
+<li><strong>Unverified encodings.</strong> Sothe’s hosted stock, and the imported encodings of Geng and Li, are flagged in the repository QC register. Distributions of values cannot settle these; source metadata and file identity must.</li>
+<li><strong>Uncertainty layers</strong> use different statistics (SD, quantile intervals, model disagreement) and are not compared.</li>
 </ul>
 </section>
 <section id="reproduce" class="level2">
@@ -535,9 +611,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/01_profile_intervals.R</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/02_peat_core_depths.R</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> gee/01_sample_pairs.py</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> gee/02_sample_profiles.py</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> gee/03_pair_maps.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then from <code>Comparison/</code>, <code>quarto render</code> writes the site to <code>Comparison/_site/</code>, and <code>quarto publish gh-pages</code> publishes it to the repository’s <code>gh-pages</code> branch for GitHub Pages. The site renders from the files in <code>Comparison/data/</code>, so re-rendering does not need Earth Engine.</p>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> gee/02_sample_profiles.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then, from <code>Comparison/</code>, run <code>quarto render</code> to write the site to <code>Comparison/_site/</code>, and <code>quarto publish gh-pages</code> to publish it. The site renders from the files in <code>Comparison/data/</code>, so re-rendering does not need Earth Engine.</p>
 
 
 </section>
@@ -956,9 +1031,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/main/Comparison/report/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/comparison-analysis/Comparison/report/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>Built with Quarto from <a href="https://github.com/CathalD/Carbon_Data_SOD/tree/main/Comparison">Comparison/</a></p>
+<p>Built with Quarto from <a href="https://github.com/CathalD/Carbon_Data_SOD/tree/comparison-analysis/Comparison">Comparison/</a></p>
 </div>
   </div>
 </footer>
