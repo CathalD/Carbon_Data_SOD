@@ -34,8 +34,9 @@ GROUPS = {
     "soilgrids": [f"sg_{q}_{t}_{b}" for q in ("soc", "bd") for t, b in common.INTERVALS] + ["sg_ocs_0_30"],
     "ncscd": ["ncscd_0_30", "ncscd_0_100"],
     "sothe": ["sothe_0_100"],
-    "peatgrids": ["pg_depth", "pg_carbon"],
-    "li": ["li_depth", "li_carbon"],
+    # Peat thickness only: the profile comparison uses recorded peat depth (map-to-map peat carbon is in 01).
+    "peatgrids": ["pg_depth"],
+    "li": ["li_depth"],
     "soilgrids_derived": ["sg_ocs_0_100_derived"],
 }
 

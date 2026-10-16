@@ -21,8 +21,7 @@
 #     boundaries (> 0.01 cm) are excluded from depth integration.
 #
 # Inputs : prepared layer CSVs in Carbon_Resources/ (parent of the repo)
-# Outputs: ../../data/derived/profile_intervals.csv  (long: profile x interval x variable)
-#          ../../data/derived/profile_layers_harmonised.csv  (common units, for distributions)
+# Output : ../../data/derived/profile_intervals.csv  (long: profile x interval x variable x datum)
 # Run    : /Library/Frameworks/R.framework/Resources/bin/Rscript 01_profile_intervals.R
 
 suppressPackageStartupMessages({
@@ -85,7 +84,8 @@ mineral <- bind_rows(wosis, npdb) |>
 layers <- bind_rows(surface, mineral) |>
   filter(!is.na(top), !is.na(bot), bot > top)
 
-write_csv(layers, file.path(out_dir, "profile_layers_harmonised.csv"))
+# The harmonised layer table is an in-memory intermediate; a 2026-10-16 snapshot is kept in
+# archive/derived-snapshots/ for reference.
 
 # ---------------------------------------------------------------- interval logic
 intervals <- tribble(
