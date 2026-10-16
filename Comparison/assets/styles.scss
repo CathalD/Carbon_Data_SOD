@@ -1,0 +1,89 @@
+/*-- scss:defaults --*/
+// Same visual language as the State of Data summary: survey map-sheet.
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+$body-bg: #f6f7f3;
+$body-color: #141916;
+$link-color: #1d5a47;
+$primary: #1d5a47;
+$secondary: #4a524c;
+$border-color: #dcdfd6;
+$navbar-bg: #141916;
+$navbar-fg: #f3f4f0;
+$navbar-hl: #9fd3bd;
+$footer-bg: #f6f7f3;
+$font-family-sans-serif: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+$font-family-monospace: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+$headings-font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+$headings-font-weight: 600;
+$font-size-base: 0.97rem;
+$table-border-color: #dcdfd6;
+
+/*-- scss:rules --*/
+:root {
+  --forest: #2d6a3b;
+  --soil: #8a5a2b;
+  --ink-2: #4a524c;
+  --muted: #7c847d;
+  --rule: #dcdfd6;
+  --surface: #fbfbf8;
+  --good: #0ca30c;
+  --warn: #fab219;
+  --series-1: #2a78d6;
+}
+
+h1, h2, h3, h4 { letter-spacing: 0.01em; text-wrap: balance; }
+h1.title { font-size: 2.6rem; font-weight: 700; }
+h2 { font-size: 1.9rem; margin-top: 2.6rem; padding-top: 0.6rem; border-top: 2px solid $body-color; }
+h3 { font-size: 1.4rem; margin-top: 1.8rem; }
+.quarto-title .subtitle { color: var(--ink-2); font-family: $font-family-sans-serif; font-size: 1.05rem; }
+
+.eyebrow { font-family: $headings-font-family; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+.domain-forest h2 { border-top-color: var(--forest); }
+.domain-soil h2 { border-top-color: var(--soil); }
+
+.callout { border-radius: 4px; }
+.lede { font-size: 1.08rem; color: var(--ink-2); max-width: 70ch; }
+
+table { font-size: 0.86rem; font-variant-numeric: tabular-nums; }
+.table > :not(caption) > * > * { padding: 0.4rem 0.55rem; }
+thead th { font-family: $headings-font-family; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.86rem; color: var(--ink-2); }
+
+// Pair map strips: A, B (shared scale) and A - B.
+.pair-maps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0.5rem 0 1.2rem; }
+.pair-maps figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.pair-maps img { width: 100%; height: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; }
+.pair-maps figcaption { font-size: 0.82rem; color: var(--ink-2); line-height: 1.35; }
+.pair-maps .t { font-weight: 600; color: $body-color; }
+.legend { display: grid; grid-template-columns: auto 1fr auto; gap: 6px; align-items: center; font-size: 0.74rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.legend .bar { height: 9px; border-radius: 2px; }
+.legend .seq { background: linear-gradient(90deg, #cde2fb, #9ec5f4, #6da7ec, #3987e5, #256abf, #184f95, #0d366b); }
+.legend .div { background: linear-gradient(90deg, #104281, #3987e5, #9ec5f4, #f0efec, #f2a7a6, #e34948, #8f1d1c); }
+.small-multiples { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.small-multiples figure { margin: 0; }
+.small-multiples img { width: 100%; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+.small-multiples figcaption { font-size: 0.78rem; color: var(--ink-2); text-align: center; }
+@media (max-width: 760px) {
+  .pair-maps { grid-template-columns: minmax(0, 1fr); }
+  .small-multiples { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; border-top: 2px solid $body-color; margin: 1rem 0 1.5rem; }
+.stat-row > div { padding: 10px 14px; border-bottom: 1px solid var(--rule); border-right: 1px solid var(--rule); }
+.stat-row .v { font-family: $headings-font-family; font-size: 2rem; font-weight: 600; line-height: 1; }
+.stat-row .l { font-size: 0.82rem; color: var(--ink-2); }
+
+.pill { display: inline-block; font-size: 0.74rem; font-weight: 600; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--rule); background: #fff; white-space: nowrap; }
+.pill.prov { color: #855700; border-color: #fab219; }
+.pill.ok { color: #0b6b0b; border-color: #0ca30c; }
+code { color: #1d5a47; }
+
+// Interactive tables scroll inside their own box, never the page.
+.datatables, .dataTables_wrapper { max-width: 100%; overflow-x: auto; }
+.dataTables_wrapper .dataTables_filter input { max-width: 60vw; }
+table.dataTable td, table.dataTable th { font-size: 0.82rem; }
+.preview-grid figcaption .muted { color: var(--muted); font-size: 0.74rem; }
+
+// Wide record tables scroll within their block rather than widening the page.
+.cell-output-display { overflow-x: auto; }
+.cell-output-display table { min-width: 100%; }

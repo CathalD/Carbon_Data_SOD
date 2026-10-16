@@ -1,12 +1,33 @@
 # Downloads
 
-These are **catalogue metadata tables**, not individual soil/forest measurements. They contain study/data links, asset IDs, scales, depths, methods and status. All files below are UTF-8 and public on GitHub; the restricted working Google Sheet is not required.
+These are **catalogue metadata tables**, not individual soil or forest measurements. They contain study and data links, asset IDs, scales, depths, methods and status. All files are UTF-8; the working Google Sheet is not required.
 
-[Complete catalogue JSON](https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/carbon_catalogue.json) · [Repository ZIP](https://codeload.github.com/CathalD/Carbon_Data_SOD/zip/refs/tags/v0.1.0) · [Version/hash manifest](data/catalogue/public_release_manifest.json)
+## Current catalogue
 
-Release tag: `v0.1.0`. CSV/JSON/ZIP links below are pinned to this release; the repository and working catalogue can continue to evolve.
+The CSVs below are the single source of catalogue truth. [`carbon_catalogue.json`](data/downloads/carbon_catalogue.json) is generated from them by [`scripts/build_catalogue_json.py`](scripts/build_catalogue_json.py) and carries its version and source revision. The website reads the same tables: <https://cathald.github.io/Carbon_Data_SOD/downloads.html>.
 
-## Current catalogue CSVs
+| Table | Data rows | CSV |
+|---|---:|---|
+| Studies | 24 | [Studies.csv](data/downloads/Studies.csv) |
+| Ground_data | 28 | [Ground_data.csv](data/downloads/Ground_data.csv) |
+| Study_ground | 29 | [Study_ground.csv](data/downloads/Study_ground.csv) |
+| Covariates | 217 | [Covariates.csv](data/downloads/Covariates.csv) |
+| Maps | 28 | [Maps.csv](data/downloads/Maps.csv) |
+| Assets | 51 | [Assets.csv](data/downloads/Assets.csv) |
+| Other_sources | 20 | [Other_sources.csv](data/downloads/Other_sources.csv) |
+| QC_register | 30 | [QC_register.csv](data/downloads/QC_register.csv) |
+| Soil_methods | 23 | [Soil_methods.csv](data/downloads/Soil_methods.csv) |
+| Data_dictionary | 192 | [Data_dictionary.csv](data/downloads/Data_dictionary.csv) |
+
+Keep identifiers as strings. Blank numeric cells mean unresolved or not applicable, never zero. CSV imports may guess types, so preserve leading-zero source identifiers.
+
+Comparison outputs (pair samples, statistics and pair definitions) are in [`Comparison/data/derived/`](Comparison/data/derived/); see the site's Downloads page.
+
+## v0.1.0 release (pinned)
+
+These links point at the `v0.1.0` tag and do not change. That release also included three covariate-extraction planning tables, which are now in [`archive/covariate-pilot/`](archive/covariate-pilot/).
+
+[Complete catalogue JSON](https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/carbon_catalogue.json) · [Repository ZIP](https://codeload.github.com/CathalD/Carbon_Data_SOD/zip/refs/tags/v0.1.0) · [Version/hash manifest](data/catalogue/public_release_manifest.json) · [Release notes](docs/releases/0.1.0.md)
 
 | Table | Data rows | CSV download |
 |---|---:|---|
@@ -24,16 +45,11 @@ Release tag: `v0.1.0`. CSV/JSON/ZIP links below are pinned to this release; the 
 | Scale_profiles | 10 | [Download](https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Scale_profiles.csv) |
 | Study_stacks | 11 | [Download](https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/Study_stacks.csv) |
 
-Import each CSV as a separate Google Sheets tab or into your cloud table workflow. Keep identifiers as strings. Blank numeric cells mean unresolved/not applicable, never zero. The JSON preserves native numeric values. CSV imports may guess types: preserve leading-zero source identifiers.
-
 ## Raster and observation access
 
 - Exact hosted Earth Engine references and original-provider links are in [Assets](data/downloads/Assets.csv). Earth Engine sign-in and your own enabled project are required even for public assets.
-- [Working examples](examples/README.md) load public soil/forest resources and download a small demonstration GeoTIFF. The demo uses a declared 250 m UTM grid because the source custom Mollweide projection is not accepted by Earth Engine’s GeoTIFF writer; it is not a native-grid copy.
-- Full-size rasters and ground tables should be obtained from the original provider or exported from the documented public asset using your own environment. The [official raster](https://developers.google.com/earth-engine/guides/exporting_images) and [table](https://developers.google.com/earth-engine/guides/exporting_tables) guides describe this. No permanent raster HTTP download is implied by an Earth Engine ID.
-- Geng is public through the parent collection ACL. SCANFI v2’s hosted collection is public but empty; use its linked provider release until imagery is ingested.
-- The existing [maintainer-uploaded workbook](https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/Carbon%20State%20of%20Data%20Summary%20Sheet.xlsx) is an older 10-tab snapshot. The current CSV/JSON package includes later catalogue and QC additions.
+- [Working examples](examples/README.md) load public soil and forest resources and download a small demonstration GeoTIFF.
+- Full-size rasters and ground tables should be obtained from the original provider, or exported from the documented public asset in your own environment ([raster](https://developers.google.com/earth-engine/guides/exporting_images) and [table](https://developers.google.com/earth-engine/guides/exporting_tables) export guides). An Earth Engine ID does not imply a permanent raster download.
+- The earlier maintainer workbook (10 tabs, 2026-10-15) is kept in [`archive/catalogue-snapshots/`](archive/catalogue-snapshots/); the current CSVs include later corrections.
 
-## Availability and scope
-
-See [verified sharing](docs/public_access.md), [release notes](docs/releases/0.1.0.md), [source citations](SOURCES.md) and [licensing status](docs/release_licensing.md). Individual pilot points/rows are not included in this download package. Comparison results are forthcoming from the maintainer in [Comparison](Comparison/README.md).
+See [verified sharing](docs/public_access.md), [source citations](SOURCES.md) and [licensing status](docs/release_licensing.md).

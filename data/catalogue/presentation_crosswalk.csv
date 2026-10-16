@@ -1,0 +1,101 @@
+record_id,record_type,domain,data_type,ecosystem
+S_BETTS_2024,study,forests,study,forest
+S_SOTHE_FOREST_2022,study,forests,study,forest
+S_QIN_2025,study,forests,study,forest
+S_SCANFI_V1,study,forests,study,forest
+S_MATASCI_2018,study,forests,study,forest
+S_SOTHE_CONC_2022,study,soils,study,terrestrial soil
+S_SOTHE_SOC_2022,study,soils,study,terrestrial soil
+S_SOILGRIDS_2021,study,soils,study,terrestrial soil
+S_GENG_2025,study,soils,study,terrestrial soil
+S_HENGL_2023,study,soils,study,agricultural soil
+S_LI_2025,study,soils,study,peatland
+S_JANOUSEK_2025,study,soils,study,coastal wetland
+S_NCSCD_2013,study,soils,study,permafrost
+S_OLEFELDT_2016,study,soils,study,permafrost
+S_TREAT_2024,study,soils,study,permafrost
+S_MCNICOL_2019,study,soils,study,coastal wetland
+S_ARSENAULT_2026,study,soils,study,peatland
+S_MARTENS_2026,study,soils,study,peatland
+S_LAMPING_2025,study,forests,study,coastal wetland
+S_GROSS_2022,study,both,study,grassland
+S_PENDEA_2023,study,soils,study,freshwater wetland
+S_CHASTAIN_2022,study,soils,study,coastal wetland
+S_EPSTEIN_2024,study,soils,study,marine
+W_COLAB_V1,study,soils,study,peatland
+G_WOSIS,ground,soils,ground data,terrestrial soil
+G_NPDB,ground,soils,ground data,terrestrial soil
+G_NRCAN_PEAT,ground,soils,ground data,peatland
+G_JANOUSEK,ground,soils,ground data,coastal wetland
+G_RILEY,ground,soils,ground data,peatland
+G_NFI,ground,forests,ground data,forest
+G_NFI_PHOTO,ground,forests,ground data,forest
+G_QUEBEC,ground,forests,ground data,forest
+G_CLI,ground,forests,ground data,forest
+G_BC_INVENTORY,ground,forests,ground data,forest
+G_ENFOR,ground,forests,ground data,forest
+G_ABOVE,ground,forests,ground data,forest
+G_VSN,ground,forests,ground data,forest
+G_LEHIGH_PEAT,ground,soils,ground data,peatland
+G_SOILGRIDS_GLOBAL,ground,soils,ground data,terrestrial soil
+G_HENGL,ground,soils,ground data,terrestrial soil
+G_LI_TRAIN,ground,soils,ground data,peatland
+G_LI_VALID,ground,soils,ground data,peatland
+G_SHAW,ground,soils,ground data,terrestrial soil
+G_MCNICOL,ground,soils,ground data,peatland
+G_ARSENAULT,ground,soils,ground data,peatland
+G_MARTENS,ground,soils,ground data,peatland
+G_GROSS,ground,both,ground data,agroforestry
+G_PENDEA,ground,soils,ground data,coastal wetland
+G_CLAYOQUOT,ground,soils,ground data,peatland
+G_EPSTEIN,ground,soils,ground data,marine
+G_NCSCD,ground,soils,ground data,permafrost
+G_CASFRI,ground,forests,ground data,forest
+M_SOTHE_STOCK,map,soils,maps,terrestrial soil
+M_SOTHE_UNC,map,soils,maps,terrestrial soil
+M_SOTHE_CONC,map,soils,maps,terrestrial soil
+M_SG_SOC,map,soils,maps,terrestrial soil
+M_SG_BD,map,soils,maps,terrestrial soil
+M_SG_OCD,map,soils,maps,terrestrial soil
+M_SG_OCS,map,soils,maps,terrestrial soil
+M_GENG_BD,map,soils,maps,terrestrial soil
+M_GENG_SOC,map,soils,maps,terrestrial soil
+M_NCSCD_30,map,soils,maps,terrestrial soil
+M_NCSCD_100,map,soils,maps,terrestrial soil
+M_NCSCD_200,map,soils,maps,terrestrial soil
+M_THERMOKARST,map,soils,maps,permafrost
+M_LI_DEPTH,map,soils,maps,peatland
+M_LI_DEPTH_UNC,map,soils,maps,peatland
+M_LI_C,map,soils,maps,peatland
+M_LI_C_UNC,map,soils,maps,peatland
+M_FOREST_C,map,forests,maps,forest
+M_SCANFI_V1,map,forests,maps,forest
+M_SCANFI_V2,map,forests,maps,forest
+M_ESA_CCI,map,forests,maps,forest
+M_SBFI,map,forests,maps,forest
+M_PEATGRIDS,map,soils,maps,peatland
+M_MCNICOL,map,soils,maps,peatland
+M_HUGELIUS_PEAT,map,soils,maps,peatland
+M_LAMPING,map,forests,maps,coastal wetland
+M_EPSTEIN,map,soils,maps,marine
+M_HENGL,map,soils,maps,agricultural soil
+canpeat_portal,other source,both,discovery and reports,peatland
+shaw_2018,other source,soils,ground data,forest soil
+mcnicol_npctr,other source,soils,maps,peatland
+arsenault_argenteuil,other source,soils,ground data,peatland
+martens_coastal_bc,other source,soils,ground data,peatland
+peatgrids,other source,soils,ground data,peatland
+hugelius_northern_peat,other source,soils,maps,peatland
+cpeat_global,other source,soils,ground data,peatland
+lamping_coastal_forest,other source,forests,maps,coastal wetland
+gross_alberta,other source,both,ground data,agroforestry
+pyle_alberta,other source,both,ground data,agroforestry
+bc_grassland_covariates,other source,both,ground data,agroforestry
+chizen_prairie,other source,soils,ground data,freshwater wetland
+pendea_simcoe,other source,soils,ground data,freshwater wetland
+clayoquot_saltmarsh,other source,soils,ground data,peatland
+cowichan_blue,other source,soils,ground data,coastal wetland
+epstein_marine,other source,soils,maps,coastal wetland
+bluecarbon_network,other source,both,discovery and reports,coastal wetland
+eccc_lakes,other source,both,ground data,contextual
+parks_carbon_atlas,other source,both,discovery and reports,contextual
