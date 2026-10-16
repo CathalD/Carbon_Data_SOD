@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Methods – Carbon State of Data · Comparisons</title>
+<title>Methods – Carbon State of Data</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-138a9145ecad1124718f867e5b4babdc.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4867cd1986c891942ea621d4179a1c95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2ffcf84053bf49f5f4b59b710a9a6e20.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Carbon State of Data · Comparisons</span>
+    <span class="navbar-title">Carbon State of Data</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -129,26 +129,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Overview</span></a>
+<span class="menu-text">Data and summaries</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../report/forest.html"> 
-<span class="menu-text">Forest</span></a>
+    <a class="nav-link" href="../compare.html"> 
+<span class="menu-text">Comparisons</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../report/soils.html"> 
-<span class="menu-text">Soils</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="../report/methods.html" aria-current="page"> 
-<span class="menu-text">Methods</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../state_of_data_summary/state_of_data_summary.html"> 
-<span class="menu-text">State of Data summary</span></a>
+    <a class="nav-link" href="../use.html"> 
+<span class="menu-text">How to use</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">More</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-more">    
+        <li>
+    <a class="dropdown-item" href="../report/methods.html">
+ <span class="dropdown-text">Methods</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../downloads.html">
+ <span class="dropdown-text">Downloads</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sources.html">
+ <span class="dropdown-text">Sources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../contribute.html">
+ <span class="dropdown-text">Contribute</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/CathalD/Carbon_Data_SOD"> <i class="bi bi-github" role="img" aria-label="GitHub repository">
 </i> 
@@ -177,6 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#unit-conversions" id="toc-unit-conversions" class="nav-link" data-scroll-target="#unit-conversions">Unit conversions</a></li>
   <li><a href="#ecozones" id="toc-ecozones" class="nav-link" data-scroll-target="#ecozones">Ecozones</a></li>
   <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#verification-status" id="toc-verification-status" class="nav-link" data-scroll-target="#verification-status">Verification status</a></li>
   <li><a href="#reproduce" id="toc-reproduce" class="nav-link" data-scroll-target="#reproduce">Reproduce</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/comparison-analysis/Comparison/report/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -238,9 +254,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="rules-for-pairing-products" class="level2">
 <h2 class="anchored" data-anchor-id="rules-for-pairing-products">Rules for pairing products</h2>
 <ol type="1">
-<li><strong>Same quantity, same depth or pool.</strong> Products are paired only when both report the same quantity for the same depth interval, or the same pool and year. Everything else is listed, with the reason, in the “not compared” tables. Two pairs are deliberate exceptions requested for the McMaster/WWF maps, and both are labelled:
+<li><strong>Same quantity, same depth or pool.</strong> Products are paired only when both report the same quantity for the same depth interval, or the same pool and year. Everything else is listed, with the reason, under “Products not compared”. Two McMaster/WWF pairs are labelled exceptions:
 <ul>
-<li><strong>Sothe vs SoilGrids 0–100 cm.</strong> SoilGrids has no released 0–100 cm stock, so one is derived.</li>
+<li><strong>Sothe vs SoilGrids 0–100 cm.</strong> SoilGrids has no released 0–100 cm stock, so one is derived from its carbon density.</li>
 <li><strong>McMaster/WWF forest carbon vs SCANFI.</strong> The pools differ: McMaster includes belowground and dead carbon.</li>
 </ul></li>
 <li><strong>Depth datum, not just depth label.</strong> Each pair records its depth datum and whether that is matched, still to verify, or may differ. Fixed-depth mineral-soil stocks, organic-inclusive stocks and full-column peat stocks are kept in separate categories and never ranked together.</li>
@@ -254,13 +270,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <caption>All pairs, in report order.</caption>
 <colgroup>
 <col style="width: 2%">
+<col style="width: 9%">
 <col style="width: 8%">
-<col style="width: 7%">
 <col style="width: 9%">
 <col style="width: 11%">
 <col style="width: 3%">
 <col style="width: 18%">
-<col style="width: 38%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -278,12 +294,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td style="text-align: left;">McMaster/WWF</td>
 <td style="text-align: left;">SOC stock 0–100 cm</td>
-<td style="text-align: left;">Sothe SOC stock (0–1 m assumed)</td>
+<td style="text-align: left;">Sothe SOC stock 0–1 m (McMaster/WWF)</td>
 <td style="text-align: left;">SoilGrids SOC stock 0–100 cm (derived from carbon density)</td>
 <td style="text-align: left;">SoilGrids SOC stock 0–100 cm (derived from carbon density) native grid</td>
 <td style="text-align: left;">Canada</td>
-<td style="text-align: left;">kg C/m²; Sothe as stored (study kg C/m²); SoilGrids carbon density hg/m³ ÷10 × interval thickness, summed over 0–100 cm</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span> Same nominal 0–100 cm. Sothe archive identifies the top 1 m (hosted-file identity and datum unverified); SoilGrids excludes overlying organic layers and its 0–100 cm stock is derived here, not released</td>
+<td style="text-align: left;">kg C/m²; Sothe kg C/m² (0–1 m); SoilGrids carbon density hg/m³ ÷10 × interval thickness, summed over 0–100 cm</td>
+<td style="text-align: left;"><span class="pill">derived</span> Both 0–100 cm. The SoilGrids stock is derived here from its carbon density (no 0–100 cm stock is released), and SoilGrids excludes overlying organic layers</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">McMaster/WWF</td>
@@ -297,13 +313,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td style="text-align: left;">McMaster/WWF</td>
-<td style="text-align: left;">SOC stock 0–100 cm (provisional)</td>
-<td style="text-align: left;">Sothe SOC stock (0–1 m assumed)</td>
+<td style="text-align: left;">SOC stock 0–100 cm</td>
+<td style="text-align: left;">Sothe SOC stock 0–1 m (McMaster/WWF)</td>
 <td style="text-align: left;">NCSCDv2 SOC 0–100 cm</td>
 <td style="text-align: left;">NCSCDv2 SOC 0–100 cm native grid</td>
 <td style="text-align: left;">Canada</td>
-<td style="text-align: left;">kg C/m²; Sothe depth assumed 0–1 m and stored units unverified; NCSCDv2 hg C/m² ÷10</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span> Sothe archive identifies the top 1 m; datum and identity of the hosted file unverified</td>
+<td style="text-align: left;">kg C/m²; Sothe kg C/m² (0–1 m); NCSCDv2 hg C/m² ÷10</td>
+<td style="text-align: left;"><span class="pill ok">matched</span> Both 0–100 cm stocks</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
@@ -547,10 +563,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>Sothe stock (hosted v2.0)</td>
-<td>kg C/m² (study)</td>
+<td>kg C/m²</td>
 <td>kg C/m²</td>
 <td>1</td>
-<td>Archive identifies the top 1 m; identity and encoding of the hosted file unverified</td>
+<td>Sothe et al.&nbsp;2022; 0–1 m (maintainer-confirmed 2026-10-16)</td>
 </tr>
 <tr class="odd">
 <td>PEATGRIDS carbon / thickness</td>
@@ -600,19 +616,131 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Agreement is not accuracy.</strong> Two maps can agree because they share training data or covariates.</li>
 <li><strong>Support mismatch.</strong> A soil core or inventory plot covers a few square metres; the pixels are 30 m to about 1.3 km.</li>
 <li><strong>Temporal mismatch.</strong> Profiles span 1939–2017; maps represent their own reference periods.</li>
-<li><strong>Depth datums.</strong> Several products’ datums are documented only partly (Geng, NCSCDv2, Sothe’s hosted file); those pairs are flagged rather than assumed equivalent.</li>
-<li><strong>Unverified encodings.</strong> Sothe’s hosted stock, and the imported encodings of Geng and Li, are flagged in the repository QC register. Distributions of values cannot settle these; source metadata and file identity must.</li>
+<li><strong>Depth datums.</strong> Geng’s and NCSCDv2’s organic-layer treatment is documented only partly; pairs that depend on it are labelled rather than assumed equivalent. SoilGrids excludes overlying organic layers.</li>
+<li><strong>Imported encodings.</strong> The imported encodings of Geng and Li are tracked in the repository QC register. Distributions of values cannot settle these; source metadata and file identity must.</li>
 <li><strong>Uncertainty layers</strong> use different statistics (SD, quantile intervals, model disagreement) and are not compared.</li>
 </ul>
 </section>
+<section id="verification-status" class="level2">
+<h2 class="anchored" data-anchor-id="verification-status">Verification status</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Hosted soil-map assets in the QC register. Sample agreement means 512 seeded points per band matched the source exactly; it is not full raster equality and does not confirm units or uncertainty meaning.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Runtime check</th>
+<th style="text-align: left;">Public access</th>
+<th style="text-align: right;">Assets</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Review needed</td>
+<td style="text-align: left;">Verified public ACL</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sample agreement</td>
+<td style="text-align: left;">Verified public ACL</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sampled; source check pending</td>
+<td style="text-align: left;">Verified public ACL</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Depth-interval checks on the uploaded layer tables (local prepared CSVs).</caption>
+<colgroup>
+<col style="width: 11%">
+<col style="width: 9%">
+<col style="width: 14%">
+<col style="width: 12%">
+<col style="width: 19%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: left;">Layer rows</th>
+<th style="text-align: left;">Depth range (cm)</th>
+<th style="text-align: left;">Missing bounds</th>
+<th style="text-align: left;">Profiles with overlaps</th>
+<th style="text-align: left;">Profiles with gaps</th>
+<th style="text-align: left;">Thickness ≠ bounds</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">G_WOSIS</td>
+<td style="text-align: left;">43,055</td>
+<td style="text-align: left;">0 to 924</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">191</td>
+<td style="text-align: left;">392</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">G_NPDB</td>
+<td style="text-align: left;">48,371</td>
+<td style="text-align: left;">-100 to 880</td>
+<td style="text-align: left;">1,928</td>
+<td style="text-align: left;">62</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">G_NRCAN_PEAT</td>
+<td style="text-align: left;">37,072</td>
+<td style="text-align: left;">0 to 851</td>
+<td style="text-align: left;">349</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">G_JANOUSEK</td>
+<td style="text-align: left;">23,018</td>
+<td style="text-align: left;">0 to 300</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">182</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">G_RILEY</td>
+<td style="text-align: left;">1,584</td>
+<td style="text-align: left;">0 to 730</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">24</td>
+<td style="text-align: left;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
 <section id="reproduce" class="level2">
 <h2 class="anchored" data-anchor-id="reproduce">Reproduce</h2>
-<p>From <code>Comparison/analysis/</code> with the project environment (<code>requirements.txt</code>) and Earth Engine access:</p>
+<p><strong>Render the published snapshot</strong> (no Earth Engine needed): from <code>Comparison/</code>, run <code>quarto render</code>, which writes <code>Comparison/_site/</code>; <code>quarto publish gh-pages</code> publishes it.</p>
+<p><strong>Refresh the analysis</strong> (Earth Engine and the prepared profile tables in <code>CSOD_LOCAL_DATA</code> needed), from <code>Comparison/analysis/</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/01_profile_intervals.R</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/02_peat_core_depths.R</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> gee/01_sample_pairs.py</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> gee/02_sample_profiles.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then, from <code>Comparison/</code>, run <code>quarto render</code> to write the site to <code>Comparison/_site/</code>, and <code>quarto publish gh-pages</code> to publish it. The site renders from the files in <code>Comparison/data/</code>, so re-rendering does not need Earth Engine.</p>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> gee/02_sample_profiles.py</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> profile_summary.py</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/03_comparison_statistics.R</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> gee/catalogue_previews.py   <span class="co"># optional: refresh dataset previews</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Set <code>EE_PROJECT</code> to your Earth Engine project (default <code>northstarlabs</code>) and <code>CSOD_LOCAL_DATA</code> to the folder holding the prepared profile CSVs.</p>
 
 
 </section>
@@ -1027,7 +1155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Descriptive comparison of catalogued products. No map is treated as truth.</p>
+<p>Carbon State of Data for Canada. No map is treated as truth; agreement is not accuracy.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

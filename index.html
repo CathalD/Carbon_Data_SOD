@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Where Canada’s carbon maps agree, and where they don’t – Carbon State of Data · Comparisons</title>
+<title>Carbon data for Canada – Carbon State of Data</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-138a9145ecad1124718f867e5b4babdc.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4867cd1986c891942ea621d4179a1c95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2ffcf84053bf49f5f4b59b710a9a6e20.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,6 +71,20 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.34.0/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+<script src="site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+<link href="site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+<script src="site_libs/selectize-0.12.0/selectize.min.js"></script>
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
 
 
 </head>
@@ -83,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Carbon State of Data · Comparisons</span>
+    <span class="navbar-title">Carbon State of Data</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -94,26 +108,41 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Overview</span></a>
+<span class="menu-text">Data and summaries</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./report/forest.html"> 
-<span class="menu-text">Forest</span></a>
+    <a class="nav-link" href="./compare.html"> 
+<span class="menu-text">Comparisons</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./report/soils.html"> 
-<span class="menu-text">Soils</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./report/methods.html"> 
-<span class="menu-text">Methods</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./state_of_data_summary/state_of_data_summary.html"> 
-<span class="menu-text">State of Data summary</span></a>
+    <a class="nav-link" href="./use.html"> 
+<span class="menu-text">How to use</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">More</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-more">    
+        <li>
+    <a class="dropdown-item" href="./report/methods.html">
+ <span class="dropdown-text">Methods</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./downloads.html">
+ <span class="dropdown-text">Downloads</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sources.html">
+ <span class="dropdown-text">Sources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./contribute.html">
+ <span class="dropdown-text">Contribute</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/CathalD/Carbon_Data_SOD"> <i class="bi bi-github" role="img" aria-label="GitHub repository">
 </i> 
@@ -135,19 +164,30 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-comparisons-at-a-glance" id="toc-the-comparisons-at-a-glance" class="nav-link active" data-scroll-target="#the-comparisons-at-a-glance">The comparisons at a glance</a></li>
-  <li><a href="#read-the-sections" id="toc-read-the-sections" class="nav-link" data-scroll-target="#read-the-sections">Read the sections</a></li>
-  <li><a href="#what-this-comparison-does-not-claim" id="toc-what-this-comparison-does-not-claim" class="nav-link" data-scroll-target="#what-this-comparison-does-not-claim">What this comparison does not claim</a></li>
+  <li><a href="#find" id="toc-find" class="nav-link active" data-scroll-target="#find">Find a dataset</a></li>
+  <li><a href="#forests" id="toc-forests" class="nav-link" data-scroll-target="#forests">Forests</a>
+  <ul class="collapse">
+  <li><a href="#forests-ground" id="toc-forests-ground" class="nav-link" data-scroll-target="#forests-ground">Ground data</a></li>
+  <li><a href="#forests-covariates" id="toc-forests-covariates" class="nav-link" data-scroll-target="#forests-covariates">Covariates</a></li>
+  <li><a href="#forests-maps" id="toc-forests-maps" class="nav-link" data-scroll-target="#forests-maps">Maps</a></li>
+  </ul></li>
+  <li><a href="#soils" id="toc-soils" class="nav-link" data-scroll-target="#soils">Soils</a>
+  <ul class="collapse">
+  <li><a href="#soils-ground" id="toc-soils-ground" class="nav-link" data-scroll-target="#soils-ground">Ground data</a></li>
+  <li><a href="#soils-covariates" id="toc-soils-covariates" class="nav-link" data-scroll-target="#soils-covariates">Covariates</a></li>
+  <li><a href="#soils-maps" id="toc-soils-maps" class="nav-link" data-scroll-target="#soils-maps">Maps</a></li>
+  <li><a href="#further" id="toc-further" class="nav-link" data-scroll-target="#further">Further resources</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/comparison-analysis/Comparison/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Where Canada’s carbon maps agree, and where they don’t</h1>
-<p class="subtitle lead">A like-for-like comparison of forest and soil carbon products, and of soil maps against field profiles.</p>
+<h1 class="title">Carbon data for Canada</h1>
+<p class="subtitle lead">Explore ground observations, environmental covariates and maps for Canadian forests and soils. See what the data contain, how they compare, and where to access them. GEE tools for using the data are planned.</p>
 </div>
 
 
@@ -165,244 +205,409 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="lede">
-<p>Canada has several national and regional carbon maps built from different field data, covariates and grids. This report compares them only where they claim to measure the same thing at the same depth or pool, and shows where they agree and disagree. <strong>The McMaster/WWF maps (Sothe et al.&nbsp;2022) lead</strong>, because they are the most cited: Sothe soil carbon against SoilGrids at 0–100 cm, and McMaster forest carbon against SCANFI. No map is treated as truth.</p>
+<p>Coverage is strongest for forest biomass and terrestrial soils; regional coastal, wetland and other resources are included where documented. This is not an exhaustive inventory of every Canadian carbon dataset.</p>
 </div>
-<section id="the-comparisons-at-a-glance" class="level2">
-<h2 class="anchored" data-anchor-id="the-comparisons-at-a-glance">The comparisons at a glance</h2>
+<div class="cell" data-layout-align="left">
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>What the comparisons show</strong> (<a href="./compare.html">details</a>)</p>
+<ul>
+<li><strong>McMaster/WWF forest carbon vs SCANFI:</strong> McMaster/WWF (above + below + dead) is a median 1.57× SCANFI aboveground carbon, and the two share their spatial pattern (r = 0.59). The pools differ, so they are not expected to match.</li>
+<li><strong>Sothe (McMaster/WWF) vs SoilGrids, 0–100 cm:</strong> the two soil stock maps are close to uncorrelated (r = 0.07), with the largest gap in the peat-rich Hudson Plain (median 124 vs 22 kg C/m²), where SoilGrids excludes overlying organic layers.</li>
+<li><strong>Peat thickness:</strong> Li et al.&nbsp;and PEATGRIDS agree within ±25% at 67% of sampled Hudson Plain points, but their whole-column carbon does not.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<section id="find" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="find">Find a dataset</h2>
+<p>Search, or filter by ecosystem, data type, quantity, coverage or access. “Not hosted by this project” never means unavailable: follow the access link to the provider.</p>
+<div class="cell page-columns page-full" data-layout-align="left">
+<div class="cell-output-display column-page">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-84d85403d2d0412723a3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-84d85403d2d0412723a3">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["<a href='https://docs.isric.org/globaldata/wosis/' target='_blank' rel='noopener'>WoSIS Canada v2<\/a>","<a href='https://sis.agr.gc.ca/cansis/nsdb/npdb/index.html' target='_blank' rel='noopener'>National Pedon Database preparation<\/a>","<a href='https://open.canada.ca/data/en/dataset/e287b0dd-8b07-435b-8a76-0c7ec84ac228' target='_blank' rel='noopener'>NRCan Peat Profile Database<\/a>","<a href='https://doi.org/10.25573/serc.28127486.v1' target='_blank' rel='noopener'>Janousek coastal core preparation<\/a>","Riley OGS preparation","<a href='https://nfi.nfis.org/en/datarequestform' target='_blank' rel='noopener'>National Forest Inventory ground plots<\/a>","<a href='https://nfi.nfis.org/en' target='_blank' rel='noopener'>NFI photo-interpreted plots<\/a>","<a href='https://www.donneesquebec.ca/recherche/dataset/placettes-echantillons-permanentes-1970-a-aujourd-hui' target='_blank' rel='noopener'>Québec permanent sample plots<\/a>","<a href='https://doi.org/10.6084/m9.figshare.27055528.v1' target='_blank' rel='noopener'>New Brunswick CLI<\/a>","BC provincial forest observations","<a href='https://open.canada.ca/data/en/dataset/fbad665e-8ac9-4635-9f84-e4fd53a6253c' target='_blank' rel='noopener'>NRCan ENFOR sampled trees<\/a>","<a href='https://daac.ornl.gov/ABOVE/guides/ABoVE_Plot_Data_Burned_Sites.html' target='_blank' rel='noopener'>NASA ABoVE burned/unburned plot synthesis<\/a>","<a href='https://publications.gc.ca/collections/collection_2025/rncan-nrcan/Fo123-2-40-2025-eng.pdf' target='_blank' rel='noopener'>Ontario Vegetation Sampling Network<\/a>","<a href='https://doi.org/10.1177/0959683614538073' target='_blank' rel='noopener'>Historical Lehigh peatland training compilation<\/a>","<a href='https://doi.org/10.5194/soil-7-217-2021' target='_blank' rel='noopener'>SoilGrids global training profiles<\/a>","<a href='https://doi.org/10.1139/facets-2023-0040' target='_blank' rel='noopener'>Alberta pilot-farm soil samples<\/a>","<a href='https://doi.org/10.1029/2024GL110679' target='_blank' rel='noopener'>Li peat-depth training<\/a>","<a href='https://doi.org/10.5683/SP3/TIRAXJ' target='_blank' rel='noopener'>Li public validation peat depths<\/a>","<a href='https://doi.org/10.1002/ecy.2159' target='_blank' rel='noopener'>Shaw upland forest soils<\/a>","<a href='https://doi.org/10.5061/dryad.5jf6j1r' target='_blank' rel='noopener'>McNicol NPCTR profiles<\/a>","<a href='https://doi.org/10.5281/zenodo.17065341' target='_blank' rel='noopener'>Argenteuil peatlands<\/a>","<a href='https://doi.org/10.5281/zenodo.17533263' target='_blank' rel='noopener'>Coastal BC peatlands<\/a>","<a href='https://doi.org/10.5061/dryad.0zpc86711' target='_blank' rel='noopener'>Alberta agroforestry field measurements<\/a>","<a href='https://doi.org/10.5683/SP3/OJRV2I' target='_blank' rel='noopener'>Lake Simcoe wetland cores<\/a>","<a href='https://doi.org/10.1594/PANGAEA.947825' target='_blank' rel='noopener'>Clayoquot marsh cores<\/a>","<a href='https://doi.org/10.5683/SP3/ICHVVA' target='_blank' rel='noopener'>Continental-margin sediment OC observations<\/a>","<a href='https://bolin.su.se/data/ncscd/pedon.php' target='_blank' rel='noopener'>NCSCDv2 source pedons<\/a>","<a href='https://nfi.nfis.org/en/about' target='_blank' rel='noopener'>CASFRI harmonized forest inventories<\/a>","<a href='https://doi.org/10.1029/2021GB007213' target='_blank' rel='noopener'>Sothe soil stock<\/a>","<a href='https://doi.org/10.1029/2021GB007213' target='_blank' rel='noopener'>Sothe soil stock uncertainty<\/a>","<a href='https://doi.org/10.4121/16619749' target='_blank' rel='noopener'>Sothe concentration depth images<\/a>","<a href='https://doi.org/10.5194/soil-7-217-2021' target='_blank' rel='noopener'>SoilGrids soc_mean<\/a>","<a href='https://doi.org/10.5194/soil-7-217-2021' target='_blank' rel='noopener'>SoilGrids bdod_mean<\/a>","<a href='https://doi.org/10.5194/soil-7-217-2021' target='_blank' rel='noopener'>SoilGrids ocd_mean<\/a>","<a href='https://doi.org/10.5194/soil-7-217-2021' target='_blank' rel='noopener'>SoilGrids ocs_mean<\/a>","<a href='https://doi.org/10.5281/zenodo.15473720' target='_blank' rel='noopener'>Geng BD five depths<\/a>","<a href='https://doi.org/10.5281/zenodo.15473720' target='_blank' rel='noopener'>Geng SOC five depths<\/a>","<a href='https://bolin.su.se/data/ncscd/tiff.php' target='_blank' rel='noopener'>NCSCDv2 SOCC30<\/a>","<a href='https://bolin.su.se/data/ncscd/tiff.php' target='_blank' rel='noopener'>NCSCDv2 SOCC100<\/a>","<a href='https://bolin.su.se/data/ncscd/tiff.php' target='_blank' rel='noopener'>NCSCDv2 SOCC200<\/a>","<a href='https://doi.org/10.3334/ORNLDAAC/1332' target='_blank' rel='noopener'>Circumpolar thermokarst landscapes<\/a>","<a href='https://doi.org/10.5683/SP3/TIRAXJ' target='_blank' rel='noopener'>Li peat_depth<\/a>","<a href='https://doi.org/10.5683/SP3/TIRAXJ' target='_blank' rel='noopener'>Li peat_depth_uncertainty<\/a>","<a href='https://doi.org/10.5683/SP3/TIRAXJ' target='_blank' rel='noopener'>Li peat_carbon_stock<\/a>","<a href='https://doi.org/10.5683/SP3/TIRAXJ' target='_blank' rel='noopener'>Li peat_carbon_stock_uncertainty<\/a>","<a href='https://doi.org/10.1029/2021GB007213' target='_blank' rel='noopener'>McMaster WWF forest carbon<\/a>","<a href='https://developers.google.com/earth-engine/datasets/catalog/projects_gcpm041u-lemur_assets_scanfi_v12_SCANFI_v1_2' target='_blank' rel='noopener'>SCANFI v1.2 biomass<\/a>","<a href='https://download-telecharger.services.geo.ca/pub/nrcan_rncan/Forests_Foret/SCANFI/v2/' target='_blank' rel='noopener'>SCANFI v2 historical biomass<\/a>","<a href='https://gee-community-catalog.org/projects/cci_agb/' target='_blank' rel='noopener'>ESA CCI biomass v6<\/a>","<a href='https://gee-community-catalog.org/projects/ca_sbfi/' target='_blank' rel='noopener'>Canadian SBFI<\/a>","<a href='https://doi.org/10.5281/zenodo.15070037' target='_blank' rel='noopener'>PEATGRIDS<\/a>","<a href='https://doi.org/10.5061/dryad.5jf6j1r' target='_blank' rel='noopener'>McNicol et al. NPCTR soil-carbon database and raster<\/a>","<a href='https://bolin.su.se/data/hugelius-2020-peatland-2' target='_blank' rel='noopener'>Hugelius et al. northern peatland maps, version 2<\/a>","<a href='https://doi.org/10.5281/zenodo.13932139' target='_blank' rel='noopener'>Lamping et al. coastal forest biomass and structure maps<\/a>","<a href='https://doi.org/10.5683/SP3/ICHVVA' target='_blank' rel='noopener'>Epstein et al. Canadian continental-margin sediment OC<\/a>","<a href='https://doi.org/10.1139/facets-2023-0040' target='_blank' rel='noopener'>Hengl Alberta SOC/BD/stock<\/a>","<a href='https://uwaterloo.ca/can-peat/research/canadian-peatland-data-portal' target='_blank' rel='noopener'>Can-Peat Canadian Peatland Data Portal<\/a>","<a href='https://doi.org/10.1002/ecy.2159' target='_blank' rel='noopener'>Shaw et al. Canadian upland forest soil profile and carbon stocks database<\/a>","<a href='https://doi.org/10.5061/dryad.5jf6j1r' target='_blank' rel='noopener'>McNicol et al. NPCTR soil-carbon database and raster<\/a>","<a href='https://doi.org/10.5281/zenodo.17065341' target='_blank' rel='noopener'>Arsenault et al. temperate peatland bathymetry and C/N/P stocks<\/a>","<a href='https://doi.org/10.5281/zenodo.17533263' target='_blank' rel='noopener'>Martens and Kreyling coastal BC peatland carbon<\/a>","<a href='https://doi.org/10.5281/zenodo.15070037' target='_blank' rel='noopener'>PEATGRIDS<\/a>","<a href='https://bolin.su.se/data/hugelius-2020-peatland-2' target='_blank' rel='noopener'>Hugelius et al. northern peatland maps, version 2<\/a>","<a href='https://doi.org/10.1594/PANGAEA.986891' target='_blank' rel='noopener'>C-PEAT Global Peatland Carbon Database v.2025<\/a>","<a href='https://doi.org/10.5281/zenodo.13932139' target='_blank' rel='noopener'>Lamping et al. coastal forest biomass and structure maps<\/a>","<a href='https://doi.org/10.5061/dryad.0zpc86711' target='_blank' rel='noopener'>Gross et al. central Alberta agroforestry carbon pools<\/a>","<a href='https://doi.org/10.5061/dryad.c2fqz6175' target='_blank' rel='noopener'>Pyle and Bork pasture composition, management and soil properties<\/a>","<a href='https://doi.org/10.1080/15481603.2017.1302181' target='_blank' rel='noopener'>Southern interior BC pasture soil-carbon modelling study<\/a>","<a href='https://doi.org/10.3389/fenvs.2024.1353802' target='_blank' rel='noopener'>Chizen et al. drained prairie pothole wetland SOC<\/a>","<a href='https://doi.org/10.5683/SP3/OJRV2I' target='_blank' rel='noopener'>Pendea et al. Lake Simcoe freshwater wetland soils<\/a>","<a href='https://doi.org/10.1594/PANGAEA.947825' target='_blank' rel='noopener'>Chastain/Kohfeld et al. Clayoquot Sound salt-marsh cores<\/a>","<a href='https://doi.org/10.3389/fmars.2022.857586' target='_blank' rel='noopener'>Cowichan Estuary blue carbon study<\/a>","<a href='https://doi.org/10.5683/SP3/ICHVVA' target='_blank' rel='noopener'>Epstein et al. Canadian continental-margin sediment OC<\/a>","<a href='https://www.bluecarboncanada.ca/publications-data' target='_blank' rel='noopener'>Blue Carbon Canada publications and data directory<\/a>","<a href='https://open.canada.ca/data/en/dataset/0af54117-bb0b-4e86-8f3f-2f277158e071' target='_blank' rel='noopener'>ECCC freshwater sediment-quality observations<\/a>","<a href='https://publications.gc.ca/collections/collection_2024/pc/R62-581-2023-eng.pdf' target='_blank' rel='noopener'>Parks Canada Carbon Atlas — forests of national parks<\/a>"],["Soils","Soils","Soils","Soils","Soils","Forests","Forests","Forests","Forests","Forests","Forests","Forests","Forests","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Forests and soils","Soils","Soils","Soils","Soils","Forests","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Forests","Forests","Forests","Forests","Forests","Soils","Soils","Soils","Forests","Soils","Soils","Forests and soils","Soils","Soils","Soils","Soils","Soils","Soils","Soils","Forests","Forests and soils","Forests and soils","Forests and soils","Soils","Soils","Soils","Soils","Soils","Forests and soils","Forests and soils","Forests and soils"],["Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Maps","Discovery and Reports","Ground Data","Maps","Ground Data","Ground Data","Ground Data","Maps","Ground Data","Maps","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Ground Data","Maps","Discovery and Reports","Ground Data","Discovery and Reports"],["terrestrial soil","terrestrial soil","peatland","coastal wetland","peatland","forest","forest","forest","forest","forest","forest","forest","forest","peatland","terrestrial soil","terrestrial soil","peatland","peatland","terrestrial soil","peatland","peatland","peatland","agroforestry","coastal wetland","peatland","marine","permafrost","forest","terrestrial soil","terrestrial soil","terrestrial soil","terrestrial soil","terrestrial soil","terrestrial soil","terrestrial soil","terrestrial soil","terrestrial soil","terrestrial soil","terrestrial soil","terrestrial soil","permafrost","peatland","peatland","peatland","peatland","forest","forest","forest","forest","forest","peatland","peatland","peatland","coastal wetland","marine","agricultural soil","peatland","forest soil","peatland","peatland","peatland","peatland","peatland","peatland","coastal wetland","agroforestry","agroforestry","agroforestry","freshwater wetland","freshwater wetland","peatland","coastal wetland","coastal wetland","coastal wetland","contextual","contextual"],["SOC concentration; partial stock inputs","SOC and soil properties","Peat carbon and bulk density","Coastal sediment OC","Peat properties and depth","Tree dimensions and derived biomass","Modelled/interpreted forest attributes","Tree and ecological observations","Tree observations and calculated AGB","Forest biomass","Destructively measured tree biomass","Forest and organic-layer disturbance carbon","Forest plot observations","Peat SOC","Soil properties","SOC and bulk density","Peat depth","Peat depth","Organic horizons plus mineral soil to 100 cm; preserve original depth datum","1 m mineral soil plus overlying organic horizons; not automatically 1 m below peat/forest-floor surface","Variable peat-basin depth, not fixed 1 m SOC","Peat and biomass pools; preserve sampled depths and pool definitions","Live biomass, deadwood and soil SOC (study includes approximately 1 m total soil); inspect table-specific depths","Fixed upper 50 cm sampling plus dated-horizon stock/rate subsets","20 cm, basal-peat and dated-horizon stock supports","Standing stock in upper 30 cm seabed sediment; density is a separate quantity","Permafrost SOC","Forest inventory attributes","SOC stock (Study kg C/m²; stored encoding pending)","SOC stock uncertainty (Stored units/uncertainty encoding pending)","SOC concentration (Study g/kg; stored scaling pending)","SOC concentration (dg/kg; /10 gives g/kg)","Bulk density (cg/cm³; /100 gives kg/dm³)","Organic carbon density (hg/m³; /10 gives kg/m³)","Organic carbon stock (t/ha; /10 gives kg/m²)","Bulk density (Provider g/cm³; import encoding unverified)","SOC concentration (Provider %; import encoding unverified)","SOC stock (Source hg C/m² unless import converted)","SOC stock (Source hg C/m² unless import converted)","SOC stock (Source hg C/m² unless import converted)","Landscape SOC and fractions (TSOC_kgC field denotes polygon mass; inspect source)","peat_depth (Archive cm (peat depth); imported scale/offset/NoData pending)","peat_depth_uncertainty (Archive cm (peat depth); imported scale/offset/NoData pending)","peat_carbon_stock (Archive kg C/m² (full peat column); imported scale/offset/NoData pending)","peat_carbon_stock_uncertainty (Archive kg C/m² (full peat column); imported scale/offset/NoData pending)","AGB+BGB+dead plant carbon (kg C/m²)","AGB and forest attributes (tonnes/ha biomass)","AGB (Check release metadata)","Aboveground woody biomass (Mg/ha)","Modelled forest inventory AGB (tonnes/ha mean; tonnes total)","Full modelled variable peat thickness; depth-resolved BD and carbon-content inputs (See release; stored encoding unverified)","1 m mineral soil plus overlying organic horizons; not automatically 1 m below peat/forest-floor surface (See release; stored encoding unverified)","Peat depth and depth-derived stock; preserve peat fractions and area denominator (See release; stored encoding unverified)","Live aboveground and species biomass; inspect release attribute list for snag biomass, not a complete ecosystem carbon stock (See release; stored encoding unverified)","Standing stock in upper 30 cm seabed sediment; density is a separate quantity (See release; stored encoding unverified)","SOC and BD predictions; derived stocks (SOC study units; integrated stock t/ha)","Stock, peat properties, depth, flux and ancillary records","Organic horizons plus mineral soil to 100 cm; preserve original depth datum","1 m mineral soil plus overlying organic horizons; not automatically 1 m below peat/forest-floor surface","Variable peat-basin depth, not fixed 1 m SOC","Peat and biomass pools; preserve sampled depths and pool definitions","Full modelled variable peat thickness; depth-resolved BD and carbon-content inputs","Peat depth and depth-derived stock; preserve peat fractions and area denominator","Variable core depths and age models","Live aboveground and species biomass; inspect release attribute list for snag biomass, not a complete ecosystem carbon stock","Live biomass, deadwood and soil SOC (study includes approximately 1 m total soil); inspect table-specific depths","Upper 15 cm mineral-soil carbon concentration and ancillary properties; not ready-made SOC stocks","SC study depth/stock definitions need full source extraction","SOC plus particulate and mineral-associated fractions; preserve sampled depth/time","Fixed upper 50 cm sampling plus dated-horizon stock/rate subsets","20 cm, basal-peat and dated-horizon stock supports","Top 20 cm organic and inorganic sediment carbon, plus vegetation","Standing stock in upper 30 cm seabed sediment; density is a separate quantity","Sediment, coastal vegetation, kelp, habitat and flux resources","Organic and inorganic carbon concentrations; no complete stock inventory established","Biomass and dead organic matter, including deadwood/litter/soil"],["Canada","Canada","Canada peatlands","Pacific coast Alaska–Mexico; BC subset","Ontario","Canada","Canada","Québec principally south of 52° N","New Brunswick","British Columbia","Canada","Alaska, NWT and Saskatchewan","Ontario","Canadian sites in Sothe training","Global","Alberta agriculture","Hudson Bay Lowlands","Hudson Bay Lowlands","Canadian upland forests","Coastal British Columbia and southeast Alaska; restrict Canadian analysis to actual BC footprint","Argenteuil, Québec; 28 fens, bogs and forested peatlands","Read Island and Porcher Island, coastal BC; six peatlands","Central Alberta hedgerows, shelterbelts, grassland and adjacent cropland","Lake Simcoe watershed, Ontario; four swamps and four marshes","Clayoquot Sound, BC; seven salt marshes","Canadian continental margin including Pacific, Atlantic and Arctic regions","Circumpolar","Canada","Canada","Canada","Canada","Global","Global","Global","Global","Canada","Canada","Canada WGS84 rasterization","Canada WGS84 rasterization","Canada WGS84 rasterization","Circumpolar","Hudson Bay Lowlands","Hudson Bay Lowlands","Hudson Bay Lowlands","Hudson Bay Lowlands","Canada","Canada","Canada","Global","Canada","Global peatlands including Canada; not a Canada-specific regional model","Coastal British Columbia and southeast Alaska; restrict Canadian analysis to actual BC footprint","Northern Hemisphere north of 23° N; includes Canada","Coastal southern Alaska and British Columbia","Canadian continental margin including Pacific, Atlantic and Arctic regions","Alberta agricultural lands","Canada; dataset-specific local/regional coverage","Canadian upland forests","Coastal British Columbia and southeast Alaska; restrict Canadian analysis to actual BC footprint","Argenteuil, Québec; 28 fens, bogs and forested peatlands","Read Island and Porcher Island, coastal BC; six peatlands","Global peatlands including Canada; not a Canada-specific regional model","Northern Hemisphere north of 23° N; includes Canada","Global; Canadian subset must be selected and counted","Coastal southern Alaska and British Columbia","Central Alberta hedgerows, shelterbelts, grassland and adjacent cropland","102 pastures around Edmonton, Alberta","65 grazed/non-grazed pastures, southern interior British Columbia","Saskatchewan Prairie Pothole Region; 33 drained wetlands in research description","Lake Simcoe watershed, Ontario; four swamps and four marshes","Clayoquot Sound, BC; seven salt marshes","Cowichan Estuary, Vancouver Island, BC","Canadian continental margin including Pacific, Atlantic and Arctic regions","Canadian coastal/marine research","20 lakes across Canada, sampled 2011–2016","31 Canadian national parks, report summaries 1990–2020"],["Soil profiles and depth layers","Pedons and horizon/layer rows","Core/profile and contiguous depth samples","Sediment cores and layers","Sampling-location groups; source core identities need confirmation","Ground plots; precise footprint by protocol","Photo-plots; not direct ground measurements","400 m² plots; repeated measurements","400 m² main and 50 m² nested plots","Exact source release and coordinate support pending","Individual trees, not necessarily geolocated plots","Field plots; derived combustion estimates kept separate","Ground plots; original sheet lists 400 m²","Historical profiles; identify original core IDs","Approximate source-paper global count; some restricted records","22 farms with within-farm sampling","Ontario MNR archive measurements","2022 field validation sites","3,253 pedons; 16,167 horizon records in source publication","About 1,300 profile descriptions; reported map grid 90.5 m","Site peat-depth interpolation to 1 m² cells; not a wall-to-wall 1 m regional carbon raster","Plot/core measurements; no uniform raster verified","Local study; no raster output established","Eight 50 cm cores; no raster","34 cores collected in 2016; site support, no raster","200 m output; predictor sources can be coarser","Pedons and soil-map units","Inventory polygons/photo/ground sources vary","250 m grid","250 m grid","250 m grid","250 m grid","250 m grid","250 m grid","250 m grid","100 m grid","100 m grid","–","–","–","–","30 m grid","30 m grid","30 m grid","30 m grid","250 m grid","30 m grid","30 m grid","100 m grid","–","1000 m grid","90.5 m grid","10000 m grid","30 m grid","200 m grid","30 m grid","No raster grid","3,253 pedons; 16,167 horizon records in source publication","About 1,300 profile descriptions; reported map grid 90.5 m","Site peat-depth interpolation to 1 m² cells; not a wall-to-wall 1 m regional carbon raster","Plot/core measurements; no uniform raster verified","Reported 1 km output","10 km projected GeoTIFF or 0.1° WGS84 GeoTIFF/NetCDF; coarse synthesis","267 cores globally in data paper; Canadian count not established","30 m maps","Local study; no raster output established","Local pasture sampling; coordinates withheld by privacy agreement","MODIS NDVI 250 m versus handheld 1 m measurements; these are predictor supports","Wetland/core/depth increments; no public map verified","Eight 50 cm cores; no raster","34 cores collected in 2016; site support, no raster","Habitat/core support; no verified public stock raster","200 m output; predictor sources can be coarser","Resource-specific","One to three sampling locations per lake","Park-level summaries; no reusable raster verified"],["Layer-specific cm; available-layer sums are not standardized 1 m stocks. See Soil_methods and Soil_depth_QC.","Original horizons; negative tops/open bottoms require interpretation. Window bounds for stock_Mgha_in_window unresolved. See Soil_methods.","Variable peat-column samples; lower_depth = upper sample depth + thickness. See Soil_methods.","Original sample intervals; paper standardizes to 30/50/100 cm with minimum sampled depths 20/35/75 cm and extrapolation. See Soil_methods.","Variable original intervals in cm; surface datum and density units unresolved. See Soil_methods.","Vegetation pools","Vegetation pools","Vegetation pools","Aboveground tree biomass","Vegetation pools","Stem, bark, branches, foliage and twigs","Pool/depth varies","Vegetation and ecological attributes","Layer-specific","Variable to model depths","0–15,15–30,30–60,60–100 cm","Full peat depth","Full peat depth","Organic horizons plus mineral soil to 100 cm; preserve original depth datum","1 m mineral soil plus overlying organic horizons; not automatically 1 m below peat/forest-floor surface","Variable peat-basin depth, not fixed 1 m SOC","Peat and biomass pools; preserve sampled depths and pool definitions","Live biomass, deadwood and soil SOC (study includes approximately 1 m total soil); inspect table-specific depths","Fixed upper 50 cm sampling plus dated-horizon stock/rate subsets","20 cm, basal-peat and dated-horizon stock supports","Standing stock in upper 30 cm seabed sediment; density is a separate quantity","Variable; mapped supports to 3 m","Variable inventory attributes","0–100 cm (maintainer-confirmed 2026-10-16)","0–100 cm (maintainer-confirmed 2026-10-16)","Point-depth names 0,5,15,30,60,100 cm; interval semantics unresolved","Six intervals to 200 cm","Six intervals to 200 cm","Six intervals to 200 cm","0–30 cm only in hosted band","0–5,5–15,15–30,30–60,60–100 cm","0–5,5–15,15–30,30–60,60–100 cm","0–30 cm","0–100 cm","100–200 cm","Associated 0–3 m SOC","Variable modelled full peat column","Variable modelled full peat column","Variable modelled full peat column","Variable modelled full peat column","Vegetation pools","Aboveground biomass","Aboveground biomass","Aboveground woody biomass","Stand polygon AGB","Full modelled variable peat thickness; depth-resolved BD and carbon-content inputs","1 m mineral soil plus overlying organic horizons; not automatically 1 m below peat/forest-floor surface","Peat depth and depth-derived stock; preserve peat fractions and area denominator","Live aboveground and species biomass; inspect release attribute list for snag biomass, not a complete ecosystem carbon stock","Standing stock in upper 30 cm seabed sediment; density is a separate quantity","Four intervals to 100 cm","Stock, peat properties, depth, flux and ancillary records","Organic horizons plus mineral soil to 100 cm; preserve original depth datum","1 m mineral soil plus overlying organic horizons; not automatically 1 m below peat/forest-floor surface","Variable peat-basin depth, not fixed 1 m SOC","Peat and biomass pools; preserve sampled depths and pool definitions","Full modelled variable peat thickness; depth-resolved BD and carbon-content inputs","Peat depth and depth-derived stock; preserve peat fractions and area denominator","Variable core depths and age models","Live aboveground and species biomass; inspect release attribute list for snag biomass, not a complete ecosystem carbon stock","Live biomass, deadwood and soil SOC (study includes approximately 1 m total soil); inspect table-specific depths","Upper 15 cm mineral-soil carbon concentration and ancillary properties; not ready-made SOC stocks","SC study depth/stock definitions need full source extraction","SOC plus particulate and mineral-associated fractions; preserve sampled depth/time","Fixed upper 50 cm sampling plus dated-horizon stock/rate subsets","20 cm, basal-peat and dated-horizon stock supports","Top 20 cm organic and inorganic sediment carbon, plus vegetation","Standing stock in upper 30 cm seabed sediment; density is a separate quantity","Sediment, coastal vegetation, kelp, habitat and flux resources","Organic and inorganic carbon concentrations; no complete stock inventory established","Biomass and dead organic matter, including deadwood/litter/soil"],["Project GEE; provider","Project GEE; provider","Project GEE; provider","Project GEE; provider","Project GEE; provider","Request measurements and coordinate access","Source access conditions","Public GeoPackage and dictionary","Analysis archive; full geolocated raw inventory not verified","Provider/source identity unresolved","Public CSV; nearly 9,000 trees/33 species reported","Public CSV and guide","Public measurements download not confirmed","Exact historical training subset pending","Training archive not equivalent to public WoSIS subset","Standalone field archive unresolved","Restricted; MNR data-sharing agreement","Borealis source; not yet ingested","DataS1 ZIP and metadata supplement linked by publisher","Dryad XLSX, raster archive, README; database revised 2024","Paper links Zenodo; Can-Peat provides a version-specific link; direct archive retrieval failed in this review","Paper links Zenodo; archive landing retrieval failed in this review","Dryad downloadable CSV tables","Paper links public Borealis V1; archive file-level retrieval not tested","PANGAEA bundle and tab-delimited datasets; CC BY 4.0 stated","Paper links Borealis GeoTIFFs and source review data/code","Bolin pedon download; Canadian subset not prepared","Original spreadsheet resource; exact release/access unresolved","Project GEE","Project GEE","Project GEE","Project GEE","Project GEE","Project GEE","Project GEE","Project GEE","Project GEE","Project GEE","Project GEE","Project GEE","Provider","Project GEE","Project GEE","Project GEE","Project GEE","Public GEE","Public GEE","Provider","Public GEE","Public GEE","Provider","Provider","Provider","Provider","Provider","Provider","Public discovery portal; access varies by linked dataset","DataS1 ZIP and metadata supplement linked by publisher","Dryad XLSX, raster archive, README; database revised 2024","Paper links Zenodo; Can-Peat provides a version-specific link; direct archive retrieval failed in this review","Paper links Zenodo; archive landing retrieval failed in this review","Zenodo release 2.0.1 and documented Awesome GEE assets","Bolin Centre download","PANGAEA archive and ESSD data paper","Zenodo GeoTIFF archive","Dryad downloadable CSV tables","Dryad CSV and README; locations explicitly unavailable","Paper found; standalone downloadable ground-data archive not verified","Paper and supplement; raw data stated available from authors","Paper links public Borealis V1; archive file-level retrieval not tested","PANGAEA bundle and tab-delimited datasets; CC BY 4.0 stated","Paper and supplement; raw data promised by authors, standalone archive not verified","Paper links Borealis GeoTIFFs and source review data/code","Public directory; individual files/access vary","Open Government CSV resources; OGL-Canada stated","Public government report; machine-readable spatial archive unverified"]],"container":"<table class=\"compact stripe\">\n  <thead>\n    <tr>\n      <th>Name<\/th>\n      <th>Forests / soils<\/th>\n      <th>Data type<\/th>\n      <th>Ecosystem<\/th>\n      <th>Quantity<\/th>\n      <th>Coverage<\/th>\n      <th>Support<\/th>\n      <th>Depth / pool<\/th>\n      <th>Access<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"autoWidth":false,"dom":"ftip","scrollX":true,"columnDefs":[{"name":"Name","targets":0},{"name":"Forests / soils","targets":1},{"name":"Data type","targets":2},{"name":"Ecosystem","targets":3},{"name":"Quantity","targets":4},{"name":"Coverage","targets":5},{"name":"Support","targets":6},{"name":"Depth / pool","targets":7},{"name":"Access","targets":8}],"order":[],"orderClasses":false,"orderCellsTop":true}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="forests" class="level1">
+<h1>Forests</h1>
+<section id="forests-ground" class="level2">
+<h2 class="anchored" data-anchor-id="forests-ground">Ground data</h2>
+<p>Forest plot and tree datasets for Canada. None is hosted by this project yet; each is available from its provider, sometimes on request.</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Pixel comparisons on each pair’s coarser native grid, from area-uniform random points, each band sampled independently. ‘Within ±25%’ = share of points where |A − B| is at most 25% of their mean. ‘Datum to verify / may differ / pools differ’ flags pairs whose nominal match is not yet fully equivalent.</caption>
-<colgroup>
-<col style="width: 6%">
-<col style="width: 3%">
-<col style="width: 29%">
-<col style="width: 12%">
-<col style="width: 4%">
-<col style="width: 3%">
-<col style="width: 5%">
-<col style="width: 3%">
-<col style="width: 6%">
-<col style="width: 25%">
-</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: left;">Domain</th>
-<th style="text-align: left;">Quantity</th>
-<th style="text-align: left;">A vs B</th>
-<th style="text-align: left;">Unit</th>
-<th style="text-align: left;">Points</th>
-<th style="text-align: left;">Mean A − B</th>
-<th style="text-align: left;">r</th>
-<th style="text-align: left;">Within ±25%</th>
-<th style="text-align: left;">Depth / pool</th>
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: left;">Measures</th>
+<th style="text-align: left;">Coverage</th>
+<th style="text-align: left;">Plot support</th>
+<th style="text-align: left;">Access</th>
+<th style="text-align: left;">Use and limitations</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">McMaster/WWF</td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC stock 0–100 cm</td>
-<td style="text-align: left;">Sothe vs SoilGrids</td>
-<td style="text-align: left;">kg C/m²</td>
-<td style="text-align: left;">19,900</td>
-<td style="text-align: left;">27.1</td>
-<td style="text-align: left;">0.07</td>
-<td style="text-align: left;">19%</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+<td style="text-align: left;">National Forest Inventory ground plots</td>
+<td style="text-align: left;">Tree dimensions and derived biomass</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">Ground plots; precise footprint by protocol</td>
+<td style="text-align: left;"><a href="https://nfi.nfis.org/en/datarequestform">Request measurements and coordinate access</a></td>
+<td style="text-align: left;">Keep photo-plots distinct;</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">McMaster/WWF</td>
-<td style="text-align: left;">Forest</td>
-<td style="text-align: left;">Forest carbon: McMaster/WWF total vs SCANFI aboveground</td>
-<td style="text-align: left;">McMaster/WWF vs SCANFI</td>
-<td style="text-align: left;">kg C/m²</td>
-<td style="text-align: left;">10,616</td>
-<td style="text-align: left;">1.3</td>
-<td style="text-align: left;">0.59</td>
-<td style="text-align: left;">19%</td>
-<td style="text-align: left;"><span class="pill prov">pools differ</span></td>
+<td style="text-align: left;">NFI photo-interpreted plots</td>
+<td style="text-align: left;">Modelled/interpreted forest attributes</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">Photo-plots; not direct ground measurements</td>
+<td style="text-align: left;"><a href="https://nfi.nfis.org/en">Source access conditions</a></td>
+<td style="text-align: left;">SCANFI training targets include derived inventory biomass;</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">McMaster/WWF</td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC stock 0–100 cm (provisional)</td>
-<td style="text-align: left;">Sothe vs NCSCDv2</td>
-<td style="text-align: left;">kg C/m²</td>
-<td style="text-align: left;">15,804</td>
-<td style="text-align: left;">29.1</td>
-<td style="text-align: left;">0.28</td>
-<td style="text-align: left;">10%</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+<td style="text-align: left;">Québec permanent sample plots</td>
+<td style="text-align: left;">Tree and ecological observations</td>
+<td style="text-align: left;">Québec principally south of 52° N</td>
+<td style="text-align: left;">400 m² plots; repeated measurements</td>
+<td style="text-align: left;"><a href="https://www.donneesquebec.ca/recherche/dataset/placettes-echantillons-permanentes-1970-a-aujourd-hui">Public GeoPackage and dictionary</a></td>
+<td style="text-align: left;">Preserve plot-measurement key ID_PE_MES;</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC concentration 0–5 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/kg</td>
-<td style="text-align: left;">17,575</td>
-<td style="text-align: left;">-17.3</td>
-<td style="text-align: left;">0.62</td>
-<td style="text-align: left;">28%</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+<td style="text-align: left;">New Brunswick CLI</td>
+<td style="text-align: left;">Tree observations and calculated AGB</td>
+<td style="text-align: left;">New Brunswick</td>
+<td style="text-align: left;">400 m² main and 50 m² nested plots</td>
+<td style="text-align: left;"><a href="https://doi.org/10.6084/m9.figshare.27055528.v1">Analysis archive; full geolocated raw inventory not verified</a></td>
+<td style="text-align: left;">–</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">Bulk density 0–5 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/cm³</td>
-<td style="text-align: left;">17,573</td>
-<td style="text-align: left;">0.267</td>
-<td style="text-align: left;">0.02</td>
-<td style="text-align: left;">47%</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+<td style="text-align: left;">BC provincial forest observations</td>
+<td style="text-align: left;">Forest biomass</td>
+<td style="text-align: left;">British Columbia</td>
+<td style="text-align: left;">Exact source release and coordinate support pending</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Named in Sothe methods;</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC concentration 5–15 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/kg</td>
-<td style="text-align: left;">17,414</td>
-<td style="text-align: left;">-10.4</td>
-<td style="text-align: left;">0.62</td>
-<td style="text-align: left;">33%</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+<td style="text-align: left;">NRCan ENFOR sampled trees</td>
+<td style="text-align: left;">Destructively measured tree biomass</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">Individual trees, not necessarily geolocated plots</td>
+<td style="text-align: left;"><a href="https://open.canada.ca/data/en/dataset/fbad665e-8ac9-4635-9f84-e4fd53a6253c">Public CSV; nearly 9,000 trees/33 species reported</a></td>
+<td style="text-align: left;">–</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">Bulk density 5–15 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/cm³</td>
-<td style="text-align: left;">17,412</td>
-<td style="text-align: left;">0.1</td>
-<td style="text-align: left;">-0.05</td>
-<td style="text-align: left;">80%</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+<td style="text-align: left;">NASA ABoVE burned/unburned plot synthesis</td>
+<td style="text-align: left;">Forest and organic-layer disturbance carbon</td>
+<td style="text-align: left;">Alaska, NWT and Saskatchewan</td>
+<td style="text-align: left;">Field plots; derived combustion estimates kept separate</td>
+<td style="text-align: left;"><a href="https://daac.ornl.gov/ABOVE/guides/ABoVE_Plot_Data_Burned_Sites.html">Public CSV and guide</a></td>
+<td style="text-align: left;">–</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC concentration 15–30 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/kg</td>
-<td style="text-align: left;">17,330</td>
-<td style="text-align: left;">-1.42</td>
-<td style="text-align: left;">0.66</td>
-<td style="text-align: left;">27%</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+<td style="text-align: left;">Ontario Vegetation Sampling Network</td>
+<td style="text-align: left;">Forest plot observations</td>
+<td style="text-align: left;">Ontario</td>
+<td style="text-align: left;">Ground plots; original sheet lists 400 m²</td>
+<td style="text-align: left;"><a href="https://publications.gc.ca/collections/collection_2025/rncan-nrcan/Fo123-2-40-2025-eng.pdf">Public measurements download not confirmed</a></td>
+<td style="text-align: left;">–</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">Bulk density 15–30 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/cm³</td>
-<td style="text-align: left;">17,328</td>
-<td style="text-align: left;">0.0481</td>
-<td style="text-align: left;">-0.06</td>
-<td style="text-align: left;">89%</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+<td style="text-align: left;">Alberta agroforestry field measurements</td>
+<td style="text-align: left;">Live biomass, deadwood and soil SOC (study includes approximately 1 m total soil); inspect table-specific depths</td>
+<td style="text-align: left;">Central Alberta hedgerows, shelterbelts, grassland and adjacent cropland</td>
+<td style="text-align: left;">Local study; no raster output established</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5061/dryad.0zpc86711">Dryad downloadable CSV tables</a></td>
+<td style="text-align: left;">Useful multi-pool addition.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC concentration 30–60 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/kg</td>
-<td style="text-align: left;">17,261</td>
-<td style="text-align: left;">-5.57</td>
-<td style="text-align: left;">0.69</td>
-<td style="text-align: left;">22%</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+<td style="text-align: left;">CASFRI harmonized forest inventories</td>
+<td style="text-align: left;">Forest inventory attributes</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">Inventory polygons/photo/ground sources vary</td>
+<td style="text-align: left;"><a href="https://nfi.nfis.org/en/about">Original spreadsheet resource; exact release/access unresolved</a></td>
+<td style="text-align: left;">Schema harmonization is not a single independent ground sample database.</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Details: study roles and licences
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 62%">
+<col style="width: 17%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: left;">Used by (role)</th>
+<th style="text-align: left;">Licence</th>
+<th style="text-align: left;">Catalogue status</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">Bulk density 30–60 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/cm³</td>
-<td style="text-align: left;">17,259</td>
-<td style="text-align: left;">-0.0465</td>
-<td style="text-align: left;">-0.02</td>
-<td style="text-align: left;">88%</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+<td style="text-align: left;">National Forest Inventory ground plots</td>
+<td style="text-align: left;">Sothe et al.&nbsp;2022 forest carbon (Reference biomass); Qin et al.&nbsp;2025 (Reference data; exact role pending); Guindon et al.&nbsp;2024 SCANFI v1 (External ground validation; source details pending)</td>
+<td style="text-align: left;">Source-specific terms; verify before redistribution</td>
+<td style="text-align: left;">Source identified</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC concentration 60–100 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/kg</td>
-<td style="text-align: left;">17,121</td>
-<td style="text-align: left;">-6.24</td>
-<td style="text-align: left;">0.68</td>
-<td style="text-align: left;">18%</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+<td style="text-align: left;">NFI photo-interpreted plots</td>
+<td style="text-align: left;">Guindon et al.&nbsp;2024 SCANFI v1 (Training)</td>
+<td style="text-align: left;">Source-specific terms; verify before redistribution</td>
+<td style="text-align: left;">Source identified</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">Bulk density 60–100 cm</td>
-<td style="text-align: left;">Geng vs SoilGrids</td>
-<td style="text-align: left;">g/cm³</td>
-<td style="text-align: left;">17,119</td>
-<td style="text-align: left;">-0.056</td>
-<td style="text-align: left;">0.13</td>
-<td style="text-align: left;">82%</td>
-<td style="text-align: left;"><span class="pill prov">datum to verify</span></td>
+<td style="text-align: left;">Québec permanent sample plots</td>
+<td style="text-align: left;">Guindon et al.&nbsp;2024 SCANFI v1 (External ground validation; source details pending)</td>
+<td style="text-align: left;">Source-specific terms; verify before redistribution</td>
+<td style="text-align: left;">Source identified</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">SOC stock 0–30 cm</td>
-<td style="text-align: left;">SoilGrids vs NCSCDv2</td>
-<td style="text-align: left;">kg C/m²</td>
-<td style="text-align: left;">15,836</td>
-<td style="text-align: left;">-1.17</td>
-<td style="text-align: left;">-0.04</td>
-<td style="text-align: left;">20%</td>
-<td style="text-align: left;"><span class="pill prov">datum may differ</span></td>
+<td style="text-align: left;">New Brunswick CLI</td>
+<td style="text-align: left;">Betts et al.&nbsp;2024 (Training and validation)</td>
+<td style="text-align: left;">Source-specific terms; verify before redistribution</td>
+<td style="text-align: left;">Source identified</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">Peat thickness</td>
-<td style="text-align: left;">Li vs PEATGRIDS</td>
-<td style="text-align: left;">cm</td>
-<td style="text-align: left;">1,230</td>
-<td style="text-align: left;">-26.1</td>
-<td style="text-align: left;">0.63</td>
-<td style="text-align: left;">67%</td>
-<td style="text-align: left;"><span class="pill ok">matched</span></td>
+<td style="text-align: left;">BC provincial forest observations</td>
+<td style="text-align: left;">Sothe et al.&nbsp;2022 forest carbon (Reference biomass)</td>
+<td style="text-align: left;">Source-specific terms; verify before redistribution</td>
+<td style="text-align: left;">Source identified</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Soil</td>
-<td style="text-align: left;">Peat carbon (full column)</td>
-<td style="text-align: left;">Li vs PEATGRIDS</td>
-<td style="text-align: left;">kg C/m²</td>
-<td style="text-align: left;">1,230</td>
-<td style="text-align: left;">-37.6</td>
-<td style="text-align: left;">-0.02</td>
-<td style="text-align: left;">43%</td>
-<td style="text-align: left;"><span class="pill ok">matched</span></td>
+<td style="text-align: left;">NRCan ENFOR sampled trees</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Source-specific terms; verify before redistribution</td>
+<td style="text-align: left;">Source identified</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Forest</td>
-<td style="text-align: left;">Aboveground biomass 2020</td>
-<td style="text-align: left;">SCANFI vs ESA</td>
-<td style="text-align: left;">Mg/ha</td>
-<td style="text-align: left;">12,134</td>
-<td style="text-align: left;">-24</td>
-<td style="text-align: left;">0.71</td>
-<td style="text-align: left;">23%</td>
-<td style="text-align: left;"><span class="pill ok">matched</span></td>
+<td style="text-align: left;">NASA ABoVE burned/unburned plot synthesis</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Source-specific terms; verify before redistribution</td>
+<td style="text-align: left;">Source identified</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ontario Vegetation Sampling Network</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Source-specific terms; verify before redistribution</td>
+<td style="text-align: left;">Source identified</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alberta agroforestry field measurements</td>
+<td style="text-align: left;">Gross et al.&nbsp;2022 Alberta agroforestry (Field carbon pools)</td>
+<td style="text-align: left;">Source-specific terms; verify before redistribution</td>
+<td style="text-align: left;">Source identified</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CASFRI harmonized forest inventories</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Source-specific terms; verify before redistribution</td>
+<td style="text-align: left;">Source identified</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="forests-covariates" class="level2">
+<h2 class="anchored" data-anchor-id="forests-covariates">Covariates</h2>
+<p>Environmentally correlated variables (reflectance, radar, canopy structure, climate, terrain) that forest studies used to map biomass and carbon. Entry counts are not predictor importance.</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 9%">
+<col style="width: 16%">
+<col style="width: 10%">
+<col style="width: 25%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Study</th>
+<th style="text-align: left;">Output grid (m)</th>
+<th style="text-align: left;">Families</th>
+<th style="text-align: left;">Source grids (m)</th>
+<th style="text-align: left;">Periods</th>
+<th style="text-align: left;">Evidence recorded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Betts et al.&nbsp;2024</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Temporal optical</td>
+<td style="text-align: left;">30 – 30</td>
+<td style="text-align: left;">Study maps 1985–2020; temporal match plots</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lamping et al.&nbsp;2025 coastal forest maps</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Environment, Remote sensing</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Map epoch to inspect</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Qin et al.&nbsp;2025</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Optical, Radar</td>
+<td style="text-align: left;">25 – 25</td>
+<td style="text-align: left;">Study period; exact windows pending</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Guindon et al.&nbsp;2024 SCANFI v1</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Climate, Optical, Terrain</td>
+<td style="text-align: left;">30 – 30</td>
+<td style="text-align: left;">Study period; exact windows pending</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sothe et al.&nbsp;2022 forest carbon</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">Optical, Radar, Structure</td>
+<td style="text-align: left;">25 – 250</td>
+<td style="text-align: left;">Mostly 2015–2019</td>
+<td style="text-align: left;">Retained/ranked family</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Details: every forest covariate entry
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-f8e29217f27cbd165391" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f8e29217f27cbd165391">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_BETTS_2024","S_SOTHE_FOREST_2022","S_SOTHE_FOREST_2022","S_SOTHE_FOREST_2022","S_SOTHE_FOREST_2022","S_SOTHE_FOREST_2022","S_SOTHE_FOREST_2022","S_QIN_2025","S_QIN_2025","S_QIN_2025","S_SCANFI_V1","S_SCANFI_V1","S_SCANFI_V1","S_LAMPING_2025","S_LAMPING_2025"],["Landsat_blue_intercept","Landsat_blue_trend","Landsat_blue_sin1","Landsat_blue_cos1","Landsat_blue_sin2","Landsat_blue_cos2","Landsat_blue_sin3","Landsat_blue_cos3","Landsat_blue_fit_rmse","Landsat_green_intercept","Landsat_green_trend","Landsat_green_sin1","Landsat_green_cos1","Landsat_green_sin2","Landsat_green_cos2","Landsat_green_sin3","Landsat_green_cos3","Landsat_green_fit_rmse","Landsat_red_intercept","Landsat_red_trend","Landsat_red_sin1","Landsat_red_cos1","Landsat_red_sin2","Landsat_red_cos2","Landsat_red_sin3","Landsat_red_cos3","Landsat_red_fit_rmse","Landsat_nir_intercept","Landsat_nir_trend","Landsat_nir_sin1","Landsat_nir_cos1","Landsat_nir_sin2","Landsat_nir_cos2","Landsat_nir_sin3","Landsat_nir_cos3","Landsat_nir_fit_rmse","Landsat_swir1_intercept","Landsat_swir1_trend","Landsat_swir1_sin1","Landsat_swir1_cos1","Landsat_swir1_sin2","Landsat_swir1_cos2","Landsat_swir1_sin3","Landsat_swir1_cos3","Landsat_swir1_fit_rmse","Landsat_swir2_intercept","Landsat_swir2_trend","Landsat_swir2_sin1","Landsat_swir2_cos1","Landsat_swir2_sin2","Landsat_swir2_cos2","Landsat_swir2_sin3","Landsat_swir2_cos3","Landsat_swir2_fit_rmse","maximum_canopy_height","canopy_height_p85","canopy_height_p95","PALSAR_HH","PALSAR_HV","Landsat_reflectance_and_indices","Sentinel1_VV_VH","Sentinel2_seasonal_reflectance","annual_PALSAR_HH_HV","summer_winter_Landsat","climate","terrain","climate_topography","satellite_predictors"],["Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Temporal optical","Structure","Structure","Structure","Radar","Radar","Optical","Radar","Optical","Radar","Optical","Climate","Terrain","Environment","Remote sensing"],["30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","250","250","250","25","25","30",null,null,"25","30",null,null,null,null],["Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Study maps 1985–2020; temporal match plots","Mostly 2015–2019","Mostly 2015–2019","Mostly 2015–2019","Mostly 2015–2019","Mostly 2015–2019","Mostly 2015–2019","Study period; exact windows pending","Study period; exact windows pending","Study period; exact windows pending","Study period; exact windows pending","Study period; exact windows pending","Study period; exact windows pending","Map epoch to inspect","Map epoch to inspect"],["Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","Historical Landsat Collection 1; C2 reproduction requires harmonization","projects/sat-io/open-datasets/carbon_stocks_ca/ch","projects/sat-io/open-datasets/carbon_stocks_ca/ch","projects/sat-io/open-datasets/carbon_stocks_ca/ch","JAXA/ALOS/PALSAR/YEARLY/SAR","JAXA/ALOS/PALSAR/YEARLY/SAR","Study Landsat release pending","COPERNICUS/S1_GRD","COPERNICUS/S2_SR_HARMONIZED","JAXA/ALOS/PALSAR/YEARLY/SAR","Historical Landsat release pending","Exact products pending","Exact DEM and derivatives pending","Original study source definitions pending","Original study source definitions pending"],["Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Retained/ranked family","Retained/ranked family","Retained/ranked family","Retained/ranked family","Retained/ranked family","Retained/ranked family","Model input","Model input","Model input","Model input","Model input","Model input","Model input","Model input"]],"container":"<table class=\"compact stripe\">\n  <thead>\n    <tr>\n      <th>Study<\/th>\n      <th>Variable<\/th>\n      <th>Family<\/th>\n      <th>Native grid (m)<\/th>\n      <th>Period<\/th>\n      <th>Source<\/th>\n      <th>Evidence<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"scrollX":true,"dom":"ftip","columnDefs":[{"name":"Study","targets":0},{"name":"Variable","targets":1},{"name":"Family","targets":2},{"name":"Native grid (m)","targets":3},{"name":"Period","targets":4},{"name":"Source","targets":5},{"name":"Evidence","targets":6}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="pair-maps preview-grid"><figure class="figure"><img src="data/previews/canopy_height_max.png" alt="Canopy height, maximum (Sothe covariate) preview" loading="lazy" class="figure-img"><figcaption><span class="t">Canopy height, maximum (Sothe covariate)</span><div class="legend"><span>6.13</span><div class="bar seq"></div><span>23.1</span></div><span class="muted">m; mapped from ICESat-2 samples · ≈250 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="forests-maps" class="level2">
+<h2 class="anchored" data-anchor-id="forests-maps">Maps</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Product</th>
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: left;">Coverage</th>
+<th style="text-align: left;">Grid (m)</th>
+<th style="text-align: left;">Depth / pool</th>
+<th style="text-align: left;">Period</th>
+<th style="text-align: left;">Access</th>
+<th style="text-align: left;">Use and limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">McMaster WWF forest carbon</td>
+<td style="text-align: left;">AGB+BGB+dead plant carbon (kg C/m²)</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">Vegetation pools</td>
+<td style="text-align: left;">Most predictors 2015–2019; legacy ground dates vary</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1029/2021GB007213">Public GEE</a></td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCANFI v1.2 biomass</td>
+<td style="text-align: left;">AGB and forest attributes (tonnes/ha biomass)</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Aboveground biomass</td>
+<td style="text-align: left;">Public v1.2 image represents 2020</td>
+<td style="text-align: left;"><a href="https://developers.google.com/earth-engine/datasets/catalog/projects_gcpm041u-lemur_assets_scanfi_v12_SCANFI_v1_2">Public GEE</a></td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCANFI v2 historical biomass</td>
+<td style="text-align: left;">AGB (Check release metadata)</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Aboveground biomass</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;"><a href="https://download-telecharger.services.geo.ca/pub/nrcan_rncan/Forests_Foret/SCANFI/v2/">Provider</a></td>
+<td style="text-align: left;">Live release check: project collection is public but contains 0 images on 2026-10-15.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESA CCI biomass v6</td>
+<td style="text-align: left;">Aboveground woody biomass (Mg/ha)</td>
+<td style="text-align: left;">Global</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">Aboveground woody biomass</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;"><a href="https://gee-community-catalog.org/projects/cci_agb/">Public GEE</a></td>
+<td style="text-align: left;">10 images: 2007,2010,2015–2022.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Canadian SBFI</td>
+<td style="text-align: left;">Modelled forest inventory AGB (tonnes/ha mean; tonnes total)</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Stand polygon AGB</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;"><a href="https://gee-community-catalog.org/projects/ca_sbfi/">Public GEE</a></td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lamping et al.&nbsp;coastal forest biomass and structure maps</td>
+<td style="text-align: left;">Live aboveground and species biomass; inspect release attribute list for snag biomass, not a complete ecosystem carbon stock (See release; stored encoding unverified)</td>
+<td style="text-align: left;">Coastal southern Alaska and British Columbia</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Live aboveground and species biomass; inspect release attribute list for snag biomass, not a complete ecosystem carbon stock</td>
+<td style="text-align: left;">Map epoch to inspect</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5281/zenodo.13932139">Provider</a></td>
+<td style="text-align: left;">Biomass is not carbon without a documented conversion.</td>
 </tr>
 </tbody>
 </table>
@@ -410,34 +615,1320 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="index_files/figure-html/chart-overview-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+<div class="pair-maps preview-grid"><figure class="figure"><img src="data/previews/forest_carbon.png" alt="McMaster/WWF forest carbon preview" loading="lazy" class="figure-img"><figcaption><span class="t">McMaster/WWF forest carbon</span><div class="legend"><span>1.06</span><div class="bar seq"></div><span>9.06</span></div><span class="muted">kg C/m² (AGB + BGB + dead plant) · ≈250 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure><figure class="figure"><img src="data/previews/scanfi_biomass.png" alt="SCANFI v1.2 aboveground biomass (2020) preview" loading="lazy" class="figure-img"><figcaption><span class="t">SCANFI v1.2 aboveground biomass (2020)</span><div class="legend"><span>2.25</span><div class="bar seq"></div><span>158</span></div><span class="muted">t/ha biomass (not carbon) · ≈30 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure><figure class="figure"><img src="data/previews/esa_cci_2020.png" alt="ESA CCI Biomass v6 AGB (2020) preview" loading="lazy" class="figure-img"><figcaption><span class="t">ESA CCI Biomass v6 AGB (2020)</span><div class="legend"><span>8.55</span><div class="bar seq"></div><span>231</span></div><span class="muted">Mg/ha biomass (not carbon); SD band available · ≈99 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure></div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Details: uncertainty layers and exact assets
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="pair-maps preview-grid"><figure class="figure"><img src="data/previews/forest_carbon_unc.png" alt="McMaster/WWF forest carbon uncertainty preview" loading="lazy" class="figure-img"><figcaption><span class="t">McMaster/WWF forest carbon uncertainty</span><div class="legend"><span>2.95</span><div class="bar seq"></div><span>5.89</span></div><span class="muted">Uncertainty image; match definition to source release · ≈250 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure></div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 47%">
+<col style="width: 18%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Resource</th>
+<th style="text-align: left;">Asset</th>
+<th style="text-align: left;">Bands / schema</th>
+<th style="text-align: left;">Nominal scale (m)</th>
+<th style="text-align: left;">Units</th>
+<th style="text-align: left;">Public read</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">M_FOREST_C</td>
+<td style="text-align: left;">projects/sat-io/open-datasets/carbon_stocks_ca/fc/fc_250m_version10</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">250.0207748</td>
+<td style="text-align: left;">See Maps</td>
+<td style="text-align: left;">Unverified</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_FOREST_C</td>
+<td style="text-align: left;">projects/sat-io/open-datasets/carbon_stocks_ca/fc/fc_uncertainty_250m_version10</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">250.0207748</td>
+<td style="text-align: left;">See Maps</td>
+<td style="text-align: left;">Unverified</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_SCANFI_V1</td>
+<td style="text-align: left;">projects/gcpm041u-lemur/assets/scanfi_v12/SCANFI_v1_2</td>
+<td style="text-align: left;">biomass plus 14 other attributes</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">See Maps</td>
+<td style="text-align: left;">Unverified</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_SCANFI_V2</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/forests/maps/scanfi_v2_biomass</td>
+<td style="text-align: left;">0 images as of 2026-10-15</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">See Maps</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_ESA_CCI</td>
+<td style="text-align: left;">projects/sat-io/open-datasets/ESA/ESA_CCI_AGB</td>
+<td style="text-align: left;">AGB, SD</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">See Maps</td>
+<td style="text-align: left;">Unverified</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_SBFI</td>
+<td style="text-align: left;">projects/sat-io/open-datasets/CA_FOREST/CA_SBFI/CA_SBFI_MERGED</td>
+<td style="text-align: left;">129 attributes</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">See Maps</td>
+<td style="text-align: left;">Unverified</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="soils" class="level1">
+<h1>Soils</h1>
+<section id="soils-ground" class="level2">
+<h2 class="anchored" data-anchor-id="soils-ground">Ground data</h2>
+<p>Five soil profile and core datasets are prepared and hosted by this project; more are catalogued from their providers. <strong>20,690 profile records, of which 1,116 lie outside Canada’s terrestrial ecozones (mostly Pacific coast cores); records are not deduplicated across datasets.</strong></p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Share of layer rows with a value; values may be measured or estimated (see qualifiers).</caption>
+<colgroup>
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 20%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: left;">Profiles / layers</th>
+<th style="text-align: left;">Dates</th>
+<th style="text-align: left;">Recorded depth</th>
+<th style="text-align: left;">SOC / density / stock in layers</th>
+<th style="text-align: left;">Depth datum</th>
+<th style="text-align: left;">Qualifiers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">WoSIS</td>
+<td style="text-align: left;">8,825 / 43,055</td>
+<td style="text-align: left;">1939–2013 (4,921 dated)</td>
+<td style="text-align: left;">median 101 cm; 55% reach 1 m</td>
+<td style="text-align: left;">99% / 0% / 0%</td>
+<td style="text-align: left;">Profile top; organic surface layers flagged (organic_surface)</td>
+<td style="text-align: left;">Concentration observations mostly; stock sums partial, no coarse-fragment adjustment</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NPDB</td>
+<td style="text-align: left;">9,017 / 48,371</td>
+<td style="text-align: left;">1943–2015 (9,017 dated)</td>
+<td style="text-align: left;">median 100 cm; 62% reach 1 m</td>
+<td style="text-align: left;">59% / 7% / 5%</td>
+<td style="text-align: left;">Mineral surface = 0 cm; LFH horizons above 0 cm</td>
+<td style="text-align: left;">1,564 profiles flagged for poor location confidence</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NRCan peat</td>
+<td style="text-align: left;">1,217 / 37,072</td>
+<td style="text-align: left;">1967–2017 (1,111 dated)</td>
+<td style="text-align: left;">median 243 cm; 89% reach 1 m</td>
+<td style="text-align: left;">99% / 99% / 99%</td>
+<td style="text-align: left;">Peat surface; full sampled column</td>
+<td style="text-align: left;">Bulk density 0 measured / 0 estimated rows; provider flags 736 measured vs 35,929 estimated organic-C rows (flags omitted from v1)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Janousek</td>
+<td style="text-align: left;">1,284 / 23,018</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">median 60 cm; 48% reach 1 m</td>
+<td style="text-align: left;">100% / 100% / 100%</td>
+<td style="text-align: left;">Sediment surface</td>
+<td style="text-align: left;">Pacific coast Alaska to Mexico; repeated source layer IDs flagged; 13 profiles with thickness/boundary mismatches</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Riley</td>
+<td style="text-align: left;">347 / 1,584</td>
+<td style="text-align: left;">Not recorded</td>
+<td style="text-align: left;">median 250 cm; 96% reach 1 m</td>
+<td style="text-align: left;">85% / not used / –</td>
+<td style="text-align: left;">Peat surface</td>
+<td style="text-align: left;">Groups are NTS + peatland + sampling point; bulk-density units unverified (not used); no dates</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div id="fig-profile-map" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-profile-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-profile-map-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-profile-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Profile locations by dataset (EPSG:3978). Janousek also extends along the US and Mexican Pacific coast, outside this frame.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Further soil observation datasets, available from their providers (not hosted by this project).</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: left;">Measures</th>
+<th style="text-align: left;">Coverage</th>
+<th style="text-align: left;">Sites / profiles</th>
+<th style="text-align: left;">Depth support</th>
+<th style="text-align: left;">Access</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Historical Lehigh peatland training compilation</td>
+<td style="text-align: left;">Peat SOC</td>
+<td style="text-align: left;">Canadian sites in Sothe training</td>
+<td style="text-align: left;">43</td>
+<td style="text-align: left;">Layer-specific</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1177/0959683614538073">Exact historical training subset pending</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids global training profiles</td>
+<td style="text-align: left;">Soil properties</td>
+<td style="text-align: left;">Global</td>
+<td style="text-align: left;">240000</td>
+<td style="text-align: left;">Variable to model depths</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5194/soil-7-217-2021">Training archive not equivalent to public WoSIS subset</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alberta pilot-farm soil samples</td>
+<td style="text-align: left;">SOC and bulk density</td>
+<td style="text-align: left;">Alberta agriculture</td>
+<td style="text-align: left;">404</td>
+<td style="text-align: left;">0–15,15–30,30–60,60–100 cm</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1139/facets-2023-0040">Standalone field archive unresolved</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Li peat-depth training</td>
+<td style="text-align: left;">Peat depth</td>
+<td style="text-align: left;">Hudson Bay Lowlands</td>
+<td style="text-align: left;">495</td>
+<td style="text-align: left;">Full peat depth</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1029/2024GL110679">Restricted; MNR data-sharing agreement</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Li public validation peat depths</td>
+<td style="text-align: left;">Peat depth</td>
+<td style="text-align: left;">Hudson Bay Lowlands</td>
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">Full peat depth</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5683/SP3/TIRAXJ">Borealis source; not yet ingested</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Shaw upland forest soils</td>
+<td style="text-align: left;">Organic horizons plus mineral soil to 100 cm; preserve original depth datum</td>
+<td style="text-align: left;">Canadian upland forests</td>
+<td style="text-align: left;">3253</td>
+<td style="text-align: left;">Organic horizons plus mineral soil to 100 cm; preserve original depth datum</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1002/ecy.2159">DataS1 ZIP and metadata supplement linked by publisher</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">McNicol NPCTR profiles</td>
+<td style="text-align: left;">1 m mineral soil plus overlying organic horizons; not automatically 1 m below peat/forest-floor surface</td>
+<td style="text-align: left;">Coastal British Columbia and southeast Alaska; restrict Canadian analysis to actual BC footprint</td>
+<td style="text-align: left;">1300</td>
+<td style="text-align: left;">1 m mineral soil plus overlying organic horizons; not automatically 1 m below peat/forest-floor surface</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5061/dryad.5jf6j1r">Dryad XLSX, raster archive, README; database revised 2024</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Argenteuil peatlands</td>
+<td style="text-align: left;">Variable peat-basin depth, not fixed 1 m SOC</td>
+<td style="text-align: left;">Argenteuil, Québec; 28 fens, bogs and forested peatlands</td>
+<td style="text-align: left;">28</td>
+<td style="text-align: left;">Variable peat-basin depth, not fixed 1 m SOC</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5281/zenodo.17065341">Paper links Zenodo; Can-Peat provides a version-specific link; direct archive retrieval failed in this review</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Coastal BC peatlands</td>
+<td style="text-align: left;">Peat and biomass pools; preserve sampled depths and pool definitions</td>
+<td style="text-align: left;">Read Island and Porcher Island, coastal BC; six peatlands</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Peat and biomass pools; preserve sampled depths and pool definitions</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5281/zenodo.17533263">Paper links Zenodo; archive landing retrieval failed in this review</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alberta agroforestry field measurements</td>
+<td style="text-align: left;">Live biomass, deadwood and soil SOC (study includes approximately 1 m total soil); inspect table-specific depths</td>
+<td style="text-align: left;">Central Alberta hedgerows, shelterbelts, grassland and adjacent cropland</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Live biomass, deadwood and soil SOC (study includes approximately 1 m total soil); inspect table-specific depths</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5061/dryad.0zpc86711">Dryad downloadable CSV tables</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lake Simcoe wetland cores</td>
+<td style="text-align: left;">Fixed upper 50 cm sampling plus dated-horizon stock/rate subsets</td>
+<td style="text-align: left;">Lake Simcoe watershed, Ontario; four swamps and four marshes</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">Fixed upper 50 cm sampling plus dated-horizon stock/rate subsets</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5683/SP3/OJRV2I">Paper links public Borealis V1; archive file-level retrieval not tested</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clayoquot marsh cores</td>
+<td style="text-align: left;">20 cm, basal-peat and dated-horizon stock supports</td>
+<td style="text-align: left;">Clayoquot Sound, BC; seven salt marshes</td>
+<td style="text-align: left;">34</td>
+<td style="text-align: left;">20 cm, basal-peat and dated-horizon stock supports</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1594/PANGAEA.947825">PANGAEA bundle and tab-delimited datasets; CC BY 4.0 stated</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Continental-margin sediment OC observations</td>
+<td style="text-align: left;">Standing stock in upper 30 cm seabed sediment; density is a separate quantity</td>
+<td style="text-align: left;">Canadian continental margin including Pacific, Atlantic and Arctic regions</td>
+<td style="text-align: left;">2518</td>
+<td style="text-align: left;">Standing stock in upper 30 cm seabed sediment; density is a separate quantity</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5683/SP3/ICHVVA">Paper links Borealis GeoTIFFs and source review data/code</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NCSCDv2 source pedons</td>
+<td style="text-align: left;">Permafrost SOC</td>
+<td style="text-align: left;">Circumpolar</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Variable; mapped supports to 3 m</td>
+<td style="text-align: left;"><a href="https://bolin.su.se/data/ncscd/pedon.php">Bolin pedon download; Canadian subset not prepared</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Details: profiles by ecozone
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="read-the-sections" class="level2">
-<h2 class="anchored" data-anchor-id="read-the-sections">Read the sections</h2>
-<ul>
-<li><strong><a href="./report/forest.html">Forest</a></strong>: forest plot data (placeholder until plots are ingested), the training data and covariates behind each forest map, and SCANFI vs ESA CCI aboveground biomass.</li>
-<li><strong><a href="./report/soils.html">Soils</a></strong>: the five profile datasets compared with each other, the training data and covariates behind each soil map, map-to-map comparisons at matching depths, and maps against profiles.</li>
-<li><strong><a href="./report/methods.html">Methods</a></strong>: the rules, grids, unit conversions, sampling design and limitations.</li>
-<li><strong><a href="state_of_data_summary/state_of_data_summary.html">State of Data summary</a></strong>: the inventory this comparison builds on.</li>
-</ul>
+<section id="soils-covariates" class="level2">
+<h2 class="anchored" data-anchor-id="soils-covariates">Covariates</h2>
+<p>Environmentally correlated variables that soil and peat studies used: climate, terrain, vegetation, reflectance, geology and depth.</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 4%">
+<col style="width: 29%">
+<col style="width: 4%">
+<col style="width: 28%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Study</th>
+<th style="text-align: left;">Output grid (m)</th>
+<th style="text-align: left;">Families</th>
+<th style="text-align: left;">Source grids (m)</th>
+<th style="text-align: left;">Periods</th>
+<th style="text-align: left;">Evidence recorded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Arsenault et al.&nbsp;2026 Argenteuil</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Geography, Geology, Terrain</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Legacy/site dates to extract; data release 2025</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Epstein et al.&nbsp;2024 seabed sediment OC</td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">Oceanography, Sediment, Terrain</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Mixed sample dates; climatological predictor periods</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Geng et al.&nbsp;2025 Soil Landscape Grids</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">Climate, Ecology, Geology, Optical, Temperature, Terrain, Vegetation</td>
+<td style="text-align: left;">16 – 1,000</td>
+<td style="text-align: left;">1958–2020; Mar–Nov 2000–2017; Mar–Sep 2000–2021 plus 2020 composites</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hengl et al.&nbsp;2023 Alberta</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Climate, Geology, Optical, Terrain, Vegetation</td>
+<td style="text-align: left;">30 – 1,000</td>
+<td style="text-align: left;">1990–2010; Static; Study temporal definition pending</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Janousek et al.&nbsp;2025 blue carbon</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Climate, Ecology, Geography, Sediment, Terrain</td>
+<td style="text-align: left;">800 – 800</td>
+<td style="text-align: left;">PRISM 1991–2020; other dates variable</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Li et al.&nbsp;2025 Hudson Bay Lowlands</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Geography, Hydrology, Radar, Temperature, Terrain, Thermal, Vegetation</td>
+<td style="text-align: left;">10 – 100</td>
+<td style="text-align: left;">Source periods to extract; L8 2013–2021; S1 2015–2022; S2 source 2015–2022; May–Sep or full year by variable</td>
+<td style="text-align: left;">Retained (Boruta), Reported importance, Retained/ranked family, Rejected in study</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">McNicol et al.&nbsp;2019 NPCTR</td>
+<td style="text-align: left;">90.5</td>
+<td style="text-align: left;">Climate, Ecology, Terrain</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Legacy profiles; archive revised 2024</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hugelius et al.&nbsp;2013 NCSCDv2</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Classification</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Multi-decade legacy data</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Olefeldt et al.&nbsp;2016 thermokarst</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Expert landscape input</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Landscape snapshot around 2015</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Poggio et al.&nbsp;2021 SoilGrids 2.0</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">Climate, Ecology, Geology, Hydrology, Optical, Terrain, Vegetation</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Legacy profiles; many summaries 2001–2015</td>
+<td style="text-align: left;">Model input</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sothe et al.&nbsp;2022 GBC soil stocks</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">Backscattering, Biophysical parameters, Climate, Mask, Reflectance, Soil, Stock correction, Terrain parameters</td>
+<td style="text-align: left;">25 – 25,000</td>
+<td style="text-align: left;">2015-2019; 2000-2019; 2000-2017</td>
+<td style="text-align: left;">Candidate defined, Adjustment only</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Repository multiscale covariate notebook</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Climate, Dynamic World, Sentinel-1, Sentinel-2, Surface water, Terrain</td>
+<td style="text-align: left;">10 – 11,132</td>
+<td style="text-align: left;">2019–2023; spring Apr–Jun or summer Jun–Aug; Jun–Aug 2019–2023; 2019–2023</td>
+<td style="text-align: left;">Candidate extension, QA only</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
-<section id="what-this-comparison-does-not-claim" class="level2">
-<h2 class="anchored" data-anchor-id="what-this-comparison-does-not-claim">What this comparison does not claim</h2>
-<ul>
-<li>Agreement between two maps is not accuracy; both can share the same training data or the same blind spots.</li>
-<li>Differences are reported on each pair’s coarser native grid; they say nothing about finer detail.</li>
-<li>Profile comparisons set a soil core beside a pixel average. Several profile datasets trained some of the maps, so agreement there is not independent validation.</li>
-<li>Sothe’s hosted 0–1 m depth and encoding are unverified, and the SoilGrids 0–100 cm stock is derived here from carbon density rather than released.</li>
-<li>McMaster/WWF forest carbon includes belowground and dead pools that SCANFI does not, so their difference mixes pools with disagreement.</li>
-</ul>
+<section id="soils-maps" class="level2">
+<h2 class="anchored" data-anchor-id="soils-maps">Maps</h2>
+<p>Grouped by what they represent. Concentration, density, fixed-depth stocks and full-column peat stocks are different quantities.</p>
+<div class="cell" data-layout-align="left">
+<p><strong>Fixed-depth stock</strong></p>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Product</th>
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: left;">Coverage</th>
+<th style="text-align: left;">Grid (m)</th>
+<th style="text-align: left;">Depth / pool</th>
+<th style="text-align: left;">Period</th>
+<th style="text-align: left;">Access</th>
+<th style="text-align: left;">Use and limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sothe soil stock</td>
+<td style="text-align: left;">SOC stock (Study kg C/m²; stored encoding pending)</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">0–100 cm (maintainer-confirmed 2026-10-16)</td>
+<td style="text-align: left;">Legacy ground data; mostly 2000–2019 covariates</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1029/2021GB007213">Project GEE</a></td>
+<td style="text-align: left;">One b1;</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sothe soil stock uncertainty</td>
+<td style="text-align: left;">SOC stock uncertainty (Stored units/uncertainty encoding pending)</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">0–100 cm (maintainer-confirmed 2026-10-16)</td>
+<td style="text-align: left;">Legacy ground data; mostly 2000–2019 covariates</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1029/2021GB007213">Project GEE</a></td>
+<td style="text-align: left;">Different source grid origin from prediction;</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SoilGrids ocs_mean</td>
+<td style="text-align: left;">Organic carbon stock (t/ha; /10 gives kg/m²)</td>
+<td style="text-align: left;">Global</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">0–30 cm only in hosted band</td>
+<td style="text-align: left;">Legacy profiles; many summaries 2001–2015</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5194/soil-7-217-2021">Project GEE</a></td>
+<td style="text-align: left;">Published 0–30 cm stock excludes overlying organic layers;</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NCSCDv2 SOCC30</td>
+<td style="text-align: left;">SOC stock (Source hg C/m² unless import converted)</td>
+<td style="text-align: left;">Canada WGS84 rasterization</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">0–30 cm</td>
+<td style="text-align: left;">Multi-decade legacy data</td>
+<td style="text-align: left;"><a href="https://bolin.su.se/data/ncscd/tiff.php">Project GEE</a></td>
+<td style="text-align: left;">0.012°;</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NCSCDv2 SOCC100</td>
+<td style="text-align: left;">SOC stock (Source hg C/m² unless import converted)</td>
+<td style="text-align: left;">Canada WGS84 rasterization</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">0–100 cm</td>
+<td style="text-align: left;">Multi-decade legacy data</td>
+<td style="text-align: left;"><a href="https://bolin.su.se/data/ncscd/tiff.php">Project GEE</a></td>
+<td style="text-align: left;">0.012°;</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NCSCDv2 SOCC200</td>
+<td style="text-align: left;">SOC stock (Source hg C/m² unless import converted)</td>
+<td style="text-align: left;">Canada WGS84 rasterization</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">100–200 cm</td>
+<td style="text-align: left;">Multi-decade legacy data</td>
+<td style="text-align: left;"><a href="https://bolin.su.se/data/ncscd/tiff.php">Project GEE</a></td>
+<td style="text-align: left;">0.012°;</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Epstein et al.&nbsp;Canadian continental-margin sediment OC</td>
+<td style="text-align: left;">Standing stock in upper 30 cm seabed sediment; density is a separate quantity (See release; stored encoding unverified)</td>
+<td style="text-align: left;">Canadian continental margin including Pacific, Atlantic and Arctic regions</td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">Standing stock in upper 30 cm seabed sediment; density is a separate quantity</td>
+<td style="text-align: left;">Mixed sample dates; climatological predictor periods</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5683/SP3/ICHVVA">Provider</a></td>
+<td style="text-align: left;">High-priority new pool.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hengl Alberta SOC/BD/stock</td>
+<td style="text-align: left;">SOC and BD predictions; derived stocks (SOC study units; integrated stock t/ha)</td>
+<td style="text-align: left;">Alberta agricultural lands</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Four intervals to 100 cm</td>
+<td style="text-align: left;">Field 2020–2021; ClimateNA 1990–2010</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1139/facets-2023-0040">Provider</a></td>
+<td style="text-align: left;">Viewer access unresolved;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Concentration and density</strong></p>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Product</th>
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: left;">Coverage</th>
+<th style="text-align: left;">Grid (m)</th>
+<th style="text-align: left;">Depth / pool</th>
+<th style="text-align: left;">Period</th>
+<th style="text-align: left;">Access</th>
+<th style="text-align: left;">Use and limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sothe concentration depth images</td>
+<td style="text-align: left;">SOC concentration (Study g/kg; stored scaling pending)</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">Point-depth names 0,5,15,30,60,100 cm; interval semantics unresolved</td>
+<td style="text-align: left;">Legacy ground data; mostly 2000–2019 covariate context</td>
+<td style="text-align: left;"><a href="https://doi.org/10.4121/16619749">Project GEE</a></td>
+<td style="text-align: left;">4TU stock archive methods describe point-depth predictions at 0,5,15,30,60,100 cm.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids soc_mean</td>
+<td style="text-align: left;">SOC concentration (dg/kg; /10 gives g/kg)</td>
+<td style="text-align: left;">Global</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">Six intervals to 200 cm</td>
+<td style="text-align: left;">Legacy profiles; many summaries 2001–2015</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5194/soil-7-217-2021">Project GEE</a></td>
+<td style="text-align: left;">SOC/BD and OCD/OCS have different grid origins.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SoilGrids bdod_mean</td>
+<td style="text-align: left;">Bulk density (cg/cm³; /100 gives kg/dm³)</td>
+<td style="text-align: left;">Global</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">Six intervals to 200 cm</td>
+<td style="text-align: left;">Legacy profiles; many summaries 2001–2015</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5194/soil-7-217-2021">Project GEE</a></td>
+<td style="text-align: left;">SOC/BD and OCD/OCS have different grid origins.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SoilGrids ocd_mean</td>
+<td style="text-align: left;">Organic carbon density (hg/m³; /10 gives kg/m³)</td>
+<td style="text-align: left;">Global</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">Six intervals to 200 cm</td>
+<td style="text-align: left;">Legacy profiles; many summaries 2001–2015</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5194/soil-7-217-2021">Project GEE</a></td>
+<td style="text-align: left;">SOC/BD and OCD/OCS have different grid origins.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Geng BD five depths</td>
+<td style="text-align: left;">Bulk density (Provider g/cm³; import encoding unverified)</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">0–5,5–15,15–30,30–60,60–100 cm</td>
+<td style="text-align: left;">TerraClimate 1958–2020; MODIS dates differ by variable</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5281/zenodo.15473720">Project GEE</a></td>
+<td style="text-align: left;">RF/QRF property predictions, not integrated stock.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Geng SOC five depths</td>
+<td style="text-align: left;">SOC concentration (Provider %; import encoding unverified)</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">0–5,5–15,15–30,30–60,60–100 cm</td>
+<td style="text-align: left;">TerraClimate 1958–2020; MODIS dates differ by variable</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5281/zenodo.15473720">Project GEE</a></td>
+<td style="text-align: left;">RF/QRF property predictions, not integrated stock.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Full-column peat</strong></p>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Product</th>
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: left;">Coverage</th>
+<th style="text-align: left;">Grid (m)</th>
+<th style="text-align: left;">Depth / pool</th>
+<th style="text-align: left;">Period</th>
+<th style="text-align: left;">Access</th>
+<th style="text-align: left;">Use and limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Li peat_depth</td>
+<td style="text-align: left;">peat_depth (Archive cm (peat depth); imported scale/offset/NoData pending)</td>
+<td style="text-align: left;">Hudson Bay Lowlands</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Variable modelled full peat column</td>
+<td style="text-align: left;">Validation measurements 2022; archive 2024; publication 2025</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5683/SP3/TIRAXJ">Project GEE</a></td>
+<td style="text-align: left;">All four b1;</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Li peat_depth_uncertainty</td>
+<td style="text-align: left;">peat_depth_uncertainty (Archive cm (peat depth); imported scale/offset/NoData pending)</td>
+<td style="text-align: left;">Hudson Bay Lowlands</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Variable modelled full peat column</td>
+<td style="text-align: left;">Validation measurements 2022; archive 2024; publication 2025</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5683/SP3/TIRAXJ">Project GEE</a></td>
+<td style="text-align: left;">All four b1;</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Li peat_carbon_stock</td>
+<td style="text-align: left;">peat_carbon_stock (Archive kg C/m² (full peat column); imported scale/offset/NoData pending)</td>
+<td style="text-align: left;">Hudson Bay Lowlands</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Variable modelled full peat column</td>
+<td style="text-align: left;">Validation measurements 2022; archive 2024; publication 2025</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5683/SP3/TIRAXJ">Project GEE</a></td>
+<td style="text-align: left;">All four b1;</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Li peat_carbon_stock_uncertainty</td>
+<td style="text-align: left;">peat_carbon_stock_uncertainty (Archive kg C/m² (full peat column); imported scale/offset/NoData pending)</td>
+<td style="text-align: left;">Hudson Bay Lowlands</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">Variable modelled full peat column</td>
+<td style="text-align: left;">Validation measurements 2022; archive 2024; publication 2025</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5683/SP3/TIRAXJ">Project GEE</a></td>
+<td style="text-align: left;">All four b1;</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PEATGRIDS</td>
+<td style="text-align: left;">Full modelled variable peat thickness; depth-resolved BD and carbon-content inputs (See release; stored encoding unverified)</td>
+<td style="text-align: left;">Global peatlands including Canada; not a Canada-specific regional model</td>
+<td style="text-align: left;">1000</td>
+<td style="text-align: left;">Full modelled variable peat thickness; depth-resolved BD and carbon-content inputs</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5281/zenodo.15070037">Provider</a></td>
+<td style="text-align: left;">Catalogue: https://gee-community-catalog.org/projects/peatgrids/ .</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">McNicol et al.&nbsp;NPCTR soil-carbon database and raster</td>
+<td style="text-align: left;">1 m mineral soil plus overlying organic horizons; not automatically 1 m below peat/forest-floor surface (See release; stored encoding unverified)</td>
+<td style="text-align: left;">Coastal British Columbia and southeast Alaska; restrict Canadian analysis to actual BC footprint</td>
+<td style="text-align: left;">90.5</td>
+<td style="text-align: left;">1 m mineral soil plus overlying organic horizons; not automatically 1 m below peat/forest-floor surface</td>
+<td style="text-align: left;">Legacy profiles; archive revised 2024</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5061/dryad.5jf6j1r">Provider</a></td>
+<td style="text-align: left;">Preserve measured/estimated flags and coordinate-quality fields.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hugelius et al.&nbsp;northern peatland maps, version 2</td>
+<td style="text-align: left;">Peat depth and depth-derived stock; preserve peat fractions and area denominator (See release; stored encoding unverified)</td>
+<td style="text-align: left;">Northern Hemisphere north of 23° N; includes Canada</td>
+<td style="text-align: left;">10000</td>
+<td style="text-align: left;">Peat depth and depth-derived stock; preserve peat fractions and area denominator</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;"><a href="https://bolin.su.se/data/hugelius-2020-peatland-2">Provider</a></td>
+<td style="text-align: left;">Distinct from NCSCDv2.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Landscape polygons</strong></p>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Product</th>
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: left;">Coverage</th>
+<th style="text-align: left;">Grid (m)</th>
+<th style="text-align: left;">Depth / pool</th>
+<th style="text-align: left;">Period</th>
+<th style="text-align: left;">Access</th>
+<th style="text-align: left;">Use and limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Circumpolar thermokarst landscapes</td>
+<td style="text-align: left;">Landscape SOC and fractions (TSOC_kgC field denotes polygon mass; inspect source)</td>
+<td style="text-align: left;">Circumpolar</td>
+<td style="text-align: left;">–</td>
+<td style="text-align: left;">Associated 0–3 m SOC</td>
+<td style="text-align: left;">Landscape snapshot around 2015</td>
+<td style="text-align: left;"><a href="https://doi.org/10.3334/ORNLDAAC/1332">Provider</a></td>
+<td style="text-align: left;">132,089 features;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="pair-maps preview-grid"><figure class="figure"><img src="data/previews/sothe_stock.png" alt="Sothe soil carbon stock preview" loading="lazy" class="figure-img"><figcaption><span class="t">Sothe soil carbon stock</span><div class="legend"><span>7.08</span><div class="bar seq"></div><span>171</span></div><span class="muted">Study kg C/m²; 0–1 m is a working assumption · ≈249 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure><figure class="figure"><img src="data/previews/soilgrids_ocs.png" alt="SoilGrids 2.0 OC stock, 0–30 cm preview" loading="lazy" class="figure-img"><figcaption><span class="t">SoilGrids 2.0 OC stock, 0–30 cm</span><div class="legend"><span>43</span><div class="bar seq"></div><span>91</span></div><span class="muted">Stored t/ha; ÷10 gives kg/m² · ≈250 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure><figure class="figure"><img src="data/previews/geng_soc_0_5.png" alt="Geng SOC concentration, 0–5 cm preview" loading="lazy" class="figure-img"><figcaption><span class="t">Geng SOC concentration, 0–5 cm</span><div class="legend"><span>0.626</span><div class="bar seq"></div><span>21.6</span></div><span class="muted">Provider %; import encoding unverified · ≈100 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure><figure class="figure"><img src="data/previews/ncscd_100.png" alt="NCSCDv2 SOC stock, 0–100 cm preview" loading="lazy" class="figure-img"><figcaption><span class="t">NCSCDv2 SOC stock, 0–100 cm</span><div class="legend"><span>0.603</span><div class="bar seq"></div><span>661</span></div><span class="muted">Source hg C/m² unless converted on import · ≈1,340 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure><figure class="figure"><img src="data/previews/peatgrids_stock.png" alt="PEATGRIDS peat carbon (full peat column) preview" loading="lazy" class="figure-img"><figcaption><span class="t">PEATGRIDS peat carbon (full peat column)</span><div class="legend"><span>0.0909</span><div class="bar seq"></div><span>0.214</span></div><span class="muted">Mg C/m²; variable modelled depth · ≈1,000 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure><figure class="figure"><img src="data/previews/li_peat_carbon.png" alt="Li et al. peat carbon, Hudson Bay Lowlands preview" loading="lazy" class="figure-img"><figcaption><span class="t">Li et al. peat carbon, Hudson Bay Lowlands</span><div class="legend"><span>46.5</span><div class="bar seq"></div><span>117</span></div><span class="muted">Study kg C/m²; variable modelled peat column · ≈30 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure><figure class="figure"><img src="data/previews/li_peat_depth.png" alt="Li et al. peat depth, Hudson Bay Lowlands preview" loading="lazy" class="figure-img"><figcaption><span class="t">Li et al. peat depth, Hudson Bay Lowlands</span><div class="legend"><span>77</span><div class="bar seq"></div><span>269</span></div><span class="muted">Study cm; encoding unverified · ≈30 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure></div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Details: uncertainty layers and exact assets
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="pair-maps preview-grid"><figure class="figure"><img src="data/previews/sothe_stock_unc.png" alt="Sothe soil carbon stock uncertainty preview" loading="lazy" class="figure-img"><figcaption><span class="t">Sothe soil carbon stock uncertainty</span><div class="legend"><span>5.51</span><div class="bar seq"></div><span>157</span></div><span class="muted">Uncertainty; definition pending · ≈249 m grid · stretch 2nd–98th percentile, own scale</span></figcaption></figure></div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 3%">
+<col style="width: 38%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Resource</th>
+<th style="text-align: left;">Asset</th>
+<th style="text-align: left;">Bands / schema</th>
+<th style="text-align: left;">Nominal scale (m)</th>
+<th style="text-align: left;">Units</th>
+<th style="text-align: left;">Public read</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">M_SOTHE_STOCK</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_250m_v20</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">249.3556593769</td>
+<td style="text-align: left;">kg C/m² (archive prediction; uncertainty encoding pending); documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_SOTHE_UNC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_uncertainty_250m_v20</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">249.3556593769</td>
+<td style="text-align: left;">kg C/m² (archive prediction; uncertainty encoding pending); documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_SOTHE_CONC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_0cm_250m_version10</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">249.3556593769</td>
+<td style="text-align: left;">g/kg; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_SOTHE_CONC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_5cm_250m_version10</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">249.3556593769</td>
+<td style="text-align: left;">g/kg; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_SOTHE_CONC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_15cm_250m_version10</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">249.3556593769</td>
+<td style="text-align: left;">g/kg; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_SOTHE_CONC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_30cm_250m_version10</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">249.3556593769</td>
+<td style="text-align: left;">g/kg; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_SOTHE_CONC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_60cm_250m_version10</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">249.3556593769</td>
+<td style="text-align: left;">g/kg; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_SOTHE_CONC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_100cm_250m_version10</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">249.3556593769</td>
+<td style="text-align: left;">g/kg; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_SG_SOC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/soc_mean</td>
+<td style="text-align: left;">soc_0-5cm_mean; soc_5-15cm_mean; soc_15-30cm_mean; soc_30-60cm_mean; soc_60-100cm_mean; soc_100-200cm_mean</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">dg/kg; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_SG_BD</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean</td>
+<td style="text-align: left;">bdod_0-5cm_mean; bdod_5-15cm_mean; bdod_15-30cm_mean; bdod_30-60cm_mean; bdod_60-100cm_mean; bdod_100-200cm_mean</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">cg/cm³; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_SG_OCD</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocd_mean</td>
+<td style="text-align: left;">ocd_0-5cm_mean; ocd_5-15cm_mean; ocd_15-30cm_mean; ocd_30-60cm_mean; ocd_60-100cm_mean; ocd_100-200cm_mean</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">hg/m³; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_SG_OCS</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocs_mean</td>
+<td style="text-align: left;">ocs_0-30cm_mean</td>
+<td style="text-align: left;">250</td>
+<td style="text-align: left;">t/ha; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_NCSCD_30</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC30_0012deg</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">1335.833889519</td>
+<td style="text-align: left;">hg C/m²; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_NCSCD_100</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC100_0012deg</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">1335.833889519</td>
+<td style="text-align: left;">hg C/m²; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_NCSCD_200</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC200_0012deg</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">1335.833889519</td>
+<td style="text-align: left;">hg C/m²; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_THERMOKARST</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/olefeldt_2016/Circumpolar_Thermokarst_Landscapes</td>
+<td style="text-align: left;">16 fields; 132089 features</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Polygon total mass labels (e.g.&nbsp;TSOC_kgC); verify original field dictionary; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_LI_DEPTH</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_PeatDepth_30m</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">cm; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_LI_DEPTH_UNC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_Uncertainty_PeatDepth_30m</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">cm; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_LI_C</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterCarbon30mkgm2version1</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">kg C/m²; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_LI_C_UNC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterUncertaintyCarbon30mkgm2</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">kg C/m²; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_GENG_BD</td>
+<td style="text-align: left;">projects/northstarlabs/assets/canada_carbon_collection/BD_0_5_cm</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">g/cm³; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_GENG_BD</td>
+<td style="text-align: left;">projects/northstarlabs/assets/canada_carbon_collection/BD_5_15_cm</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">g/cm³; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_GENG_BD</td>
+<td style="text-align: left;">projects/northstarlabs/assets/canada_carbon_collection/BD_15_30_cm</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">g/cm³; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_GENG_BD</td>
+<td style="text-align: left;">projects/northstarlabs/assets/canada_carbon_collection/BD_30_60_cm</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">g/cm³; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_GENG_BD</td>
+<td style="text-align: left;">projects/northstarlabs/assets/canada_carbon_collection/BD_60_100_cm</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">g/cm³; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_GENG_SOC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/canada_carbon_collection/SOC_0_5_cm</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">%; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_GENG_SOC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/canada_carbon_collection/SOC_5_15_cm</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">%; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_GENG_SOC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/canada_carbon_collection/SOC_15_30_cm</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">%; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_GENG_SOC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/canada_carbon_collection/SOC_30_60_cm</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">%; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_GENG_SOC</td>
+<td style="text-align: left;">projects/northstarlabs/assets/canada_carbon_collection/SOC_60_100_cm</td>
+<td style="text-align: left;">b1</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">%; documented source units only. Imported encoding/scale/offset/NoData still pending. See QC_register.</td>
+<td style="text-align: left;">Verified public ACL</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_PEATGRIDS</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Catalogue bands; runtime not inspected</td>
+<td style="text-align: left;">1000</td>
+<td style="text-align: left;">Do not infer from filename; verify release 2.0.1</td>
+<td style="text-align: left;">Unverified</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_PEATGRIDS</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Catalogue bands; runtime not inspected</td>
+<td style="text-align: left;">1000</td>
+<td style="text-align: left;">Do not infer from filename; verify release 2.0.1</td>
+<td style="text-align: left;">Unverified</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_PEATGRIDS</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Catalogue bands; runtime not inspected</td>
+<td style="text-align: left;">1000</td>
+<td style="text-align: left;">Do not infer from filename; verify release 2.0.1</td>
+<td style="text-align: left;">Unverified</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M_PEATGRIDS</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Catalogue bands; runtime not inspected</td>
+<td style="text-align: left;">1000</td>
+<td style="text-align: left;">Do not infer from filename; verify release 2.0.1</td>
+<td style="text-align: left;">Unverified</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M_PEATGRIDS</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Catalogue bands; runtime not inspected</td>
+<td style="text-align: left;">1000</td>
+<td style="text-align: left;">Do not infer from filename; verify release 2.0.1</td>
+<td style="text-align: left;">Unverified</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="further" class="level2">
+<h2 class="anchored" data-anchor-id="further">Further resources</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Resource</th>
+<th style="text-align: left;">Forests / soils</th>
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Context</th>
+<th style="text-align: left;">Support</th>
+<th style="text-align: left;">Depth / pool</th>
+<th style="text-align: left;">Access</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Can-Peat Canadian Peatland Data Portal</td>
+<td style="text-align: left;">Forests and soils</td>
+<td style="text-align: left;">discovery</td>
+<td style="text-align: left;">Canada; dataset-specific local/regional coverage</td>
+<td style="text-align: left;">No raster grid</td>
+<td style="text-align: left;">Stock, peat properties, depth, flux and ancillary records</td>
+<td style="text-align: left;"><a href="https://uwaterloo.ca/can-peat/research/canadian-peatland-data-portal">Public discovery portal; access varies by linked dataset</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Shaw et al.&nbsp;Canadian upland forest soil profile and carbon stocks database</td>
+<td style="text-align: left;">Soils</td>
+<td style="text-align: left;">forest soils</td>
+<td style="text-align: left;">Canadian upland forests</td>
+<td style="text-align: left;">3,253 pedons; 16,167 horizon records in source publication</td>
+<td style="text-align: left;">Organic horizons plus mineral soil to 100 cm; preserve original depth datum</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1002/ecy.2159">DataS1 ZIP and metadata supplement linked by publisher</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">McNicol et al.&nbsp;NPCTR soil-carbon database and raster</td>
+<td style="text-align: left;">Soils</td>
+<td style="text-align: left;">forest soils</td>
+<td style="text-align: left;">Coastal British Columbia and southeast Alaska; restrict Canadian analysis to actual BC footprint</td>
+<td style="text-align: left;">About 1,300 profile descriptions; reported map grid 90.5 m</td>
+<td style="text-align: left;">1 m mineral soil plus overlying organic horizons; not automatically 1 m below peat/forest-floor surface</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5061/dryad.5jf6j1r">Dryad XLSX, raster archive, README; database revised 2024</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Arsenault et al.&nbsp;temperate peatland bathymetry and C/N/P stocks</td>
+<td style="text-align: left;">Soils</td>
+<td style="text-align: left;">peatlands</td>
+<td style="text-align: left;">Argenteuil, Québec; 28 fens, bogs and forested peatlands</td>
+<td style="text-align: left;">Site peat-depth interpolation to 1 m² cells; not a wall-to-wall 1 m regional carbon raster</td>
+<td style="text-align: left;">Variable peat-basin depth, not fixed 1 m SOC</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5281/zenodo.17065341">Paper links Zenodo; Can-Peat provides a version-specific link; direct archive retrieval failed in this review</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Martens and Kreyling coastal BC peatland carbon</td>
+<td style="text-align: left;">Soils</td>
+<td style="text-align: left;">peatlands</td>
+<td style="text-align: left;">Read Island and Porcher Island, coastal BC; six peatlands</td>
+<td style="text-align: left;">Plot/core measurements; no uniform raster verified</td>
+<td style="text-align: left;">Peat and biomass pools; preserve sampled depths and pool definitions</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5281/zenodo.17533263">Paper links Zenodo; archive landing retrieval failed in this review</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PEATGRIDS</td>
+<td style="text-align: left;">Soils</td>
+<td style="text-align: left;">peatlands</td>
+<td style="text-align: left;">Global peatlands including Canada; not a Canada-specific regional model</td>
+<td style="text-align: left;">Reported 1 km output</td>
+<td style="text-align: left;">Full modelled variable peat thickness; depth-resolved BD and carbon-content inputs</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5281/zenodo.15070037">Zenodo release 2.0.1 and documented Awesome GEE assets</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hugelius et al.&nbsp;northern peatland maps, version 2</td>
+<td style="text-align: left;">Soils</td>
+<td style="text-align: left;">peatlands</td>
+<td style="text-align: left;">Northern Hemisphere north of 23° N; includes Canada</td>
+<td style="text-align: left;">10 km projected GeoTIFF or 0.1° WGS84 GeoTIFF/NetCDF; coarse synthesis</td>
+<td style="text-align: left;">Peat depth and depth-derived stock; preserve peat fractions and area denominator</td>
+<td style="text-align: left;"><a href="https://bolin.su.se/data/hugelius-2020-peatland-2">Bolin Centre download</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-PEAT Global Peatland Carbon Database v.2025</td>
+<td style="text-align: left;">Soils</td>
+<td style="text-align: left;">peatlands</td>
+<td style="text-align: left;">Global; Canadian subset must be selected and counted</td>
+<td style="text-align: left;">267 cores globally in data paper; Canadian count not established</td>
+<td style="text-align: left;">Variable core depths and age models</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1594/PANGAEA.986891">PANGAEA archive and ESSD data paper</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lamping et al.&nbsp;coastal forest biomass and structure maps</td>
+<td style="text-align: left;">Forests</td>
+<td style="text-align: left;">forest biomass and deadwood</td>
+<td style="text-align: left;">Coastal southern Alaska and British Columbia</td>
+<td style="text-align: left;">30 m maps</td>
+<td style="text-align: left;">Live aboveground and species biomass; inspect release attribute list for snag biomass, not a complete ecosystem carbon stock</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5281/zenodo.13932139">Zenodo GeoTIFF archive</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gross et al.&nbsp;central Alberta agroforestry carbon pools</td>
+<td style="text-align: left;">Forests and soils</td>
+<td style="text-align: left;">grasslands and agroforestry</td>
+<td style="text-align: left;">Central Alberta hedgerows, shelterbelts, grassland and adjacent cropland</td>
+<td style="text-align: left;">Local study; no raster output established</td>
+<td style="text-align: left;">Live biomass, deadwood and soil SOC (study includes approximately 1 m total soil); inspect table-specific depths</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5061/dryad.0zpc86711">Dryad downloadable CSV tables</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pyle and Bork pasture composition, management and soil properties</td>
+<td style="text-align: left;">Forests and soils</td>
+<td style="text-align: left;">grasslands and agroforestry</td>
+<td style="text-align: left;">102 pastures around Edmonton, Alberta</td>
+<td style="text-align: left;">Local pasture sampling; coordinates withheld by privacy agreement</td>
+<td style="text-align: left;">Upper 15 cm mineral-soil carbon concentration and ancillary properties; not ready-made SOC stocks</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5061/dryad.c2fqz6175">Dryad CSV and README; locations explicitly unavailable</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Southern interior BC pasture soil-carbon modelling study</td>
+<td style="text-align: left;">Forests and soils</td>
+<td style="text-align: left;">grasslands and agroforestry</td>
+<td style="text-align: left;">65 grazed/non-grazed pastures, southern interior British Columbia</td>
+<td style="text-align: left;">MODIS NDVI 250 m versus handheld 1 m measurements; these are predictor supports</td>
+<td style="text-align: left;">SC study depth/stock definitions need full source extraction</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1080/15481603.2017.1302181">Paper found; standalone downloadable ground-data archive not verified</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chizen et al.&nbsp;drained prairie pothole wetland SOC</td>
+<td style="text-align: left;">Soils</td>
+<td style="text-align: left;">freshwater wetlands</td>
+<td style="text-align: left;">Saskatchewan Prairie Pothole Region; 33 drained wetlands in research description</td>
+<td style="text-align: left;">Wetland/core/depth increments; no public map verified</td>
+<td style="text-align: left;">SOC plus particulate and mineral-associated fractions; preserve sampled depth/time</td>
+<td style="text-align: left;"><a href="https://doi.org/10.3389/fenvs.2024.1353802">Paper and supplement; raw data stated available from authors</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pendea et al.&nbsp;Lake Simcoe freshwater wetland soils</td>
+<td style="text-align: left;">Soils</td>
+<td style="text-align: left;">freshwater wetlands</td>
+<td style="text-align: left;">Lake Simcoe watershed, Ontario; four swamps and four marshes</td>
+<td style="text-align: left;">Eight 50 cm cores; no raster</td>
+<td style="text-align: left;">Fixed upper 50 cm sampling plus dated-horizon stock/rate subsets</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5683/SP3/OJRV2I">Paper links public Borealis V1; archive file-level retrieval not tested</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chastain/Kohfeld et al.&nbsp;Clayoquot Sound salt-marsh cores</td>
+<td style="text-align: left;">Soils</td>
+<td style="text-align: left;">coastal and marine</td>
+<td style="text-align: left;">Clayoquot Sound, BC; seven salt marshes</td>
+<td style="text-align: left;">34 cores collected in 2016; site support, no raster</td>
+<td style="text-align: left;">20 cm, basal-peat and dated-horizon stock supports</td>
+<td style="text-align: left;"><a href="https://doi.org/10.1594/PANGAEA.947825">PANGAEA bundle and tab-delimited datasets; CC BY 4.0 stated</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cowichan Estuary blue carbon study</td>
+<td style="text-align: left;">Soils</td>
+<td style="text-align: left;">coastal and marine</td>
+<td style="text-align: left;">Cowichan Estuary, Vancouver Island, BC</td>
+<td style="text-align: left;">Habitat/core support; no verified public stock raster</td>
+<td style="text-align: left;">Top 20 cm organic and inorganic sediment carbon, plus vegetation</td>
+<td style="text-align: left;"><a href="https://doi.org/10.3389/fmars.2022.857586">Paper and supplement; raw data promised by authors, standalone archive not verified</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Epstein et al.&nbsp;Canadian continental-margin sediment OC</td>
+<td style="text-align: left;">Soils</td>
+<td style="text-align: left;">coastal and marine</td>
+<td style="text-align: left;">Canadian continental margin including Pacific, Atlantic and Arctic regions</td>
+<td style="text-align: left;">200 m output; predictor sources can be coarser</td>
+<td style="text-align: left;">Standing stock in upper 30 cm seabed sediment; density is a separate quantity</td>
+<td style="text-align: left;"><a href="https://doi.org/10.5683/SP3/ICHVVA">Paper links Borealis GeoTIFFs and source review data/code</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Blue Carbon Canada publications and data directory</td>
+<td style="text-align: left;">Forests and soils</td>
+<td style="text-align: left;">discovery</td>
+<td style="text-align: left;">Canadian coastal/marine research</td>
+<td style="text-align: left;">Resource-specific</td>
+<td style="text-align: left;">Sediment, coastal vegetation, kelp, habitat and flux resources</td>
+<td style="text-align: left;"><a href="https://www.bluecarboncanada.ca/publications-data">Public directory; individual files/access vary</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ECCC freshwater sediment-quality observations</td>
+<td style="text-align: left;">Forests and soils</td>
+<td style="text-align: left;">other contextual resources</td>
+<td style="text-align: left;">20 lakes across Canada, sampled 2011–2016</td>
+<td style="text-align: left;">One to three sampling locations per lake</td>
+<td style="text-align: left;">Organic and inorganic carbon concentrations; no complete stock inventory established</td>
+<td style="text-align: left;"><a href="https://open.canada.ca/data/en/dataset/0af54117-bb0b-4e86-8f3f-2f277158e071">Open Government CSV resources; OGL-Canada stated</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Parks Canada Carbon Atlas — forests of national parks</td>
+<td style="text-align: left;">Forests and soils</td>
+<td style="text-align: left;">other contextual resources</td>
+<td style="text-align: left;">31 Canadian national parks, report summaries 1990–2020</td>
+<td style="text-align: left;">Park-level summaries; no reusable raster verified</td>
+<td style="text-align: left;">Biomass and dead organic matter, including deadwood/litter/soil</td>
+<td style="text-align: left;"><a href="https://publications.gc.ca/collections/collection_2024/pc/R62-581-2023-eng.pdf">Public government report; machine-readable spatial archive unverified</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p class="small text-muted">
+Catalogue version 0.2.0-draft · source revision 18cabbf · generated -d October 2026.
+</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -850,7 +2341,7 @@ ul.task-list li input[type="checkbox"] {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Descriptive comparison of catalogued products. No map is treated as truth.</p>
+<p>Carbon State of Data for Canada. No map is treated as truth; agreement is not accuracy.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

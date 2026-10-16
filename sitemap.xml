@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cathald.github.io/Carbon_Data_SOD/report/soils.html</loc>
-    <lastmod>2026-10-16T14:03:46.802Z</lastmod>
+    <loc>https://cathald.github.io/Carbon_Data_SOD/report/methods.html</loc>
+    <lastmod>2026-10-16T14:23:35.699Z</lastmod>
   </url>
   <url>
-    <loc>https://cathald.github.io/Carbon_Data_SOD/report/forest.html</loc>
-    <lastmod>2026-10-16T14:03:46.802Z</lastmod>
+    <loc>https://cathald.github.io/Carbon_Data_SOD/sources.html</loc>
+    <lastmod>2026-10-16T14:23:06.284Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cathald.github.io/Carbon_Data_SOD/use.html</loc>
+    <lastmod>2026-10-16T14:23:06.280Z</lastmod>
   </url>
   <url>
     <loc>https://cathald.github.io/Carbon_Data_SOD/index.html</loc>
-    <lastmod>2026-10-16T13:49:15.448Z</lastmod>
+    <lastmod>2026-10-16T14:26:50.035Z</lastmod>
   </url>
   <url>
-    <loc>https://cathald.github.io/Carbon_Data_SOD/report/methods.html</loc>
-    <lastmod>2026-10-16T13:49:50.849Z</lastmod>
+    <loc>https://cathald.github.io/Carbon_Data_SOD/compare.html</loc>
+    <lastmod>2026-10-16T14:22:21.076Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cathald.github.io/Carbon_Data_SOD/downloads.html</loc>
+    <lastmod>2026-10-16T14:23:06.282Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cathald.github.io/Carbon_Data_SOD/contribute.html</loc>
+    <lastmod>2026-10-16T14:23:06.286Z</lastmod>
   </url>
 </urlset>
