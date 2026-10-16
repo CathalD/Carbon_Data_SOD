@@ -1,0 +1,1310 @@
+{
+  "date": "2026-10-15",
+  "source": "Crossref DOI registration metadata; author/title metadata only",
+  "records": [
+    {
+      "study_id": "S_BETTS_2024",
+      "catalogue_name": "Betts et al. 2024",
+      "doi": "10.1111/gcb.17541",
+      "url": "https://doi.org/10.1111/gcb.17541",
+      "status": "DOI metadata retrieved",
+      "title": "Congruent Long‐Term Declines in Carbon and Biodiversity Are a Signature of Forest Degradation",
+      "authors": [
+        {
+          "given": "Matthew G.",
+          "family": "Betts"
+        },
+        {
+          "given": "Zhiqiang",
+          "family": "Yang"
+        },
+        {
+          "given": "John S.",
+          "family": "Gunn"
+        },
+        {
+          "given": "Sean P.",
+          "family": "Healey"
+        }
+      ],
+      "journal": "Global Change Biology",
+      "year": 2024,
+      "volume": "30",
+      "issue": "11",
+      "pages_or_article": "e17541",
+      "publisher": "Wiley",
+      "type": "journal-article",
+      "metadata_url": "https://api.crossref.org/works/10.1111/gcb.17541"
+    },
+    {
+      "study_id": "S_SOTHE_FOREST_2022",
+      "catalogue_name": "Sothe et al. 2022 forest carbon",
+      "doi": "10.1029/2021GB007213",
+      "url": "https://doi.org/10.1029/2021GB007213",
+      "status": "DOI metadata retrieved",
+      "title": "Large Soil Carbon Storage in Terrestrial Ecosystems of Canada",
+      "authors": [
+        {
+          "given": "Camile",
+          "family": "Sothe"
+        },
+        {
+          "given": "Alemu",
+          "family": "Gonsamo"
+        },
+        {
+          "given": "Joyce",
+          "family": "Arabian"
+        },
+        {
+          "given": "Werner A.",
+          "family": "Kurz"
+        },
+        {
+          "given": "Sarah A.",
+          "family": "Finkelstein"
+        },
+        {
+          "given": "James",
+          "family": "Snider"
+        }
+      ],
+      "journal": "Global Biogeochemical Cycles",
+      "year": 2022,
+      "volume": "36",
+      "issue": "2",
+      "pages_or_article": "e2021GB007213",
+      "publisher": "American Geophysical Union (AGU)",
+      "type": "journal-article",
+      "metadata_url": "https://api.crossref.org/works/10.1029/2021GB007213"
+    },
+    {
+      "study_id": "S_QIN_2025",
+      "catalogue_name": "Qin et al. 2025",
+      "doi": "10.1016/j.isprsjprs.2025.05.022",
+      "url": "https://doi.org/10.1016/j.isprsjprs.2025.05.022",
+      "title": "Aboveground biomass mapping of Canada with SAR and optical satellite observations aided by active learning",
+      "authors": [
+        {
+          "given": "Shuhong",
+          "family": "Qin"
+        },
+        {
+          "given": "Hong",
+          "family": "Wang"
+        },
+        {
+          "given": "Cheryl",
+          "family": "Rogers"
+        },
+        {
+          "given": "José",
+          "family": "Bermúdez"
+        },
+        {
+          "given": "Ricardo Barros",
+          "family": "Lourenço"
+        },
+        {
+          "given": "Jingru",
+          "family": "Zhang"
+        },
+        {
+          "given": "Xiuneng",
+          "family": "Li"
+        },
+        {
+          "given": "Jenny",
+          "family": "Chau"
+        },
+        {
+          "given": "Piotr",
+          "family": "Tompalski"
+        },
+        {
+          "given": "Alemu",
+          "family": "Gonsamo"
+        }
+      ],
+      "journal": "ISPRS Journal of Photogrammetry and Remote Sensing",
+      "year": 2025,
+      "volume": "226",
+      "issue": "",
+      "pages_or_article": "204-220",
+      "publisher": "Elsevier BV",
+      "type": "journal-article",
+      "status": "DOI metadata retrieved",
+      "metadata_url": "https://api.crossref.org/works/10.1016/j.isprsjprs.2025.05.022"
+    },
+    {
+      "study_id": "S_SCANFI_V1",
+      "catalogue_name": "Guindon et al. 2024 SCANFI v1",
+      "doi": "10.1139/cjfr-2023-0118",
+      "url": "https://doi.org/10.1139/cjfr-2023-0118",
+      "title": "A new approach for spatializing the Canadian National Forest Inventory (SCANFI) using Landsat dense time series",
+      "authors": [
+        {
+          "given": "Luc",
+          "family": "Guindon"
+        },
+        {
+          "given": "Francis",
+          "family": "Manka"
+        },
+        {
+          "given": "David L.P.",
+          "family": "Correia"
+        },
+        {
+          "given": "Philippe",
+          "family": "Villemaire"
+        },
+        {
+          "given": "Byron",
+          "family": "Smiley"
+        },
+        {
+          "given": "Pierre",
+          "family": "Bernier"
+        },
+        {
+          "given": "Sylvie",
+          "family": "Gauthier"
+        },
+        {
+          "given": "André",
+          "family": "Beaudoin"
+        },
+        {
+          "given": "Jonathan",
+          "family": "Boucher"
+        },
+        {
+          "given": "Yan",
+          "family": "Boulanger"
+        }
+      ],
+      "journal": "Canadian Journal of Forest Research",
+      "year": 2024,
+      "volume": "54",
+      "issue": "7",
+      "pages_or_article": "793-815",
+      "publisher": "Canadian Science Publishing",
+      "type": "journal-article",
+      "status": "DOI metadata retrieved",
+      "metadata_url": "https://api.crossref.org/works/10.1139/cjfr-2023-0118"
+    },
+    {
+      "study_id": "S_MATASCI_2018",
+      "catalogue_name": "Matasci et al. 2018",
+      "url": "",
+      "status": "No DOI recorded; workflow or unresolved study citation"
+    },
+    {
+      "study_id": "S_SOTHE_CONC_2022",
+      "catalogue_name": "Sothe et al. 2022 Geoderma",
+      "doi": "10.1016/j.geoderma.2021.115402",
+      "url": "https://doi.org/10.1016/j.geoderma.2021.115402",
+      "title": "Large scale mapping of soil organic carbon concentration with 3D machine learning and satellite observations",
+      "authors": [
+        {
+          "given": "Camile",
+          "family": "Sothe"
+        },
+        {
+          "given": "Alemu",
+          "family": "Gonsamo"
+        },
+        {
+          "given": "Joyce",
+          "family": "Arabian"
+        },
+        {
+          "given": "James",
+          "family": "Snider"
+        }
+      ],
+      "journal": "Geoderma",
+      "year": 2022,
+      "volume": "405",
+      "issue": "",
+      "pages_or_article": "115402",
+      "publisher": "Elsevier BV",
+      "type": "journal-article",
+      "status": "DOI metadata retrieved",
+      "metadata_url": "https://api.crossref.org/works/10.1016/j.geoderma.2021.115402"
+    },
+    {
+      "study_id": "S_SOTHE_SOC_2022",
+      "catalogue_name": "Sothe et al. 2022 GBC soil stocks",
+      "doi": "10.1029/2021GB007213",
+      "url": "https://doi.org/10.1029/2021GB007213",
+      "status": "DOI metadata retrieved",
+      "title": "Large Soil Carbon Storage in Terrestrial Ecosystems of Canada",
+      "authors": [
+        {
+          "given": "Camile",
+          "family": "Sothe"
+        },
+        {
+          "given": "Alemu",
+          "family": "Gonsamo"
+        },
+        {
+          "given": "Joyce",
+          "family": "Arabian"
+        },
+        {
+          "given": "Werner A.",
+          "family": "Kurz"
+        },
+        {
+          "given": "Sarah A.",
+          "family": "Finkelstein"
+        },
+        {
+          "given": "James",
+          "family": "Snider"
+        }
+      ],
+      "journal": "Global Biogeochemical Cycles",
+      "year": 2022,
+      "volume": "36",
+      "issue": "2",
+      "pages_or_article": "e2021GB007213",
+      "publisher": "American Geophysical Union (AGU)",
+      "type": "journal-article",
+      "metadata_url": "https://api.crossref.org/works/10.1029/2021GB007213"
+    },
+    {
+      "study_id": "S_SOILGRIDS_2021",
+      "catalogue_name": "Poggio et al. 2021 SoilGrids 2.0",
+      "doi": "10.5194/soil-7-217-2021",
+      "url": "https://doi.org/10.5194/soil-7-217-2021",
+      "title": "SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty",
+      "authors": [
+        {
+          "given": "Laura",
+          "family": "Poggio"
+        },
+        {
+          "given": "Luis M.",
+          "family": "de Sousa"
+        },
+        {
+          "given": "Niels H.",
+          "family": "Batjes"
+        },
+        {
+          "given": "Gerard B. M.",
+          "family": "Heuvelink"
+        },
+        {
+          "given": "Bas",
+          "family": "Kempen"
+        },
+        {
+          "given": "Eloi",
+          "family": "Ribeiro"
+        },
+        {
+          "given": "David",
+          "family": "Rossiter"
+        }
+      ],
+      "journal": "SOIL",
+      "year": 2021,
+      "volume": "7",
+      "issue": "1",
+      "pages_or_article": "217-240",
+      "publisher": "Copernicus GmbH",
+      "type": "journal-article",
+      "status": "DOI metadata retrieved",
+      "metadata_url": "https://api.crossref.org/works/10.5194/soil-7-217-2021"
+    },
+    {
+      "study_id": "S_GENG_2025",
+      "catalogue_name": "Geng et al. 2025 Soil Landscape Grids",
+      "doi": "10.1038/s41597-025-05460-4",
+      "url": "https://doi.org/10.1038/s41597-025-05460-4",
+      "title": "100 m soil landscape grids of Canada",
+      "authors": [
+        {
+          "given": "Xiaoyuan",
+          "family": "Geng"
+        },
+        {
+          "given": "Juanxia",
+          "family": "He"
+        },
+        {
+          "given": "Victoria",
+          "family": "Grima"
+        },
+        {
+          "given": "Yefang",
+          "family": "Jiang"
+        },
+        {
+          "given": "Maggi",
+          "family": "Tetreau"
+        },
+        {
+          "given": "Stephen",
+          "family": "Crittenden"
+        },
+        {
+          "given": "Simon",
+          "family": "Kiley"
+        },
+        {
+          "given": "Albert. J.",
+          "family": "VandenBygaart"
+        },
+        {
+          "given": "Jason",
+          "family": "Vanrobaeys"
+        }
+      ],
+      "journal": "Scientific Data",
+      "year": 2025,
+      "volume": "12",
+      "issue": "1",
+      "pages_or_article": "1178",
+      "publisher": "Springer Science and Business Media LLC",
+      "type": "journal-article",
+      "status": "DOI metadata retrieved",
+      "metadata_url": "https://api.crossref.org/works/10.1038/s41597-025-05460-4"
+    },
+    {
+      "study_id": "S_HENGL_2023",
+      "catalogue_name": "Hengl et al. 2023 Alberta",
+      "doi": "10.1139/facets-2023-0040",
+      "url": "https://doi.org/10.1139/facets-2023-0040",
+      "title": "Assessment of soil organic carbon stocks in Alberta using 2-scale sampling and 3D predictive soil mapping",
+      "authors": [
+        {
+          "given": "Tomislav",
+          "family": "Hengl"
+        },
+        {
+          "given": "Preston",
+          "family": "Sorenson"
+        },
+        {
+          "given": "Leandro",
+          "family": "Parente"
+        },
+        {
+          "given": "Kimberly",
+          "family": "Cornish"
+        },
+        {
+          "given": "Jeffrey",
+          "family": "Battigelli"
+        },
+        {
+          "given": "Carmelo",
+          "family": "Bonannella"
+        },
+        {
+          "given": "Monika",
+          "family": "Gorzelak"
+        },
+        {
+          "given": "Kris",
+          "family": "Nichols"
+        }
+      ],
+      "journal": "FACETS",
+      "year": 2023,
+      "volume": "8",
+      "issue": "",
+      "pages_or_article": "1-17",
+      "publisher": "Canadian Science Publishing",
+      "type": "journal-article",
+      "status": "DOI metadata retrieved",
+      "metadata_url": "https://api.crossref.org/works/10.1139/facets-2023-0040"
+    },
+    {
+      "study_id": "S_LI_2025",
+      "catalogue_name": "Li et al. 2025 Hudson Bay Lowlands",
+      "doi": "10.1029/2024GL110679",
+      "url": "https://doi.org/10.1029/2024GL110679",
+      "status": "DOI metadata retrieved",
+      "title": "Peat Depth and Carbon Storage of the Hudson Bay Lowlands, Canada",
+      "authors": [
+        {
+          "given": "Yiyao",
+          "family": "Li"
+        },
+        {
+          "given": "Daorui",
+          "family": "Han"
+        },
+        {
+          "given": "Cheryl A.",
+          "family": "Rogers"
+        },
+        {
+          "given": "Sarah A.",
+          "family": "Finkelstein"
+        },
+        {
+          "given": "Oleksandra",
+          "family": "Hararuk"
+        },
+        {
+          "given": "James M.",
+          "family": "Waddington"
+        },
+        {
+          "given": "Carlos",
+          "family": "Barreto"
+        },
+        {
+          "given": "James W.",
+          "family": "McLaughlin"
+        },
+        {
+          "given": "James",
+          "family": "Snider"
+        },
+        {
+          "given": "Alemu",
+          "family": "Gonsamo"
+        }
+      ],
+      "journal": "Geophysical Research Letters",
+      "year": 2025,
+      "volume": "52",
+      "issue": "2",
+      "pages_or_article": "e2024GL110679",
+      "publisher": "American Geophysical Union (AGU)",
+      "type": "journal-article",
+      "metadata_url": "https://api.crossref.org/works/10.1029/2024GL110679"
+    },
+    {
+      "study_id": "S_JANOUSEK_2025",
+      "catalogue_name": "Janousek et al. 2025 blue carbon",
+      "doi": "10.1029/2024GB008239",
+      "url": "https://doi.org/10.1029/2024GB008239",
+      "title": "Blue Carbon Stocks Along the Pacific Coast of North America Are Mainly Driven by Local Rather Than Regional Factors",
+      "authors": [
+        {
+          "given": "Christopher N.",
+          "family": "Janousek"
+        },
+        {
+          "given": "Johannes R.",
+          "family": "Krause"
+        },
+        {
+          "given": "Judith Z.",
+          "family": "Drexler"
+        },
+        {
+          "given": "Kevin J.",
+          "family": "Buffington"
+        },
+        {
+          "given": "Katrina L.",
+          "family": "Poppe"
+        },
+        {
+          "given": "Erin",
+          "family": "Peck"
+        },
+        {
+          "given": "Maria Fernanda",
+          "family": "Adame"
+        },
+        {
+          "given": "Elizabeth B.",
+          "family": "Watson"
+        },
+        {
+          "given": "James",
+          "family": "Holmquist"
+        },
+        {
+          "given": "Scott D.",
+          "family": "Bridgham"
+        },
+        {
+          "given": "Scott F.",
+          "family": "Jones"
+        },
+        {
+          "given": "Melissa",
+          "family": "Ward"
+        },
+        {
+          "given": "Cheryl A.",
+          "family": "Brown"
+        },
+        {
+          "given": "Lisa",
+          "family": "Beers"
+        },
+        {
+          "given": "Matthew T.",
+          "family": "Costa"
+        },
+        {
+          "given": "Heida L.",
+          "family": "Diefenderfer"
+        },
+        {
+          "given": "Amy B.",
+          "family": "Borde"
+        },
+        {
+          "given": "Lindsey",
+          "family": "Sheehan"
+        },
+        {
+          "given": "John",
+          "family": "Rybczyk"
+        },
+        {
+          "given": "Carolyn",
+          "family": "Prentice"
+        },
+        {
+          "given": "Andrew B.",
+          "family": "Gray"
+        },
+        {
+          "given": "Alejandro",
+          "family": "Hinojosa‐Corona"
+        },
+        {
+          "given": "Ana Carolina",
+          "family": "Ruiz‐Fernández"
+        },
+        {
+          "given": "Joan‐Albert",
+          "family": "Sanchez‐Cabeza"
+        },
+        {
+          "given": "Karen E.",
+          "family": "Kohfeld"
+        },
+        {
+          "given": "Paula",
+          "family": "Ezcurra"
+        },
+        {
+          "given": "Jonathan",
+          "family": "Ochoa‐Gómez"
+        },
+        {
+          "given": "Karen M.",
+          "family": "Thorne"
+        },
+        {
+          "given": "Marlow G.",
+          "family": "Pellatt"
+        },
+        {
+          "given": "Aurora M.",
+          "family": "Ricart"
+        },
+        {
+          "given": "Amanda M.",
+          "family": "Nahlik"
+        },
+        {
+          "given": "Laura S.",
+          "family": "Brophy"
+        },
+        {
+          "given": "Richard F.",
+          "family": "Ambrose"
+        },
+        {
+          "given": "Mira",
+          "family": "Lutz"
+        },
+        {
+          "given": "Craig",
+          "family": "Cornu"
+        },
+        {
+          "given": "Stephen",
+          "family": "Crooks"
+        },
+        {
+          "given": "Lisamarie",
+          "family": "Windham‐Myers"
+        },
+        {
+          "given": "Margot",
+          "family": "Hessing‐Lewis"
+        },
+        {
+          "given": "Fredrick T.",
+          "family": "Short"
+        },
+        {
+          "given": "Stephen",
+          "family": "Chastain"
+        },
+        {
+          "given": "Trevor",
+          "family": "Williams"
+        },
+        {
+          "given": "Tristan",
+          "family": "Douglas"
+        },
+        {
+          "given": "Elizabeth",
+          "family": "Fard"
+        },
+        {
+          "given": "Lauren",
+          "family": "Brown"
+        },
+        {
+          "given": "Michelle",
+          "family": "Goman"
+        }
+      ],
+      "journal": "Global Biogeochemical Cycles",
+      "year": 2025,
+      "volume": "39",
+      "issue": "3",
+      "pages_or_article": "e2024GB008239",
+      "publisher": "American Geophysical Union (AGU)",
+      "type": "journal-article",
+      "status": "DOI metadata retrieved",
+      "metadata_url": "https://api.crossref.org/works/10.1029/2024GB008239"
+    },
+    {
+      "study_id": "S_NCSCD_2013",
+      "catalogue_name": "Hugelius et al. 2013 NCSCDv2",
+      "doi": "10.5194/essd-5-393-2013",
+      "url": "https://doi.org/10.5194/essd-5-393-2013",
+      "status": "DOI metadata retrieved",
+      "title": "A new data set for estimating organic carbon storage to 3 m depth in soils of the northern circumpolar permafrost region",
+      "authors": [
+        {
+          "given": "G.",
+          "family": "Hugelius"
+        },
+        {
+          "given": "J. G.",
+          "family": "Bockheim"
+        },
+        {
+          "given": "P.",
+          "family": "Camill"
+        },
+        {
+          "given": "B.",
+          "family": "Elberling"
+        },
+        {
+          "given": "G.",
+          "family": "Grosse"
+        },
+        {
+          "given": "J. W.",
+          "family": "Harden"
+        },
+        {
+          "given": "K.",
+          "family": "Johnson"
+        },
+        {
+          "given": "T.",
+          "family": "Jorgenson"
+        },
+        {
+          "given": "C. D.",
+          "family": "Koven"
+        },
+        {
+          "given": "P.",
+          "family": "Kuhry"
+        },
+        {
+          "given": "G.",
+          "family": "Michaelson"
+        },
+        {
+          "given": "U.",
+          "family": "Mishra"
+        },
+        {
+          "given": "J.",
+          "family": "Palmtag"
+        },
+        {
+          "given": "C.-L.",
+          "family": "Ping"
+        },
+        {
+          "given": "J.",
+          "family": "O'Donnell"
+        },
+        {
+          "given": "L.",
+          "family": "Schirrmeister"
+        },
+        {
+          "given": "E. A. G.",
+          "family": "Schuur"
+        },
+        {
+          "given": "Y.",
+          "family": "Sheng"
+        },
+        {
+          "given": "L. C.",
+          "family": "Smith"
+        },
+        {
+          "given": "J.",
+          "family": "Strauss"
+        },
+        {
+          "given": "Z.",
+          "family": "Yu"
+        }
+      ],
+      "journal": "Earth System Science Data",
+      "year": 2013,
+      "volume": "5",
+      "issue": "2",
+      "pages_or_article": "393-402",
+      "publisher": "Copernicus GmbH",
+      "type": "journal-article",
+      "metadata_url": "https://api.crossref.org/works/10.5194/essd-5-393-2013"
+    },
+    {
+      "study_id": "S_OLEFELDT_2016",
+      "catalogue_name": "Olefeldt et al. 2016 thermokarst",
+      "doi": "10.1038/ncomms13043",
+      "url": "https://doi.org/10.1038/ncomms13043",
+      "title": "Circumpolar distribution and carbon storage of thermokarst landscapes",
+      "authors": [
+        {
+          "given": "D.",
+          "family": "Olefeldt"
+        },
+        {
+          "given": "S.",
+          "family": "Goswami"
+        },
+        {
+          "given": "G.",
+          "family": "Grosse"
+        },
+        {
+          "given": "D.",
+          "family": "Hayes"
+        },
+        {
+          "given": "G.",
+          "family": "Hugelius"
+        },
+        {
+          "given": "P.",
+          "family": "Kuhry"
+        },
+        {
+          "given": "A. D.",
+          "family": "McGuire"
+        },
+        {
+          "given": "V. E.",
+          "family": "Romanovsky"
+        },
+        {
+          "given": "A.B.K.",
+          "family": "Sannel"
+        },
+        {
+          "given": "E.A.G.",
+          "family": "Schuur"
+        },
+        {
+          "given": "M. R.",
+          "family": "Turetsky"
+        }
+      ],
+      "journal": "Nature Communications",
+      "year": 2016,
+      "volume": "7",
+      "issue": "1",
+      "pages_or_article": "13043",
+      "publisher": "Springer Science and Business Media LLC",
+      "type": "journal-article",
+      "status": "DOI metadata retrieved",
+      "metadata_url": "https://api.crossref.org/works/10.1038/ncomms13043"
+    },
+    {
+      "study_id": "S_TREAT_2024",
+      "catalogue_name": "Treat et al. 2024 review",
+      "doi": "10.1029/2023JG007638",
+      "url": "https://doi.org/10.1029/2023JG007638",
+      "title": "Permafrost Carbon: Progress on Understanding Stocks and Fluxes Across Northern Terrestrial Ecosystems",
+      "authors": [
+        {
+          "given": "Claire C.",
+          "family": "Treat"
+        },
+        {
+          "given": "Anna‐Maria",
+          "family": "Virkkala"
+        },
+        {
+          "given": "Eleanor",
+          "family": "Burke"
+        },
+        {
+          "given": "Lori",
+          "family": "Bruhwiler"
+        },
+        {
+          "given": "Abhishek",
+          "family": "Chatterjee"
+        },
+        {
+          "given": "Joshua B.",
+          "family": "Fisher"
+        },
+        {
+          "given": "Josh",
+          "family": "Hashemi"
+        },
+        {
+          "given": "Frans‐Jan W.",
+          "family": "Parmentier"
+        },
+        {
+          "given": "Brendan M.",
+          "family": "Rogers"
+        },
+        {
+          "given": "Sebastian",
+          "family": "Westermann"
+        },
+        {
+          "given": "Jennifer D.",
+          "family": "Watts"
+        },
+        {
+          "given": "Elena",
+          "family": "Blanc‐Betes"
+        },
+        {
+          "given": "Matthias",
+          "family": "Fuchs"
+        },
+        {
+          "given": "Stefan",
+          "family": "Kruse"
+        },
+        {
+          "given": "Avni",
+          "family": "Malhotra"
+        },
+        {
+          "given": "Kimberley",
+          "family": "Miner"
+        },
+        {
+          "given": "Jens",
+          "family": "Strauss"
+        },
+        {
+          "given": "Amanda",
+          "family": "Armstrong"
+        },
+        {
+          "given": "Howard E.",
+          "family": "Epstein"
+        },
+        {
+          "given": "Bradley",
+          "family": "Gay"
+        },
+        {
+          "given": "Mathias",
+          "family": "Goeckede"
+        },
+        {
+          "given": "Aram",
+          "family": "Kalhori"
+        },
+        {
+          "given": "Dan",
+          "family": "Kou"
+        },
+        {
+          "given": "Charles E.",
+          "family": "Miller"
+        },
+        {
+          "given": "Susan M.",
+          "family": "Natali"
+        },
+        {
+          "given": "Youmi",
+          "family": "Oh"
+        },
+        {
+          "given": "Sarah",
+          "family": "Shakil"
+        },
+        {
+          "given": "Oliver",
+          "family": "Sonnentag"
+        },
+        {
+          "given": "Ruth K.",
+          "family": "Varner"
+        },
+        {
+          "given": "Scott",
+          "family": "Zolkos"
+        },
+        {
+          "given": "Edward A.G.",
+          "family": "Schuur"
+        },
+        {
+          "given": "Gustaf",
+          "family": "Hugelius"
+        }
+      ],
+      "journal": "Journal of Geophysical Research: Biogeosciences",
+      "year": 2024,
+      "volume": "129",
+      "issue": "3",
+      "pages_or_article": "e2023JG007638",
+      "publisher": "American Geophysical Union (AGU)",
+      "type": "journal-article",
+      "status": "DOI metadata retrieved",
+      "metadata_url": "https://api.crossref.org/works/10.1029/2023JG007638"
+    },
+    {
+      "study_id": "S_MCNICOL_2019",
+      "catalogue_name": "McNicol et al. 2019 NPCTR",
+      "doi": "10.1088/1748-9326/aaed52",
+      "url": "https://doi.org/10.1088/1748-9326/aaed52",
+      "title": "Large, climate-sensitive soil carbon stocks mapped with pedology-informed machine learning in the North Pacific coastal temperate rainforest",
+      "authors": [
+        {
+          "given": "Gavin",
+          "family": "McNicol"
+        },
+        {
+          "given": "Chuck",
+          "family": "Bulmer"
+        },
+        {
+          "given": "David",
+          "family": "D’Amore"
+        },
+        {
+          "given": "Paul",
+          "family": "Sanborn"
+        },
+        {
+          "given": "Sari",
+          "family": "Saunders"
+        },
+        {
+          "given": "Ian",
+          "family": "Giesbrecht"
+        },
+        {
+          "given": "Santiago Gonzalez",
+          "family": "Arriola"
+        },
+        {
+          "given": "Allison",
+          "family": "Bidlack"
+        },
+        {
+          "given": "David",
+          "family": "Butman"
+        },
+        {
+          "given": "Brian",
+          "family": "Buma"
+        }
+      ],
+      "journal": "Environmental Research Letters",
+      "year": 2019,
+      "volume": "14",
+      "issue": "1",
+      "pages_or_article": "014004",
+      "publisher": "IOP Publishing",
+      "type": "journal-article",
+      "status": "DOI metadata retrieved",
+      "metadata_url": "https://api.crossref.org/works/10.1088/1748-9326/aaed52"
+    },
+    {
+      "study_id": "S_ARSENAULT_2026",
+      "catalogue_name": "Arsenault et al. 2026 Argenteuil",
+      "doi": "10.1029/2025JG009407",
+      "url": "https://doi.org/10.1029/2025JG009407",
+      "status": "DOI metadata retrieved",
+      "title": "Quantifying and Mapping Regional C, N and P Stocks From Temperate Fens, Bogs, and Forested Peatlands Using Detailed Peat Bathymetry",
+      "authors": [
+        {
+          "given": "Julien",
+          "family": "Arsenault"
+        },
+        {
+          "given": "Philippe",
+          "family": "Major"
+        },
+        {
+          "given": "Julie",
+          "family": "Talbot"
+        },
+        {
+          "given": "Roxane",
+          "family": "Maranger"
+        }
+      ],
+      "journal": "Journal of Geophysical Research: Biogeosciences",
+      "year": 2026,
+      "volume": "131",
+      "issue": "4",
+      "pages_or_article": "e2025JG009407",
+      "publisher": "American Geophysical Union (AGU)",
+      "type": "journal-article",
+      "metadata_url": "https://api.crossref.org/works/10.1029/2025JG009407"
+    },
+    {
+      "study_id": "S_MARTENS_2026",
+      "catalogue_name": "Martens and Kreyling 2026 coastal BC",
+      "doi": "10.1038/s41598-026-44791-z",
+      "url": "https://doi.org/10.1038/s41598-026-44791-z",
+      "status": "DOI metadata retrieved",
+      "title": "Beyond the forests: peatlands as overlooked carbon stores in coastal British Columbia",
+      "authors": [
+        {
+          "given": "Hanna Rae",
+          "family": "Martens"
+        },
+        {
+          "given": "Juergen",
+          "family": "Kreyling"
+        }
+      ],
+      "journal": "Scientific Reports",
+      "year": 2026,
+      "volume": "16",
+      "issue": "1",
+      "pages_or_article": "9540",
+      "publisher": "Springer Science and Business Media LLC",
+      "type": "journal-article",
+      "metadata_url": "https://api.crossref.org/works/10.1038/s41598-026-44791-z"
+    },
+    {
+      "study_id": "S_LAMPING_2025",
+      "catalogue_name": "Lamping et al. 2025 coastal forest maps",
+      "doi": "10.1016/j.foreco.2025.122576",
+      "url": "https://doi.org/10.1016/j.foreco.2025.122576",
+      "status": "DOI metadata retrieved",
+      "title": "Moderate-resolution mapping of aboveground biomass stocks, forest structure, and composition in coastal Alaska and British Columbia",
+      "authors": [
+        {
+          "given": "James",
+          "family": "Lamping"
+        },
+        {
+          "given": "Melissa",
+          "family": "Lucash"
+        },
+        {
+          "given": "David M.",
+          "family": "Bell"
+        },
+        {
+          "given": "Daniel R.",
+          "family": "Irvine"
+        },
+        {
+          "given": "Matt",
+          "family": "Gregory"
+        }
+      ],
+      "journal": "Forest Ecology and Management",
+      "year": 2025,
+      "volume": "583",
+      "issue": "",
+      "pages_or_article": "122576",
+      "publisher": "Elsevier BV",
+      "type": "journal-article",
+      "metadata_url": "https://api.crossref.org/works/10.1016/j.foreco.2025.122576"
+    },
+    {
+      "study_id": "S_GROSS_2022",
+      "catalogue_name": "Gross et al. 2022 Alberta agroforestry",
+      "doi": "10.1111/gcb.16322",
+      "url": "https://doi.org/10.1111/gcb.16322",
+      "status": "DOI metadata retrieved",
+      "title": "Agroforestry perennials reduce nitrous oxide emissions and their live and dead trees increase ecosystem carbon storage",
+      "authors": [
+        {
+          "given": "Cole D.",
+          "family": "Gross"
+        },
+        {
+          "given": "Edward W.",
+          "family": "Bork"
+        },
+        {
+          "given": "Cameron N.",
+          "family": "Carlyle"
+        },
+        {
+          "given": "Scott X.",
+          "family": "Chang"
+        }
+      ],
+      "journal": "Global Change Biology",
+      "year": 2022,
+      "volume": "28",
+      "issue": "20",
+      "pages_or_article": "5956-5972",
+      "publisher": "Wiley",
+      "type": "journal-article",
+      "metadata_url": "https://api.crossref.org/works/10.1111/gcb.16322"
+    },
+    {
+      "study_id": "S_PENDEA_2023",
+      "catalogue_name": "Pendea et al. 2023 Lake Simcoe",
+      "doi": "10.1029/2023JG007561",
+      "url": "https://doi.org/10.1029/2023JG007561",
+      "status": "DOI metadata retrieved",
+      "title": "Carbon Stocks and Recent Rates of Carbon Sequestration in Nutrient‐Rich Freshwater Wetlands From Lake Simcoe Watershed (Southern Canada)",
+      "authors": [
+        {
+          "given": "I. F.",
+          "family": "Pendea"
+        },
+        {
+          "given": "N.",
+          "family": "Kanavillil"
+        },
+        {
+          "given": "S.",
+          "family": "Kurissery"
+        },
+        {
+          "given": "G. L.",
+          "family": "Chmura"
+        }
+      ],
+      "journal": "Journal of Geophysical Research: Biogeosciences",
+      "year": 2023,
+      "volume": "128",
+      "issue": "10",
+      "pages_or_article": "e2023JG007561",
+      "publisher": "American Geophysical Union (AGU)",
+      "type": "journal-article",
+      "metadata_url": "https://api.crossref.org/works/10.1029/2023JG007561"
+    },
+    {
+      "study_id": "S_CHASTAIN_2022",
+      "catalogue_name": "Chastain et al. 2022 Clayoquot",
+      "doi": "10.5194/bg-19-5751-2022",
+      "url": "https://doi.org/10.5194/bg-19-5751-2022",
+      "status": "DOI metadata retrieved",
+      "title": "Quantification of blue carbon in salt marshes of the Pacific coast of Canada",
+      "authors": [
+        {
+          "given": "Stephen G.",
+          "family": "Chastain"
+        },
+        {
+          "given": "Karen E.",
+          "family": "Kohfeld"
+        },
+        {
+          "given": "Marlow G.",
+          "family": "Pellatt"
+        },
+        {
+          "given": "Carolina",
+          "family": "Olid"
+        },
+        {
+          "given": "Maija",
+          "family": "Gailis"
+        }
+      ],
+      "journal": "Biogeosciences",
+      "year": 2022,
+      "volume": "19",
+      "issue": "24",
+      "pages_or_article": "5751-5777",
+      "publisher": "Copernicus GmbH",
+      "type": "journal-article",
+      "metadata_url": "https://api.crossref.org/works/10.5194/bg-19-5751-2022"
+    },
+    {
+      "study_id": "S_EPSTEIN_2024",
+      "catalogue_name": "Epstein et al. 2024 seabed sediment OC",
+      "doi": "10.5194/essd-16-2165-2024",
+      "url": "https://doi.org/10.5194/essd-16-2165-2024",
+      "status": "DOI metadata retrieved",
+      "title": "Predictive mapping of organic carbon stocks in surficial sediments of the Canadian continental margin",
+      "authors": [
+        {
+          "given": "Graham",
+          "family": "Epstein"
+        },
+        {
+          "given": "Susanna D.",
+          "family": "Fuller"
+        },
+        {
+          "given": "Dipti",
+          "family": "Hingmire"
+        },
+        {
+          "given": "Paul G.",
+          "family": "Myers"
+        },
+        {
+          "given": "Angelica",
+          "family": "Peña"
+        },
+        {
+          "given": "Clark",
+          "family": "Pennelly"
+        },
+        {
+          "given": "Julia K.",
+          "family": "Baum"
+        }
+      ],
+      "journal": "Earth System Science Data",
+      "year": 2024,
+      "volume": "16",
+      "issue": "5",
+      "pages_or_article": "2165-2195",
+      "publisher": "Copernicus GmbH",
+      "type": "journal-article",
+      "metadata_url": "https://api.crossref.org/works/10.5194/essd-16-2165-2024"
+    },
+    {
+      "study_id": "W_COLAB_V1",
+      "catalogue_name": "Repository multiscale covariate notebook",
+      "url": "",
+      "status": "No DOI recorded; workflow or unresolved study citation"
+    }
+  ]
+}

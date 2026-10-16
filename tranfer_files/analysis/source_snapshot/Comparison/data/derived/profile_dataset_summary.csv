@@ -1,0 +1,6 @@
+dataset,profiles,layers,located,outside_canada_ecozones,year_min,year_max,profiles_dated,median_deepest_layer_cm,share_reaching_30cm,share_reaching_100cm,share_reaching_200cm,layers_with_soc,layers_with_bd,layers_with_stock_value,layers_stock_computable_flag,depth_datum,qualifiers
+WoSIS,8825,43055,8825,2,1939.0,2013.0,4921,101.0,0.9173,0.5522,0.0254,0.9902,0.0029,0.0024,0.0024,Profile top; organic surface layers flagged (organic_surface),"Concentration observations mostly; stock sums partial, no coarse-fragment adjustment"
+NPDB,9017,48371,9017,0,1943.0,2015.0,9017,100.0,0.959,0.6244,0.044,0.5912,0.0733,0.0538,0.0538,Mineral surface = 0 cm; LFH horizons above 0 cm,"1,564 profiles flagged for poor location confidence"
+NRCan peat,1217,37072,1217,13,1967.0,2017.0,1111,243.0,1.0,0.8948,0.6204,0.989,0.989,0.989,,Peat surface; full sampled column,"Bulk density 0 measured / 0 estimated rows; provider flags 736 measured vs 35,929 estimated organic-C rows (flags omitted from v1)"
+Janousek,1284,23018,1284,1101,,,0,60.0,0.9953,0.4844,0.0023,1.0,1.0,1.0,,Sediment surface,Pacific coast Alaska to Mexico; repeated source layer IDs flagged; 13 profiles with thickness/boundary mismatches
+Riley,347,1584,347,0,,,0,250.0,0.9885,0.9568,0.7205,0.8472,,,,Peat surface,Groups are NTS + peatland + sampling point; bulk-density units unverified (not used); no dates

@@ -1,35 +1,30 @@
-# Copying these files into the company repository
+# Transfer package for the new repository
 
-This folder holds the prepared report files. The folder name `tranfer_files` follows the requested spelling.
+This folder is the working copy of the company repository material prepared so far. We can continue adding to it here.
 
-## What to copy
+## Copy the repository files
 
-Copy **`README.md` and the entire `docs` folder** into the root of the new repository. Keep the folder structure so images and page links work.
+Download [company-repository.zip](handover/company-repository.zip) using **Download raw file**, extract it, and upload the extracted contents to the company repository root through **Add file → Upload files**. Keep all folder names. The ZIP contains the report drafts, figures, catalogue, references, access examples, supporting scripts and versioned technical analysis.
 
-```text
-README.md
-docs/
-  summaries.md
-  comparisons.md
-  images/
-    summaries/
-      ...19 figures and source_manifest.json
-```
+If copying directly from this folder, copy everything except `handover/` and this `START_HERE.md` guide. The handover folder contains assembly instructions, the standalone HTML layout preview, earlier reviews and the ZIP. Those files are included here for continuity but need not be published in the company repository.
 
-You can browse and copy the Markdown directly on GitHub. For all files together, open [company-repository.zip](handover/company-repository.zip), select **Download raw file**, and extract it on your computer. Upload the extracted README and docs folder through **Add file → Upload files** in the company repository, following its normal review process. Upload the extracted files rather than the ZIP.
+| Path | Contents |
+|---|---|
+| `README.md` | Report introduction, dataset tables and links |
+| `docs/` | Summaries, comparisons, How to use, methods, downloads and source access/QC notes |
+| `data/` | Editable catalogue tables and source evidence |
+| `references/`, `SOURCES.md` | Scientific references and the original project's citation metadata |
+| `examples/` | Existing Earth Engine access examples |
+| `scripts/` | Catalogue JSON builder and source QC example |
+| `analysis/` | Summary-figure generator and a versioned source analysis snapshot |
+| `CONTRIBUTING.md`, `.gitignore` | Contribution guidance and generated-file exclusions |
 
-The `handover` folder and this guide are for assembling and reviewing the repository. They do not need to go into the company report.
+## Review the drafts
 
-## Preview and status
+[Summaries](docs/summaries.md) · [Comparisons](docs/comparisons.md) · [How to use](docs/how-to-use.md) · [Setup guide](handover/repository_setup_guide.md)
 
-- [README](README.md): introduction, catalogue tables in dropdowns, and the three agreed focuses.
-- [Visual summaries](docs/summaries.md): example product maps, soil-observation locations, depth coverage, SOC, bulk density and site-stock charts.
-- [Comparisons](docs/comparisons.md): draft findings with source revisions and scientific limitations.
-- [Interactive layout preview](handover/summaries-preview.html): download and open in a browser; GitHub's file view shows HTML source.
-- [Setup guide](handover/repository_setup_guide.md): upload, review and publishing steps.
+Download `handover/summaries-preview.html` and open it in a browser to explore the proposed interactive layout. It embeds its original figures and does not update automatically when Markdown or PNG files change.
 
-The report follows **Data and summaries · Comparisons · How to use**. Within each focus, use **Forests / Soils → Ground data / Covariates / Maps**. GEE apps remain planned.
+The agreed structure remains **Data and summaries · Comparisons · How to use**, each organised as **Forests / Soils → Ground data / Covariates / Maps**. GEE apps, forest ground-data summaries, full-product distributions and chosen-area totals remain explicit unfinished work. This is not yet a configured company GitHub Pages deployment.
 
-Panels marked “To add” are unfinished. Full-product raster distributions, chosen-area carbon totals and forest ground-data summaries have not been calculated for this scaffold. Site stocks and area totals use separate definitions. Peat depth, full-peat-column carbon and fixed-depth soil carbon must retain their distinct labels.
-
-The source manifest records the figure inputs and source snapshot. Comparison results have their own versioned source links. The full reproducible analysis remains in the source repository; this folder is the report transfer package.
+The earlier reviews in `handover/planning/` retain their original snapshot context. Current comparison sources and figure inputs are versioned separately. Raw external profile/layer preparation files and Earth Engine credentials/assets are not part of this transfer.

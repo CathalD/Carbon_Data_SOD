@@ -1,0 +1,30 @@
+link_id,study_id,ground_id,study_role,evidence_basis,release_match_note
+L001,S_BETTS_2024,G_CLI,Training and validation,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L002,S_SOTHE_FOREST_2022,G_BC_INVENTORY,Reference biomass,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L003,S_SOTHE_FOREST_2022,G_NFI,Reference biomass,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L004,S_QIN_2025,G_NFI,Reference data; exact role pending,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L005,S_SCANFI_V1,G_NFI_PHOTO,Training,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L006,S_SCANFI_V1,G_QUEBEC,External ground validation; source details pending,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L007,S_SCANFI_V1,G_NFI,External ground validation; source details pending,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L008,S_SOTHE_CONC_2022,G_WOSIS,Historical training sources; snapshot not our current preparation,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L009,S_SOTHE_CONC_2022,G_LEHIGH_PEAT,Historical training sources; snapshot not our current preparation,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L010,S_SOTHE_SOC_2022,G_WOSIS,Historical training sources; snapshot not our current preparation,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L011,S_SOTHE_SOC_2022,G_LEHIGH_PEAT,Historical training sources; snapshot not our current preparation,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L012,S_SOILGRIDS_2021,G_SOILGRIDS_GLOBAL,Training and validation,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L013,S_GENG_2025,G_NPDB,CanSIS legacy source family; exact training subset unresolved,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L014,S_HENGL_2023,G_HENGL,Training and validation,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L015,S_LI_2025,G_LI_TRAIN,Training,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L016,S_LI_2025,G_LI_VALID,External field validation,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L017,S_JANOUSEK_2025,G_JANOUSEK,Core-based analysis,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L018,S_NCSCD_2013,G_NCSCD,Map-unit stock upscaling,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L019,S_OLEFELDT_2016,G_NCSCD,Inherited SOC estimates; not new training pedons,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L020,S_MCNICOL_2019,G_MCNICOL,Training and validation,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L021,S_ARSENAULT_2026,G_ARSENAULT,Field bathymetry and chemistry,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L022,S_MARTENS_2026,G_MARTENS,New local observations,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L023,S_MARTENS_2026,G_NRCAN_PEAT,Reused regional comparison observations,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L024,S_GROSS_2022,G_GROSS,Field carbon pools,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L025,S_PENDEA_2023,G_PENDEA,Core stock and accumulation analysis,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L026,S_CHASTAIN_2022,G_CLAYOQUOT,Core stock and accumulation analysis,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L027,S_EPSTEIN_2024,G_EPSTEIN,Training/reference observations,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L028,W_COLAB_V1,G_RILEY,Extraction donor filter; no fitted study implied,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.
+L029,W_COLAB_V1,G_NRCAN_PEAT,Extraction donor filter; no fitted study implied,Study/repository documented,Named source connection is not a claim that our uploaded release reproduces the study training set.

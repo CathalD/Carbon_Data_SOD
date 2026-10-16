@@ -1,0 +1,463 @@
+{
+  "checked_utc": "2026-10-15T20:00:06.549188+00:00",
+  "method": "Existing authorized session: getAsset and getAssetAcl; public_read requires all_users_can_read=true. Private principal identities omitted. This is ACL verification, not an anonymous Earth Engine computation.",
+  "assets": [
+    {
+      "asset_record_id": "A001",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_250m_v20",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A002",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_uncertainty_250m_v20",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A003",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_0cm_250m_version10",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A004",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_5cm_250m_version10",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A005",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_15cm_250m_version10",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A006",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_30cm_250m_version10",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A007",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_60cm_250m_version10",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A008",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_100cm_250m_version10",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A009",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/soc_mean",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "soc_0-5cm_mean",
+        "soc_5-15cm_mean",
+        "soc_15-30cm_mean",
+        "soc_30-60cm_mean",
+        "soc_60-100cm_mean",
+        "soc_100-200cm_mean"
+      ]
+    },
+    {
+      "asset_record_id": "A010",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "bdod_0-5cm_mean",
+        "bdod_5-15cm_mean",
+        "bdod_15-30cm_mean",
+        "bdod_30-60cm_mean",
+        "bdod_60-100cm_mean",
+        "bdod_100-200cm_mean"
+      ]
+    },
+    {
+      "asset_record_id": "A011",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocd_mean",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "ocd_0-5cm_mean",
+        "ocd_5-15cm_mean",
+        "ocd_15-30cm_mean",
+        "ocd_30-60cm_mean",
+        "ocd_60-100cm_mean",
+        "ocd_100-200cm_mean"
+      ]
+    },
+    {
+      "asset_record_id": "A012",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocs_mean",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "ocs_0-30cm_mean"
+      ]
+    },
+    {
+      "asset_record_id": "A013",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC30_0012deg",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A014",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC100_0012deg",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A015",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC200_0012deg",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A016",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/olefeldt_2016/Circumpolar_Thermokarst_Landscapes",
+      "type": "TABLE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine"
+    },
+    {
+      "asset_record_id": "A017",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_PeatDepth_30m",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A018",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_Uncertainty_PeatDepth_30m",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A019",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterCarbon30mkgm2version1",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A020",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterUncertaintyCarbon30mkgm2",
+      "type": "IMAGE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A021",
+      "asset_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_0_5_cm",
+      "metadata_readable": true,
+      "public_read": true,
+      "type": "IMAGE",
+      "permission_scope": "parent ImageCollection ACL",
+      "acl_asset_id": "projects/northstarlabs/assets/canada_carbon_collection",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A022",
+      "asset_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_5_15_cm",
+      "metadata_readable": true,
+      "public_read": true,
+      "type": "IMAGE",
+      "permission_scope": "parent ImageCollection ACL",
+      "acl_asset_id": "projects/northstarlabs/assets/canada_carbon_collection",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A023",
+      "asset_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_15_30_cm",
+      "metadata_readable": true,
+      "public_read": true,
+      "type": "IMAGE",
+      "permission_scope": "parent ImageCollection ACL",
+      "acl_asset_id": "projects/northstarlabs/assets/canada_carbon_collection",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A024",
+      "asset_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_30_60_cm",
+      "metadata_readable": true,
+      "public_read": true,
+      "type": "IMAGE",
+      "permission_scope": "parent ImageCollection ACL",
+      "acl_asset_id": "projects/northstarlabs/assets/canada_carbon_collection",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A025",
+      "asset_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_60_100_cm",
+      "metadata_readable": true,
+      "public_read": true,
+      "type": "IMAGE",
+      "permission_scope": "parent ImageCollection ACL",
+      "acl_asset_id": "projects/northstarlabs/assets/canada_carbon_collection",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A026",
+      "asset_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_0_5_cm",
+      "metadata_readable": true,
+      "public_read": true,
+      "type": "IMAGE",
+      "permission_scope": "parent ImageCollection ACL",
+      "acl_asset_id": "projects/northstarlabs/assets/canada_carbon_collection",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A027",
+      "asset_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_5_15_cm",
+      "metadata_readable": true,
+      "public_read": true,
+      "type": "IMAGE",
+      "permission_scope": "parent ImageCollection ACL",
+      "acl_asset_id": "projects/northstarlabs/assets/canada_carbon_collection",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A028",
+      "asset_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_15_30_cm",
+      "metadata_readable": true,
+      "public_read": true,
+      "type": "IMAGE",
+      "permission_scope": "parent ImageCollection ACL",
+      "acl_asset_id": "projects/northstarlabs/assets/canada_carbon_collection",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A029",
+      "asset_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_30_60_cm",
+      "metadata_readable": true,
+      "public_read": true,
+      "type": "IMAGE",
+      "permission_scope": "parent ImageCollection ACL",
+      "acl_asset_id": "projects/northstarlabs/assets/canada_carbon_collection",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A030",
+      "asset_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_60_100_cm",
+      "metadata_readable": true,
+      "public_read": true,
+      "type": "IMAGE",
+      "permission_scope": "parent ImageCollection ACL",
+      "acl_asset_id": "projects/northstarlabs/assets/canada_carbon_collection",
+      "bands": [
+        "b1"
+      ]
+    },
+    {
+      "asset_record_id": "A031",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/profiles/wosis_canada_profiles_v2",
+      "type": "TABLE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine"
+    },
+    {
+      "asset_record_id": "A032",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/profiles/wosis_canada_layers_v2",
+      "type": "TABLE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine"
+    },
+    {
+      "asset_record_id": "A033",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/profiles/npdb_canada_profiles_v1",
+      "type": "TABLE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine"
+    },
+    {
+      "asset_record_id": "A034",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/profiles/npdb_canada_layers_v1",
+      "type": "TABLE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine"
+    },
+    {
+      "asset_record_id": "A035",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/profiles/canpeat_profiles_v1",
+      "type": "TABLE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine"
+    },
+    {
+      "asset_record_id": "A036",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/profiles/canpeat_layers_v1",
+      "type": "TABLE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine"
+    },
+    {
+      "asset_record_id": "A037",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/profiles/janousek_profiles_v1",
+      "type": "TABLE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine"
+    },
+    {
+      "asset_record_id": "A038",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/profiles/janousek_layers_v1",
+      "type": "TABLE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine"
+    },
+    {
+      "asset_record_id": "A039",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/profiles/riley_profiles_v1",
+      "type": "TABLE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine"
+    },
+    {
+      "asset_record_id": "A040",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/profiles/riley_layers_v1",
+      "type": "TABLE",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine"
+    },
+    {
+      "asset_record_id": "A044",
+      "asset_id": "projects/northstarlabs/assets/carbon_state_of_data/forests/maps/scanfi_v2_biomass",
+      "type": "IMAGE_COLLECTION",
+      "metadata_readable": true,
+      "public_read": true,
+      "permission_scope": "asset ACL returned by Earth Engine",
+      "image_count": 0
+    }
+  ],
+  "summary": {
+    "checked": 41,
+    "public_read_grants": 41,
+    "not_public": 0,
+    "errors": 0
+  },
+  "permissions_changed": false,
+  "collection_permissions": [
+    {
+      "asset_id": "projects/northstarlabs/assets/canada_carbon_collection",
+      "type": "IMAGE_COLLECTION",
+      "public_read": true,
+      "image_count": 10
+    }
+  ],
+  "maintainer_update": "Maintainer enabled public read on canada_carbon_collection during release preparation; public collection ACL read back successfully."
+}

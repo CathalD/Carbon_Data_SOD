@@ -1,0 +1,43 @@
+---
+title: "How to use"
+subtitle: "Tools to explore and use the ground data, environmental covariates and maps."
+---
+
+```{r}
+#| label: setup
+source(file.path("report", "_setup.R"))
+```
+
+::: {.callout-note appearance="simple"}
+**GEE apps are planned.** This section will provide tools to explore and use the ground data, environmental covariates and maps. Until then, the [catalogue](index.qmd#find), [downloads](downloads.qmd) and the working examples below give direct access.
+:::
+
+**Working examples available now**
+
+- **Earth Engine Code Editor:** [01_load_carbon_data.js](`r gh_blob("examples/01_load_carbon_data.js")`) loads the WoSIS profiles, SoilGrids depth bands and ESA CCI biomass.
+- **Python:** [02_quickstart.py](`r gh_blob("examples/02_quickstart.py")`) makes read-only requests and downloads a small demonstration GeoTIFF ([instructions](`r gh_blob("examples/README.md")`)).
+- **Exact Earth Engine asset IDs and provider links** for every map are in the [Assets table](`r gh_blob("data/downloads/Assets.csv")`).
+
+You need an Earth Engine-enabled Cloud project of your own; public asset sharing does not give quota on the catalogue maintainer's project.
+
+# Forests {#forests}
+
+## Ground data {#forests-ground}
+App forthcoming: explore forest plot and tree observations. For now, follow each dataset's [provider link](index.qmd#forests-ground).
+
+## Covariates {#forests-covariates}
+App forthcoming: explore the environmental covariates forest studies used. For now, see the [covariate summary](index.qmd#forests-covariates).
+
+## Maps {#forests-maps}
+App forthcoming: explore and extract forest biomass and carbon maps. For now, use the [Assets table](`r gh_blob("data/downloads/Assets.csv")`) with the Code Editor example.
+
+# Soils {#soils}
+
+## Ground data {#soils-ground}
+App forthcoming: explore soil profiles and cores. The five hosted profile tables are public Earth Engine assets listed in the [Ground data table](`r gh_blob("data/downloads/Ground_data.csv")`).
+
+## Covariates {#soils-covariates}
+App forthcoming: explore the environmental covariates soil and peat studies used. For now, see the [covariate summary](index.qmd#soils-covariates).
+
+## Maps {#soils-maps}
+App forthcoming: explore and extract soil and peat carbon maps. For now, the Python example shows how to read SoilGrids at a fixed depth with its documented unit factor.

@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-10-15",
+  "execution_status": "Not executed in Earth Engine; awaiting maintainer session",
+  "assets": [
+    {
+      "asset_record_id": "A001",
+      "resource_id": "M_SOTHE_STOCK",
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/sc/sc_250m_v20",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_250m_v20",
+      "asset_type": "IMAGE",
+      "depth_support": "0–100 cm maintainer assumption"
+    },
+    {
+      "asset_record_id": "A002",
+      "resource_id": "M_SOTHE_UNC",
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/sc/sc_uncertainty_250m_v20",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_uncertainty_250m_v20",
+      "asset_type": "IMAGE",
+      "depth_support": "0–100 cm maintainer assumption"
+    },
+    {
+      "asset_record_id": "A003",
+      "resource_id": "M_SOTHE_CONC",
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_0cm_250m_version10",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_0cm_250m_version10",
+      "asset_type": "IMAGE",
+      "depth_support": "0 cm point-depth label"
+    },
+    {
+      "asset_record_id": "A004",
+      "resource_id": "M_SOTHE_CONC",
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_5cm_250m_version10",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_5cm_250m_version10",
+      "asset_type": "IMAGE",
+      "depth_support": "5 cm point-depth label"
+    },
+    {
+      "asset_record_id": "A005",
+      "resource_id": "M_SOTHE_CONC",
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_15cm_250m_version10",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_15cm_250m_version10",
+      "asset_type": "IMAGE",
+      "depth_support": "15 cm point-depth label"
+    },
+    {
+      "asset_record_id": "A006",
+      "resource_id": "M_SOTHE_CONC",
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_30cm_250m_version10",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_30cm_250m_version10",
+      "asset_type": "IMAGE",
+      "depth_support": "30 cm point-depth label"
+    },
+    {
+      "asset_record_id": "A007",
+      "resource_id": "M_SOTHE_CONC",
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_60cm_250m_version10",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_60cm_250m_version10",
+      "asset_type": "IMAGE",
+      "depth_support": "60 cm point-depth label"
+    },
+    {
+      "asset_record_id": "A008",
+      "resource_id": "M_SOTHE_CONC",
+      "source_id": "projects/sat-io/open-datasets/carbon_stocks_ca/scc/scc_100cm_250m_version10",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/scc_100cm_250m_version10",
+      "asset_type": "IMAGE",
+      "depth_support": "100 cm point-depth label"
+    },
+    {
+      "asset_record_id": "A009",
+      "resource_id": "M_SG_SOC",
+      "source_id": "projects/soilgrids-isric/soc_mean",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/soc_mean",
+      "asset_type": "IMAGE",
+      "depth_support": "Six intervals to 200 cm"
+    },
+    {
+      "asset_record_id": "A010",
+      "resource_id": "M_SG_BD",
+      "source_id": "projects/soilgrids-isric/bdod_mean",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean",
+      "asset_type": "IMAGE",
+      "depth_support": "Six intervals to 200 cm"
+    },
+    {
+      "asset_record_id": "A011",
+      "resource_id": "M_SG_OCD",
+      "source_id": "projects/soilgrids-isric/ocd_mean",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocd_mean",
+      "asset_type": "IMAGE",
+      "depth_support": "Six intervals to 200 cm"
+    },
+    {
+      "asset_record_id": "A012",
+      "resource_id": "M_SG_OCS",
+      "source_id": "projects/soilgrids-isric/ocs_mean",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocs_mean",
+      "asset_type": "IMAGE",
+      "depth_support": "0–30 cm"
+    },
+    {
+      "asset_record_id": "A013",
+      "resource_id": "M_NCSCD_30",
+      "source_id": "projects/carbon-learning-library/assets/NCSCDv2_Canada_WGS84_SOCC30_0012deg",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC30_0012deg",
+      "asset_type": "IMAGE",
+      "depth_support": "0–30 cm"
+    },
+    {
+      "asset_record_id": "A014",
+      "resource_id": "M_NCSCD_100",
+      "source_id": "projects/carbon-learning-library/assets/NCSCDv2_Canada_WGS84_SOCC100_0012deg",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC100_0012deg",
+      "asset_type": "IMAGE",
+      "depth_support": "0–100 cm"
+    },
+    {
+      "asset_record_id": "A015",
+      "resource_id": "M_NCSCD_200",
+      "source_id": "projects/carbon-learning-library/assets/NCSCDv2_Canada_WGS84_SOCC200_0012deg",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC200_0012deg",
+      "asset_type": "IMAGE",
+      "depth_support": "100–200 cm"
+    },
+    {
+      "asset_record_id": "A016",
+      "resource_id": "M_THERMOKARST",
+      "source_id": "projects/carbon-learning-library/assets/Circumpolar_Thermokarst_Landscapes",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/olefeldt_2016/Circumpolar_Thermokarst_Landscapes",
+      "asset_type": "TABLE",
+      "depth_support": "0–3 m associated SOC"
+    },
+    {
+      "asset_record_id": "A017",
+      "resource_id": "M_LI_DEPTH",
+      "source_id": "projects/northstarlabs/assets/McMaster_PeatDepth_30m",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_PeatDepth_30m",
+      "asset_type": "IMAGE",
+      "depth_support": "Variable modelled peat depth"
+    },
+    {
+      "asset_record_id": "A018",
+      "resource_id": "M_LI_DEPTH_UNC",
+      "source_id": "projects/northstarlabs/assets/McMaster_Uncertainty_PeatDepth_30m",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_Uncertainty_PeatDepth_30m",
+      "asset_type": "IMAGE",
+      "depth_support": "Variable modelled peat depth"
+    },
+    {
+      "asset_record_id": "A019",
+      "resource_id": "M_LI_C",
+      "source_id": "projects/ee-cathalpdoherty2/assets/McMasterCarbon30mkgm2version1",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterCarbon30mkgm2version1",
+      "asset_type": "IMAGE",
+      "depth_support": "Variable modelled peat depth"
+    },
+    {
+      "asset_record_id": "A020",
+      "resource_id": "M_LI_C_UNC",
+      "source_id": "projects/ee-cathalpdoherty2/assets/McMasterUncertaintyCarbon30mkgm2",
+      "destination_id": "projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterUncertaintyCarbon30mkgm2",
+      "asset_type": "IMAGE",
+      "depth_support": "Variable modelled peat depth"
+    },
+    {
+      "asset_record_id": "A021",
+      "resource_id": "M_GENG_BD",
+      "source_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_0_5_cm",
+      "destination_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_0_5_cm",
+      "asset_type": "IMAGE",
+      "depth_support": "0–5 cm"
+    },
+    {
+      "asset_record_id": "A022",
+      "resource_id": "M_GENG_BD",
+      "source_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_5_15_cm",
+      "destination_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_5_15_cm",
+      "asset_type": "IMAGE",
+      "depth_support": "5–15 cm"
+    },
+    {
+      "asset_record_id": "A023",
+      "resource_id": "M_GENG_BD",
+      "source_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_15_30_cm",
+      "destination_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_15_30_cm",
+      "asset_type": "IMAGE",
+      "depth_support": "15–30 cm"
+    },
+    {
+      "asset_record_id": "A024",
+      "resource_id": "M_GENG_BD",
+      "source_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_30_60_cm",
+      "destination_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_30_60_cm",
+      "asset_type": "IMAGE",
+      "depth_support": "30–60 cm"
+    },
+    {
+      "asset_record_id": "A025",
+      "resource_id": "M_GENG_BD",
+      "source_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_60_100_cm",
+      "destination_id": "projects/northstarlabs/assets/canada_carbon_collection/BD_60_100_cm",
+      "asset_type": "IMAGE",
+      "depth_support": "60–100 cm"
+    },
+    {
+      "asset_record_id": "A026",
+      "resource_id": "M_GENG_SOC",
+      "source_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_0_5_cm",
+      "destination_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_0_5_cm",
+      "asset_type": "IMAGE",
+      "depth_support": "0–5 cm"
+    },
+    {
+      "asset_record_id": "A027",
+      "resource_id": "M_GENG_SOC",
+      "source_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_5_15_cm",
+      "destination_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_5_15_cm",
+      "asset_type": "IMAGE",
+      "depth_support": "5–15 cm"
+    },
+    {
+      "asset_record_id": "A028",
+      "resource_id": "M_GENG_SOC",
+      "source_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_15_30_cm",
+      "destination_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_15_30_cm",
+      "asset_type": "IMAGE",
+      "depth_support": "15–30 cm"
+    },
+    {
+      "asset_record_id": "A029",
+      "resource_id": "M_GENG_SOC",
+      "source_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_30_60_cm",
+      "destination_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_30_60_cm",
+      "asset_type": "IMAGE",
+      "depth_support": "30–60 cm"
+    },
+    {
+      "asset_record_id": "A030",
+      "resource_id": "M_GENG_SOC",
+      "source_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_60_100_cm",
+      "destination_id": "projects/northstarlabs/assets/canada_carbon_collection/SOC_60_100_cm",
+      "asset_type": "IMAGE",
+      "depth_support": "60–100 cm"
+    }
+  ]
+}

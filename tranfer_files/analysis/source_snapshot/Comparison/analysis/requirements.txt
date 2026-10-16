@@ -1,0 +1,9 @@
+# Python packages used directly by the comparison analysis (Comparison/analysis/).
+# The site itself renders with Quarto + R only; see Comparison/README.md.
+earthengine-api==1.7.48
+numpy==2.5.4
+pandas==3.0.6
+geopandas==1.2.0
+shapely==2.2.0
+pyogrio==0.13.0
+pillow>=11

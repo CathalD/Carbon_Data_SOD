@@ -1,0 +1,37 @@
+kind,input,source,location_setting,rows,sha256
+local prepared table,wosis_canada_profiles_v2.csv,"WoSIS Canada v2 (ISRIC WoSIS), project preparation",CSOD_LOCAL_DATA,8825,8e14a986ee74007a808aefdd1d22d8397e58fd808b7579da83d5f54aee309f28
+local prepared table,wosis_canada_layers_v2.csv,"WoSIS Canada v2 (ISRIC WoSIS), project preparation",CSOD_LOCAL_DATA,43055,8f4c4257956ad5accf974ef3aea044a5156750b01e037fee9a4d49010d09f26a
+local prepared table,npdb_canada_profiles_v1.csv,"National Pedon Database (CanSIS), project preparation",CSOD_LOCAL_DATA,9017,299e36b8cb4d7ccc2029fa8158ed239253bea06a416fffe2b06d8ee5865a6355
+local prepared table,npdb_canada_layers_v1_upload_fixed.csv,"National Pedon Database (CanSIS), project preparation",CSOD_LOCAL_DATA,48371,29a1194165dbc033677b16464cd2f91ec9e88b83dbdf36fe67e67ad40063ff54
+local prepared table,canpeat_layers_v1.csv,"NRCan Peat Profile Database, project preparation",CSOD_LOCAL_DATA,37072,e6367eab79f30b8320c03c5f65b417233ed410b79526b604566b8a9d4a75ec04
+local prepared table,janousek_profiles_v1.csv,"Janousek et al. 2025 coastal cores, project preparation",CSOD_LOCAL_DATA,1284,2a7da0d4e2fdc830aacfc60ad3cf7118700947396044576121d9e8d6db045b6e
+local prepared table,janousek_layers_v1.csv,"Janousek et al. 2025 coastal cores, project preparation",CSOD_LOCAL_DATA,23018,5b18923c4d71197ab569481dd685538cc66de4f7da0acb259821444838f73d80
+local prepared table,riley_profiles_v1.csv,"Riley OGS peat data, project preparation",CSOD_LOCAL_DATA,347,39ab03cc173b0543f831eaf9ba93ce1c69fc2b2b72268bb777acf65d9b9a615c
+local prepared table,riley_layers_v1.csv,"Riley OGS peat data, project preparation",CSOD_LOCAL_DATA,1584,c69e79a330f90834ce52bd5cd76aee514300a50fb84e89290f1b03fbe3c931e0
+earth engine asset,projects/gcpm041u-lemur/assets/scanfi_v12/SCANFI_v1_2,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/canada_carbon_collection/BD_0_5_cm,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/canada_carbon_collection/BD_15_30_cm,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/canada_carbon_collection/BD_30_60_cm,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/canada_carbon_collection/BD_5_15_cm,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/canada_carbon_collection/BD_60_100_cm,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/canada_carbon_collection/SOC_0_5_cm,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/canada_carbon_collection/SOC_15_30_cm,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/canada_carbon_collection/SOC_30_60_cm,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/canada_carbon_collection/SOC_5_15_cm,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/canada_carbon_collection/SOC_60_100_cm,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterCarbon30mkgm2version1,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_PeatDepth_30m,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC100_0012deg,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC30_0012deg,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocd_mean,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocs_mean,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/soc_mean,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_250m_v20,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_uncertainty_250m_v20,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/sat-io/open-datasets/ESA/ESA_CCI_AGB/CCI_BIOMASS_100m_AGB_2020_V6,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/sat-io/open-datasets/PEATGRIDS/C_STOCK_MGC_PER_M2,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/sat-io/open-datasets/PEATGRIDS/THICKNESS_CM,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/sat-io/open-datasets/carbon_stocks_ca/ch/ch_max_height_250m,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/sat-io/open-datasets/carbon_stocks_ca/fc/fc_250m_version10,Earth Engine,EE_PROJECT (for quota),,
+earth engine asset,projects/sat-io/open-datasets/carbon_stocks_ca/fc/fc_uncertainty_250m_version10,Earth Engine,EE_PROJECT (for quota),,

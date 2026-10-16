@@ -14,6 +14,10 @@ Each focus follows the same structure: **Forests** and **Soils**, each organised
 
 **Existing report:** [Browse the source project's website](https://cathald.github.io/Carbon_Data_SOD/). This repository is being assembled from that work. Catalogue downloads and access examples are available from the source links below; Google Earth Engine apps are planned.
 
+**Draft pages:** [Visual summaries](docs/summaries.md) · [Comparisons](docs/comparisons.md) · [How to use](docs/how-to-use.md)
+
+**Supporting information:** [Methods](docs/methods.md) · [Downloads](docs/downloads.md) · [Sources](SOURCES.md). [Technical analysis](analysis/README.md) is separate from the public pages.
+
 ## Understanding the data
 
 Ground observations provide measurements at specific plots, trees, soil profiles or cores. Some carbon quantities are measured directly; others are estimated from measurements, such as tree dimensions or soil carbon concentration and bulk density. Their uncertainty depends on the sampling and calculation methods.
@@ -301,9 +305,11 @@ McNicol also provides profile observations. Its mineral-soil depth plus organic 
 
 Map-to-observation comparisons will identify differences between a plot or core and the area represented by a map cell. Shared training data will be recorded where known. Agreement between products is not, by itself, evidence of accuracy or independent validation.
 
-Detailed methods, unit conversions, sampling rules and diagnostics will accompany the comparisons. The [existing comparison report](https://cathald.github.io/Carbon_Data_SOD/compare.html) provides the source project's results; conclusions transferred here should retain their version, eligibility rules and limitations.
+[Methods, unit conversions and sampling rules](docs/methods.md) accompany the comparisons. The [existing comparison report](https://cathald.github.io/Carbon_Data_SOD/compare.html) provides the source project's results; conclusions transferred here should retain their version, eligibility rules and limitations.
 
 ## 3. How to use
+
+[Open the How to use page](docs/how-to-use.md). GEE apps remain planned.
 
 **Google Earth Engine apps are planned.** The tables below are placeholders describing intended uses; they do not represent released apps.
 
@@ -335,9 +341,9 @@ Detailed methods, unit conversions, sampling rules and diagnostics will accompan
 
 ### Access available now
 
-- **Catalogue:** [CSV tables and complete JSON](https://github.com/CathalD/Carbon_Data_SOD/tree/cc14949aceff8dfacc533c759044a353d0fb6d46/data/downloads/) describe studies, observations, covariates, maps, assets, methods and QC. See the source [download guide](https://github.com/CathalD/Carbon_Data_SOD/blob/cc14949aceff8dfacc533c759044a353d0fb6d46/DOWNLOADS.md).
-- **Provider and GEE references:** [Assets.csv](https://github.com/CathalD/Carbon_Data_SOD/blob/cc14949aceff8dfacc533c759044a353d0fb6d46/data/downloads/Assets.csv) links exact assets and original sources. Some field datasets require a provider request. Public GEE assets still require your own Earth Engine-enabled project for computation.
-- **Examples:** the [Earth Engine Code Editor and Python examples](https://github.com/CathalD/Carbon_Data_SOD/tree/cc14949aceff8dfacc533c759044a353d0fb6d46/examples/) demonstrate access and a small raster download. They belong to the source repository.
+- **Catalogue:** [CSV tables and complete JSON](data/downloads/) describe studies, observations, covariates, maps, assets, methods and QC. See the source [download guide](docs/downloads.md).
+- **Provider and GEE references:** [Assets.csv](data/downloads/Assets.csv) links exact assets and original sources. Some field datasets require a provider request. Public GEE assets still require your own Earth Engine-enabled project for computation.
+- **Examples:** the [Earth Engine Code Editor and Python examples](examples/) demonstrate access and a small raster download. They are copied from the versioned source repository.
 
 Catalogue downloads describe data resources; the original providers retain their source terms. A GEE asset ID is an access route, not a permanent downloadable raster URL.
 
@@ -346,16 +352,16 @@ Catalogue downloads describe data resources; the original providers retain their
 
 | Source path | Contents |
 |---|---|
-| [data/downloads/](https://github.com/CathalD/Carbon_Data_SOD/tree/cc14949aceff8dfacc533c759044a353d0fb6d46/data/downloads/) | Current catalogue CSVs and their generated JSON download. |
-| [data/catalogue/](https://github.com/CathalD/Carbon_Data_SOD/tree/cc14949aceff8dfacc533c759044a353d0fb6d46/data/catalogue/) | Source evidence, soil methods, QC records, depth audit, citations and presentation crosswalk. |
+| [data/downloads/](data/downloads/) | Current catalogue CSVs and their generated JSON download. |
+| [data/catalogue/](data/catalogue/) | Source evidence, soil methods, QC records, depth audit, citations and presentation crosswalk. |
 | [Comparison/](https://github.com/CathalD/Carbon_Data_SOD/tree/cc14949aceff8dfacc533c759044a353d0fb6d46/Comparison/) | Website sources, comparison analysis and reproduction instructions. |
-| [scripts/](https://github.com/CathalD/Carbon_Data_SOD/tree/cc14949aceff8dfacc533c759044a353d0fb6d46/scripts/) | Catalogue JSON builder and soil-map QC tool. |
-| [docs/](https://github.com/CathalD/Carbon_Data_SOD/tree/cc14949aceff8dfacc533c759044a353d0fb6d46/docs/) | Access notes, QC, source terms, release history and maintainer guidance. |
-| [examples/](https://github.com/CathalD/Carbon_Data_SOD/tree/cc14949aceff8dfacc533c759044a353d0fb6d46/examples/) | Short Code Editor and Python access examples. |
-| [references/](https://github.com/CathalD/Carbon_Data_SOD/tree/cc14949aceff8dfacc533c759044a353d0fb6d46/references/) | Scientific citations in BibTeX format. |
+| [scripts/](scripts/) | Catalogue JSON builder and soil-map QC tool. |
+| [docs/](docs/) | Access notes, QC, source terms, release history and maintainer guidance. |
+| [examples/](examples/) | Short Code Editor and Python access examples. |
+| [references/](references/) | Scientific citations in BibTeX format. |
 | [archive/](https://github.com/CathalD/Carbon_Data_SOD/tree/cc14949aceff8dfacc533c759044a353d0fb6d46/archive/) | Completed imports, the covariate pilot and superseded snapshots. |
 
-These paths describe the existing source repository. See its [rendering and reproduction guide](https://github.com/CathalD/Carbon_Data_SOD/blob/cc14949aceff8dfacc533c759044a353d0fb6d46/Comparison/README.md). The new company repository can copy the needed files progressively; these links remain usable in the meantime.
+Catalogue, evidence, examples and reference links above open the transferred files. The Comparison and archive links retain the original source context. See the [analysis guide](analysis/README.md) for the bundled source snapshot and reproduction requirements.
 
 </details>
 
@@ -390,8 +396,8 @@ The source project's current CSVs in `data/downloads/` are its editable catalogu
 
 ## Sources and contributions
 
-This report builds on the [Carbon State of Data catalogue and analysis](https://github.com/CathalD/Carbon_Data_SOD). Original publications and data releases are linked alongside the records; additional citations are in the source [SOURCES.md](https://github.com/CathalD/Carbon_Data_SOD/blob/cc14949aceff8dfacc533c759044a353d0fb6d46/SOURCES.md), [BibTeX references](https://github.com/CathalD/Carbon_Data_SOD/tree/cc14949aceff8dfacc533c759044a353d0fb6d46/references/) and [CITATION.cff](https://github.com/CathalD/Carbon_Data_SOD/blob/cc14949aceff8dfacc533c759044a353d0fb6d46/CITATION.cff). Each dataset retains its source terms and citation requirements.
+This report builds on the [Carbon State of Data catalogue and analysis](https://github.com/CathalD/Carbon_Data_SOD). Original publications and data releases are linked alongside the records; additional citations are in the source [SOURCES.md](SOURCES.md), [BibTeX references](references/) and [original project citation](references/source-project.cff). Each dataset retains its source terms and citation requirements.
 
 This is intended as a community resource. To suggest a missing dataset or report a correction, contact [science@wwfcanada.org](mailto:science@wwfcanada.org) or [cdoherty@wwfcanada.org](mailto:cdoherty@wwfcanada.org). Please include the dataset name, source link or DOI, and a short description of the addition or correction.
 
-Corrections to the underlying catalogue can also be raised through its [GitHub Issues](https://github.com/CathalD/Carbon_Data_SOD/issues) and [contribution guide](https://github.com/CathalD/Carbon_Data_SOD/blob/cc14949aceff8dfacc533c759044a353d0fb6d46/CONTRIBUTING.md). Source terms are summarised in the [licensing note](https://github.com/CathalD/Carbon_Data_SOD/blob/cc14949aceff8dfacc533c759044a353d0fb6d46/docs/release_licensing.md).
+Corrections to the underlying catalogue can also be raised through its [GitHub Issues](https://github.com/CathalD/Carbon_Data_SOD/issues) and [contribution guide](CONTRIBUTING.md). Source terms are summarised in the [licensing note](docs/release_licensing.md).

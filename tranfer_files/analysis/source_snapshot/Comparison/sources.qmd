@@ -1,0 +1,24 @@
+---
+title: "Sources"
+subtitle: "Cite the original publication and the exact data release for each dataset you use."
+---
+
+```{r}
+#| label: setup
+source(file.path("report", "_setup.R"))
+S <- cat_tbl("Studies"); G <- cat_tbl("Ground_data")
+```
+
+The catalogue citation does not replace either. [BibTeX](`r gh_blob("references/studies.bib")`) · [catalogue citation](`r gh_blob("CITATION.cff")`) · [licensing status](`r gh_blob("docs/release_licensing.md")`) · [full source notes](`r gh_blob("SOURCES.md")`)
+
+## Studies
+
+```{r}
+S |> transmute(Study = study_name, Year = na_dash(publication_year), Target = carbon_pool_or_target, Publication = link_md(paper_url, "Paper")) |> kable()
+```
+
+## Ground data providers
+
+```{r}
+G |> transmute(Dataset = resource_name, Provider = link_md(source_url, "Source"), Licence = na_dash(licence_note)) |> kable()
+```
