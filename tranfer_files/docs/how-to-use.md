@@ -32,7 +32,7 @@ Google Earth Engine apps are planned. This page will provide tools to explore gr
 
 ## Tool draft available for testing
 
-The [Carbon Data Explorer script](../tools/gee/carbon_data_explorer.js) is a draft for running in the Earth Engine Code Editor. It includes AOI-clipped maps/covariates, on-demand soil profiles and raster/CSV exports. See its [instructions](../tools/gee/README.md). It has not been published as a company GEE app; the app placeholders remain the intended public tools.
+The [Carbon Data Explorer script](../tools/gee/carbon_data_explorer.js) is a draft for running in the Earth Engine Code Editor. It includes AOI-clipped maps/covariates, an AOI visibility control, on-demand soil profiles, eligible map-to-map comparisons in Results and raster/CSV exports. See its [instructions](../tools/gee/README.md). It has not been published as a company GEE app; the app placeholders remain the intended public tools.
 
 ## Access available now
 

@@ -133,7 +133,7 @@
     "data/downloads/carbon_catalogue.json": "73d84a88063a78310e3375ecffbf7686a44bb9b4ef75b22d29a74b370c2d9f0b",
     "docs/comparisons.md": "4b53f92e84e5733519516b17ffd238e047fe81e5ab1d97511a9ba6320c44291d",
     "docs/downloads.md": "9bfb4947129629eecfe6db60029e6f7b38a3b2b32850dbf3660420709be5a685",
-    "docs/how-to-use.md": "b389c2293d9acdec288ad05e4f72deadb1093d264410596dbd9afa109a694476",
+    "docs/how-to-use.md": "6c111fba711e9248597c106ba6c694e4c85c49cda5b0091362e38d835c350ce6",
     "docs/images/summaries/map-canopy_height_max.png": "112f5f3a5e18eec67eed2e025e27b48cab1fc0918b7676fd6121b7be55967b9b",
     "docs/images/summaries/map-esa_cci_2020.png": "422f9e5e685b41142b2ba33d0e4bfae1617ace024540cc411a689cadfebdafb0",
     "docs/images/summaries/map-forest_carbon.png": "1c20f5ac8d8648f9529c11c1d6047be6642f6ef5f98a924bc15b48158e1f4a6d",
@@ -165,8 +165,8 @@
     "examples/02_quickstart.py": "e123bb8d3e512f3eca32a496ca591108599a6ee7c18971683800c65a2ca5783c",
     "examples/README.md": "0e4eabc57edc361ad28fd8e5be446599294dba15a46645b631eb66c99be50533",
     "examples/requirements.txt": "958bc13c849669eedaaa91579969ed4ce5a6fa6a68a9fa51aec08912bffcd449",
-    "handover/CURRENT_STATUS.md": "ef9f0ad8f86357e82f7d4bf7b2d63260e8851052d5f7095c52af6eb1796c61ee",
-    "handover/company-repository.zip": "f7f2b8f3ee4e04990df4443ae8eeccb4795068a8f472774a7e530afbdac7074b",
+    "handover/CURRENT_STATUS.md": "b73c394df384a0760235b05a70b5a6b48078f3eb5af9548abfa32a1300269658",
+    "handover/company-repository.zip": "e36a4420bd6d95566033cd5a9979b8b847423389b964f81c66ee26543fb1a912",
     "handover/planning/README.md": "24da88e78614f708ea4df49a6106d5d0bfa6c2e3ff92ba48e6b05c96e8b9ab0f",
     "handover/planning/carbon_review.md": "b0fe4625d824107c546ac191a44dbfa77efdb146c65f6a623d148b55340fbad1",
     "handover/planning/file_audit.csv": "468c0e44f24a02fd68ff2a9935ad2392cfbc93ddeba69acb78ae4a451b2345f7",
@@ -181,8 +181,8 @@
     "scripts/06_Soil_Map_QC.js": "e9b97d40aa332c6fbc1756eb52c1b87357236d162a8eed986c37e3837086b0d0",
     "scripts/build_catalogue_json.py": "888c2b32af0de69b9eca6dbf315b71b174de138f91a2bb14c744370e03a0d500",
     "scripts/requirements.txt": "fd6f8460ec2c463c8eedfa9a900217d09defbef0aacd2599f33e51b675c8483c",
-    "tools/gee/README.md": "73873b6822a3660bfb7b27200ebc215b1005c1967fdec63ae99d47048968f421",
+    "tools/gee/README.md": "17a670af3081e496dff3268d812be200ad7e10b454bc3b3306847c1296160731",
     "tools/gee/build_catalogue_block.py": "2dfe3b36dd721de54a3647bea6c6e44a7b344a7cb1acf9ddc72d222bc8f7a713",
-    "tools/gee/carbon_data_explorer.js": "b7b084a795b85dda75bc90e82da382e7d7836386d81d6c139753b523eac9c277"
+    "tools/gee/carbon_data_explorer.js": "bc3fce9e105bbb23a26be96dca0a49e7345a2057957321483c388af65f6e03c9"
   }
 }

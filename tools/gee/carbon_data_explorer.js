@@ -27,7 +27,7 @@
  ******************************************************************************/
 
 // @@DATA-START ----------------------------------------------------------------
-var VERSION = '1.1.0';
+var VERSION = '1.2.0';
 var REPO = 'https://github.com/CathalD/Carbon_Data_SOD';
 var SITE = 'https://cathald.github.io/Carbon_Data_SOD/';
 
@@ -1084,6 +1084,76 @@ function pointSeries(item, pt, aoi) {
   }));
 }
 
+// Explicit eligibility: equal units alone do not establish matching quantities or support.
+var COMPARISON_TYPES = {
+  sothe_stock: 'stock100', sg_stock100: 'stock100', geng_stock100: 'stock100', ncscd100: 'stock100',
+  sg_ocs30: 'stock30', ncscd30: 'stock30', geng_stock30: 'stock30',
+  geng_interval: 'interval_stock', sg_interval: 'interval_stock',
+  geng_soc: 'interval_soc', sg_soc: 'interval_soc', geng_bd: 'interval_bd', sg_bd: 'interval_bd',
+  li_depth: 'peat_depth', pg_thickness: 'peat_depth', li_carbon: 'peat_carbon', pg_carbon: 'peat_carbon',
+  scanfi_agb: 'agb', esa_agb: 'agb', scanfi_agc: 'agc', esa_agc: 'agc'
+};
+function comparisonOptions(item, v) {
+  var type = COMPARISON_TYPES[item.key];
+  if (!type) return [];
+  var out = [];
+  LAYERS.forEach(function (other) {
+    if (other.key === item.key || COMPARISON_TYPES[other.key] !== type) return;
+    other.variants.forEach(function (ov) {
+      // Variant keys carry the depth interval, full-column definition or reference year.
+      if (ov.key === v.key && unitOf(other, ov) === unitOf(item, v)) {
+        out.push({item: other, variant: ov, key: other.key + ':' + ov.key});
+      }
+    });
+  });
+  return out;
+}
+function comparisonImages(itemA, va, itemB, vb, scale) {
+  var a = va.image(), b = vb.image();
+  var nativeScale = Math.max(scaleOf(itemA, va), scaleOf(itemB, vb));
+  // Ties use B's native grid, matching the source comparison's Sothe/SoilGrids rule.
+  var base = scaleOf(itemA, va) > scaleOf(itemB, vb) ? a.projection() : b.projection();
+  function aggregate(image, projection) {
+    return image.reduceResolution({reducer: ee.Reducer.mean(), maxPixels: 4096, bestEffort: false}).reproject(projection);
+  }
+  a = aggregate(a, base);
+  b = aggregate(b, base);
+  var target = base;
+  if (scale > nativeScale) {
+    target = base.atScale(scale);
+    a = aggregate(a, target);
+    b = aggregate(b, target);
+  }
+  var validA = a.mask().gt(0), validB = b.mask().gt(0);
+  var common = validA.and(validB);
+  var forest = COMPARISON_TYPES[itemA.key] === 'agb' || COMPARISON_TYPES[itemA.key] === 'agc';
+  if (forest) common = common.and(a.gt(0).or(b.gt(0)));
+  a = a.updateMask(common).rename('a');
+  b = b.updateMask(common).rename('b');
+  var difference = a.subtract(b).rename('difference');
+  return {a: a, b: b, difference: difference, grid: target, forest: forest,
+          pair: ee.Image.cat([a, b]), validA: validA, validB: validB};
+}
+function comparisonStats(images, aoi) {
+  var opts = {geometry: aoi, crs: images.grid, maxPixels: 5e7, tileScale: 4};
+  var fields = ee.Image.cat([images.a, images.b, images.difference, images.difference.pow(2).rename('squared_difference')]);
+  var stats = fields.reduceRegion(merge(opts, {reducer: ee.Reducer.mean().unweighted()
+    .combine({reducer2: ee.Reducer.count(), sharedInputs: true})}));
+  var correlation = images.pair.reduceRegion(merge(opts, {reducer: ee.Reducer.pearsonsCorrelation().unweighted()}));
+  var area = ee.Image.pixelArea();
+  var commonArea = area.updateMask(images.a.mask());
+  var totals = ee.Image.cat([commonArea.rename('common_area'),
+    area.updateMask(images.validA).rename('a_area'), area.updateMask(images.validB).rename('b_area'),
+    images.a.multiply(area).rename('a_total'), images.b.multiply(area).rename('b_total')])
+    .reduceRegion(merge(opts, {reducer: ee.Reducer.sum()}));
+  // The scatter sample is for display only; all eligible grid pixels feed the metrics above.
+  var scatter = images.pair.sample({region: aoi, projection: images.grid, numPixels: 1000,
+                                   seed: 42, geometries: false, tileScale: 4}).limit(1000);
+  return ee.Dictionary(stats).combine(correlation).combine(totals)
+    .set('grid_m', images.grid.nominalScale())
+    .set('scatter', scatter.reduceColumns(ee.Reducer.toList(2), ['a', 'b']).get('list'));
+}
+
 // Text fields such as '12', '1939-??-??' or 2010 to numbers (-1 when absent).
 function toNumber(value, regex) {
   var s = ee.String(ee.Algorithms.If(value, ee.Algorithms.String(value), ''));
@@ -1186,7 +1256,8 @@ var S = {
 var state = {
   domain: null, aoi: null, aoiLabel: '', aoiArea: null, aoiOutline: null, drawing: false,
   shown: {}, showButtons: {}, inputLayers: [], groundOn: {}, covStudy: {forests: 'all', soils: 'all'},
-  selectedLayer: null, profilesOpen: false, pointLayers: {}, pointRevision: 0
+  selectedLayer: null, profilesOpen: false, pointLayers: {}, pointRevision: 0,
+  aoiVisible: true, comparisonCards: {}
 };
 GROUND.forEach(function (ds) { state.groundOn[ds.id] = true; });
 
@@ -1264,9 +1335,16 @@ var aoiDrawLayer = ui.Map.GeometryLayer({geometries: [], name: 'Area of interest
 drawing.layers().add(aoiDrawLayer);
 var aoiStatus = label('Draw or load an area to show raster layers, summarise or export data.', S.small);
 var assetBox = ui.Textbox({placeholder: 'projects/…/assets/my_area', style: {stretch: 'horizontal', margin: '2px 4px 2px 8px'}});
+var aoiVisibility = ui.Checkbox({label: 'Show AOI polygon', value: true, style: {margin: '2px 8px'},
+  onChange: function (shown) { state.aoiVisible = shown; refreshAoiVisibility(); }});
+function refreshAoiVisibility() {
+  aoiDrawLayer.setShown(state.drawing || state.aoiVisible);
+  if (state.aoiOutline) state.aoiOutline.setShown(state.aoiVisible);
+}
 
 function startDrawing(shape) {
   state.drawing = true;
+  refreshAoiVisibility();
   // Keep the current AOI and its layers until the replacement shape is finished.
   aoiDrawLayer.geometries().reset([]);
   drawing.setShape(shape);
@@ -1299,11 +1377,13 @@ function loadAssetAoi() {
   });
 }
 function setAoi(geom, name, outline) {
+  state.drawing = false;
   state.aoi = geom;
   state.aoiLabel = name;
   state.aoiArea = null;
   state.aoiOutline = outline ? ui.Map.Layer(ee.FeatureCollection([ee.Feature(geom)]).style(
     {color: COLOR.aoi, fillColor: '00000000', width: 2}), {}, 'Area of interest') : null;
+  refreshAoiVisibility();
   aoiStatus.setValue('Area of interest: ' + name + ' · measuring…');
   geom.area(10).evaluate(function (m2, err) {
     if (state.aoi !== geom) return;
@@ -1422,7 +1502,12 @@ function refreshRasterClips() {
     if (s.item.regionImage && state.aoi) s.image = s.variant.image(state.aoi);
     s.layer.setEeObject(imageInAoi(s.image, state.aoi));
   });
-  state.inputLayers.forEach(function (s) { s.layer.setEeObject(imageInAoi(s.image, state.aoi)); });
+  state.inputLayers = state.inputLayers.filter(function (s) {
+    // Difference maps describe their original AOI; remove them when that AOI changes.
+    if (s.comparisonAoi && s.comparisonAoi !== state.aoi) { removeDataLayer(s.layer); return false; }
+    s.layer.setEeObject(imageInAoi(s.image, state.aoi));
+    return true;
+  });
 }
 function showItem(item, variantKey) {
   if (!state.aoi) { requireAoi(); return; }
@@ -1434,6 +1519,7 @@ function showItem(item, variantKey) {
   state.shown[item.key] = {item: item, variant: v, image: image, layer: layer};
   if (state.showButtons[item.key]) state.showButtons[item.key].setLabel('Hide');
   refreshLegend();
+  if (comparisonOptions(item, v).length) offerComparison(item, v);
 }
 function hideItem(key, keepButton) {
   var s = state.shown[key];
@@ -1555,6 +1641,124 @@ function summariseShown() {
   var keys = Object.keys(state.shown);
   if (!keys.length) { resultCard('Nothing to summarise', [label('Show at least one map or covariate layer first.')]); return; }
   keys.forEach(function (k) { summariseItem(state.shown[k].item, state.shown[k].variant.key); });
+}
+
+function comparisonWarnings(a, b) {
+  var type = COMPARISON_TYPES[a.key];
+  var lines = ['Agreement is not accuracy or independent validation. Source periods and training data can differ. Missing values stay missing.'];
+  if (a.domain === 'soils' && type.indexOf('peat') !== 0) {
+    lines.push('Match nominal depth with care: organic-layer treatment and the depth datum can differ. ' +
+               'Matching depth labels alone does not establish equivalence.');
+    if (a.key.indexOf('sg_') === 0 || b.key.indexOf('sg_') === 0) lines.push('SoilGrids removes overlying organic layers.');
+  }
+  if (a.key.indexOf('geng') === 0 || b.key.indexOf('geng') === 0) {
+    if (type === 'stock100' || type === 'stock30' || type === 'interval_stock') {
+      lines.push('Geng stocks here are calculated from concentration × bulk density × thickness, without coarse-fragment correction.');
+    }
+    lines.push('Geng’s mineral-surface interpretation and imported encoding still need source verification; this comparison is exploratory.');
+  }
+  if (a.key === 'sg_stock100' || b.key === 'sg_stock100') {
+    lines.push('SoilGrids 0–100 cm stock is calculated from carbon density, not a released 0–100 cm stock layer.');
+  }
+  if (a.key === 'li_carbon' || b.key === 'li_carbon' || a.key === 'li_depth' || b.key === 'li_depth') {
+    lines.push('Li’s coverage is the Hudson Bay Lowlands. Both products represent modelled full peat columns, not a fixed 1 m interval.');
+  }
+  return lines.join('\n');
+}
+function showComparisonDifference(images, aoi, title, unit, scale, rmsd) {
+  if (state.aoi !== aoi) {
+    resultCard('AOI changed', [label('Run a new comparison for the current AOI before showing its difference map.')]);
+    return;
+  }
+  var range = rmsd > 0 ? rmsd * 2 : 1;
+  var name = 'A − B: ' + title + ' (' + unit + ')';
+  var layer = ui.Map.Layer(images.difference.clip(aoi),
+    {min: -range, max: range, palette: ['2166ac', 'f7f7f7', 'b2182b']}, name);
+  addDataLayer(layer);
+  state.inputLayers.push({image: images.difference, layer: layer, name: name, unit: unit, scale: scale,
+                          comparisonAoi: aoi});
+  resultCard('Difference map added', [label('A − B. Blue: A is lower; red: A is higher.'),
+    label('Display range: −' + fmt(range) + ' to +' + fmt(range) + ' ' + unit + ' (±2 RMSD; ±1 if RMSD is zero). ' +
+          'Larger differences saturate. Only shared comparison-grid coverage is shown. The map is removed if the AOI changes.', S.small)]);
+}
+function offerComparison(itemA, va) {
+  var choices = comparisonOptions(itemA, va);
+  if (!choices.length) return;
+  if (state.comparisonCards[itemA.key]) results.remove(state.comparisonCards[itemA.key]);
+  var select = ui.Select({items: choices.map(function (c) { return {label: layerName(c.item, c.variant), value: c.key}; }),
+                          value: choices[0].key, style: {margin: '2px 8px', stretch: 'horizontal'}});
+  var grid = ui.Textbox({placeholder: 'Comparison grid in metres', style: {margin: '2px 8px'}});
+  var notes = label('', S.small);
+  function chosen() { return choices.filter(function (c) { return c.key === select.getValue(); })[0]; }
+  function updateChoice() {
+    var b = chosen(), nativeScale = Math.max(scaleOf(itemA, va), scaleOf(b.item, b.variant));
+    grid.setValue(String(chooseScale(nativeScale, state.aoiArea || 0)));
+    notes.setValue(comparisonWarnings(itemA, b.item) + '\nMinimum grid: approximately ' + nativeScale + ' m. ' +
+      'The suggested grid can be coarser for a large AOI. Finer data are mean-aggregated, never upsampled.');
+  }
+  select.onChange(updateChoice);
+  updateChoice();
+  var output = ui.Panel();
+  var run = button('Run comparison in AOI', function () {
+    if (!requireAoi()) return;
+    var b = chosen(), nativeScale = Math.max(scaleOf(itemA, va), scaleOf(b.item, b.variant));
+    var scale = Number(grid.getValue());
+    output.clear();
+    if (!isFinite(scale) || scale < nativeScale || scale > nativeScale * 50) {
+      output.add(label('Choose a grid from ' + nativeScale + ' to ' + (nativeScale * 50) + ' m.')); return;
+    }
+    var aoi = state.aoi, aoiArea = state.aoiArea, aoiName = state.aoiLabel;
+    var title = itemA.short + ' vs ' + b.item.short;
+    var status = label('Comparing ' + aoiName + '…', S.small);
+    output.add(label('A: ' + layerName(itemA, va) + '\nB: ' + layerName(b.item, b.variant)));
+    output.add(label('AOI: ' + aoiName + ' · ' + fmt(aoiArea / 1e6) + ' km²', S.small));
+    output.add(status);
+    run.setDisabled(true);
+    var images = comparisonImages(itemA, va, b.item, b.variant, scale);
+    comparisonStats(images, aoi).evaluate(function (d, err) {
+      run.setDisabled(false);
+      if (err) { status.setValue('Could not compare: ' + err + ' Try a smaller AOI or a coarser comparison grid.'); return; }
+      output.remove(status);
+      if (!d.a_count || !d.common_area) {
+        output.add(label('A coverage: ' + fmt((d.a_area || 0) / 1e6) + ' km² · B coverage: ' + fmt((d.b_area || 0) / 1e6) + ' km²'));
+        output.add(label('No shared eligible comparison pixels in this AOI. For forest pairs, shared zeros are excluded.'));
+        return;
+      }
+      var unit = unitOf(itemA, va), rmsd = Math.sqrt(d.squared_difference_mean);
+      output.add(label('Grid: ' + fmt(d.grid_m) + ' m, aligned to the coarser product’s native projection. ' +
+                       'Each statistic uses all eligible comparison-grid pixels; values are pixel-weighted.', S.small));
+      output.add(label('A coverage: ' + fmt((d.a_area || 0) / 1e6) + ' km² · B coverage: ' + fmt((d.b_area || 0) / 1e6) + ' km²'));
+      output.add(label('Shared comparison area: ' + fmt(d.common_area / 1e6) + ' km² (' + fmt(100 * d.common_area / aoiArea) +
+                       '% of AOI) · ' + addCommas(d.a_count) + ' pixels'));
+      output.add(label('Mean A: ' + fmt(d.a_mean) + ' · Mean B: ' + fmt(d.b_mean) + ' ' + unit));
+      output.add(label('Mean difference (A − B): ' + fmt(d.difference_mean) + ' ' + unit + '\nRMSD: ' + fmt(rmsd) + ' ' + unit +
+                       '\nPearson r: ' + fmt(d.correlation)));
+      if (itemA.mass && itemA.mass === b.item.mass) {
+        output.add(label('Totals on the shared comparison area:\nA: ' + fmtMass(d.a_total, itemA.mass) +
+                         '\nB: ' + fmtMass(d.b_total, b.item.mass)));
+      }
+      if (images.forest) output.add(label('Pixels where both products are zero are excluded, as in the source forest comparisons.', S.small));
+      output.add(label('At coarser grids, means use each product’s available input pixels; fine-scale coverage can differ within a shared cell. ' +
+                       'Totals and coverage describe this comparison grid, not the unchanged provider rasters.', S.small));
+      var points = d.scatter || [];
+      if (points.length) {
+        var rows = points.map(function (p) { return [p[0], p[1], p[0]]; }).sort(function (x, y) { return x[0] - y[0]; });
+        output.add(ui.Chart([['A (' + unit + ')', 'B', '1:1']].concat(rows), 'ScatterChart', {
+          title: 'A vs B · ' + rows.length + ' sampled pixels', height: 240,
+          hAxis: {title: 'A (' + unit + ')'}, vAxis: {title: 'B (' + unit + ')'},
+          series: {0: {pointSize: 2, lineWidth: 0, color: '#1d6b48'}, 1: {pointSize: 0, lineWidth: 1, color: '#777777'}},
+          legend: {position: 'bottom'}}));
+        output.add(label('Scatter: up to 1,000 sampled pixels (seed 42), for display only. Metrics above use all eligible pixels. ' +
+                         'Correlation is unavailable when there are too few pixels or a product has no variation.', S.small));
+      }
+      output.add(button('Show difference map (A − B)', function () {
+        showComparisonDifference(images, aoi, title, unit, Number(d.grid_m), rmsd);
+      }));
+    });
+  });
+  var card = resultCard('Compare: ' + itemA.short, [label('A: ' + layerName(itemA, va)), label('Compare with (B):', S.key),
+    select, notes, label('Comparison grid (m):', S.key), grid, run, output]);
+  state.comparisonCards[itemA.key] = card;
 }
 
 function downloadLink(fc, filename, text) {
@@ -1816,6 +2020,11 @@ function itemCard(item) {
   var buttons = [showBtn, button('About', function () { showAbout(item, current()); }),
                  button('Summarise in area', function () { summariseItem(item, current()); })];
   if (item.inputs) buttons.push(button('Add input layers', function () { addInputs(item, current()); }));
+  if (COMPARISON_TYPES[item.key]) buttons.push(button('Compare', function () {
+    var v = variantOf(item, current());
+    if (comparisonOptions(item, v).length) offerComparison(item, v);
+    else resultCard('No matching comparison', [label('No second product with a matching quantity, nominal depth/pool and year is configured for this variant.')]);
+  }));
   card.add(row(buttons, {margin: '0 4px'}));
   if (item.note) card.add(ui.Label(item.note, S.small));
   return card;
@@ -1997,6 +2206,7 @@ left.add(row([button('Draw polygon', function () { startDrawing('polygon'); }),
               button('Clear', clearAoi)]));
 left.add(ui.Panel([assetBox, button('Load asset', loadAssetAoi)], ui.Panel.Layout.flow('horizontal')));
 left.add(aoiStatus);
+left.add(aoiVisibility);
 left.add(ui.Label('2  Choose forests or soils', S.step));
 left.add(ui.Panel([forestBtn, soilBtn], ui.Panel.Layout.flow('horizontal')));
 left.add(exploreTitle);
