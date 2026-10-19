@@ -27,7 +27,7 @@
  ******************************************************************************/
 
 // @@DATA-START ----------------------------------------------------------------
-var VERSION = '1.0.0';
+var VERSION = '1.1.0';
 var REPO = 'https://github.com/CathalD/Carbon_Data_SOD';
 var SITE = 'https://cathald.github.io/Carbon_Data_SOD/';
 
@@ -678,7 +678,8 @@ var LAYERS = [
             shown: 'Polygon-mean SOC stock, 0–3 m, kg C/m² (calculated). One value per polygon, so it shows no variation within a polygon.'},
     inputs: function () {
       return [{name: 'Input: thermokarst landscape polygons (outlines)',
-               image: ee.FeatureCollection(THERMOKARST).filterBounds(CANADA).style({color: '444444', fillColor: '00000000', width: 0.6}), vis: {}}];
+               image: ee.FeatureCollection(THERMOKARST).filterBounds(CANADA).style({color: '444444', fillColor: '00000000', width: 0.6}),
+               unit: 'RGB outline (display only; no carbon values)', vis: {}}];
     }},
 
   {key: 'li_depth', domain: 'soils', group: G_PEAT,
@@ -1077,9 +1078,9 @@ function pointValues(entries, pt) {
     return e.image.rename('v').reduceRegion({reducer: ee.Reducer.first(), geometry: pt, crs: SUMMARY_CRS, scale: e.scale});
   }));
 }
-function pointSeries(item, pt) {
+function pointSeries(item, pt, aoi) {
   return ee.Dictionary.fromLists(item.variants.map(function (v) { return v.key; }), item.variants.map(function (v) {
-    return v.image().rename('v').reduceRegion({reducer: ee.Reducer.first(), geometry: pt, crs: SUMMARY_CRS, scale: scaleOf(item, v)});
+    return imageInAoi(v.image(), aoi).rename('v').reduceRegion({reducer: ee.Reducer.first(), geometry: pt, crs: SUMMARY_CRS, scale: scaleOf(item, v)});
   }));
 }
 
@@ -1091,8 +1092,15 @@ function toNumber(value, regex) {
 }
 function toYear(value) { return toNumber(value, '(18|19|20)[0-9][0-9]'); }
 
+function groundInAoi(ds, aoi) {
+  var profiles = ee.FeatureCollection(ds.profiles).filterBounds(aoi);
+  // Link layers by profile ID: layer records need not carry their own geometry.
+  return {profiles: profiles, layers: ee.FeatureCollection(ds.layers)
+    .filter(ee.Filter.inList('profile_uid', profiles.aggregate_array('profile_uid')))};
+}
 function groundSummaryDict(ds, aoi) {
-  var prof = ee.FeatureCollection(ds.profiles).filterBounds(aoi);
+  var records = groundInAoi(ds, aoi);
+  var prof = records.profiles;
   var withNum = prof.map(function (f) {
     var out = f.set('_bottom', toNumber(f.get(ds.profileBottom)));
     return ds.year ? out.set('_year', toYear(f.get(ds.year))) : out;
@@ -1101,7 +1109,7 @@ function groundSummaryDict(ds, aoi) {
     profiles: prof.size(),
     reach30: withNum.filter(ee.Filter.gte('_bottom', 30)).size(),
     reach100: withNum.filter(ee.Filter.gte('_bottom', 100)).size(),
-    layers: ee.FeatureCollection(ds.layers).filterBounds(aoi).size()
+    layers: records.layers.size()
   };
   if (ds.year) {
     var dated = withNum.filter(ee.Filter.gt('_year', 0));
@@ -1178,7 +1186,7 @@ var S = {
 var state = {
   domain: null, aoi: null, aoiLabel: '', aoiArea: null, aoiOutline: null, drawing: false,
   shown: {}, showButtons: {}, inputLayers: [], groundOn: {}, covStudy: {forests: 'all', soils: 'all'},
-  selectedLayer: null
+  selectedLayer: null, profilesOpen: false, pointLayers: {}, pointRevision: 0
 };
 GROUND.forEach(function (ds) { state.groundOn[ds.id] = true; });
 
@@ -1214,11 +1222,15 @@ function removeDataLayer(layer) {
 // Overlays (area outline, ground data) always sit above the data layers; the selected-profile
 // marker sits on top of everything.
 function setOverlays(list) {
-  overlayLayers.forEach(function (l) { mapView.layers().remove(l); });
-  if (state.selectedLayer) mapView.layers().remove(state.selectedLayer);
+  overlayLayers.forEach(function (l) { if (list.indexOf(l) < 0) mapView.layers().remove(l); });
+  list.forEach(function (l, i) {
+    var index = dataLayers.length + i;
+    if (index >= mapView.layers().length() || mapView.layers().get(index) !== l) {
+      if (overlayLayers.indexOf(l) >= 0) mapView.layers().remove(l);
+      mapView.layers().insert(index, l);
+    }
+  });
   overlayLayers = list;
-  overlayLayers.forEach(function (l) { mapView.layers().add(l); });
-  if (state.selectedLayer) mapView.layers().add(state.selectedLayer);
 }
 function setSelected(layer) {
   if (state.selectedLayer) mapView.layers().remove(state.selectedLayer);
@@ -1250,12 +1262,13 @@ drawing.setLinked(false);
 drawing.setDrawModes(['polygon', 'rectangle']);
 var aoiDrawLayer = ui.Map.GeometryLayer({geometries: [], name: 'Area of interest (drawn)', color: COLOR.aoi});
 drawing.layers().add(aoiDrawLayer);
-var aoiStatus = label('No area set. Points use their dataset colours; summaries need an area.', S.small);
+var aoiStatus = label('Draw or load an area to show raster layers, summarise or export data.', S.small);
 var assetBox = ui.Textbox({placeholder: 'projects/…/assets/my_area', style: {stretch: 'horizontal', margin: '2px 4px 2px 8px'}});
 
 function startDrawing(shape) {
-  clearAoi();
   state.drawing = true;
+  // Keep the current AOI and its layers until the replacement shape is finished.
+  aoiDrawLayer.geometries().reset([]);
   drawing.setShape(shape);
   drawing.draw();
   aoiStatus.setValue(shape === 'polygon' ? 'Click on the map to add corners; double-click to finish.'
@@ -1299,15 +1312,19 @@ function setAoi(geom, name, outline) {
     aoiStatus.setValue('Area of interest: ' + name + ' · ' + fmt(m2 / 1e6) + ' km²');
   });
   if (outline) mapView.centerObject(geom);
+  refreshRasterClips();
   refreshPoints();
 }
 function clearAoi() {
+  state.drawing = false;
+  drawing.setShape(null);
   aoiDrawLayer.geometries().reset([]);
   state.aoi = null;
   state.aoiArea = null;
   state.aoiLabel = '';
   state.aoiOutline = null;
-  aoiStatus.setValue('No area set. Points use their dataset colours; summaries need an area.');
+  aoiStatus.setValue('Draw or load an area to show raster layers, summarise or export data.');
+  refreshRasterClips();
   refreshPoints();
 }
 function requireAoi() {
@@ -1324,25 +1341,33 @@ function requireAoi() {
 
 // ---------------------------------------------------------------- ground data points
 function pointStyle(ds) { return {color: '1f1f1f', fillColor: ds.color.slice(1) + 'ee', pointSize: 4, width: 0.6}; }
+function activeGroundDatasets() {
+  if (state.domain !== 'soils' || !state.profilesOpen) return [];
+  return GROUND.filter(function (ds) { return state.groundOn[ds.id]; });
+}
 function refreshPoints() {
-  var on = GROUND.filter(function (ds) { return state.groundOn[ds.id]; });
+  state.pointRevision++;
+  setSelected(null);
+  var on = activeGroundDatasets();
   var list = [];
   if (state.aoiOutline) list.push(state.aoiOutline);
-  if (state.aoi) {
-    if (on.length) {
-      var all = ee.FeatureCollection(on.map(function (ds) { return ee.FeatureCollection(ds.profiles); })).flatten();
-      list.push(ui.Map.Layer(all.style({color: '6f6f6f', fillColor: 'c4c4c4aa', pointSize: 3, width: 0.5}), {},
-                             'Ground data outside the area'));
+  // Create point layers only on demand, then reuse them across AOI changes.
+  on.forEach(function (ds) {
+    if (!state.pointLayers[ds.id]) {
+      var fc = ee.FeatureCollection(ds.profiles);
+      state.pointLayers[ds.id] = {all: fc, aoi: null,
+        grey: ui.Map.Layer(fc.style({color: '6f6f6f', fillColor: 'c4c4c4aa', pointSize: 3, width: 0.5}), {}, ds.name + ' context'),
+        colour: ui.Map.Layer(fc.style(pointStyle(ds)), {}, ds.name)};
     }
-    on.forEach(function (ds) {
-      list.push(ui.Map.Layer(ee.FeatureCollection(ds.profiles).filterBounds(state.aoi).style(pointStyle(ds)), {},
-                             ds.name + ' inside the area'));
-    });
-  } else {
-    on.forEach(function (ds) {
-      list.push(ui.Map.Layer(ee.FeatureCollection(ds.profiles).style(pointStyle(ds)), {}, ds.name));
-    });
-  }
+    var cached = state.pointLayers[ds.id];
+    if (cached.aoi !== state.aoi) {
+      cached.colour.setEeObject((state.aoi ? cached.all.filterBounds(state.aoi) : cached.all).style(pointStyle(ds)));
+      cached.aoi = state.aoi;
+    }
+  });
+  // Draw grey context first so every dataset's coloured points sit above it.
+  if (state.aoi) on.forEach(function (ds) { list.push(state.pointLayers[ds.id].grey); });
+  on.forEach(function (ds) { list.push(state.pointLayers[ds.id].colour); });
   setOverlays(list);
   refreshLegend();
 }
@@ -1358,12 +1383,13 @@ function colorBar(palette) {
 }
 function refreshLegend() {
   legend.clear();
-  legend.add(ui.Label('Ground data', merge(S.key, {margin: '0 8px'})));
-  GROUND.forEach(function (ds) {
-    if (state.groundOn[ds.id]) legend.add(ui.Panel([swatch(ds.color), ui.Label(ds.name + (state.aoi ? ' (inside the area)' : ''), S.small)],
+  var on = activeGroundDatasets();
+  if (on.length) legend.add(ui.Label('Ground data', merge(S.key, {margin: '0 8px'})));
+  on.forEach(function (ds) {
+    legend.add(ui.Panel([swatch(ds.color), ui.Label(ds.name + (state.aoi ? ' (inside the area)' : ''), S.small)],
                                                     ui.Panel.Layout.flow('horizontal')));
   });
-  if (state.aoi) legend.add(ui.Panel([swatch('#c4c4c4'), ui.Label('Outside the area', S.small)], ui.Panel.Layout.flow('horizontal')));
+  if (state.aoi && on.length) legend.add(ui.Panel([swatch('#c4c4c4'), ui.Label('Outside the area', S.small)], ui.Panel.Layout.flow('horizontal')));
   Object.keys(state.shown).forEach(function (k) {
     var s = state.shown[k], vis = visOf(s.item, s.variant);
     legend.add(ui.Label(s.item.short + (s.item.variants.length > 1 ? ' · ' + s.variant.label : ''), merge(S.key, {margin: '6px 8px 0 8px'})));
@@ -1386,12 +1412,26 @@ mapView.onChangeZoom(function (zoom) {
 
 // ---------------------------------------------------------------- showing layers
 function layerName(item, v) { return item.short + (item.variants.length > 1 ? ' · ' + v.label : '') + ' (' + unitOf(item, v) + ')'; }
+function imageInAoi(image, aoi) {
+  // Clearing the AOI must not reveal an unbounded national/global raster.
+  return aoi ? image.clip(aoi) : image.updateMask(ee.Image(0));
+}
+function refreshRasterClips() {
+  Object.keys(state.shown).forEach(function (k) {
+    var s = state.shown[k];
+    if (s.item.regionImage && state.aoi) s.image = s.variant.image(state.aoi);
+    s.layer.setEeObject(imageInAoi(s.image, state.aoi));
+  });
+  state.inputLayers.forEach(function (s) { s.layer.setEeObject(imageInAoi(s.image, state.aoi)); });
+}
 function showItem(item, variantKey) {
+  if (!state.aoi) { requireAoi(); return; }
   hideItem(item.key, true);
   var v = variantOf(item, variantKey);
-  var layer = ui.Map.Layer(v.image(), visOf(item, v), layerName(item, v), item.minZoom ? mapView.getZoom() >= item.minZoom : true);
+  var image = item.regionImage ? v.image(state.aoi) : v.image();
+  var layer = ui.Map.Layer(imageInAoi(image, state.aoi), visOf(item, v), layerName(item, v), item.minZoom ? mapView.getZoom() >= item.minZoom : true);
   addDataLayer(layer);
-  state.shown[item.key] = {item: item, variant: v, layer: layer};
+  state.shown[item.key] = {item: item, variant: v, image: image, layer: layer};
   if (state.showButtons[item.key]) state.showButtons[item.key].setLabel('Hide');
   refreshLegend();
 }
@@ -1405,16 +1445,18 @@ function hideItem(key, keepButton) {
 }
 function removeAllLayers() {
   Object.keys(state.shown).forEach(function (k) { hideItem(k); });
-  state.inputLayers.forEach(removeDataLayer);
+  state.inputLayers.forEach(function (s) { removeDataLayer(s.layer); });
   state.inputLayers = [];
 }
 function addInputs(item, variantKey) {
+  if (!state.aoi) { requireAoi(); return; }
   var v = variantOf(item, variantKey);
   var inputs = item.inputs(v);
   inputs.forEach(function (inp) {
-    var layer = ui.Map.Layer(inp.image, inp.vis, inp.name, false);
+    var layer = ui.Map.Layer(imageInAoi(inp.image, state.aoi), inp.vis, inp.name, false);
     addDataLayer(layer);
-    state.inputLayers.push(layer);
+    state.inputLayers.push({image: inp.image, layer: layer, name: inp.name, unit: inp.unit,
+                            scale: inp.scale || scaleOf(item, v)});
   });
   resultCard('Input layers: ' + item.short, [
     label('Added ' + inputs.length + ' input layer' + (inputs.length === 1 ? '' : 's') + ', switched off. Tick them in the Layers menu at the top right of the map.'),
@@ -1517,16 +1559,19 @@ function summariseShown() {
 
 function downloadLink(fc, filename, text) {
   var l = ui.Label(text + ' (preparing…)', S.link);
-  fc.getDownloadURL({format: 'CSV', filename: filename, callback: function (url, err) {
-    if (url) { l.setValue(text); l.setUrl(url); } else { l.setValue(text + ': ' + err); }
-  }});
+  try {
+    fc.getDownloadURL({format: 'CSV', filename: filename, callback: function (url, err) {
+      if (url) { l.setValue(text); l.setUrl(url); } else { l.setValue(text + ': ' + err); }
+    }});
+  } catch (err) { l.setValue(text + ': ' + err); }
   return l;
 }
 function summariseGround(list) {
   if (!requireAoi()) return;
+  var aoi = state.aoi;
   var status = label('Counting…', S.small);
-  var card = resultCard('Ground data in the area', [status]);
-  ee.Dictionary.fromLists(list.map(function (ds) { return ds.id; }), list.map(function (ds) { return groundSummaryDict(ds, state.aoi); }))
+  var card = resultCard('Ground data in ' + state.aoiLabel, [status]);
+  ee.Dictionary.fromLists(list.map(function (ds) { return ds.id; }), list.map(function (ds) { return groundSummaryDict(ds, aoi); }))
     .evaluate(function (d, err) {
       if (err) { status.setValue('Could not count: ' + err); return; }
       card.remove(status);
@@ -1538,11 +1583,100 @@ function summariseGround(list) {
                        ' reach 100 cm) · ' + addCommas(s.layers) + ' layers' + years));
         if (s.profiles > 0) {
           var slug = ds.id + '_in_area';
-          card.add(row([downloadLink(ee.FeatureCollection(ds.profiles).filterBounds(state.aoi), slug + '_profiles', 'Profiles CSV'),
-                        downloadLink(ee.FeatureCollection(ds.layers).filterBounds(state.aoi), slug + '_layers', 'Layers CSV')]));
+          var records = groundInAoi(ds, aoi);
+          card.add(row([downloadLink(records.profiles, slug + '_profiles', 'Profiles CSV'),
+                        downloadLink(records.layers, slug + '_layers', 'Layers CSV')]));
         }
       });
     });
+}
+
+// ---------------------------------------------------------------- AOI exports
+function exportName(text) { return text.replace(/[^A-Za-z0-9_-]+/g, '_').slice(0, 90); }
+function rasterExportRow(entry, aoi, areaName, scale) {
+  var file = exportName('carbon_' + exportName(areaName).slice(0, 24) + '_' + entry.key.slice(-45) + '_' + scale + 'm');
+  var image = entry.image.clip(aoi);
+  var download = label('Preparing GeoTIFF…', S.link);
+  var widgets = [label(entry.name), label('Export grid: EPSG:3978 · ' + scale + ' m · ' + entry.units, S.small), download];
+  function failed(err) {
+    download.setValue('Download unavailable. Use a smaller AOI or enter a coarser export grid and prepare again. ' + (err || ''));
+  }
+  try {
+    image.getDownloadURL({name: file, region: aoi, crs: SUMMARY_CRS, scale: scale,
+                          format: 'ZIPPED_GEO_TIFF', filePerBand: false}, function (url, err) {
+      if (url) { download.setValue('Download GeoTIFF (ZIP)'); download.setUrl(url); }
+      else failed(err);
+    });
+  } catch (err) { failed(err); }
+  // Published Apps use direct downloads. Code Editor users can also create a batch task.
+  if (typeof Export !== 'undefined' && Export.image && typeof Export.image.toDrive === 'function') {
+    var drive = button('Create Drive export task', function () {
+      try {
+        Export.image.toDrive({image: image, description: file, fileNamePrefix: file, region: aoi,
+                              crs: SUMMARY_CRS, scale: scale, maxPixels: 1e13, fileFormat: 'GeoTIFF'});
+        drive.setDisabled(true);
+        drive.setLabel('Task created — start it in Tasks');
+      } catch (err) { download.setValue('Could not create a Drive task: ' + err); }
+    });
+    widgets.push(drive);
+  }
+  return ui.Panel(widgets, null, S.card);
+}
+function groundExportRow(ds, aoi, areaName) {
+  var records = groundInAoi(ds, aoi);
+  var status = label('Counting profiles…', S.small);
+  var panel = ui.Panel([label(ds.long), status], null, S.card);
+  records.profiles.size().evaluate(function (n, err) {
+    if (err) { status.setValue('Could not prepare CSVs: ' + err); return; }
+    status.setValue(addCommas(n) + ' profiles inside this AOI');
+    if (!n) return;
+    var name = exportName(exportName(areaName).slice(0, 40) + '_' + ds.id);
+    panel.add(row([downloadLink(records.profiles, name + '_profiles', 'Profiles CSV'),
+                   downloadLink(records.layers, name + '_layers', 'Layers CSV')]));
+  });
+  return panel;
+}
+function exportAoiData() {
+  if (!requireAoi()) return;
+  // Snapshot the AOI, variants and images: later edits must not change these exports.
+  var aoi = state.aoi, areaName = state.aoiLabel;
+  var entries = Object.keys(state.shown).filter(function (k) { return state.shown[k].layer.getShown(); }).map(function (k) {
+    var s = state.shown[k];
+    return {key: k + '_' + s.variant.key, name: layerName(s.item, s.variant), image: s.image,
+            units: unitOf(s.item, s.variant), scale: scaleOf(s.item, s.variant)};
+  });
+  state.inputLayers.forEach(function (s, i) {
+    if (s.layer.getShown()) entries.push({key: 'input_' + i, name: s.name, image: s.image,
+                                        units: s.unit || 'source units (see layer name)', scale: s.scale});
+  });
+  var datasets = GROUND.filter(function (ds) { return state.groundOn[ds.id]; });
+  var grid = ui.Textbox({placeholder: 'Optional coarser grid in metres', style: {stretch: 'horizontal', margin: '2px 8px'}});
+  var status = label('Leave blank for each layer’s nominal pixel size. A value can only make that grid coarser.', S.small);
+  var output = ui.Panel();
+  var card = resultCard('Export data: ' + areaName, [
+    label('AOI: ' + fmt(state.aoiArea / 1e6) + ' km² · ' + entries.length + ' shown raster layer(s).'),
+    label('Rasters contain data values in the displayed units, clipped and masked to this AOI, on an EPSG:3978 grid. ' +
+          'This is a reprojected export, not an unchanged provider grid. Missing pixels stay masked.', S.small),
+    label('Ground CSVs use the datasets checked under Soils → Ground data · Profiles, even when the points are hidden. ' +
+          'Each dataset has separate profile and layer files, retaining source fields and units; layer rows are linked by profile ID.', S.small),
+    grid, status]);
+  card.add(button('Prepare download links', function () {
+    var text = (grid.getValue() || '').replace(/^\s+|\s+$/g, '');
+    var requested = text ? Number(text) : null;
+    if (text && (!isFinite(requested) || requested <= 0)) { status.setValue('Enter a positive grid size in metres, or leave blank.'); return; }
+    output.clear();
+    status.setValue('Exports use the AOI and shown layers captured when this export panel was opened.');
+    if (!entries.length) output.add(label('No rasters were shown. Show a map or covariate, then open Export AOI data again.', S.small));
+    entries.forEach(function (entry) {
+      output.add(rasterExportRow(entry, aoi, areaName, Math.max(entry.scale, requested || entry.scale)));
+    });
+    if (!datasets.length) output.add(label('No ground datasets selected. Check datasets in the Profiles section to include CSVs.', S.small));
+    datasets.forEach(function (ds) { output.add(groundExportRow(ds, aoi, areaName)); });
+  }));
+  card.add(label('Direct raster downloads are limited by Earth Engine to 32 MB and 10,000 pixels per dimension. ' +
+                 'For larger exports use a smaller AOI, a coarser grid, or the Drive task option in the Code Editor. ' +
+                 'Download links are temporary; prepare them again if they expire.', S.small));
+  card.add(output);
 }
 
 // ---------------------------------------------------------------- clicking the map
@@ -1622,7 +1756,7 @@ mapView.onClick(function (coords) {
     var card = resultCard('Values at ' + coords.lat.toFixed(4) + ', ' + coords.lon.toFixed(4), [status]);
     var entries = keys.map(function (k) {
       var s = state.shown[k];
-      return {id: k, image: s.item.regionImage ? s.variant.image(pt.buffer(50)) : s.variant.image(), scale: scaleOf(s.item, s.variant)};
+      return {id: k, image: imageInAoi(s.image, state.aoi), scale: scaleOf(s.item, s.variant)};
     });
     pointValues(entries, pt).evaluate(function (d, err) {
       card.remove(status);
@@ -1638,7 +1772,7 @@ mapView.onClick(function (coords) {
     keys.forEach(function (k) {
       var s = state.shown[k];
       if (!s.item.timeSeries) return;
-      pointSeries(s.item, pt).evaluate(function (d, err) {
+      pointSeries(s.item, pt, state.aoi).evaluate(function (d, err) {
         if (err || !d) return;
         var rows = s.item.variants.slice().reverse().map(function (x) { return [x.label, d[x.key] ? d[x.key].v : null]; });
         card.add(ui.Chart([['Year', s.item.short + ' (' + s.item.unit + ')']].concat(rows), 'LineChart', {
@@ -1647,9 +1781,12 @@ mapView.onClick(function (coords) {
       });
     });
   }
-  var on = GROUND.filter(function (ds) { return state.groundOn[ds.id]; });
+  var on = activeGroundDatasets();
   if (on.length) {
-    nearestProfile(on, pt, Math.max(mapView.getScale() * 8, 30)).evaluate(function (f) { if (f) showProfile(f); });
+    var revision = state.pointRevision;
+    nearestProfile(on, pt, Math.max(mapView.getScale() * 8, 30)).evaluate(function (f) {
+      if (f && revision === state.pointRevision) showProfile(f);
+    });
   }
 });
 
@@ -1683,7 +1820,7 @@ function itemCard(item) {
   if (item.note) card.add(ui.Label(item.note, S.small));
   return card;
 }
-function section(title, widgets, open) {
+function section(title, widgets, open, onToggle) {
   var body = ui.Panel(widgets);
   body.style().set('shown', open);
   var head = ui.Button({label: (open ? '▾  ' : '▸  ') + title, style: {stretch: 'horizontal', margin: '6px 6px 2px 6px'}});
@@ -1691,6 +1828,7 @@ function section(title, widgets, open) {
     open = !open;
     body.style().set('shown', open);
     head.setLabel((open ? '▾  ' : '▸  ') + title);
+    if (onToggle) onToggle(open);
   });
   return ui.Panel([head, body]);
 }
@@ -1730,8 +1868,8 @@ function groundAbout(ds) {
 function groundContent(domain) {
   var w = [];
   if (domain === 'forests') {
-    w.push(label('No open forest plot locations are available in Earth Engine. National Forest Inventory plot locations are confidential. ' +
-                 'The forest ground sources in the catalogue are listed below. Soil profiles and peat cores stay on the map.', S.small));
+    w.push(label('Forest plot locations have not been loaded into this app. ' +
+                 'The forest ground sources in the catalogue are listed below; coordinate access depends on each provider.', S.small));
     Object.keys(CATALOGUE.ground || {}).forEach(function (id) {
       var g = CATALOGUE.ground[id];
       if (g.domain !== 'forests' && g.domain !== 'both') return;
@@ -1744,8 +1882,8 @@ function groundContent(domain) {
     });
     return w;
   }
-  w.push(label('Soil profiles and peat cores are always on the map. Inside your area they use their dataset colour; outside it they turn grey. ' +
-               'Click a point to see its depth profile.', S.small));
+  w.push(label('Opening this section shows the checked soil-profile and peat-core datasets. Collapse it to hide them. ' +
+               'Inside your area points use their dataset colour; outside it they turn grey. Click a point to see its depth profile.', S.small));
   w.push(row([button('Summarise all ground data in area', function () { summariseGround(GROUND); })]));
   GROUND.forEach(function (ds) { w.push(groundCard(ds)); });
   return w;
@@ -1830,15 +1968,19 @@ exploreTitle.style().set('shown', false);
 var explore = ui.Panel();
 function setDomain(domain) {
   state.domain = domain;
+  state.profilesOpen = false;
   forestBtn.setLabel(domain === 'forests' ? '● Forests' : 'Forests');
   soilBtn.setLabel(domain === 'soils' ? '● Soils' : 'Soils');
   exploreTitle.setValue('3  Explore ' + (domain === 'soils' ? 'soils' : 'forests'));
   exploreTitle.style().set('shown', true);
   state.showButtons = {};
   explore.clear();
-  explore.add(section('Ground data', groundContent(domain), true));
+  explore.add(section(domain === 'soils' ? 'Ground data · Profiles' : 'Ground data', groundContent(domain), domain !== 'soils', function (open) {
+    if (state.domain === 'soils') { state.profilesOpen = open; refreshPoints(); }
+  }));
   explore.add(section('Covariates', covariateContent(domain), false));
   explore.add(section('Maps', mapsContent(domain), true));
+  refreshPoints();
 }
 forestBtn.onClick(function () { setDomain('forests'); });
 soilBtn.onClick(function () { setDomain('soils'); });
@@ -1867,6 +2009,7 @@ right.add(label('Summaries, layer details and clicked values appear here, newest
                 'click a profile point to see its depth profile.', S.intro));
 right.add(row([button('Summarise shown layers', summariseShown), button('Remove map layers', removeAllLayers),
                button('Clear results', function () { results.clear(); })]));
+right.add(row([button('Export AOI data', exportAoiData)]));
 right.add(results);
 
 ui.root.clear();

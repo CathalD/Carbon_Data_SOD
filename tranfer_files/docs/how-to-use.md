@@ -30,6 +30,10 @@ Google Earth Engine apps are planned. This page will provide tools to explore gr
 
 **App forthcoming.** View soil and peat products and summarise a chosen area. Keep concentration, density, fixed-depth stock, peat thickness and full-column peat carbon separate.
 
+## Tool draft available for testing
+
+The [Carbon Data Explorer script](../tools/gee/carbon_data_explorer.js) is a draft for running in the Earth Engine Code Editor. It includes AOI-clipped maps/covariates, on-demand soil profiles and raster/CSV exports. See its [instructions](../tools/gee/README.md). It has not been published as a company GEE app; the app placeholders remain the intended public tools.
+
 ## Access available now
 
 - [Catalogue downloads](downloads.md) link original sources and exact assets where recorded.

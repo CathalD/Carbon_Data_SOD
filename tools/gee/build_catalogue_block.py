@@ -33,7 +33,11 @@ def main():
     xw = pd.read_csv(ROOT / "data" / "catalogue" / "presentation_crosswalk.csv", dtype=str, keep_default_na=False)
     domain = dict(zip(xw.record_id, xw.domain))
     S, G, M, C = tbl("Studies"), tbl("Ground_data"), tbl("Maps"), tbl("Covariates")
-    prof = pd.read_csv(ROOT / "Comparison" / "data" / "derived" / "profile_dataset_summary.csv", dtype=str, keep_default_na=False)
+    profile_summary = ROOT / "Comparison" / "data" / "derived" / "profile_dataset_summary.csv"
+    if not profile_summary.exists():
+        # The company transfer keeps the original results separate from public pages.
+        profile_summary = ROOT / "analysis" / "source_snapshot" / "Comparison" / "data" / "derived" / "profile_dataset_summary.csv"
+    prof = pd.read_csv(profile_summary, dtype=str, keep_default_na=False)
 
     block = {
         "built": date.today().isoformat(),

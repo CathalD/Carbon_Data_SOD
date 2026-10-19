@@ -1,13 +1,13 @@
 {
   "description": "SHA-256 of all transfer files, excluding this manifest itself.",
   "source_snapshot": "6b125781e40267867399372d65b2fd72fc30670d",
-  "company_zip_files": 166,
+  "company_zip_files": 169,
   "files": {
     ".gitignore": "77605729c98668c94336a4facd95a3e2853ffa5d30ae6a30a84025a963635bd3",
     "CONTRIBUTING.md": "23fb212f741b9d434160285719083c2cc170198527d8776f38ac0b336529be26",
     "README.md": "46f733b65dab9661d9a80e559d6e9830368eaecfa05f10647de1fcf19f0cf5b1",
     "SOURCES.md": "a583b57d944ba6a6d8f513583008fc7bf1612f3352a73b2febd3bcf5fe2b8422",
-    "START_HERE.md": "fbe0308c31a729488300eb898dc769db3696f96b3bd5f5242f062142a078a238",
+    "START_HERE.md": "7b9370dba7f1db01418dfc7193de898fe2e5f77096ca5fa6dea36ac113aaed3b",
     "analysis/README.md": "a8d986a03e49895fe16957d203b8c07f9e67a7294875cfce99b5bfd8ef69197d",
     "analysis/build_summary_figures.py": "3a4d6c808404261f80bd5f8e5c97c44f50f330f0a72e1dcba7f3ab91d14dcbe5",
     "analysis/requirements.txt": "757ef244d5e3526ff9adaaa56aadafb59ea03306a5e16e3daa06e4fd850ea671",
@@ -133,7 +133,7 @@
     "data/downloads/carbon_catalogue.json": "73d84a88063a78310e3375ecffbf7686a44bb9b4ef75b22d29a74b370c2d9f0b",
     "docs/comparisons.md": "4b53f92e84e5733519516b17ffd238e047fe81e5ab1d97511a9ba6320c44291d",
     "docs/downloads.md": "9bfb4947129629eecfe6db60029e6f7b38a3b2b32850dbf3660420709be5a685",
-    "docs/how-to-use.md": "0da593e1652072b23b85340a9ab02eb82a065beca1a1775af73e7884ad220bac",
+    "docs/how-to-use.md": "b389c2293d9acdec288ad05e4f72deadb1093d264410596dbd9afa109a694476",
     "docs/images/summaries/map-canopy_height_max.png": "112f5f3a5e18eec67eed2e025e27b48cab1fc0918b7676fd6121b7be55967b9b",
     "docs/images/summaries/map-esa_cci_2020.png": "422f9e5e685b41142b2ba33d0e4bfae1617ace024540cc411a689cadfebdafb0",
     "docs/images/summaries/map-forest_carbon.png": "1c20f5ac8d8648f9529c11c1d6047be6642f6ef5f98a924bc15b48158e1f4a6d",
@@ -165,8 +165,8 @@
     "examples/02_quickstart.py": "e123bb8d3e512f3eca32a496ca591108599a6ee7c18971683800c65a2ca5783c",
     "examples/README.md": "0e4eabc57edc361ad28fd8e5be446599294dba15a46645b631eb66c99be50533",
     "examples/requirements.txt": "958bc13c849669eedaaa91579969ed4ce5a6fa6a68a9fa51aec08912bffcd449",
-    "handover/CURRENT_STATUS.md": "988f1cfeeeaa7aa7c8b08c2a3a96382324752e9e675828c3fde16acb8d624f0f",
-    "handover/company-repository.zip": "1a9b584963be9b15d883d45cb5fb249ad721333f94fc4ba7dc184e9c6dc7b4a4",
+    "handover/CURRENT_STATUS.md": "ef9f0ad8f86357e82f7d4bf7b2d63260e8851052d5f7095c52af6eb1796c61ee",
+    "handover/company-repository.zip": "f7f2b8f3ee4e04990df4443ae8eeccb4795068a8f472774a7e530afbdac7074b",
     "handover/planning/README.md": "24da88e78614f708ea4df49a6106d5d0bfa6c2e3ff92ba48e6b05c96e8b9ab0f",
     "handover/planning/carbon_review.md": "b0fe4625d824107c546ac191a44dbfa77efdb146c65f6a623d148b55340fbad1",
     "handover/planning/file_audit.csv": "468c0e44f24a02fd68ff2a9935ad2392cfbc93ddeba69acb78ae4a451b2345f7",
@@ -180,6 +180,9 @@
     "references/studies.bib": "2fda92052403251478b0853e6f7ee4abbce579dea612af6eb3d0437a54bcc4d9",
     "scripts/06_Soil_Map_QC.js": "e9b97d40aa332c6fbc1756eb52c1b87357236d162a8eed986c37e3837086b0d0",
     "scripts/build_catalogue_json.py": "888c2b32af0de69b9eca6dbf315b71b174de138f91a2bb14c744370e03a0d500",
-    "scripts/requirements.txt": "fd6f8460ec2c463c8eedfa9a900217d09defbef0aacd2599f33e51b675c8483c"
+    "scripts/requirements.txt": "fd6f8460ec2c463c8eedfa9a900217d09defbef0aacd2599f33e51b675c8483c",
+    "tools/gee/README.md": "73873b6822a3660bfb7b27200ebc215b1005c1967fdec63ae99d47048968f421",
+    "tools/gee/build_catalogue_block.py": "2dfe3b36dd721de54a3647bea6c6e44a7b344a7cb1acf9ddc72d222bc8f7a713",
+    "tools/gee/carbon_data_explorer.js": "b7b084a795b85dda75bc90e82da382e7d7836386d81d6c139753b523eac9c277"
   }
 }
