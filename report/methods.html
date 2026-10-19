@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Methods – Carbon State of Data</title>
+<title>Methods – State of Carbon Data in Canada</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
 /* CSS for syntax highlighting */
 html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
@@ -61,168 +62,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-138a9145ecad1124718f867e5b4babdc.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-2ffcf84053bf49f5f4b59b710a9a6e20.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
-<style>html{ scroll-behavior: smooth; }</style>
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-html-640605f58ae58ee79329c070719e555b.min.css" rel="stylesheet" append-hash="true" data-mode="light">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 
 
+<link rel="stylesheet" href="../assets/plain.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body>
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Carbon State of Data</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Data and summaries</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../compare.html"> 
-<span class="menu-text">Comparisons</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../use.html"> 
-<span class="menu-text">How to use</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">More</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-more">    
-        <li>
-    <a class="dropdown-item" href="../report/methods.html">
- <span class="dropdown-text">Methods</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../downloads.html">
- <span class="dropdown-text">Downloads</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../sources.html">
- <span class="dropdown-text">Sources</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../contribute.html">
- <span class="dropdown-text">Contribute</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/CathalD/Carbon_Data_SOD"> <i class="bi bi-github" role="img" aria-label="GitHub repository">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#analytical-design" id="toc-analytical-design" class="nav-link active" data-scroll-target="#analytical-design">Analytical design</a></li>
-  <li><a href="#rules-for-pairing-products" id="toc-rules-for-pairing-products" class="nav-link" data-scroll-target="#rules-for-pairing-products">Rules for pairing products</a></li>
-  <li><a href="#sampling-and-maps" id="toc-sampling-and-maps" class="nav-link" data-scroll-target="#sampling-and-maps">Sampling and maps</a></li>
-  <li><a href="#profiles" id="toc-profiles" class="nav-link" data-scroll-target="#profiles">Profiles</a></li>
-  <li><a href="#unit-conversions" id="toc-unit-conversions" class="nav-link" data-scroll-target="#unit-conversions">Unit conversions</a></li>
-  <li><a href="#ecozones" id="toc-ecozones" class="nav-link" data-scroll-target="#ecozones">Ecozones</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
-  <li><a href="#verification-status" id="toc-verification-status" class="nav-link" data-scroll-target="#verification-status">Verification status</a></li>
-  <li><a href="#reproduce" id="toc-reproduce" class="nav-link" data-scroll-target="#reproduce">Reproduce</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/main/Comparison/report/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-    </div>
-<!-- main -->
-<main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<header id="title-block-header">
 <h1 class="title">Methods</h1>
-<p class="subtitle lead">What is compared, how, and what the results can and cannot say.</p>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
 
 </header>
 
 
-<section id="analytical-design" class="level2">
-<h2 class="anchored" data-anchor-id="analytical-design">Analytical design</h2>
-<table class="caption-top table">
+<p><a href="../index.html">Data and summaries</a> · <a href="../compare.html">Comparisons</a> · <a href="../use.html">How to use</a> · <a href="../report/methods.html">Methods</a> · <a href="../downloads.html">Downloads</a> · <a href="../sources.html">Sources</a></p>
+<h2 id="analytical-design">Analytical design</h2>
+<table class="caption-top">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -250,9 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-</section>
-<section id="rules-for-pairing-products" class="level2">
-<h2 class="anchored" data-anchor-id="rules-for-pairing-products">Rules for pairing products</h2>
+<h2 id="rules-for-pairing-products">Rules for pairing products</h2>
 <ol type="1">
 <li><strong>Same quantity, same depth or pool.</strong> Products are paired only when both report the same quantity for the same depth interval, or the same pool and year. Everything else is listed, with the reason, under “Products not compared”. Two McMaster/WWF pairs are labelled exceptions:
 <ul>
@@ -266,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+<table class="caption-top">
 <caption>All pairs, in report order.</caption>
 <colgroup>
 <col style="width: 2%">
@@ -299,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">SoilGrids SOC stock 0–100 cm (derived from carbon density) native grid</td>
 <td style="text-align: left;">Canada</td>
 <td style="text-align: left;">kg C/m²; Sothe kg C/m² (0–1 m); SoilGrids carbon density hg/m³ ÷10 × interval thickness, summed over 0–100 cm</td>
-<td style="text-align: left;"><span class="pill">derived</span> Both 0–100 cm. The SoilGrids stock is derived here from its carbon density (no 0–100 cm stock is released), and SoilGrids excludes overlying organic layers</td>
+<td style="text-align: left;"><span class="pill prov">derived stock</span> Both 0–100 cm. The SoilGrids stock is derived here from its carbon density (no 0–100 cm stock is released), and SoilGrids excludes overlying organic layers</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">McMaster/WWF</td>
@@ -465,15 +327,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-</section>
-<section id="sampling-and-maps" class="level2">
-<h2 class="anchored" data-anchor-id="sampling-and-maps">Sampling and maps</h2>
+<h2 id="sampling-and-maps">Sampling and maps</h2>
 <p>Statistics come from <strong>30,000 random points</strong>, uniform in area. They are drawn in Canada Albers equal-area (ESRI:102001) within the terrestrial ecozones, seed 42. The peat pairs use <strong>1,500 points</strong> in the Hudson Plain ecozone (seed 43). At each point, both products of a pair are read on the pair’s comparison grid.</p>
 <p><strong>Each band is sampled independently</strong> (<code>reduceRegions</code> with a per-band <code>first</code> reducer). A point missing one depth, one variable or one product is dropped only for the pair that needs it. Earth Engine’s <code>sampleRegions</code> would instead drop a point from every band when any band is masked. For aboveground biomass and forest carbon, points where both products are zero are dropped, so shared non-forest does not inflate agreement.</p>
 <p><strong>Maps are drawn from the same samples.</strong> Each hexagon shows the mean of the sampled comparison-grid pixels inside it, for A, B and A − B. Hexagons are 100 km across nationally and 40 km in the Hudson Plain, and only points where both products have data are used. The aggregation is therefore explicit, and the maps use the same points, units and eligibility rules as the tables.</p>
-</section>
-<section id="profiles" class="level2">
-<h2 class="anchored" data-anchor-id="profiles">Profiles</h2>
+<h2 id="profiles">Profiles</h2>
 <ul>
 <li><strong>Depth matching:</strong> layers are combined into each map interval by thickness-weighted mean, only where they cover the whole interval with no gaps or overlaps. No extrapolation and no splines.</li>
 <li><strong>Two depth datums, kept separate:</strong>
@@ -491,10 +349,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Map values:</strong> each profile takes the value of the map pixel that contains it, at the map’s native grid, with each band read independently.</li>
 <li><strong>Units:</strong> organic carbon in g/kg (WoSIS stored in g/kg; the others in %, ×10); bulk density in g/cm³; stocks in kg C/m². Layer stocks reproduce <code>C(g/kg) × BD × thickness / 100</code> for WoSIS and <code>C(%) × BD × thickness / 10</code> for Janousek. NRCan provider stocks are close to, but not identical with, the corresponding expression, so the provider values are used as given.</li>
 </ul>
-</section>
-<section id="unit-conversions" class="level2">
-<h2 class="anchored" data-anchor-id="unit-conversions">Unit conversions</h2>
-<table class="caption-top table">
+<h2 id="unit-conversions">Unit conversions</h2>
+<table class="caption-top">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -605,13 +461,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-</section>
-<section id="ecozones" class="level2">
-<h2 class="anchored" data-anchor-id="ecozones">Ecozones</h2>
+<h2 id="ecozones">Ecozones</h2>
 <p>Canada’s 15 terrestrial ecozones from the AAFC National Ecological Framework (<code>ecozone_shp.zip</code>, Open Government Licence – Canada), stored in <code>Comparison/data/ecozones/</code>.</p>
-</section>
-<section id="limitations" class="level2">
-<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations</h2>
 <ul>
 <li><strong>Agreement is not accuracy.</strong> Two maps can agree because they share training data or covariates.</li>
 <li><strong>Support mismatch.</strong> A soil core or inventory plot covers a few square metres; the pixels are 30 m to about 1.3 km.</li>
@@ -620,12 +472,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Imported encodings.</strong> The imported encodings of Geng and Li are tracked in the repository QC register. Distributions of values cannot settle these; source metadata and file identity must.</li>
 <li><strong>Uncertainty layers</strong> use different statistics (SD, quantile intervals, model disagreement) and are not compared.</li>
 </ul>
-</section>
-<section id="verification-status" class="level2">
-<h2 class="anchored" data-anchor-id="verification-status">Verification status</h2>
+<h2 id="verification-status">Verification status</h2>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+<table class="caption-top">
 <caption>Hosted soil-map assets in the QC register. Sample agreement means 512 seeded points per band matched the source exactly; it is not full raster equality and does not confirm units or uncertainty meaning.</caption>
 <thead>
 <tr class="header">
@@ -656,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+<table class="caption-top" style="width:100%;">
 <caption>Depth-interval checks on the uploaded layer tables (local prepared CSVs).</caption>
 <colgroup>
 <col style="width: 11%">
@@ -728,9 +578,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-</section>
-<section id="reproduce" class="level2">
-<h2 class="anchored" data-anchor-id="reproduce">Reproduce</h2>
+<h2 id="reproduce">Reproduce</h2>
 <p><strong>Render the published snapshot</strong> (no Earth Engine needed): from <code>Comparison/</code>, run <code>quarto render</code>, which writes <code>Comparison/_site/</code>; <code>quarto publish gh-pages</code> publishes it.</p>
 <p><strong>Refresh the analysis</strong> (Earth Engine and the prepared profile tables in <code>CSOD_LOCAL_DATA</code> needed), from <code>Comparison/analysis/</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/01_profile_intervals.R</span>
@@ -743,18 +591,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Set <code>EE_PROJECT</code> to your Earth Engine project (default <code>northstarlabs</code>) and <code>CSOD_LOCAL_DATA</code> to the folder holding the prepared profile CSVs.</p>
 
 
-</section>
-
-</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
+    const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+    tabsets.forEach(function(tabset) {
+      const tabby = new Tabby('#' + tabset.id);
+    });
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -851,7 +693,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         },
         interactive: true,
         interactiveBorder: 10,
-        theme: 'quarto',
+        theme: 'light-border',
         placement: 'bottom-start',
       };
       if (contentFn) {
@@ -1151,23 +993,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-</div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Carbon State of Data for Canada. No map is treated as truth; agreement is not accuracy.</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/CathalD/Carbon_Data_SOD/blob/main/Comparison/report/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/CathalD/Carbon_Data_SOD/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
-    <div class="nav-footer-right">
-<p>Built with Quarto from <a href="https://github.com/CathalD/Carbon_Data_SOD/tree/main/Comparison">Comparison/</a></p>
-</div>
-  </div>
-</footer>
 
 
 
 
-<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
