@@ -1,0 +1,43 @@
+---
+title: "Downloads"
+---
+
+[Data and summaries](index.qmd) · [Comparisons](compare.qmd) · [How to use](use.qmd) · [Methods](report/methods.qmd) · [Downloads](downloads.qmd) · [Sources](sources.qmd)
+
+
+```{r}
+#| label: setup
+source(file.path("report", "_setup.R"))
+tabs <- c("Studies", "Ground_data", "Study_ground", "Covariates", "Maps", "Assets", "Other_sources", "QC_register", "Soil_methods", "Data_dictionary")
+```
+
+These are **catalogue metadata**, not individual measurements: study and data links, asset IDs, scales, depths, methods and status. Keep identifiers as strings; blank numeric cells mean unresolved or not applicable, never zero.
+
+## Current catalogue
+
+Catalogue version **`r build_info$catalogue_version`**, the same tables this site is built from.
+
+```{r}
+tibble(Table = tabs,
+       Rows = vapply(tabs, function(t) fmt_n(nrow(cat_tbl(t))), ""),
+       CSV = sprintf("[Download](%s)", gh_raw(paste0("data/downloads/", tabs, ".csv")))) |>
+  kable()
+```
+
+[Complete catalogue JSON](`r gh_raw("data/downloads/carbon_catalogue.json")`) (generated from the CSVs by `scripts/build_catalogue_json.py`).
+
+The pinned **v0.1.0** release remains available unchanged: [JSON](https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/v0.1.0/data/downloads/carbon_catalogue.json) · [repository ZIP](https://codeload.github.com/CathalD/Carbon_Data_SOD/zip/refs/tags/v0.1.0) · [release notes](`r gh_blob("docs/releases/0.1.0.md")`).
+
+## Comparison data
+
+- [Comparison statistics](`r gh_raw("Comparison/data/derived/comparison_statistics.csv")`): every pair, with n, means, mean difference, RMSD, Pearson r, Spearman ρ and the share within ±25%.
+- [Pair samples](`r gh_blob("Comparison/data/derived")`): the comparison-grid values at each random point (`pair_samples_*.csv`), the profile interval values and map values at profiles.
+- [Pair definitions](`r gh_raw("Comparison/data/derived/pairs.json")`): quantities, units, conversions, grids and depth datum for each pair.
+
+## Raster and observation access
+
+Exact Earth Engine IDs and original-provider links are in the Assets table. Earth Engine sign-in and your own project are required even for public assets. Full-size rasters and ground tables should come from the original provider or be exported from the documented public asset in your own environment.
+
+## Reproduce
+
+Rendering this site uses only committed files: Quarto and the R packages listed in [`Comparison/README.md`](`r gh_blob("Comparison/README.md")`), with no Earth Engine access. Refreshing the analysis needs Earth Engine and the original prepared profile tables; the steps and settings are in the same README.

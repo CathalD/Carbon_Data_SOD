@@ -1,7 +1,9 @@
 ---
 title: "Downloads"
-subtitle: "Catalogue tables, comparison data and how to reproduce this site."
 ---
+
+[Data and summaries](index.qmd) · [Comparisons](compare.qmd) · [How to use](use.qmd) · [Methods](report/methods.qmd) · [Downloads](downloads.qmd) · [Sources](sources.qmd)
+
 
 ```{r}
 #| label: setup

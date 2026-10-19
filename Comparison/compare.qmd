@@ -1,10 +1,11 @@
 ---
 title: "Comparisons"
-subtitle: "How the data differ and what can be compared. The McMaster/WWF maps (Sothe et al. 2022) come first."
 aliases:
   - report/forest.html
   - report/soils.html
 ---
+
+[Data and summaries](index.qmd) · [Comparisons](compare.qmd) · [How to use](use.qmd) · [Methods](report/methods.qmd) · [Downloads](downloads.qmd) · [Sources](sources.qmd)
 
 ```{r}
 #| label: setup
@@ -14,15 +15,19 @@ st <- function(id) comp_stats[comp_stats$id == id, ]
 lab_of <- setNames(pairs$quantity, pairs$id)
 ```
 
-::: {.callout-note appearance="simple"}
-Products are compared only where they report the same quantity at the same depth or pool. Each pair is compared on the coarser of its two grids, using 30,000 area-uniform random points (1,500 in the Hudson Plain for peat). Agreement is not accuracy: two maps can agree because they share training data. Full definitions are in [Methods](report/methods.qmd); statistics for every pair are in [Downloads](downloads.qmd).
-:::
+Selected products are compared after unit conversion on the coarser product grid. Agreement is not accuracy. [Methods](report/methods.qmd) documents the calculations and limitations.
+
+National maps show sampled means in 100 km hexagons with at least five paired observations; peat maps use 40 km hexagons with at least three. A and B share a colour scale within each figure. Red differences mean A is higher, blue mean B is higher; extreme colours saturate (2nd–98th percentile for A/B; 95th percentile of absolute differences). Grey means insufficient paired data.
 
 # Forests {#forests}
 
 ## Ground data {#forests-ground}
 
-No forest plot-to-map comparison is included in this release. The forest plot sources differ in what they measure, their plot support and how the maps used them:
+No forest plot-to-map comparison is included yet.
+
+<details>
+<summary>Forest observation sources and study roles</summary>
+
 
 ```{r}
 fg <- G |> filter(in_domain(ground_id, "forests"))
@@ -37,9 +42,15 @@ fg |> left_join(roles, by = "ground_id") |>
   kable(caption = "Shared validation data do not mean shared training data.")
 ```
 
+</details>
+
 ## Covariates {#forests-covariates}
 
-Forest studies draw on different variable families and map at different grids. A 400 m² inventory plot is about one 20 × 20 m footprint, finer than every output grid below.
+The table records study inputs and grids; it does not rank predictor importance across studies.
+
+<details>
+<summary>Forest covariate comparison</summary>
+
 
 ```{r}
 cov_compare <- function(ids) {
@@ -61,12 +72,13 @@ cov_compare <- function(ids) {
 cov_compare(S$study_id[in_domain(S$study_id, "forests")]) |> kable()
 ```
 
+</details>
+
 ## Maps {#forests-maps}
 
-### McMaster/WWF forest carbon vs SCANFI aboveground carbon {#mcmaster-scanfi}
+### McMaster/WWF forest carbon and SCANFI {#mcmaster-scanfi}
 
-**What and why.** McMaster/WWF is the most cited Canadian forest carbon map; SCANFI is the national 30 m inventory-based biomass map. SCANFI biomass is converted to carbon (× 0.5 carbon fraction × 0.1, t/ha to kg/m²). The pools differ: McMaster/WWF includes belowground and dead carbon, so a higher McMaster/WWF value is expected.<br>
-**Region · year · pool · grid.** Canada · McMaster/WWF inputs mostly 2015–2019, SCANFI 2020 · total vegetation carbon vs aboveground carbon · McMaster/WWF ≈250 m grid (SCANFI averaged up).
+kg C/m². Pools differ: McMaster/WWF includes aboveground, belowground and dead carbon; SCANFI is aboveground biomass × 0.5 carbon fraction. Reference periods also differ (mostly 2015–2019 versus 2020).
 
 ```{r}
 mcm <- read_pair_samples("mcm_forest") |> filter(a > 0 | b > 0)
@@ -76,36 +88,22 @@ mcm <- read_pair_samples("mcm_forest") |> filter(a > 0 | b > 0)
 #| label: chart-mcm-maps
 #| fig-width: 10
 #| fig-height: 4.3
-#| fig-cap: !expr hex_caption(100000, 5)
 hex_trio(mcm, "kg C/m²", "McMaster/WWF (above + below + dead)", "SCANFI aboveground × 0.5")
 ```
 
-```{r}
-#| results: asis
-r <- mcm |> filter(a > 0, b > 0) |> summarise(med = median(a / b), q1 = quantile(a / b, 0.25), q3 = quantile(a / b, 0.75))
-cat(sprintf("McMaster/WWF is higher almost everywhere (a median %.2f× SCANFI aboveground carbon, interquartile range %.2f–%.2f) and the two share their spatial pattern; the difference mixes the extra pools with genuine disagreement and cannot be split between them.\n\n%s\n",
-            r$med, r$q1, r$q3, stat_line("mcm_scanfi_c")))
-```
+<details>
+<summary>Comparison statistics</summary>
 
-::: {.callout-note collapse="true" appearance="simple"}
-## Details: scatter, ecozones and full statistics
-
-```{r}
-#| fig-height: 4.2
-hex_pair(mcm, "kg C/m²", "McMaster/WWF", "SCANFI carbon", bins = 50) | ecozone_bias(mcm, "kg C/m²", "McMaster/WWF", "SCANFI carbon")
-```
 
 ```{r}
 mcm |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id]) |> stats_table("kg C/m²")
 ```
 
-Using the IPCC default carbon fraction of 0.47 instead of 0.5 would lower SCANFI carbon by 6%.
-:::
+</details>
 
-### Aboveground biomass 2020 · SCANFI v1.2 vs ESA CCI v6 {#scanfi-esa}
+### SCANFI and ESA CCI aboveground biomass, 2020 {#scanfi-esa}
 
-**What and why.** Two national aboveground biomass maps for the same year. This is biomass, not total ecosystem carbon.<br>
-**Region · year · pool · grid.** Canada · 2020 · aboveground biomass (Mg/ha) · ESA CCI 100 m grid (SCANFI averaged up).
+Mg biomass/ha. Both represent aboveground biomass, not total carbon.
 
 ```{r}
 agb <- read_pair_samples("agb") |> filter(a > 0 | b > 0)
@@ -115,59 +113,26 @@ agb <- read_pair_samples("agb") |> filter(a > 0 | b > 0)
 #| label: chart-agb-maps
 #| fig-width: 10
 #| fig-height: 4.3
-#| fig-cap: !expr hex_caption(100000, 5)
 hex_trio(agb, "Mg/ha", "SCANFI v1.2", "ESA CCI v6")
 ```
 
-```{r}
-#| results: asis
-cat(sprintf("%s is higher on average and the two share their broad pattern (r = %.2f).\n\n%s\n",
-            ifelse(st("agb_2020")$mean_diff < 0, "ESA CCI", "SCANFI"), st("agb_2020")$pearson_r, stat_line("agb_2020")))
-```
+<details>
+<summary>Comparison statistics</summary>
 
-::: {.callout-note collapse="true" appearance="simple"}
-## Details: scatter, ecozones and full statistics
-
-```{r}
-#| fig-height: 4.2
-hex_pair(agb, "Mg/ha", "SCANFI", "ESA CCI", bins = 50) | ecozone_bias(agb, "Mg/ha", "SCANFI", "ESA CCI")
-```
 
 ```{r}
 agb |> group_by(id) |> agree_stats() |> mutate(label = "Aboveground biomass 2020") |> stats_table("Mg/ha")
 ```
-:::
+
+</details>
 
 # Soils {#soils}
 
 ## Ground data {#soils-ground}
 
-The five hosted profile datasets differ in where they sample, how deep they go and what they record.
+### Observations and maps {#profiles-vs-maps}
 
-```{r}
-#| label: chart-reach
-#| fig-height: 3
-profile_summary |>
-  select(dataset, `30 cm` = share_reaching_30cm, `100 cm` = share_reaching_100cm, `200 cm` = share_reaching_200cm) |>
-  pivot_longer(-dataset, names_to = "depth", values_to = "share") |>
-  mutate(dataset = factor(dataset, rev(dataset_levels)), depth = factor(depth, c("30 cm", "100 cm", "200 cm"))) |>
-  ggplot(aes(share, dataset, colour = depth)) +
-  geom_line(aes(group = dataset), colour = pal$rule, linewidth = 1.6) + geom_point(size = 3.2) +
-  scale_colour_manual(values = c(`30 cm` = pal$seq[3], `100 cm` = pal$s1, `200 cm` = pal$seq[7]), name = "Deepest recorded layer reaches") +
-  scale_x_continuous(labels = label_percent(), limits = c(0, 1)) + labs(x = "Share of profiles", y = NULL)
-```
-
-### Observations versus maps {#profiles-vs-maps}
-
-Each profile takes the value of the map pixel that contains it, at the map's native grid; observed values are thickness-weighted over layers that fully cover the map's interval. A matching depth label is not enough, so profiles are matched by depth datum:
-
-| Map products | Profile depth datum | Profiles used |
-|---|---|---|
-| Geng, SoilGrids (SOC, density, stocks) | Mineral surface: organic surface layers removed | WoSIS, NPDB |
-| Sothe (McMaster/WWF), NCSCDv2 (stocks) | Profile surface, organic layers included | All datasets with stocks |
-| PEATGRIDS, Li et al. (peat thickness) | Recorded peat depth per core | NRCan peat |
-
-WoSIS fed SoilGrids' training and NPDB is Geng's source family, so these are comparisons, not independent validation. Riley bulk density (units unverified) and Janousek profiles with thickness errors are excluded.
+Observed intervals are matched to map depths and datum. Geng/SoilGrids use mineral-surface profiles; Sothe/NCSCDv2 use profile-surface stocks. Shared training sources mean these are comparisons, not independent validation. Riley density and Janousek profiles with thickness errors are excluded.
 
 ```{r}
 iv_all <- read_csv(file.path(derived, "profile_intervals.csv"), show_col_types = FALSE) |> mutate(dataset = factor(dataset, dataset_levels))
@@ -201,16 +166,6 @@ stock_pm <- bind_rows(iv_min |> filter(variable == "stock_kgm2") |> mutate(basis
 ```
 
 ```{r}
-stock_pm |> group_by(map, basis) |>
-  summarise(Profiles = fmt_n(n()), `Median observed` = fmt_s(median(observed)), `Median map` = fmt_s(median(mapped)), .groups = "drop") |>
-  rename(Map = map, `Profile datum` = basis) |>
-  kable(caption = "Carbon stocks at profiles (kg C/m²). Profile-surface stocks are dominated by peat and coastal cores.")
-```
-
-::: {.callout-note collapse="true" appearance="simple"}
-## Details: organic carbon, bulk density, stocks and peat thickness at profiles
-
-```{r}
 #| fig-height: 5.4
 soc_pm <- pair_obs("soc_gkg"); bd_pm <- pair_obs("bd")
 ggplot(soc_pm |> filter(observed > 0, mapped > 0) |> mutate(interval = factor(interval, c("0-5", "5-15", "15-30", "30-60", "60-100"))),
@@ -222,6 +177,10 @@ ggplot(soc_pm |> filter(observed > 0, mapped > 0) |> mutate(interval = factor(in
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+<details>
+<summary>SOC and bulk-density comparison statistics</summary>
+
+
 ```{r}
 bind_rows(soc_pm |> pm_stats() |> mutate(Variable = "Organic carbon (g/kg)"), bd_pm |> pm_stats() |> mutate(Variable = "Bulk density (g/cm³)")) |>
   transmute(Variable, Map = map, Dataset = dataset, `Profile-intervals` = fmt_n(n), `Median observed` = fmt_s(med_obs),
@@ -229,14 +188,38 @@ bind_rows(soc_pm |> pm_stats() |> mutate(Variable = "Organic carbon (g/kg)"), bd
   kable(caption = "WoSIS and NPDB mineral layers, five intervals pooled, one row per profile and interval.")
 ```
 
+</details>
+
+#### Stocks at sites
+
+kg C/m²; 0–30 or 0–100 cm as labelled. Positive values are shown on log axes; the dashed line is 1:1.
+
 ```{r}
-#| fig-height: 4.2
+#| fig-width: 10
+#| fig-height: 6
 ggplot(stock_pm |> filter(observed > 0, mapped > 0), aes(observed, mapped, colour = dataset)) +
   geom_point(size = 0.9, alpha = 0.5) + geom_abline(slope = 1, intercept = 0, linetype = "22", colour = pal$ink, linewidth = 0.4) +
-  scale_colour_manual(values = dataset_cols, name = NULL) + scale_x_log10() + scale_y_log10() + facet_wrap(~map, nrow = 1) + coord_equal() +
+  scale_colour_manual(values = dataset_cols, name = NULL) + scale_x_log10() + scale_y_log10() + facet_wrap(~map, ncol = 3) + coord_equal() +
   labs(x = "Observed stock (kg C/m²)", y = "Map value at profile (kg C/m²)") +
   guides(colour = guide_legend(override.aes = list(size = 2.5, alpha = 1)))
 ```
+
+<details>
+<summary>Stock comparison statistics and depth datum</summary>
+
+
+```{r}
+stock_pm |> group_by(map, basis) |>
+  summarise(Profiles = fmt_n(n()), `Median observed` = fmt_s(median(observed)), `Median map` = fmt_s(median(mapped)), .groups = "drop") |>
+  rename(Map = map, `Profile datum` = basis) |>
+  kable(caption = "Carbon stocks at profiles (kg C/m²). Profile-surface stocks are dominated by peat and coastal cores.")
+```
+
+</details>
+
+#### Recorded and mapped peat thickness
+
+cm; NRCan peat cores compared with each map at its native grid. The dashed line is 1:1.
 
 ```{r}
 #| fig-height: 3.8
@@ -249,15 +232,20 @@ ggplot(pk, aes(org_depth_cm, mapped)) +
   scale_colour_manual(values = c(`TRUE` = pal$s2, `FALSE` = pal$s1), labels = c(`TRUE` = "permafrost core", `FALSE` = "no permafrost"), name = NULL) +
   facet_wrap(~map) + coord_equal() + labs(x = "Recorded peat depth at core (cm)", y = "Modelled peat thickness (cm)")
 ```
-:::
 
 ## Covariates {#soils-covariates}
 
-Soil and peat studies share climate and terrain families but differ in training data and output grid; coarse predictors such as climate and soil class are used to map at much finer grids.
+Study inputs differ in their sources, periods and spatial support.
+
+<details>
+<summary>Soil and peat covariate comparison</summary>
+
 
 ```{r}
 cov_compare(S$study_id[in_domain(S$study_id, "soils")]) |> kable()
 ```
+
+</details>
 
 ## Maps {#soils-maps}
 
@@ -268,98 +256,58 @@ short_iv <- function(x) sub("^(SOC concentration|Bulk density) ", "", x)
 iv_labels <- function(fam) setNames(short_iv(lab_of[pairs$id[pairs$family == fam]]), pairs$id[pairs$family == fam])
 ```
 
-### Sothe (McMaster/WWF) vs SoilGrids · SOC stock 0–100 cm {#sothe-soilgrids}
+### Sothe and SoilGrids: stock at 0–100 cm {#sothe-soilgrids}
 
-**What and why.** The McMaster/WWF soil carbon map against the global SoilGrids product, at the same 0–100 cm depth. SoilGrids does not release a 0–100 cm stock, so one is derived here by summing its carbon density over its five intervals; SoilGrids also excludes overlying organic layers.<br>
-**Region · depth · grid.** Canada · 0–100 cm · SoilGrids 250 m grid (Sothe averaged up).
+kg C/m². SoilGrids stock is derived from carbon density and excludes overlying organic layers; equal nominal depths do not establish identical pools.
 
 ```{r}
 #| label: chart-sothe-sg-maps
 #| fig-width: 10
 #| fig-height: 4.3
-#| fig-cap: !expr hex_caption(100000, 5)
 hex_trio(ssg, "kg C/m²", "Sothe (McMaster/WWF)", "SoilGrids (derived)")
 ```
 
-```{r}
-#| results: asis
-ez <- ssg |> group_by(ecozone) |> summarise(n = n(), sothe = median(a), sg = median(b), .groups = "drop") |> filter(n >= 200) |>
-  mutate(ratio = sothe / sg) |> arrange(desc(ratio))
-cat(sprintf("Sothe is higher at %s of points and the two maps are close to uncorrelated (r = %.2f). The largest gap is in the %s (median %.0f vs %.0f kg C/m²), a peat-dominated region, where SoilGrids' exclusion of overlying organic layers matters most.\n\n%s\n",
-            percent(mean(ssg$a > ssg$b), 1), st("sothe_sg_0_100")$pearson_r, ez$ecozone[1], ez$sothe[1], ez$sg[1], stat_line("sothe_sg_0_100")))
-```
+<details>
+<summary>Comparison statistics</summary>
 
-::: {.callout-note collapse="true" appearance="simple"}
-## Details: scatter, ecozones and full statistics
-
-```{r}
-#| fig-height: 4
-(hex_pair(ssg, "kg C/m²", "Sothe", "SoilGrids derived", bins = 45) + scale_x_log10() + scale_y_log10() + coord_equal()) |
-  ecozone_bias(ssg, "kg C/m²", "Sothe", "SoilGrids")
-```
 
 ```{r}
 ssg |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id]) |> stats_table("kg C/m²")
 ```
-:::
 
-### Sothe (McMaster/WWF) vs NCSCDv2 · SOC stock 0–100 cm {#sothe-ncscd}
+</details>
 
-**What and why.** The McMaster/WWF soil carbon map against the Northern Circumpolar Soil Carbon Database, which assigns stocks to soil-map polygons rather than predicting each pixel.<br>
-**Region · depth · grid.** Canada · 0–100 cm · NCSCDv2 0.012° grid (Sothe averaged up).
+### Sothe and NCSCDv2: stock at 0–100 cm {#sothe-ncscd}
+
+kg C/m². NCSCDv2 assigns stocks to soil-map polygons; organic-layer treatment remains partly unresolved.
 
 ```{r}
 #| label: chart-s100-maps
 #| fig-width: 10
 #| fig-height: 4.3
-#| fig-cap: !expr hex_caption(100000, 5)
 hex_trio(s100, "kg C/m²", "Sothe (McMaster/WWF)", "NCSCDv2")
 ```
 
-```{r}
-#| results: asis
-q <- quantile(with(filter(s100, b > 0), a / b), c(0.25, 0.5, 0.75), na.rm = TRUE)
-cat(sprintf("Sothe is higher than NCSCDv2 at %s of points (median ratio %.1f, interquartile range %.1f–%.1f), with a weak shared pattern (r = %.2f).\n\n%s\n",
-            percent(mean(s100$a > s100$b), 1), q[2], q[1], q[3], st("ocs_0_100")$pearson_r, stat_line("ocs_0_100")))
-```
+<details>
+<summary>Comparison statistics</summary>
 
-::: {.callout-note collapse="true" appearance="simple"}
-## Details: scatter, ecozones and full statistics
-
-```{r}
-#| fig-height: 4
-(hex_pair(s100, "kg C/m²", "Sothe", "NCSCDv2", bins = 40) + scale_x_log10() + scale_y_log10() + coord_equal()) |
-  ecozone_bias(s100, "kg C/m²", "Sothe", "NCSCDv2")
-```
 
 ```{r}
 s100 |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id]) |> stats_table("kg C/m²")
 ```
-:::
 
-### Organic carbon concentration · Geng vs SoilGrids {#geng-soilgrids}
+</details>
 
-**What and why.** Two maps of SOC concentration at the same five intervals to 1 m.<br>
-**Region · depth · grid.** Canada · 0–5 cm shown; all intervals in details · SoilGrids 250 m grid (Geng 100 m averaged up).
+### Geng and SoilGrids: SOC concentration {#geng-soilgrids}
+
+The first figure shows 0–5 cm concentrations (g/kg), followed by differences at all five intervals. Geng imported encoding and mineral-surface interpretation remain to verify.
 
 ```{r}
 #| label: chart-soc-maps
 #| fig-width: 10
 #| fig-height: 4.3
-#| fig-cap: !expr hex_caption(100000, 5)
 hex_trio(filter(soc_s, id == "soc_0_5"), "g/kg", "Geng 0–5 cm", "SoilGrids 0–5 cm")
 ```
-
-```{r}
-#| results: asis
-e5 <- soc_s |> filter(id == "soc_0_5") |> group_by(ecozone) |> summarise(n = n(), d = median(a - b), .groups = "drop") |> filter(n >= 200) |> arrange(d)
-cat(sprintf("%s is higher on average at 0–5 cm, most of all in the %s, and the two share a moderate pattern (r = %.2f).\n\n%s\n",
-            ifelse(st("soc_0_5")$mean_diff < 0, "SoilGrids", "Geng"), ifelse(st("soc_0_5")$mean_diff < 0, e5$ecozone[1], e5$ecozone[nrow(e5)]),
-            st("soc_0_5")$pearson_r, stat_line("soc_0_5")))
-```
-
-::: {.callout-note collapse="true" appearance="simple"}
-## Details: every depth, bulk density, and full statistics
 
 ```{r}
 #| fig-width: 10
@@ -367,11 +315,19 @@ cat(sprintf("%s is higher on average at 0–5 cm, most of all in the %s, and the
 hex_diff_facets(soc_s, "g/kg", iv_labels("soc")) + labs(title = "Organic carbon: Geng − SoilGrids at each interval")
 ```
 
+<details>
+<summary>SOC comparison statistics by depth</summary>
+
+
 ```{r}
 soc_s |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id]) |> arrange(match(id, pairs$id)) |> stats_table("g/kg")
 ```
 
-Bulk density is a supporting diagnostic: it shapes stocks but is compared here only to explain differences.
+</details>
+
+### Geng and SoilGrids: bulk density
+
+g/cm³; Geng minus SoilGrids at matching intervals. The same Geng encoding and datum qualifications apply.
 
 ```{r}
 #| fig-width: 10
@@ -379,47 +335,46 @@ Bulk density is a supporting diagnostic: it shapes stocks but is compared here o
 hex_diff_facets(bd_s, "g/cm³", iv_labels("bd")) + labs(title = "Bulk density: Geng − SoilGrids at each interval")
 ```
 
+<details>
+<summary>Bulk-density comparison statistics by depth</summary>
+
+
 ```{r}
 bd_s |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id]) |> arrange(match(id, pairs$id)) |> stats_table("g/cm³")
 ```
-:::
 
-### SOC stock 0–30 cm · SoilGrids vs NCSCDv2 {#soilgrids-ncscd}
+</details>
 
-**What and why.** Two released 0–30 cm stocks. SoilGrids excludes overlying organic layers, while NCSCDv2 is built from pedons measured from the soil surface, so read differences as indicative.<br>
-**Region · depth · grid.** Canada · 0–30 cm · NCSCDv2 0.012° grid (SoilGrids averaged up).
+### SoilGrids and NCSCDv2: stock at 0–30 cm {#soilgrids-ncscd}
+
+kg C/m². SoilGrids excludes overlying organic layers; NCSCDv2 uses soil-surface pedons, with organic-layer treatment still to verify.
 
 ```{r}
 #| label: chart-s30-maps
 #| fig-width: 10
 #| fig-height: 4.3
-#| fig-cap: !expr hex_caption(100000, 5)
 hex_trio(s30, "kg C/m²", "SoilGrids 0–30 cm", "NCSCDv2 0–30 cm")
 ```
 
+<details>
+<summary>Comparison statistics</summary>
+
+
 ```{r}
-#| results: asis
-z <- s30 |> summarise(zero = mean(b == 0), r_nz = cor(a[b > 0], b[b > 0]))
-cat(sprintf("The two have similar averages but almost no shared pattern (r = %.2f; %.2f without NCSCDv2's %s recorded zeros in rock and ice units).\n\n%s\n",
-            st("ocs_0_30")$pearson_r, z$r_nz, percent(z$zero, 0.1), stat_line("ocs_0_30")))
+s30 |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id]) |> stats_table("kg C/m²")
 ```
 
-### Peat thickness and peat carbon · Li et al. vs PEATGRIDS, Hudson Bay Lowlands {#peat}
+</details>
 
-**What and why.** Two models of the full peat column. Thickness and whole-column carbon are separate quantities and are not ranked against fixed-depth stocks. PEATGRIDS missing values are masked before sampling.<br>
-**Region · depth · grid.** Hudson Plain · full modelled peat column · PEATGRIDS 1 km grid (Li 30 m averaged up).
+### Li et al. and PEATGRIDS: peat thickness and carbon {#peat}
+
+Hudson Plain ecozone. Thickness (cm) and full-column carbon (kg C/m²) are separate outputs. PEATGRIDS missing values are masked; its stored carbon is converted from Mg C/m² × 1,000. Li imported encoding remains to verify.
 
 ```{r}
 #| label: chart-peat-depth
 #| fig-width: 10
 #| fig-height: 4
-#| fig-cap: !expr hex_caption(40000, 3)
 hex_trio(filter(peat_s, id == "peat_depth"), "cm", "Li peat depth", "PEATGRIDS thickness", region = hudson_3978, cellsize = 40000, min_n = 3)
-```
-
-```{r}
-#| results: asis
-cat(sprintf("Peat thickness agrees within ±25%% at %s of points (r = %.2f).\n\n%s\n", percent(st("peat_depth")$within_25pct, 1), st("peat_depth")$pearson_r, stat_line("peat_depth")))
 ```
 
 ```{r}
@@ -429,18 +384,30 @@ cat(sprintf("Peat thickness agrees within ±25%% at %s of points (r = %.2f).\n\n
 hex_trio(filter(peat_s, id == "peat_carbon"), "kg C/m²", "Li peat carbon", "PEATGRIDS carbon", region = hudson_3978, cellsize = 40000, min_n = 3)
 ```
 
+<details>
+<summary>Peat comparison statistics</summary>
+
+
 ```{r}
-#| results: asis
-w <- peat_s |> select(pid, id, a, b) |> pivot_wider(names_from = id, values_from = c(a, b)) |> drop_na()
-cat(sprintf("Whole-column carbon does not agree (r = %.2f): Li's carbon follows its peat depth almost exactly (r = %.2f), while PEATGRIDS carbon follows its thickness only weakly (r = %.2f).\n\n%s\n",
-            st("peat_carbon")$pearson_r, cor(w$a_peat_depth, w$a_peat_carbon), cor(w$b_peat_depth, w$b_peat_carbon), stat_line("peat_carbon")))
+peat_s |> filter(id == "peat_depth") |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id]) |> stats_table("cm")
 ```
+
+
+```{r}
+peat_s |> filter(id == "peat_carbon") |> group_by(id) |> agree_stats() |> mutate(label = lab_of[id]) |> stats_table("kg C/m²")
+```
+
+</details>
 
 ## Products not compared {#not-compared}
 
-Pairs are left out for one of six reasons: different **quantity** (e.g. concentration vs stock), different **depth or pool**, different **year**, different **region**, different **spatial support** (polygons vs pixels), or a product **not hosted** for comparison.
+<details>
+<summary>Excluded product pairs and reasons</summary>
+
 
 ```{r}
 exclusions |> transmute(`Forests / soils` = tools::toTitleCase(ifelse(domain == "forest", "forests", "soils")), `Product A` = product_a,
                         `Product B` = product_b, Reason = reason_type, Detail = why_not_compared) |> kable()
 ```
+
+</details>

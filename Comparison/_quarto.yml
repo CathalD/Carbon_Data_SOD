@@ -1,7 +1,6 @@
 project:
   type: website
   output-dir: _site
-  # Only the site pages are rendered; README.md and analysis notes stay as they are.
   render:
     - index.qmd
     - compare.qmd
@@ -12,50 +11,22 @@ project:
     - report/methods.qmd
 
 website:
-  title: "Carbon State of Data"
+  title: "State of Carbon Data in Canada"
   site-url: "https://cathald.github.io/Carbon_Data_SOD/"
-  repo-url: "https://github.com/CathalD/Carbon_Data_SOD"
-  repo-subdir: "Comparison"
-  repo-branch: main
-  repo-actions: [source, issue]
-  page-navigation: false
-  navbar:
-    left:
-      - href: index.qmd
-        text: Data and summaries
-      - href: compare.qmd
-        text: Comparisons
-      - href: use.qmd
-        text: How to use
-    right:
-      - text: More
-        menu:
-          - href: report/methods.qmd
-            text: Methods
-          - href: downloads.qmd
-            text: Downloads
-          - href: sources.qmd
-            text: Sources
-          - href: contribute.qmd
-            text: Contribute
-      - icon: github
-        href: https://github.com/CathalD/Carbon_Data_SOD
-        aria-label: GitHub repository
-  page-footer:
-    left: "Carbon State of Data for Canada. No map is treated as truth; agreement is not accuracy."
-    right: "Built with Quarto from [Comparison/](https://github.com/CathalD/Carbon_Data_SOD/tree/main/Comparison)"
+  search: false
 
 format:
   html:
-    theme: [cosmo, assets/styles.scss]
-    toc: true
-    toc-depth: 3
+    theme: none
+    css: assets/plain.css
+    toc: false
     number-sections: false
     fig-dpi: 144
     fig-format: png
+    fig-cap-location: bottom
     code-tools: false
-    anchor-sections: true
-    smooth-scroll: true
+    anchor-sections: false
+    smooth-scroll: false
     link-external-newwindow: true
 
 execute:

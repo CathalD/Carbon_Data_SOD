@@ -11,6 +11,7 @@ If copying directly from this folder, copy everything except `handover/` and thi
 | Path | Contents |
 |---|---|
 | `README.md` | Report introduction, dataset tables and links |
+| `site/` | Current plain report website sources, with figures and dropdown tables; render with Quarto |
 | `docs/` | Summaries, comparisons, How to use, methods, downloads and source access/QC notes |
 | `data/` | Editable catalogue tables and source evidence |
 | `references/`, `SOURCES.md` | Scientific references and the original project's citation metadata |
@@ -19,6 +20,10 @@ If copying directly from this folder, copy everything except `handover/` and thi
 | `scripts/` | Catalogue JSON builder and source QC example |
 | `analysis/` | Summary-figure generator and a versioned source analysis snapshot |
 | `CONTRIBUTING.md`, `.gitignore` | Contribution guidance and generated-file exclusions |
+
+## Review the plain report
+
+`site/` contains the current plain report, with tables in dropdowns and the existing explorer script linked under How to use. See `site/README.md` for rendering and company Pages setup. The files in `docs/` below retain the earlier planning scaffold.
 
 ## Review the drafts
 

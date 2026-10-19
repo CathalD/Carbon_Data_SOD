@@ -1,0 +1,37 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - compare.qmd
+    - use.qmd
+    - downloads.qmd
+    - sources.qmd
+    - contribute.qmd
+    - report/methods.qmd
+
+website:
+  title: "State of Carbon Data in Canada"
+  search: false
+
+format:
+  html:
+    theme: none
+    css: assets/plain.css
+    toc: false
+    number-sections: false
+    fig-dpi: 144
+    fig-format: png
+    fig-cap-location: bottom
+    code-tools: false
+    anchor-sections: false
+    smooth-scroll: false
+    link-external-newwindow: true
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: false
+
+lang: en-CA

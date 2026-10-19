@@ -1,7 +1,9 @@
 ---
 title: "Sources"
-subtitle: "Cite the original publication and the exact data release for each dataset you use."
 ---
+
+[Data and summaries](index.qmd) · [Comparisons](compare.qmd) · [How to use](use.qmd) · [Methods](report/methods.qmd) · [Downloads](downloads.qmd) · [Sources](sources.qmd)
+
 
 ```{r}
 #| label: setup
@@ -9,7 +11,7 @@ source(file.path("report", "_setup.R"))
 S <- cat_tbl("Studies"); G <- cat_tbl("Ground_data")
 ```
 
-The catalogue citation does not replace either. [BibTeX](`r gh_blob("references/studies.bib")`) · [catalogue citation](`r gh_blob("CITATION.cff")`) · [licensing status](`r gh_blob("docs/release_licensing.md")`) · [full source notes](`r gh_blob("SOURCES.md")`)
+Cite the original publication and exact data release for each dataset. [BibTeX](`r gh_blob("references/studies.bib")`) · [catalogue citation](`r gh_blob("CITATION.cff")`) · [licensing status](`r gh_blob("docs/release_licensing.md")`) · [full source notes](`r gh_blob("SOURCES.md")`)
 
 ## Studies
 

@@ -195,8 +195,8 @@ hex_trio <- function(d, unit, a_lab, b_lab, region = canada_3978, cellsize = 100
   base <- function() list(geom_sf(data = st_sf(geometry = region), fill = "#eef0ea", colour = NA),
                           coord_sf(xlim = bb[c(1, 3)], ylim = bb[c(2, 4)], datum = NA))
   seq_fill <- scale_fill_gradientn(colours = pal$seq, limits = lim, oob = squish, name = unit, breaks = scales::breaks_pretty(3))
-  pa <- ggplot() + base() + geom_sf(data = h, aes(fill = a), colour = NA) + seq_fill + labs(title = paste("A ·", a_lab))
-  pb <- ggplot() + base() + geom_sf(data = h, aes(fill = b), colour = NA) + seq_fill + labs(title = paste("B ·", b_lab))
+  pa <- ggplot() + base() + geom_sf(data = h, aes(fill = a), colour = NA) + seq_fill + labs(title = paste(strwrap(paste("A ·", a_lab), width = 28), collapse = "\n"))
+  pb <- ggplot() + base() + geom_sf(data = h, aes(fill = b), colour = NA) + seq_fill + labs(title = paste(strwrap(paste("B ·", b_lab), width = 28), collapse = "\n"))
   pd <- ggplot() + base() + geom_sf(data = h, aes(fill = diff), colour = NA) +
     scale_fill_gradientn(colours = pal$div, limits = c(-dlim, dlim), oob = squish, name = unit, breaks = scales::breaks_pretty(3)) +
     labs(title = "A − B", subtitle = "red: A higher · blue: B higher")
@@ -218,8 +218,8 @@ hex_caption <- function(cellsize, min_n) sprintf(
   round(cellsize / 1000), min_n)
 
 datum_pill <- function(status) {
-  cls <- c(matched = "ok", `to verify` = "prov", `may differ` = "prov", `pools differ` = "prov")[status]
-  label <- c(matched = "matched", `to verify` = "datum to verify", `may differ` = "datum may differ", `pools differ` = "pools differ")[status]
+  cls <- c(matched = "ok", `to verify` = "prov", `may differ` = "prov", `pools differ` = "prov", derived = "prov")[status]
+  label <- c(matched = "matched", `to verify` = "datum to verify", `may differ` = "datum may differ", `pools differ` = "pools differ", derived = "derived stock")[status]
   sprintf("<span class='pill %s'>%s</span>", ifelse(is.na(cls), "", cls), ifelse(is.na(label), status, label))
 }
 

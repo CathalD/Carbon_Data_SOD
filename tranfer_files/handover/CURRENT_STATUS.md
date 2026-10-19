@@ -18,3 +18,5 @@ Edit the public pages under `docs/` and the catalogue under `data/downloads/`. T
 After editing the transfer folder, run `python handover/update_package.py` from this folder to refresh the ZIP and checksums. This does not upload files; saving changes to the source GitHub repository is a separate step.
 
 The `tools/gee/` draft now shows soil points only when Profiles is expanded, clips rasters to the AOI, allows the AOI polygon to be hidden, compares eligible map products in Results and prepares raster/ground CSV downloads. It remains a Code Editor script for testing; a company GEE app has not been published.
+
+The current plain website is now in `site/`: summary and comparison figures, dropdown tables, separate methods, and the existing explorer script under How to use. This is the public report layout; `docs/` retains the earlier planning scaffold. Company Pages deployment still requires the actual company URL and repository settings.

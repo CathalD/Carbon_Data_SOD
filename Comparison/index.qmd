@@ -1,9 +1,10 @@
 ---
-title: "Carbon data for Canada"
-subtitle: "Explore ground observations, environmental covariates and maps for Canadian forests and soils. See what the data contain, how they compare, and where to access them. GEE tools for using the data are planned."
+title: "State of Carbon Data in Canada"
 aliases:
   - state_of_data_summary/state_of_data_summary.html
 ---
+
+[Data and summaries](index.qmd) · [Comparisons](compare.qmd) · [How to use](use.qmd) · [Methods](report/methods.qmd) · [Downloads](downloads.qmd) · [Sources](sources.qmd)
 
 ```{r}
 #| label: setup
@@ -16,35 +17,20 @@ dom_label <- c(forests = "Forests", soils = "Soils", both = "Forests and soils")
 access_label <- function(status) c(Hosted = "Project GEE", `External asset` = "Public GEE")[status] %|% "Provider"
 ```
 
-::: {.lede}
-Coverage is strongest for forest biomass and terrestrial soils; regional coastal, wetland and other resources are included where documented. This is not an exhaustive inventory of every Canadian carbon dataset.
-:::
+A catalogue of forest and soil carbon observations, covariates and maps for Canada. These pages show what the data contain, how selected products compare and the tools available to explore them.
 
-```{r}
-#| results: asis
-st <- function(id) comp_stats[comp_stats$id == id, ]
-mcm <- read_pair_samples("mcm_forest") |> filter(a > 0, b > 0)
-ssg <- read_pair_samples("sothe_sg")
-hz <- ssg |> filter(ecozone == "Hudson Plain") |> summarise(a = median(a), b = median(b))
-cat(sprintf(
-"::: {.callout-tip appearance=\"simple\"}
-**What the comparisons show** ([details](compare.qmd))
+These previews use a separate 2nd–98th percentile colour range for each product. Equal colours across previews do not imply equal values. Grey is no data.
 
-- **McMaster/WWF forest carbon vs SCANFI:** McMaster/WWF (above + below + dead) is a median %.2f× SCANFI aboveground carbon, and the two share their spatial pattern (r = %.2f). The pools differ, so they are not expected to match.
-- **Sothe (McMaster/WWF) vs SoilGrids, 0–100 cm:** the two soil stock maps are close to uncorrelated (r = %.2f), with the largest gap in the peat-rich Hudson Plain (median %.0f vs %.0f kg C/m²), where SoilGrids excludes overlying organic layers.
-- **Peat thickness:** Li et al. and PEATGRIDS agree within ±25%% at %s of sampled Hudson Plain points, but their whole-column carbon does not.
-:::
-", median(mcm$a / mcm$b), st("mcm_scanfi_c")$pearson_r, st("sothe_sg_0_100")$pearson_r, hz$a, hz$b,
-   percent(st("peat_depth")$within_25pct, 1)))
-```
+![Colour key for the product previews.](assets/summaries/map-key.svg){width=400}
 
-## Find a dataset {#find}
+## Catalogue {#find}
 
-Search, or filter by ecosystem, data type, quantity, coverage or access. "Not hosted by this project" never means unavailable: follow the access link to the provider.
+<details>
+<summary>Open the full dataset catalogue</summary>
+
 
 ```{r}
 #| label: find-table
-#| column: page
 find <- bind_rows(
   G |> transmute(record_id = ground_id, Name = resource_name, Quantity = carbon_pool_or_measurement, Coverage = geographic_coverage,
                  Support = observation_support, `Depth / pool` = depth_support, url = source_url,
@@ -59,15 +45,20 @@ find <- bind_rows(
   transmute(Name = ifelse(is.na(url), htmlEscape(Name), sprintf("<a href='%s' target='_blank' rel='noopener'>%s</a>", url, htmlEscape(Name))),
             `Forests / soils` = dom_label[domain], `Data type` = tools::toTitleCase(data_type), Ecosystem = ecosystem,
             Quantity, Coverage, Support, `Depth / pool`, Access)
-DT::datatable(find, escape = FALSE, rownames = FALSE, filter = "top", class = "compact stripe",
-              options = list(pageLength = 10, autoWidth = FALSE, dom = "ftip", scrollX = TRUE))
+kable(find, escape = FALSE)
 ```
+
+</details>
 
 # Forests {#forests}
 
 ## Ground data {#forests-ground}
 
-Forest plot and tree datasets for Canada. None is hosted by this project yet; each is available from its provider, sometimes on request.
+Forest plots and sampled-tree datasets are linked below. Plot measurements have not yet been ingested for visual summaries.
+
+<details>
+<summary>Forest ground data, study roles and access</summary>
+
 
 ```{r}
 fg <- G |> filter(in_domain(ground_id, "forests"))
@@ -79,18 +70,23 @@ fg |> transmute(Dataset = resource_name, Measures = carbon_pool_or_measurement, 
   kable()
 ```
 
-::: {.callout-note collapse="true" appearance="simple"}
-## Details: study roles and licences
 
 ```{r}
 fg |> left_join(roles, by = "ground_id") |>
   transmute(Dataset = resource_name, `Used by (role)` = na_dash(roles), Licence = na_dash(licence_note), `Catalogue status` = record_status) |> kable()
 ```
-:::
+
+</details>
 
 ## Covariates {#forests-covariates}
 
-Environmentally correlated variables (reflectance, radar, canopy structure, climate, terrain) that forest studies used to map biomass and carbon. Entry counts are not predictor importance.
+Environmental and remote sensing inputs include canopy height, reflectance, radar, climate and terrain. Canopy height is shown as an example; correlation does not establish causation.
+
+![Canopy height, maximum (Sothe covariate). m; mapped canopy height, not carbon. Light-to-dark range 6.13–23.1; approximately 250 m source grid.](assets/summaries/map-canopy_height_max.png){width=650}
+
+<details>
+<summary>Forest covariate studies</summary>
+
 
 ```{r}
 cov_summary <- function(ids) {
@@ -108,22 +104,33 @@ cov_summary <- function(ids) {
 cov_summary(S$study_id[in_domain(S$study_id, "forests")]) |> kable()
 ```
 
-::: {.callout-note collapse="true" appearance="simple"}
-## Details: every forest covariate entry
+</details>
+
+<details>
+<summary>All forest covariate entries</summary>
+
 
 ```{r}
 C |> filter(in_domain(study_id, "forests")) |>
   transmute(Study = study_id, Variable = feature_name, Family = family, `Native grid (m)` = native_grid_m, Period = temporal_window,
             Source = source_asset_or_product, Evidence = evidence_level) |>
-  DT::datatable(rownames = FALSE, filter = "top", class = "compact stripe", options = list(pageLength = 8, scrollX = TRUE, dom = "ftip"))
+  kable()
 ```
 
-```{r}
-preview_html("canopy_height_max")
-```
-:::
+</details>
 
 ## Maps {#forests-maps}
+
+
+![McMaster/WWF forest carbon. kg C/m²; aboveground, belowground and dead plant carbon. Light-to-dark range 1.06–9.06; approximately 250 m source grid.](assets/summaries/map-forest_carbon.png){width=650}
+
+![SCANFI v1.2 aboveground biomass (2020). Mg biomass/ha (t/ha); aboveground, 2020. Light-to-dark range 2.25–158; approximately 30 m source grid.](assets/summaries/map-scanfi_biomass.png){width=650}
+
+![ESA CCI Biomass v6 AGB (2020). Mg biomass/ha; aboveground, 2020. Light-to-dark range 8.55–231; approximately 99 m source grid.](assets/summaries/map-esa_cci_2020.png){width=650}
+
+<details>
+<summary>Forest map products</summary>
+
 
 ```{r}
 map_records <- function(dom) {
@@ -136,29 +143,33 @@ map_records <- function(dom) {
 map_records("forests") |> select(-map_id) |> kable()
 ```
 
-```{r}
-preview_html(c("forest_carbon", "scanfi_biomass", "esa_cci_2020"))
-```
+</details>
 
-::: {.callout-note collapse="true" appearance="simple"}
-## Details: uncertainty layers and exact assets
+<details>
+<summary>Forest map assets and uncertainty bands</summary>
 
-```{r}
-preview_html("forest_carbon_unc")
-```
 
 ```{r}
 A |> filter(resource_id %in% M$map_id[in_domain(M$map_id, "forests")]) |>
   transmute(Resource = resource_id, Asset = project_or_current_asset, `Bands / schema` = bands_or_schema, `Nominal scale (m)` = nominal_scale_m,
             Units = units_note, `Public read` = public_read_status) |> kable()
 ```
-:::
+
+</details>
 
 # Soils {#soils}
 
 ## Ground data {#soils-ground}
 
-Five soil profile and core datasets are prepared and hosted by this project; more are catalogued from their providers. **`r fmt_n(sum(profile_summary$profiles))` profile records, of which `r fmt_n(sum(profile_summary$outside_canada_ecozones))` lie outside Canada's terrestrial ecozones (mostly Pacific coast cores); records are not deduplicated across datasets.**
+Five prepared profile and core datasets. Records are not deduplicated across sources, and some extend beyond Canada.
+
+![Prepared soil observation locations by dataset; symbols overlap and cross-border records remain in the preparation.](assets/summaries/soil-observation-locations.png)
+
+![Recorded depth reach and availability of SOC, bulk density and layer stocks. Depth reach alone does not establish complete interval coverage.](assets/summaries/soil-depth-and-availability.png)
+
+<details>
+<summary>Soil profile counts, dates and measurement availability</summary>
+
 
 ```{r}
 profile_summary |>
@@ -171,20 +182,11 @@ profile_summary |>
   kable(caption = "Share of layer rows with a value; values may be measured or estimated (see qualifiers).")
 ```
 
-```{r}
-#| label: fig-profile-map
-#| fig-height: 6
-#| fig-cap: "Profile locations by dataset (EPSG:3978). Janousek also extends along the US and Mexican Pacific coast, outside this frame."
-locs <- read_csv(file.path(derived, "profile_locations.csv"), show_col_types = FALSE) |> mutate(dataset = factor(dataset, dataset_levels))
-pts <- locs |> filter(!is.na(lon), !is.na(lat)) |> st_as_sf(coords = c("lon", "lat"), crs = 4326) |> st_transform(3978)
-bb <- st_bbox(ecozones)
-ggplot() +
-  geom_sf(data = ecozones, fill = "#eef0ea", colour = "#c9cdc4", linewidth = 0.15) +
-  geom_sf(data = pts, aes(colour = dataset), size = 0.35, alpha = 0.7, show.legend = FALSE) +
-  scale_colour_manual(values = dataset_cols) + facet_wrap(~dataset, ncol = 3) +
-  coord_sf(xlim = bb[c(1, 3)], ylim = bb[c(2, 4)], datum = NA) +
-  theme(axis.text = element_blank(), panel.grid = element_blank(), panel.grid.major = element_blank())
-```
+</details>
+
+<details>
+<summary>Additional soil ground datasets and access</summary>
+
 
 ```{r}
 G |> filter(in_domain(ground_id, "soils"), record_status != "Hosted") |>
@@ -194,66 +196,87 @@ G |> filter(in_domain(ground_id, "soils"), record_status != "Hosted") |>
   kable(caption = "Further soil observation datasets, available from their providers (not hosted by this project).")
 ```
 
-::: {.callout-note collapse="true" appearance="simple"}
-## Details: profiles by ecozone
+</details>
 
-```{r}
-#| fig-height: 4.6
-counts <- locs |> filter(!is.na(ecozone)) |> count(ecozone, dataset)
-ord <- counts |> group_by(ecozone) |> summarise(n = sum(n)) |> arrange(n) |> pull(ecozone)
-ggplot(counts, aes(dataset, factor(ecozone, ord), fill = n)) +
-  geom_tile(colour = "white", linewidth = 1) + geom_text(aes(label = fmt_n(n), colour = n > 600), size = 3) +
-  scale_fill_gradientn(colours = pal$seq, trans = "log10", guide = "none") +
-  scale_colour_manual(values = c(`TRUE` = "white", `FALSE` = pal$ink), guide = "none") +
-  labs(x = NULL, y = NULL) + theme(panel.grid = element_blank())
-```
-:::
+### SOC and bulk density by depth
+
+Mineral-surface and profile-surface depths are kept separate. SOC is in g/kg and density in g/cm³; Riley density is excluded because its units remain unverified.
+
+![Mineral-surface SOC and bulk density: medians and interquartile ranges. Each interval may contain different profiles.](assets/summaries/soil-depth-profiles-mineral.png)
+
+![Profile-surface SOC and bulk density: source-specific organic-layer treatment retained.](assets/summaries/soil-depth-profiles-surface.png)
+
+![Observed mineral-surface values at 0–5 cm; cumulative distributions.](assets/summaries/soil-distributions-mineral.png)
+
+![Observed profile-surface values at 0–5 cm; cumulative distributions.](assets/summaries/soil-distributions-surface.png)
+
+### Stocks at sites
+
+Carbon per unit area at sites, not regional totals. Only prepared eligible intervals are included; boxplots hide outliers and show sample counts.
+
+![Mineral-surface site stocks at 0–30 and 0–100 cm (kg C/m²).](assets/summaries/soil-site-stocks-mineral.png)
+
+![Profile-surface site stocks at 0–30 and 0–100 cm (kg C/m²); retain source-specific methods and organic-layer treatment.](assets/summaries/soil-site-stocks-surface.png)
 
 ## Covariates {#soils-covariates}
 
-Environmentally correlated variables that soil and peat studies used: climate, terrain, vegetation, reflectance, geology and depth.
+Soil and peat studies use climate, terrain, vegetation, geology and depth. Source-variable maps and distributions have not yet been prepared.
+
+<details>
+<summary>Soil and peat covariate studies</summary>
+
 
 ```{r}
 cov_summary(S$study_id[in_domain(S$study_id, "soils")]) |> kable()
 ```
 
+</details>
+
 ## Maps {#soils-maps}
 
-Grouped by what they represent. Concentration, density, fixed-depth stocks and full-column peat stocks are different quantities.
+Concentration, fixed-depth stocks, peat thickness and full-column peat stocks are separate quantities. Each preview has its own colour range, using the key above.
+
+![Sothe soil carbon stock. kg C/m²; 0–100 cm. Light-to-dark range 7.08–171; approximately 249 m source grid.](assets/summaries/map-sothe_stock.png){width=650}
+
+![SoilGrids 2.0 OC stock, 0–30 cm. kg C/m²; 0–30 cm from mineral surface; stored t/ha ÷ 10. Light-to-dark range 4.3–9.1; approximately 250 m source grid.](assets/summaries/map-soilgrids_ocs.png){width=650}
+
+![Geng SOC concentration, 0–5 cm. g C/kg soil; 0–5 cm, provider % × 10; imported encoding and depth datum still to verify. Light-to-dark range 6.26–216; approximately 100 m source grid.](assets/summaries/map-geng_soc_0_5.png){width=650}
+
+![NCSCDv2 SOC stock, 0–100 cm. kg C/m²; 0–100 cm, source hg C/m² ÷ 10; organic-layer treatment still to verify. Light-to-dark range 0.0603–66.1; approximately 1,336 m source grid.](assets/summaries/map-ncscd_100.png){width=650}
+
+![Li et al. peat depth, Hudson Bay Lowlands. cm; full modelled peat thickness; imported encoding still to verify. Light-to-dark range 77–269; approximately 30 m source grid.](assets/summaries/map-li_peat_depth.png){width=650}
+
+![Li et al. peat carbon, Hudson Bay Lowlands. kg C/m²; full modelled peat column; imported encoding still to verify. Light-to-dark range 46.5–117; approximately 30 m source grid.](assets/summaries/map-li_peat_carbon.png){width=650}
+
+![PEATGRIDS peat carbon (full peat column). kg C/m²; full modelled peat column, stored Mg C/m² × 1,000; missing values masked. Light-to-dark range 90.9–214; approximately 1,000 m source grid.](assets/summaries/map-peatgrids_stock.png){width=650}
+
+<details>
+<summary>Soil and peat map products</summary>
+
 
 ```{r}
-#| results: asis
-sm <- map_records("soils") |> left_join(M |> select(map_id, carbon_pool_or_quantity, depth_support_raw = depth_support), by = "map_id") |>
-  mutate(Group = case_when(
-    grepl("peat", paste(Product, carbon_pool_or_quantity), ignore.case = TRUE) ~ "Full-column peat",
-    grepl("polygon|landscape", paste(Product, carbon_pool_or_quantity, depth_support_raw), ignore.case = TRUE) ~ "Landscape polygons",
-    grepl("stock", carbon_pool_or_quantity, ignore.case = TRUE) ~ "Fixed-depth stock",
-    TRUE ~ "Concentration and density"))
-for (g in c("Fixed-depth stock", "Concentration and density", "Full-column peat", "Landscape polygons")) {
-  t <- sm |> filter(Group == g) |> select(Product, Quantity, Coverage, `Grid (m)`, `Depth / pool`, Period, Access, `Use and limitations`)
-  if (nrow(t)) { cat("\n\n**", g, "**\n\n::: {.cell-output-display}\n\n", sep = ""); print(kable(t)); cat("\n\n:::\n\n") }
-}
+map_records("soils") |> select(-map_id) |> kable()
 ```
 
-```{r}
-preview_html(c("sothe_stock", "soilgrids_ocs", "geng_soc_0_5", "ncscd_100", "peatgrids_stock", "li_peat_carbon", "li_peat_depth"))
-```
+</details>
 
-::: {.callout-note collapse="true" appearance="simple"}
-## Details: uncertainty layers and exact assets
+<details>
+<summary>Soil map assets and uncertainty bands</summary>
 
-```{r}
-preview_html("sothe_stock_unc")
-```
 
 ```{r}
 A |> filter(resource_id %in% M$map_id[in_domain(M$map_id, "soils")]) |>
   transmute(Resource = resource_id, Asset = project_or_current_asset, `Bands / schema` = bands_or_schema, `Nominal scale (m)` = nominal_scale_m,
             Units = units_note, `Public read` = public_read_status) |> kable()
 ```
-:::
+
+</details>
 
 ## Further resources {#further}
+
+<details>
+<summary>Other catalogued resources</summary>
+
 
 ```{r}
 O |> left_join(xw, by = c("other_source_id" = "record_id")) |>
@@ -261,4 +284,4 @@ O |> left_join(xw, by = c("other_source_id" = "record_id")) |>
             Support = spatial_support, `Depth / pool` = depth_or_pool, Access = link_md(source_url, na_dash(access_status))) |> kable()
 ```
 
-<p class="small text-muted">Catalogue version `r build_info$catalogue_version` · source revision `r build_info$revision` · generated `r build_info$date`.</p>
+</details>

@@ -1,0 +1,21 @@
+---
+title: "Contribute"
+---
+
+[Data and summaries](index.qmd) · [Comparisons](compare.qmd) · [How to use](use.qmd) · [Methods](report/methods.qmd) · [Downloads](downloads.qmd) · [Sources](sources.qmd)
+
+
+```{r}
+#| label: setup
+source(file.path("report", "_setup.R"))
+```
+
+Suggest additions or corrections through [GitHub Issues](https://github.com/CathalD/Carbon_Data_SOD/issues). Please include:
+
+- the original source DOI or download, and the release or version;
+- the licence;
+- the carbon quantity and units, depth or pool, and reference period;
+- the geographic scope, native raster grid or field support;
+- the Earth Engine asset ID, where one exists.
+
+For corrections, preserve original IDs and observations, and add a new version rather than silently overwriting field data. Discovery leads are welcome if their unresolved status is clear. Do not commit credentials or signed download URLs.

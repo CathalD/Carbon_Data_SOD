@@ -1,7 +1,9 @@
 ---
 title: "Methods"
-subtitle: "What is compared, how, and what the results can and cannot say."
 ---
+
+[Data and summaries](../index.qmd) · [Comparisons](../compare.qmd) · [How to use](../use.qmd) · [Methods](../report/methods.qmd) · [Downloads](../downloads.qmd) · [Sources](../sources.qmd)
+
 
 ```{r}
 #| label: setup

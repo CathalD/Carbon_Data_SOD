@@ -11,14 +11,15 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 HANDOVER = ROOT / 'handover'
-EXCLUDED_PARTS = {'handover', '.git', '.venv', '__pycache__', '.quarto', '_site'}
+EXCLUDED_PARTS = {'handover', '.git', '.venv', '__pycache__', '.quarto', '_site', '_freeze'}
 
 
 def eligible(path):
     parts = path.relative_to(ROOT).parts
     return (path.is_file() and not EXCLUDED_PARTS.intersection(parts)
             and path.name not in {'START_HERE.md', '.DS_Store'}
-            and path.suffix != '.pyc')
+            and path.suffix != '.pyc'
+            and not any(part.endswith('_files') for part in parts))
 
 
 def main():
@@ -36,7 +37,9 @@ def main():
         str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
         for p in sorted(ROOT.rglob('*'))
         if p.is_file() and p != manifest and '.DS_Store' != p.name
-        and '__pycache__' not in p.parts and p.suffix != '.pyc'
+        and not {'.quarto', '_site', '_freeze', '__pycache__'}.intersection(p.relative_to(ROOT).parts)
+        and not any(part.endswith('_files') for part in p.relative_to(ROOT).parts)
+        and p.suffix != '.pyc'
     }
     source = json.loads((ROOT / 'analysis/source_snapshot/SNAPSHOT.json').read_text())
     manifest.write_text(json.dumps({

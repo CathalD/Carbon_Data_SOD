@@ -11,7 +11,7 @@ Everything the pages read is committed: the catalogue CSVs in `../data/downloads
 Requirements:
 
 - [Quarto](https://quarto.org) 1.9 or later.
-- R 4.4 or later with: `dplyr tidyr readr ggplot2 scales sf readxl jsonlite knitr rmarkdown htmltools patchwork hexbin DT`.
+- R 4.4 or later with: `dplyr tidyr readr ggplot2 scales sf readxl jsonlite knitr rmarkdown htmltools patchwork hexbin`.
 
 ```bash
 cd Comparison
@@ -45,6 +45,8 @@ python gee/catalogue_previews.py      # optional: refresh the dataset preview im
 ```
 
 Each script's header documents its inputs, outputs and method. The pair definitions (quantities, unit conversions, grids, depth datum) live in `analysis/gee/common.py` and are written to `data/derived/pairs.json`.
+
+The main pages use plain document formatting. Dataset and comparison tables are collapsed with native HTML `details` elements; scientific figures retain their legends and units. Static summary figures and their source manifest are in `assets/summaries/`. The figure generator is `../tranfer_files/analysis/build_summary_figures.py`; its source snapshot and inputs are recorded in the manifest. The tool workflow is a diagram, not a screenshot of a published GEE App.
 
 ## Layout
 
