@@ -30,7 +30,7 @@ Geospatial tools support summaries for each user's area of interest (AOI):
 
 Each part follows the same structure: **Forests** and **Soils**, each organised into **ground data, covariates and map products**.
 
-[Published report](https://cathald.github.io/Carbon_Data_SOD/) · [Catalogue downloads](DOWNLOADS.md) · [Sources](SOURCES.md) · [Tool guide](tools/gee/README.md)
+[R comparison workbooks](workbooks/r/README.md) · [Published report](https://cathald.github.io/Carbon_Data_SOD/) · [Catalogue downloads](DOWNLOADS.md) · [Sources](SOURCES.md) · [Tool guide](tools/gee/README.md)
 
 ## Part 1. Data and summaries
 

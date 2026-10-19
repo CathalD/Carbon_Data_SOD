@@ -30,7 +30,7 @@ Geospatial tools support summaries for each user's area of interest (AOI):
 
 Each part follows the same structure: **Forests** and **Soils**, each organised into **ground data, covariates and map products**.
 
-[Visual summaries](docs/summaries.md) · [Comparison draft](docs/comparisons.md) · [How to use](docs/how-to-use.md)
+[R comparison workbooks](workbooks/r/README.md) · [Visual summaries](docs/summaries.md) · [Comparison draft](docs/comparisons.md) · [How to use](docs/how-to-use.md)
 
 [Methods](docs/methods.md) · [Downloads](docs/downloads.md) · [Sources](SOURCES.md) · [Technical analysis](analysis/README.md)
 

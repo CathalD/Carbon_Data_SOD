@@ -1,0 +1,34 @@
+key,asset,band,multiplier,unit,nominal_grid_m,recipe,notes
+geng_soc_0_5,projects/northstarlabs/assets/canada_carbon_collection/SOC_0_5_cm,FIRST,10,g/kg,100,image,Imported encoding and mineral-surface datum remain to verify.
+sg_soc_0_5,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/soc_mean,soc_0-5cm_mean,0.1,g/kg,250,image,Mineral surface; overlying organic layers excluded.
+geng_bd_0_5,projects/northstarlabs/assets/canada_carbon_collection/BD_0_5_cm,FIRST,1,g/cm³,100,image,Imported encoding and mineral-surface datum remain to verify.
+sg_bd_0_5,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean,bdod_0-5cm_mean,0.01,g/cm³,250,image,Mineral surface; overlying organic layers excluded.
+geng_soc_5_15,projects/northstarlabs/assets/canada_carbon_collection/SOC_5_15_cm,FIRST,10,g/kg,100,image,Imported encoding and mineral-surface datum remain to verify.
+sg_soc_5_15,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/soc_mean,soc_5-15cm_mean,0.1,g/kg,250,image,Mineral surface; overlying organic layers excluded.
+geng_bd_5_15,projects/northstarlabs/assets/canada_carbon_collection/BD_5_15_cm,FIRST,1,g/cm³,100,image,Imported encoding and mineral-surface datum remain to verify.
+sg_bd_5_15,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean,bdod_5-15cm_mean,0.01,g/cm³,250,image,Mineral surface; overlying organic layers excluded.
+geng_soc_15_30,projects/northstarlabs/assets/canada_carbon_collection/SOC_15_30_cm,FIRST,10,g/kg,100,image,Imported encoding and mineral-surface datum remain to verify.
+sg_soc_15_30,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/soc_mean,soc_15-30cm_mean,0.1,g/kg,250,image,Mineral surface; overlying organic layers excluded.
+geng_bd_15_30,projects/northstarlabs/assets/canada_carbon_collection/BD_15_30_cm,FIRST,1,g/cm³,100,image,Imported encoding and mineral-surface datum remain to verify.
+sg_bd_15_30,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean,bdod_15-30cm_mean,0.01,g/cm³,250,image,Mineral surface; overlying organic layers excluded.
+geng_soc_30_60,projects/northstarlabs/assets/canada_carbon_collection/SOC_30_60_cm,FIRST,10,g/kg,100,image,Imported encoding and mineral-surface datum remain to verify.
+sg_soc_30_60,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/soc_mean,soc_30-60cm_mean,0.1,g/kg,250,image,Mineral surface; overlying organic layers excluded.
+geng_bd_30_60,projects/northstarlabs/assets/canada_carbon_collection/BD_30_60_cm,FIRST,1,g/cm³,100,image,Imported encoding and mineral-surface datum remain to verify.
+sg_bd_30_60,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean,bdod_30-60cm_mean,0.01,g/cm³,250,image,Mineral surface; overlying organic layers excluded.
+geng_soc_60_100,projects/northstarlabs/assets/canada_carbon_collection/SOC_60_100_cm,FIRST,10,g/kg,100,image,Imported encoding and mineral-surface datum remain to verify.
+sg_soc_60_100,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/soc_mean,soc_60-100cm_mean,0.1,g/kg,250,image,Mineral surface; overlying organic layers excluded.
+geng_bd_60_100,projects/northstarlabs/assets/canada_carbon_collection/BD_60_100_cm,FIRST,1,g/cm³,100,image,Imported encoding and mineral-surface datum remain to verify.
+sg_bd_60_100,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/bdod_mean,bdod_60-100cm_mean,0.01,g/cm³,250,image,Mineral surface; overlying organic layers excluded.
+sg_ocs_0_30,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocs_mean,ocs_0-30cm_mean,0.1,kg C/m²,250,image,Mineral surface; stored t/ha divided by 10.
+ncscd_0_30,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC30_0012deg,FIRST,0.1,kg C/m²,1335.83,image,Source hg C/m² divided by 10; organic-layer treatment partly unresolved.
+ncscd_0_100,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/ncscdv2/NCSCDv2_Canada_WGS84_SOCC100_0012deg,FIRST,0.1,kg C/m²,1335.83,image,Source hg C/m² divided by 10; organic-layer treatment partly unresolved.
+sothe_0_100,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/sothe_2022/sc_250m_v20,FIRST,1,kg C/m²,249.36,image,"0–100 cm, maintainer-confirmed 2026-10-16."
+sg_ocs_0_100_derived,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/soilgrids_v2/ocd_mean,ocd_0-5cm_mean,1,kg C/m²,250,soilgrids_stock_100,Sum five carbon-density intervals: hg/m³ × 0.1 × thickness in m; require every interval.
+mcm_forest_c,projects/sat-io/open-datasets/carbon_stocks_ca/fc/fc_250m_version10,FIRST,1,kg C/m²,250.02,image,Aboveground + belowground + dead plant carbon; mostly 2015–2019 inputs.
+scanfi_agb_c,projects/gcpm041u-lemur/assets/scanfi_v12/SCANFI_v1_2,biomass,0.05,kg C/m²,30,image,2020 aboveground biomass t/ha × 0.5 carbon fraction × 0.1; fraction is an explicit assumption.
+scanfi_agb,projects/gcpm041u-lemur/assets/scanfi_v12/SCANFI_v1_2,biomass,1,Mg/ha,30,image,"2020 aboveground biomass; t/ha = Mg/ha, not carbon."
+esa_agb,projects/sat-io/open-datasets/ESA/ESA_CCI_AGB/CCI_BIOMASS_100m_AGB_2020_V6,AGB,1,Mg/ha,98.95,image,"2020 aboveground biomass, not carbon."
+li_depth,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMaster_PeatDepth_30m,FIRST,1,cm,30,image,Full modelled peat thickness; imported encoding remains to verify.
+li_carbon,projects/northstarlabs/assets/carbon_state_of_data/soils/maps/li_2025_hbl/McMasterCarbon30mkgm2version1,FIRST,1,kg C/m²,30,image,Full modelled peat column; imported encoding remains to verify.
+pg_depth,projects/sat-io/open-datasets/PEATGRIDS/THICKNESS_CM,THICKNESS_CM_MEAN,1,cm,1000,peat_nonnegative,Full modelled peat thickness; mask NaN/negative missing values.
+pg_carbon,projects/sat-io/open-datasets/PEATGRIDS/C_STOCK_MGC_PER_M2,C_STOCK_MgC_per_m2_MEAN,1000,kg C/m²,1000,peat_nonnegative,Full modelled peat column; Mg C/m² × 1000; mask NaN/negative missing values.

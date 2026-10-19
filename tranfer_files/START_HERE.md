@@ -16,6 +16,7 @@ If copying directly from this folder, copy everything except `handover/` and thi
 | `data/` | Editable catalogue tables and source evidence |
 | `references/`, `SOURCES.md` | Scientific references and the original project's citation metadata |
 | `examples/` | Existing Earth Engine access examples |
+| `workbooks/r/` | Downloadable R workbooks for saved-data and rgee comparisons |
 | `tools/gee/` | Carbon Data Explorer draft, export controls and embedded-catalogue builder |
 | `scripts/` | Catalogue JSON builder and source QC example |
 | `analysis/` | Summary-figure generator and a versioned source analysis snapshot |

@@ -16,6 +16,12 @@ The **Carbon Data Explorer** is an Earth Engine Code Editor script for exploring
 
 The AOI outline can be hidden. Raster downloads are GeoTIFFs; large areas may require a Drive export task or a smaller AOI.
 
+## Run the comparisons in R
+
+[Download the R workbook ZIP](https://raw.githubusercontent.com/CathalD/Carbon_Data_SOD/main/workbooks/r/r-comparison-workbook.zip) · [Workbook instructions](https://github.com/CathalD/Carbon_Data_SOD/tree/main/workbooks/r)
+
+Two guided scripts cover the 17 map pairs and the soil observations-versus-maps comparisons. Start with saved report samples, then use `rgee` to fetch map values again.
+
 # Forests {#forests}
 
 ## Ground data {#forests-ground}

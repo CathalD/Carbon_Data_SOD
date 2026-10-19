@@ -15,6 +15,8 @@ st <- function(id) comp_stats[comp_stats$id == id, ]
 lab_of <- setNames(pairs$quantity, pairs$id)
 ```
 
+[Run these comparisons yourself in R](https://github.com/CathalD/Carbon_Data_SOD/tree/main/workbooks/r).
+
 Selected products are compared after unit conversion on the coarser product grid. Agreement is not accuracy. [Methods](report/methods.qmd) documents the calculations and limitations.
 
 National maps show sampled means in 100 km hexagons with at least five paired observations; peat maps use 40 km hexagons with at least three. A and B share a colour scale within each figure. Red differences mean A is higher, blue mean B is higher; extreme colours saturate (2nd–98th percentile for A/B; 95th percentile of absolute differences). Grey means insufficient paired data.

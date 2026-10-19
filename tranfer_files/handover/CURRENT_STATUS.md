@@ -20,3 +20,5 @@ After editing the transfer folder, run `python handover/update_package.py` from 
 The `tools/gee/` draft now shows soil points only when Profiles is expanded, clips rasters to the AOI, allows the AOI polygon to be hidden, compares eligible map products in Results and prepares raster/ground CSV downloads. It remains a Code Editor script for testing; a company GEE app has not been published.
 
 The current plain website is now in `site/`: summary and comparison figures, dropdown tables, separate methods, and the existing explorer script under How to use. This is the public report layout; `docs/` retains the earlier planning scaffold. Company Pages deployment still requires the actual company URL and repository settings.
+
+`workbooks/r/` now contains guided map and profile comparison scripts, an RStudio project and a standalone ZIP. Saved inputs are pinned; rgee can re-fetch map values. The original profile-depth preparation remains a separate workflow.

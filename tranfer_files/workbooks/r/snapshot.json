@@ -1,0 +1,6 @@
+{
+  "repository": "CathalD/Carbon_Data_SOD",
+  "source_commit": "90ed020c1198c6ab723684b0b44e8707dc65e232",
+  "data_path": "Comparison/data/derived",
+  "description": "Pinned report inputs; live Earth Engine assets can change independently."
+}

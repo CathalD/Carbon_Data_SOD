@@ -1,0 +1,7 @@
+/outputs/
+/data_cache/
+.Rproj.user/
+.Rhistory
+.RData
+.Renviron
+Rplots.pdf
