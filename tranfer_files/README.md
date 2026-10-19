@@ -1,42 +1,60 @@
 # State of Carbon Data in Canada
 
-Canada has a wealth of carbon data, but finding the right dataset, understanding what it represents and applying it to a particular place can be difficult. Information is spread across research publications, government portals and data archives, with different formats, methods and access requirements.
+We compile carbon data relevant to Canada, including ground and plot observations, map products, and environmental and remote sensing covariates used in carbon modelling. The catalogue summarises what these data contain, where they apply and how to access them.
 
-This report brings those resources together to help communities, researchers, conservation practitioners and decision-makers understand what is available and how it can support their work. It covers ground observations, environmental variables and mapped estimates of forest biomass and soil carbon, including peat.
+Catalogue metadata are maintained in this repository, with selected datasets available through Google Earth Engine and links to other providers. Access varies: some resources are openly downloadable, while others require a request. Where appropriate, compatible products are compared to highlight agreement and disagreement in their estimates.
 
-The report has three main focuses:
+**[Part 1 – Data and summaries](#part-1-data-and-summaries)**
 
-1. **[Data and summaries](#1-data-and-summaries):** what data exist, what they contain and how to access them.
-2. **[Comparisons](#2-comparisons):** how the data differ and which products can be compared meaningfully.
-3. **[How to use](#3-how-to-use):** practical tools for using the data, with Google Earth Engine apps planned.
+Ground data, covariates and map products are brought together in the tables below.
 
-Each focus follows the same structure: **Forests** and **Soils**, each organised into **ground data, covariates and maps**.
+| Data type | Forests | Soils |
+|---|---|---|
+| Ground data | 6 ground-data resources linked | Over 15,000 prepared profile/location records from 5 databases |
+| Covariates | 9 covariate families; 4 forest-mapping studies | 14 covariate families; 9 study/reference entries |
+| Map products | 4 main map product groups | 9 mapped product groups and 1 synthesis reference |
 
-**Existing report:** [Browse the source project's website](https://cathald.github.io/Carbon_Data_SOD/). This repository is being assembled from that work. Catalogue downloads and access examples are available from the source links below; Google Earth Engine apps are planned.
+These counts describe the main tables below; additional regional resources are listed separately. Soil records are not deduplicated across databases, and the coastal compilation includes locations outside Canada. Study/reference entries include modelling, soil-map upscaling, expert classification and synthesis; they do not all represent new spatial models.
 
-**Draft pages:** [Visual summaries](docs/summaries.md) · [Comparisons](docs/comparisons.md) · [How to use](docs/how-to-use.md)
+**[Part 2 – Comparisons](#part-2-comparisons)**
 
-**Supporting information:** [Methods](docs/methods.md) · [Downloads](docs/downloads.md) · [Sources](SOURCES.md). [Technical analysis](analysis/README.md) is separate from the public pages.
+Where quantities, depths, carbon pools and spatial support permit, mapped estimates and their means are compared over shared coverage. The comparisons highlight areas of agreement and disagreement; agreement alone does not establish accuracy.
 
-## Understanding the data
+**[Part 3 – How to use these data](#part-3-how-to-use-these-data)**
 
-Ground observations provide measurements at specific plots, trees, soil profiles or cores. Some carbon quantities are measured directly; others are estimated from measurements, such as tree dimensions or soil carbon concentration and bulk density. Their uncertainty depends on the sampling and calculation methods.
+Geospatial tools support summaries for each user's area of interest (AOI):
 
-**Covariates** are environmental variables used to describe conditions or help estimate carbon beyond the sampled locations. They include vegetation, climate, terrain, geology and information from optical, radar and LiDAR observations. A variable's use in a study does not, by itself, establish its predictive importance elsewhere.
+- View available ground data and explore covariates and map products clipped to the AOI.
+- Compare eligible map products within the AOI.
+- Export ground-data CSVs and clipped raster layers for the AOI.
+
+Each part follows the same structure: **Forests** and **Soils**, each organised into **ground data, covariates and map products**.
+
+[Visual summaries](docs/summaries.md) · [Comparison draft](docs/comparisons.md) · [How to use](docs/how-to-use.md)
+
+[Methods](docs/methods.md) · [Downloads](docs/downloads.md) · [Sources](SOURCES.md) · [Technical analysis](analysis/README.md)
+
+## Part 1. Data and summaries
+
+[Explore the visual summaries](docs/summaries.md). Example figures and unfinished panels are labelled.
+
+### 1.1 Understanding the data
+
+**Ground observations** record properties of plots, individual trees, soil profiles or cores. Laboratory analyses can measure carbon concentration and bulk density in collected samples. Forest biomass is often estimated from tree or plot measurements using allometric equations, then converted to carbon using a documented carbon fraction. Carbon stocks are calculated from the relevant measurements, sampled area or depth, and source-specific methods.
+
+Outputs can include carbon concentration (for example, g C/kg soil), bulk density (g/cm³), biomass, and carbon stock per unit area (for example, kg C/m² or t C/ha). These are different quantities. Soil stock calculations need a stated depth and appropriate bulk-density and soil-volume information; concentration alone is not a stock.
+
+**Covariates** are environmental or remote sensing variables used to describe conditions and help estimate carbon beyond the sampled locations. They include vegetation, climate, terrain, geology, and optical, radar and LiDAR observations. A covariate may be associated with carbon measurements without establishing a causal relationship. Its predictive value also depends on the study, location and period.
 
 **Maps** extend estimates across a landscape using observations, covariates and modelling or other upscaling methods. Their suitability depends on the quantity represented, geographic coverage, dates, spatial support and uncertainty.
 
 Forests and soils are presented separately because their observations, methods and products often differ. They remain ecologically connected: vegetation supplies organic matter to soils, while soil conditions influence vegetation growth. Forest-floor and soil carbon beneath forests are included under Soils, with links to relevant forest resources.
 
-## 1. Data and summaries
+Expand the tables below for dataset details. Access, source terms and unresolved definitions remain specific to each resource; catalogue inclusion does not mean that its measurements or maps are hosted here or in Earth Engine.
 
-[Explore the visual summaries](docs/summaries.md). The page contains example maps and soil-observation charts, with remaining work labelled.
+### 1.2 Forests
 
-The tables below summarise the source catalogue and your dataset shortlist. Expand a table to see its records. Inclusion does not mean that a dataset is hosted in this new repository. Access, source terms and unresolved definitions remain specific to each resource.
-
-### Forests
-
-#### Ground data
+#### 1.2.1 Ground data
 
 Forest inventories, plot measurements and sampled-tree datasets. Retain measurement dates, plot support, coordinate accuracy and the method used to estimate biomass or carbon.
 
@@ -54,7 +72,7 @@ Forest inventories, plot measurements and sampled-tree datasets. Retain measurem
 
 </details>
 
-#### Covariates
+#### 1.2.2 Covariates
 
 Environmental variables used by forest studies, including canopy structure, optical reflectance, radar, climate and terrain. Study-level performance is distinct from the importance of an individual covariate.
 
@@ -70,12 +88,14 @@ Environmental variables used by forest studies, including canopy structure, opti
 
 </details>
 
+**Covariate families**
+
 <details>
-<summary>View candidate forest covariates and source products</summary>
+<summary>View forest covariate families and source products</summary>
 
-These are candidate extraction recipes from the earlier planning work, not a claim that a new extraction workflow has been implemented. The source notebook and pilot are archived separately. Match each recipe to the study's actual source release, time window and preprocessing.
+These families summarise study inputs and related source products. Match each variable to the study's actual source release, time window, preprocessing and documented role; details still to verify are identified below.
 
-| Covariate family | Variables to extract or derive | Source pixel spacing | Intended modelling grid/context | Source and implementation status |
+| Covariate family | Variables | Resolution | Context | Source |
 |---|---|---|---|---|
 | Landsat reflectance | Blue, green, red, NIR, SWIR1, SWIR2 | 30 m | Regional 30 m; national 250 m after aggregation | [Collection 2 Landsat 8 example](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2); sensor/date harmonization required for longer series |
 | Landsat temporal features | CCDC intercept, trend, three sine/cosine pairs and fitting RMSE per band; summer/winter reflectance composites | Derived from 30 m observations | Betts regional 30 m and SCANFI tile models | Derived features with study-specific fitting/composite rules |
@@ -89,7 +109,7 @@ These are candidate extraction recipes from the earlier planning work, not a cla
 
 </details>
 
-#### Maps
+#### 1.2.3 Map products
 
 Forest biomass and carbon maps. Aboveground biomass is distinct from carbon, and products that include different vegetation pools cannot be interpreted as equivalent totals.
 
@@ -128,9 +148,9 @@ The biomass SD describes within-polygon variation; it is not automatically a pre
 
 </details>
 
-### Soils
+### 1.3 Soils
 
-#### Ground data
+#### 1.3.1 Ground data
 
 Soil profiles, peat cores and sediment observations. The preparation counts below refer to source-project versions; they are not a deduplicated count of Canadian locations. Janousek includes Canadian, US and Mexican Pacific coast records. Riley records are sampling-location groups whose separate core identities remain unresolved.
 
@@ -164,7 +184,7 @@ Gross spans vegetation, deadwood and soil pools. Martens and the coastal compila
 
 </details>
 
-#### Covariates
+#### 1.3.2 Covariates
 
 Environmental variables used by soil and peat studies. Keep the source grid, geographic context, dates and prediction depth separate from the model's output grid. Proposed variables, documented inputs and retained predictors have different evidence.
 
@@ -242,7 +262,7 @@ The supplied table has 29 named entries; the study reports 40 expanded candidate
 
 </details>
 
-#### Maps
+#### 1.3.3 Map products
 
 Soil concentration, density, fixed-depth stocks and peat products. Keep fixed-depth mineral-soil estimates, organic-inclusive stocks and full peat columns separate. PEATGRIDS provides both thickness and carbon; missing values must not appear as high carbon on a map.
 
@@ -286,18 +306,17 @@ McNicol also provides profile observations. Its mineral-soil depth plus organic 
 
 </details>
 
-
-## 2. Comparisons
+## Part 2. Comparisons
 
 [Read the comparison draft](docs/comparisons.md), including eligibility, units and limitations.
 
-### Forests
+### 2.1 Forests
 
 - **Ground data:** compare geographic coverage, observation dates, sampling support, measured variables and methods used to estimate biomass or carbon.
 - **Covariates:** compare the environmental inputs studies use, their spatial and temporal support, and documented evidence for variable selection or importance.
 - **Maps:** compare products with compatible quantities, pools, years and coverage. Explain differences in scope where products cannot be compared directly.
 
-### Soils
+### 2.2 Soils
 
 - **Ground data:** compare coverage, variable availability, sampling depth, depth datum and completeness. Identify shared observations across compilations where known.
 - **Covariates:** compare environmental inputs and their support across soil and peat studies, distinguishing documented inputs from proposed variables.
@@ -307,39 +326,41 @@ Map-to-observation comparisons will identify differences between a plot or core 
 
 [Methods, unit conversions and sampling rules](docs/methods.md) accompany the comparisons. The [existing comparison report](https://cathald.github.io/Carbon_Data_SOD/compare.html) provides the source project's results; conclusions transferred here should retain their version, eligibility rules and limitations.
 
-## 3. How to use
+## Part 3. How to use these data
 
-[Open the How to use page](docs/how-to-use.md). GEE apps remain planned.
+[Open the How to use page](docs/how-to-use.md).
 
-**Google Earth Engine apps are planned.** The tables below are placeholders describing intended uses; they do not represent released apps.
+The [Carbon Data Explorer script](tools/gee/carbon_data_explorer.js) provides AOI-driven summaries in the Earth Engine Code Editor. It can show available soil profiles, display covariates and maps within an AOI, compare eligible map products, and prepare ground-data CSV and raster exports. The [tool guide](tools/gee/README.md) explains the controls, scientific limitations and export grids.
 
-### Forests
+Separate published GEE apps are planned. The script is available for testing; forest plot locations have not been loaded into it.
+
+### 3.1 Forests
 
 <details>
-<summary>View planned forest tools: ground data, covariates and maps</summary>
+<summary>View forest tools: ground data, covariates and maps</summary>
 
-| Data type | Planned tools |
+| Data type | Available tools and next steps |
 |---|---|
-| Ground data | Explore forest plot and sampled-tree observations. |
-| Covariates | Explore environmental variables and their spatial and temporal support. |
-| Maps | Explore forest biomass and carbon products, keeping pools and units explicit. |
+| Ground data | Follow catalogue links to forest plot and sampled-tree resources. Plot locations are not loaded in the Explorer. |
+| Covariates | View matched environmental layers within the AOI; summarise and export them with their units and spatial support. |
+| Maps | View, summarise and export forest products within the AOI; compare eligible products with matching quantities, pools and years. |
 
 </details>
 
-### Soils
+### 3.2 Soils
 
 <details>
-<summary>View planned soil tools: ground data, covariates and maps</summary>
+<summary>View soil tools: ground data, covariates and maps</summary>
 
-| Data type | Planned tools |
+| Data type | Available tools and next steps |
 |---|---|
-| Ground data | Explore soil profiles, peat cores and depth observations. |
-| Covariates | Explore environmental variables used by soil and peat studies. |
-| Maps | Explore soil and peat products, with quantity, depth and units explicit. |
+| Ground data | Show available profiles and peat cores on demand; summarise records and export profile/layer CSVs within the AOI. |
+| Covariates | View matched soil and peat covariates within the AOI; summarise and export the shown layers. |
+| Maps | View, summarise, compare and export eligible products within the AOI, with quantity, depth datum and units explicit. |
 
 </details>
 
-### Access available now
+### 3.3 Access available now
 
 - **Catalogue:** [CSV tables and complete JSON](data/downloads/) describe studies, observations, covariates, maps, assets, methods and QC. See the source [download guide](docs/downloads.md).
 - **Provider and GEE references:** [Assets.csv](data/downloads/Assets.csv) links exact assets and original sources. Some field datasets require a provider request. Public GEE assets still require your own Earth Engine-enabled project for computation.
@@ -392,7 +413,7 @@ When selecting or combining datasets:
 
 ## Maintaining the catalogue
 
-The source project's current CSVs in `data/downloads/` are its editable catalogue snapshot. If the working Google Sheet is used for editing, export and check those tables before updating the public files. Regenerate the complete JSON and website from the same snapshot to keep them consistent. Preserve stable IDs and source versions when copying records into this repository.
+The CSVs in `data/downloads/` are the editable catalogue snapshot. If the working Google Sheet is used for editing, export and check those tables before updating the public files. Regenerate the complete JSON and website from the same snapshot to keep them consistent. Preserve stable IDs and source versions when copying records into this repository.
 
 ## Sources and contributions
 

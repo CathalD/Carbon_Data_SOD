@@ -5,7 +5,7 @@
   "files": {
     ".gitignore": "77605729c98668c94336a4facd95a3e2853ffa5d30ae6a30a84025a963635bd3",
     "CONTRIBUTING.md": "23fb212f741b9d434160285719083c2cc170198527d8776f38ac0b336529be26",
-    "README.md": "46f733b65dab9661d9a80e559d6e9830368eaecfa05f10647de1fcf19f0cf5b1",
+    "README.md": "7d212b95ff7b4ccbcbfe68019fa103811a8438c7f3f2f2f422d7a1293d617057",
     "SOURCES.md": "a583b57d944ba6a6d8f513583008fc7bf1612f3352a73b2febd3bcf5fe2b8422",
     "START_HERE.md": "7b9370dba7f1db01418dfc7193de898fe2e5f77096ca5fa6dea36ac113aaed3b",
     "analysis/README.md": "a8d986a03e49895fe16957d203b8c07f9e67a7294875cfce99b5bfd8ef69197d",
@@ -166,7 +166,7 @@
     "examples/README.md": "0e4eabc57edc361ad28fd8e5be446599294dba15a46645b631eb66c99be50533",
     "examples/requirements.txt": "958bc13c849669eedaaa91579969ed4ce5a6fa6a68a9fa51aec08912bffcd449",
     "handover/CURRENT_STATUS.md": "b73c394df384a0760235b05a70b5a6b48078f3eb5af9548abfa32a1300269658",
-    "handover/company-repository.zip": "e36a4420bd6d95566033cd5a9979b8b847423389b964f81c66ee26543fb1a912",
+    "handover/company-repository.zip": "1bbc6f06f9ab5e14c98d39a7f288b23fd66d645db0b0a6ae979cf8a3136b7b3b",
     "handover/planning/README.md": "24da88e78614f708ea4df49a6106d5d0bfa6c2e3ff92ba48e6b05c96e8b9ab0f",
     "handover/planning/carbon_review.md": "b0fe4625d824107c546ac191a44dbfa77efdb146c65f6a623d148b55340fbad1",
     "handover/planning/file_audit.csv": "468c0e44f24a02fd68ff2a9935ad2392cfbc93ddeba69acb78ae4a451b2345f7",
